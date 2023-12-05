@@ -11,6 +11,12 @@ class Vendor_model extends CI_Model
 		return $hasil->result();
 	}
 
+	function vendor_list_aktif() //112023
+	{
+		$hasil = $this->db->query("SELECT * FROM vendor WHERE STATUS_VENDOR='AKTIF' ORDER BY NAMA_VENDOR ASC");
+		return $hasil->result();
+	}
+
 	//FUNGSI: Fungsi ini untuk menampilkan data vendor berdasarkan ID_VENDOR
 	//SUMBER TABEL: tabel vendor
 	//DIPAKAI: 1. controller Vendor / function data_vendor

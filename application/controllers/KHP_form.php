@@ -27,12 +27,9 @@ class KHP_form extends CI_Controller
 		$this->data['left_menu'] = "KHP_aktif";
 	}
 
-	/**
-	 * Log the user out
-	 */
+
 	public function logout() //112023
     {
-
         $ID_KHP = 0;
         $KETERANGAN = "Paksa Logout Ketika Akses KHP Form";
         $this->user_log_khp($ID_KHP, $KETERANGAN);
@@ -147,9 +144,9 @@ class KHP_form extends CI_Controller
 			$this->data['NAMA_VENDOR_KETIGA'] = $hasil4['NAMA_VENDOR'];
 		}
 
-		$this->data['vendor_pertama'] = $this->Vendor_model->vendor_list();
-		$this->data['vendor_kedua'] = $this->Vendor_model->vendor_list();
-		$this->data['vendor_ketiga'] = $this->Vendor_model->vendor_list();
+		$this->data['vendor_pertama'] = $this->Vendor_model->vendor_list_aktif();
+		$this->data['vendor_kedua'] = $this->Vendor_model->vendor_list_aktif();
+		$this->data['vendor_ketiga'] = $this->Vendor_model->vendor_list_aktif();
 		$this->data['SPPB'] = $this->KHP_model->sppb_list_by_id_sppb($this->data['ID_SPPB']);
 		$this->data['KHP'] = $this->KHP_model->khp_list_by_id_khp($this->data['ID_KHP']);
 
@@ -171,116 +168,57 @@ class KHP_form extends CI_Controller
 			}
 		} else if ($this->ion_auth->logged_in() && ($this->ion_auth->in_group(6))) {
 
-			//fungsi ini untuk mengirim data ke dropdown
-
-			$hasil = $this->KHP_model->get_data_khp_by_HASH_MD5_KHP($HASH_MD5_KHP);
-			$ID_SPPB = $hasil['ID_SPPB'];
-			$ID_KHP = $hasil['ID_KHP'];
-			$this->data['HASH_MD5_KHP'] = $HASH_MD5_KHP;
-			$this->data['ID_SPPB'] = $ID_SPPB;
-			$this->data['ID_KHP'] = $ID_KHP;
-
-
-			$this->data['vendor'] = $this->Vendor_model->vendor_list();
-			$this->data['SPPB'] = $this->SPPB_model->sppb_list_by_id_sppb($ID_SPPB);
-			$this->data['KHP'] = $this->KHP_model->khp_list_khp_by_hashmd5($HASH_MD5_KHP);
-
-
-			//$this->data['rasd_barang_list'] = $this->KHP_form_model->rasd_form_list_where_not_in_khp($ID_KHP);
-			//$this->data['barang_master_list'] = $this->KHP_form_model->barang_master_where_not_in_khp_and_rasd($ID_KHP);
-			// $this->data['satuan_barang_list'] = $this->Satuan_barang_model->satuan_barang_list();
-			// $this->data['jenis_barang_list'] = $this->Jenis_barang_model->jenis_barang_list();
-
-			$this->load->view('wasa/user_kasie_procurement_kp/head_normal', $this->data);
-			$this->load->view('wasa/user_kasie_procurement_kp/user_menu');
-			$this->load->view('wasa/user_kasie_procurement_kp/left_menu');
-			$this->load->view('wasa/user_kasie_procurement_kp/header_menu');
-			$this->load->view('wasa/user_kasie_procurement_kp/content_khp_form_proses');
-			$this->load->view('wasa/user_kasie_procurement_kp/footer');
+			if ($this->data['PROGRESS_KHP'] == "Diproses oleh Kasie Procurement KP") {
+				$this->load->view('wasa/user_kasie_procurement_kp/head_normal', $this->data);
+				$this->load->view('wasa/user_kasie_procurement_kp/user_menu');
+				$this->load->view('wasa/user_kasie_procurement_kp/left_menu');
+				$this->load->view('wasa/user_kasie_procurement_kp/header_menu');
+				$this->load->view('wasa/user_kasie_procurement_kp/content_khp_form_proses');
+				$this->load->view('wasa/user_kasie_procurement_kp/footer');
+			} else {
+				redirect('KHP', 'refresh');
+			}
+			
 		} else if ($this->ion_auth->logged_in() && ($this->ion_auth->in_group(7))) {
 
-			//fungsi ini untuk mengirim data ke dropdown
+			if ($this->data['PROGRESS_KHP'] == "Diproses oleh Manajer Procurement KP") {
+				$this->load->view('wasa/user_manajer_procurement_kp/head_normal', $this->data);
+				$this->load->view('wasa/user_manajer_procurement_kp/user_menu');
+				$this->load->view('wasa/user_manajer_procurement_kp/left_menu');
+				$this->load->view('wasa/user_manajer_procurement_kp/header_menu');
+				$this->load->view('wasa/user_manajer_procurement_kp/content_khp_form_proses');
+				$this->load->view('wasa/user_manajer_procurement_kp/footer');
+			} else {
+				redirect('KHP', 'refresh');
+			}
 
-			$hasil = $this->KHP_model->get_data_khp_by_HASH_MD5_KHP($HASH_MD5_KHP);
-			$ID_SPPB = $hasil['ID_SPPB'];
-			$ID_KHP = $hasil['ID_KHP'];
-			$this->data['HASH_MD5_KHP'] = $HASH_MD5_KHP;
-			$this->data['ID_SPPB'] = $ID_SPPB;
-			$this->data['ID_KHP'] = $ID_KHP;
-
-
-			$this->data['vendor'] = $this->Vendor_model->vendor_list();
-			$this->data['SPPB'] = $this->SPPB_model->sppb_list_by_id_sppb($ID_SPPB);
-			$this->data['KHP'] = $this->KHP_model->khp_list_khp_by_hashmd5($HASH_MD5_KHP);
-
-
-			//$this->data['rasd_barang_list'] = $this->KHP_form_model->rasd_form_list_where_not_in_khp($ID_KHP);
-			//$this->data['barang_master_list'] = $this->KHP_form_model->barang_master_where_not_in_khp_and_rasd($ID_KHP);
-			// $this->data['satuan_barang_list'] = $this->Satuan_barang_model->satuan_barang_list();
-			// $this->data['jenis_barang_list'] = $this->Jenis_barang_model->jenis_barang_list();
-
-			$this->load->view('wasa/user_manajer_procurement_kp/head_normal', $this->data);
-			$this->load->view('wasa/user_manajer_procurement_kp/user_menu');
-			$this->load->view('wasa/user_manajer_procurement_kp/left_menu');
-			$this->load->view('wasa/user_manajer_procurement_kp/header_menu');
-			$this->load->view('wasa/user_manajer_procurement_kp/content_khp_form_proses');
-			$this->load->view('wasa/user_manajer_procurement_kp/footer');
 		} else if ($this->ion_auth->logged_in() && ($this->ion_auth->in_group(8))) {
 
-			//fungsi ini untuk mengirim data ke dropdown
+			if ($this->data['PROGRESS_KHP'] == "Diproses oleh Staff Procurement SP") {
+				$this->load->view('wasa/user_staff_procurement_sp/head_normal', $this->data);
+				$this->load->view('wasa/user_staff_procurement_sp/user_menu');
+				$this->load->view('wasa/user_staff_procurement_sp/left_menu');
+				$this->load->view('wasa/user_staff_procurement_sp/header_menu');
+				$this->load->view('wasa/user_staff_procurement_sp/content_khp_form_proses');
+				$this->load->view('wasa/user_staff_procurement_sp/footer');
+			} else {
+				redirect('KHP', 'refresh');
+			}
 
-			$hasil = $this->KHP_model->get_data_khp_by_HASH_MD5_KHP($HASH_MD5_KHP);
-			$ID_SPPB = $hasil['ID_SPPB'];
-			$ID_KHP = $hasil['ID_KHP'];
-			$this->data['HASH_MD5_KHP'] = $HASH_MD5_KHP;
-			$this->data['ID_SPPB'] = $ID_SPPB;
-			$this->data['ID_KHP'] = $ID_KHP;
-
-
-			$this->data['vendor'] = $this->Vendor_model->vendor_list();
-			$this->data['SPPB'] = $this->SPPB_model->sppb_list_by_id_sppb($ID_SPPB);
-			$this->data['KHP'] = $this->KHP_model->khp_list_khp_by_hashmd5($HASH_MD5_KHP);
-
-
-			//$this->data['rasd_barang_list'] = $this->KHP_form_model->rasd_form_list_where_not_in_khp($ID_KHP);
-			//$this->data['barang_master_list'] = $this->KHP_form_model->barang_master_where_not_in_khp_and_rasd($ID_KHP);
-			// $this->data['satuan_barang_list'] = $this->Satuan_barang_model->satuan_barang_list();
-			// $this->data['jenis_barang_list'] = $this->Jenis_barang_model->jenis_barang_list();
-
-			$this->load->view('wasa/user_staff_procurement_sp/head_normal', $this->data);
-			$this->load->view('wasa/user_staff_procurement_sp/user_menu');
-			$this->load->view('wasa/user_staff_procurement_sp/left_menu');
-			$this->load->view('wasa/user_staff_procurement_sp/header_menu');
-			$this->load->view('wasa/user_staff_procurement_sp/content_khp_form_proses');
-			$this->load->view('wasa/user_staff_procurement_sp/footer');
+			
 		} else if ($this->ion_auth->logged_in() && ($this->ion_auth->in_group(9))) {
 
-			//fungsi ini untuk mengirim data ke dropdown
-
-			$hasil = $this->KHP_model->get_data_khp_by_HASH_MD5_KHP($HASH_MD5_KHP);
-			$ID_SPPB = $hasil['ID_SPPB'];
-			$ID_KHP = $hasil['ID_KHP'];
-			$this->data['HASH_MD5_KHP'] = $HASH_MD5_KHP;
-			$this->data['ID_SPPB'] = $ID_SPPB;
-			$this->data['ID_KHP'] = $ID_KHP;
-
-
-			$this->data['vendor'] = $this->Vendor_model->vendor_list();
-			$this->data['SPPB'] = $this->SPPB_model->sppb_list_by_id_sppb($ID_SPPB);
-			$this->data['KHP'] = $this->KHP_model->khp_list_khp_by_hashmd5($HASH_MD5_KHP);
-
-
-			//$this->data['rasd_barang_list'] = $this->KHP_form_model->rasd_form_list_where_not_in_khp($ID_KHP);
-			//$this->data['barang_master_list'] = $this->KHP_form_model->barang_master_where_not_in_khp_and_rasd($ID_KHP);
-			// $this->data['satuan_barang_list'] = $this->Satuan_barang_model->satuan_barang_list();
-			// $this->data['jenis_barang_list'] = $this->Jenis_barang_model->jenis_barang_list();
-
-			$this->load->view('wasa/user_supervisi_procurement_sp/head_normal', $this->data);
-			$this->load->view('wasa/user_supervisi_procurement_sp/user_menu');
-			$this->load->view('wasa/user_supervisi_procurement_sp/left_menu');
-			$this->load->view('wasa/user_supervisi_procurement_sp/header_menu');
-			$this->load->view('wasa/user_supervisi_procurement_sp/content_khp_form_proses');
-			$this->load->view('wasa/user_supervisi_procurement_sp/footer');
+			if ($this->data['PROGRESS_KHP'] == "Diproses oleh Supervisi Procurement SP") {
+				$this->load->view('wasa/user_supervisi_procurement_sp/head_normal', $this->data);
+				$this->load->view('wasa/user_supervisi_procurement_sp/user_menu');
+				$this->load->view('wasa/user_supervisi_procurement_sp/left_menu');
+				$this->load->view('wasa/user_supervisi_procurement_sp/header_menu');
+				$this->load->view('wasa/user_supervisi_procurement_sp/content_khp_form_proses');
+				$this->load->view('wasa/user_supervisi_procurement_sp/footer');
+			} else {
+				redirect('KHP', 'refresh');
+			}
+			
 		} else {
 			$this->logout();
 		}
@@ -1019,6 +957,7 @@ class KHP_form extends CI_Controller
 			$this->data['ID_KHP'] = $KHP->ID_KHP;
 			$this->data['ID_SPPB'] = $KHP->ID_SPPB;
 			$this->data['SUB_PROYEK'] = $KHP->SUB_PROYEK;
+			$this->data['ID_PROYEK_SUB_PEKERJAAN'] = $KHP->ID_PROYEK_SUB_PEKERJAAN;
 			$this->data['TANGGAL_DOKUMEN_KHP'] = $KHP->TANGGAL_DOKUMEN_KHP;
 			$this->data['TANGGAL_DOKUMEN_KHP'] = $this->tanggal_indo_full($KHP->TANGGAL_DOKUMEN_KHP, false);
 			$this->data['KETERANGAN_KHP'] = $KHP->KETERANGAN_KHP;
@@ -1027,6 +966,11 @@ class KHP_form extends CI_Controller
 		$this->data['PROYEK'] = $this->Proyek_model->detil_proyek_by_ID_PROYEK($this->data['ID_PROYEK']);
 		foreach ($this->data['PROYEK']->result() as $PROYEK):
 			$this->data['NAMA_PROYEK_PDF'] = $PROYEK->NAMA_PROYEK;
+		endforeach;
+
+		$this->data['SUB_PROYEK'] = $this->Proyek_model->sub_pekerjaan_list($this->data['ID_PROYEK_SUB_PEKERJAAN']);
+		foreach ($this->data['SUB_PROYEK']->result() as $SUB_PROYEK):
+			$this->data['SUB_PROYEK_PDF'] = $SUB_PROYEK->NAMA_SUB_PEKERJAAN;
 		endforeach;
 
 		$this->data['konten_KHP_form'] = $this->KHP_form_model->khp_form_list_by_id_khp($ID_KHP);
