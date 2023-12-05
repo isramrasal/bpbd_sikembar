@@ -1,0 +1,18 @@
+<html>
+<head>
+    <title>how to select only one checkbox at a time in jquery</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+</head>
+<body>
+    <input value="1" name="product" class="product-list" type="checkbox">Product 1  
+    <input value="2" name="product" class="product-list" type="checkbox">Product 2  
+    <input value="3" name="product" class="product-list" type="checkbox">Product 3  
+    <input value="4" name="product" class="product-list" type="checkbox">Product 4  
+    <input value="5" name="product" class="product-list" type="checkbox">Product 5  
+    <script type="text/javascript">
+    $('.product-list').on('change', function() {
+        $('.product-list').not(this).prop('checked', false);  
+    });
+	</script>
+</body>
+</html>
