@@ -28,7 +28,7 @@ class Auth extends CI_Controller
 			redirect('Dashboard_admin', 'refresh');
 		} else if ($this->ion_auth->in_group(2)) {
 			//grup pegawai bpbd
-			redirect('Dashboard_chief_sp', 'refresh');
+			redirect('Dashboard_pegawai_bpbd', 'refresh');
 		} else if ($this->ion_auth->in_group(3)) {
 			//grup korban bencana
 			redirect('Dashboard_sm_sp', 'refresh');
