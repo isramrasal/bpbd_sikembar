@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $config['base_url'] = 'http://127.0.0.1/bpbd_sikembar/';
 // $config['base_url'] = 'https://localhost/bpbd_sikembar/';
 
-//hoho
+//hoho hihi
 
 // $protocol = is_https() ? "https://" : "http://";
 // $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : "";
