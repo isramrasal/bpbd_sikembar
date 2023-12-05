@@ -12,7 +12,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
     <title><?php echo $title; ?></title>
 
-    <link rel="icon" href="<?php echo base_url(); ?>assets/logo_wasa.png">
+    <link rel="icon" href="<?php echo base_url(); ?>assets/logo_bpbd.jpg">
 
     <link href="<?php echo base_url(); ?>assets/wasa/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/wasa/font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -28,19 +28,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
         <div class="row">
             <div class="col-md-6">
-                <img src="<?php echo base_url(); ?>assets/logo_wasa_full_teks_besar.png" width="350" height="auto" />
+                <img src="<?php echo base_url(); ?>assets/logo_bpbd.jpg" width="120" height="auto" />
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
-                <h2 class="font-bold">Selamat Datang di SiPESUT <br> PT. Wasa Mitra Engineering</h2>
+                <h2 class="font-bold">Selamat Datang di SiKembar <br> BPBD Kabupaten Cianjur</h2>
 
                 <p>
-                    SiPESUT WME
+                    SiKembar
                 </p>
 
                 <p>
-                    adalah sistem pengadaan terpadu yang dikembangkan oleh Departemen Pengadaan PT. Wasa Mitra Engineering untuk proses penyediaan barang dan jasa.
+                    adalah sistem informasi keluar masuk barang untuk membantu kegiatan BPBD Kabupaten Cianjur
                 </p>
 
                 <p>
@@ -83,7 +83,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <hr />
         <div class="row">
             <div class="col-md-6">
-                Copyright PT. Wasa Mitra Engineering
+                Copyright Tim PKKM Prodi Informatika Universitas Gunadarma
             </div>
             <div class="col-md-6 text-right">
                 <small>© <?php echo date('Y'); ?></small>
