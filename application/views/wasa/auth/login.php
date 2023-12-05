@@ -22,6 +22,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 </head>
 
+
 <body class="gray-bg">
 
     <div class="loginColumns animated fadeInDown">
