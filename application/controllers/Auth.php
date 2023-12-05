@@ -27,10 +27,13 @@ class Auth extends CI_Controller
 		} else if ($this->ion_auth->is_admin()) {
 			redirect('Dashboard_admin', 'refresh');
 		} else if ($this->ion_auth->in_group(2)) {
+			//grup pegawai bpbd
 			redirect('Dashboard_chief_sp', 'refresh');
 		} else if ($this->ion_auth->in_group(3)) {
+			//grup korban bencana
 			redirect('Dashboard_sm_sp', 'refresh');
 		} else if ($this->ion_auth->in_group(4)) {
+			//grup donatur
 			redirect('Dashboard_pm_sp', 'refresh');
 		} else if ($this->ion_auth->in_group(5)) {
 			redirect('Dashboard_staff_procurement_kp', 'refresh');
