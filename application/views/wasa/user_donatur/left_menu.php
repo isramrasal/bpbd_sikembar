@@ -2,7 +2,7 @@
 						WME
 					</div>
 					</li>
-					<?php if ($left_menu == "dashboard_pegawai_bpbd_aktif") { ?>
+					<?php if ($left_menu == "dashboard_korban_bencana_aktif") { ?>
 						<li class="active">
 							<a href="<?php echo base_url(); ?>index.php/Dashboard_pegawai_bpbd"><i class="fa fa-th-large"></i> <span class="nav-label">Home</span> </a>
 						</li>
