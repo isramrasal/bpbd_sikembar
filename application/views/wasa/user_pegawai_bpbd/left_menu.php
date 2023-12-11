@@ -14,47 +14,47 @@
 
 					
 
-					<?php if ($left_menu == "sppb_aktif") { ?>
+					<?php if ($left_menu == "donasi_aktif") { ?>
 						<li class="active">
-							<a href="<?php echo base_url(); ?>index.php/SPPB"><i class="fa fa-compass"></i> <span class="nav-label">SPPB Pembelian</span> </a>
+							<a href="<?php echo base_url(); ?>index.php/Donasi"><i class="fa fa-compass"></i> <span class="nav-label">Manajemen Donasi</span> </a>
 
 						</li>
 					<?php } else { ?>
 						<li>
-							<a href="<?php echo base_url(); ?>index.php/SPPB"><i class="fa fa-compass"></i> <span class="nav-label">SPPB Pembelian</span> </a>
+							<a href="<?php echo base_url(); ?>index.php/Donasi"><i class="fa fa-compass"></i> <span class="nav-label">Manajemen Donasi</span> </a>
 						</li>
 					<?php } ?>
 
-					<?php if ($left_menu == "RFQ_aktif") { ?>
+					<?php if ($left_menu == "inventaris_bencana_aktif") { ?>
 						<li class="active">
-							<a href="<?php echo base_url(); ?>index.php/RFQ"><i class="fa fa-clone"></i> <span class="nav-label">RFQ</span></a>
+							<a href="<?php echo base_url(); ?>index.php/Inventaris_Bencana"><i class="fa fa-clone"></i> <span class="nav-label">Inventaris Bencana</span></a>
 
 						</li>
 					<?php } else { ?>
 						<li>
-							<a href="<?php echo base_url(); ?>index.php/RFQ"><i class="fa fa-clone"></i> <span class="nav-label">RFQ</span></a>
+							<a href="<?php echo base_url(); ?>index.php/Inventaris_Bencana"><i class="fa fa-clone"></i> <span class="nav-label">Inventaris Bencana</span></a>
 						</li>
 					<?php } ?>
 
-					<?php if ($left_menu == "KHP_aktif") { ?>
+					<?php if ($left_menu == "penyaluran_aktif") { ?>
 						<li class="active">
-							<a href="<?php echo base_url(); ?>index.php/KHP"><i class="fa fa-tags"></i> <span class="nav-label">KHP</span></a>
+							<a href="<?php echo base_url(); ?>index.php/Penyaluran"><i class="fa fa-tags"></i> <span class="nav-label">Manajemen Penyaluran</span></a>
 
 						</li>
 					<?php } else { ?>
 						<li>
-							<a href="<?php echo base_url(); ?>index.php/KHP"><i class="fa fa-tags"></i> <span class="nav-label">KHP</span></a>
+							<a href="<?php echo base_url(); ?>index.php/Penyaluran"><i class="fa fa-tags"></i> <span class="nav-label">Manajemen Penyaluran</span></a>
 						</li>
 					<?php } ?>
 
-					<?php if ($left_menu == "SPP_aktif") { ?>
+					<?php if ($left_menu == "barang_aktif") { ?>
 						<li class="active">
-							<a href="<?php echo base_url(); ?>index.php/SPP"><i class="fa fa-bandcamp"></i> <span class="nav-label">SPP</span></a>
+							<a href="<?php echo base_url(); ?>index.php/Barang"><i class="fa fa-bandcamp"></i> <span class="nav-label">Manajemen Barang</span></a>
 
 						</li>
 					<?php } else { ?>
 						<li>
-							<a href="<?php echo base_url(); ?>index.php/SPP"><i class="fa fa-bandcamp"></i> <span class="nav-label">SPP</span></a>
+							<a href="<?php echo base_url(); ?>index.php/Barang"><i class="fa fa-bandcamp"></i> <span class="nav-label">Manajemen Barang</span></a>
 						</li>
 					<?php } ?>
 
