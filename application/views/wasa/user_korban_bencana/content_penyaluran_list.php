@@ -1,16 +1,16 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>List SPPB Pembelian</h2>
+        <h2>List Penyaluran Bantuan</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="<?php echo base_url('index.php') ?>">Home</a>
             </li>
             <li>
-                <a href="<?php echo base_url('index.php/SPPB/') ?>">SPPB Pembelian</a>
+                <a href="<?php echo base_url('index.php/SPPB/') ?>">Penyaluran Bantuan</a>
             </li>
             <li class="active">
                 <strong>
-                    <a>List SPPB Pembelian</a>
+                    <a>List Penyaluran Bantuan</a>
                 </strong>
             </li>
         </ol>
@@ -26,14 +26,14 @@
 
     <div class="alert alert-info alert-dismissable">
         <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-        Sistem menampilkan seluruh SPPB Pembelian.
+        Sistem menampilkan seluruh penyaluran bantuan kepada anda.
     </div>
 
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins" id="ibox1">
                 <div class="ibox-title">
-                    <h5>SPPB Pembelian</h5>
+                    <h5>Penyaluran Bantuan</h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
@@ -52,12 +52,12 @@
                         <div class="sk-rect5"></div>
                     </div>
                     
-                    <a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalAdd"><span class="fa fa-plus"></span> Buat SPPB Pembelian</a>
+                    <a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalAdd"><span class="fa fa-plus"></span> Buat Penyaluran Bantuan</a>
                     </br>
                     </br>
 
                     <select class="chosen-select" name="ID_PROYEK_LIST" class="form-control" id="ID_PROYEK_LIST">
-                        <option value=''>- Pilih Proyek Untuk Ditampilkan -</option>
+                        <option value=''>- Pilih Penyaluran Bedasarkan Bencana -</option>
                         <option value='Semua'>Semua Proyek</option>
                         <?php foreach ($proyek_dropdown_list as $proyek_dropdown_list) {
                             echo '<option value="' . $proyek_dropdown_list->ID_PROYEK . '">' . $proyek_dropdown_list->NAMA_PROYEK . '</option>';
@@ -88,7 +88,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Close</span></button>
-                <h4 class="modal-title">Buat SPPB Pembelian</h4>
+                <h4 class="modal-title">Buat Penyaluran Bantuan</h4>
                 <small class="font-bold">Silakan isi identitas formulir SPPB</small>
             </div>
             <?php $attributes = array("NAMA_JENIS_BARANG" => "contact_form", "id" => "contact_form");
