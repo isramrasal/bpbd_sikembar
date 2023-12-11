@@ -41,7 +41,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 </p>
 
                 <p>
-                    adalah sistem informasi keluar masuk barang untuk membantu kegiatan BPBD Kabupaten Cianjur
+                    adalah sistem informasi keluar masuk barang untuk membantu kegiatan Divisi Kedaruratan & Logistik BPBD Kabupaten Cianjur
                 </p>
 
                 <p>
