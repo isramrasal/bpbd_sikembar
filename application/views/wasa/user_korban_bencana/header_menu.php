@@ -6,7 +6,7 @@
             </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li>
-                    <span class="m-r-sm text-muted welcome-message">Selamat datang di SIPESUT WME</span>
+                    <span class="m-r-sm text-muted welcome-message">Selamat datang di SiKembar BPBD Cianjur</span>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
@@ -16,7 +16,7 @@
                         <li>
                             <a href="#">
                                 <div>
-                                    <i class="fa fa-envelope fa-fw"></i> 17 SPPB belum diproses!
+                                    <i class="fa fa-envelope fa-fw"></i> 2 pengajuan bantuan belum diproses!
                                 </div>
                             </a>
                         </li>
@@ -24,15 +24,7 @@
                         <li>
                             <a href="#">
                                 <div>
-                                    <i class="fa fa-twitter fa-fw"></i> 5 SPP belum diproses!
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="grid_options.html">
-                                <div>
-                                    <i class="fa fa-upload fa-fw"></i> 7 PO belum diproses!
+                                    <i class="fa fa-twitter fa-fw"></i> 1 penyaluran bantuan belum diproses!
                                 </div>
                             </a>
                         </li>

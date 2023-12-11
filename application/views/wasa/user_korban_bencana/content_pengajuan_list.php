@@ -140,10 +140,10 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-xs-3">Kabupaten *</label>
+                        <label class="control-label col-xs-3">Kabupaten/Kota *</label>
                         <div class="col-xs-9">
-                            <select class="chosen-select" name="ID_KABUPATEN" class="form-control" id="ID_KABUPATEN">
-                                <option value=''>- Pilih Kabupaten -</option>
+                            <select class="chosen-select" name="ID_KABUPATEN_KOTA" class="form-control" id="ID_KABUPATEN_KOTA">
+                                <option value=''>- Pilih Kabupaten/Kota -</option>
                                 <option value=''>Cianjur</option>
                             </select>
                         </div>
@@ -215,7 +215,7 @@
                         <label class="col-xs-3 control-label">Kampung</label>
                         <div class="col-xs-9">
                             <input type="text" class="form-control" value="" name="KAMPUNG" id="KAMPUNG"
-                                placeholder="Contoh: ----" />
+                                placeholder="Contoh: Kp. Ciater" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -783,24 +783,31 @@
         //SIMPAN DATA
         $('#btn_simpan').click(function () {
 
-            var FILE_NAME_TEMP = $('#NO_URUT_SPPB').val();
-            FILE_NAME_TEMP = FILE_NAME_TEMP.replace(/[^a-zA-Z0-9]/g, '_');
+            var TANGGAL_DOKUMEN_PENGAJUAN = $('#TANGGAL_DOKUMEN_PENGAJUAN').val(),
+            TANGGAL_DOKUMEN_PENGAJUAN = TANGGAL_DOKUMEN_PENGAJUAN.split("/").reverse().join("-");
 
-            var TANGGAL_DOKUMEN_SPPB = $('#TANGGAL_DOKUMEN_SPPB').val(),
-            TANGGAL_DOKUMEN_SPPB = TANGGAL_DOKUMEN_SPPB.split("/").reverse().join("-");
+            var TANGGAL_KEJADIAN_BENCANA = $('#TANGGAL_KEJADIAN_BENCANA').val(),
+            TANGGAL_KEJADIAN_BENCANA = TANGGAL_KEJADIAN_BENCANA.split("/").reverse().join("-");
 
             var form_data = {
-                ID_PROYEK: $('#ID_PROYEK').val(),
-                ID_PROYEK_SUB_PEKERJAAN: $('#ID_PROYEK_SUB_PEKERJAAN').val(),
-                TANGGAL_DOKUMEN_SPPB: TANGGAL_DOKUMEN_SPPB,
-                JUMLAH_COUNT: $('#JUMLAH_COUNT').val(),
-                NO_URUT_SPPB: $('#NO_URUT_SPPB').val(),
-                USER_ID: $('#USER_ID').val(),
-                FILE_NAME_TEMP: FILE_NAME_TEMP
+                ID_JENIS_BENCANA: $('#ID_JENIS_BENCANA').val(),
+                NAMA_PEMOHON: $('#NAMA_PEMOHON').val(),
+                NIP: $('#NIP').val(),
+                JABATAN: $('#JABATAN').val(),
+                INSTANSI: $('#INSTANSI').val(),
+                ID_KABUPATEN_KOTA: $('#ID_KABUPATEN_KOTA').val(),
+                ID_KECAMATAN: $('#ID_KECAMATAN').val(),
+                ID_DESA_KELURAHAN: $('#ID_DESA_KELURAHAN').val(),
+                RW: $('#RW').val(),
+                RT: $('#RT').val(),
+                KAMPUNG: $('#KAMPUNG').val(),
+                KODE_POS: $('#KODE_POS').val(),
+                TANGGAL_DOKUMEN_PENGAJUAN: TANGGAL_DOKUMEN_PENGAJUAN,
+                TANGGAL_KEJADIAN_BENCANA: TANGGAL_KEJADIAN_BENCANA
             };
 
             $.ajax({
-                url: "<?php echo site_url('SPPB/simpan_data_sppb_pembelian'); ?>",
+                url: "<?php echo site_url('Pengajuan/simpan_data_pengajuan_bantuan'); ?>",
                 type: 'POST',
                 data: form_data,
                 success: function (data) {
@@ -809,15 +816,15 @@
                     } else {
                         $.ajax({
                             type: "POST",
-                            url: "<?php echo base_url('SPPB/get_data_sppb_pembelian_baru') ?>",
+                            url: "<?php echo base_url('Pengajuan/get_data_pengajuan_bantuan_baru') ?>",
                             dataType: "JSON",
                             data: form_data,
                             success: function (data) {
                                 $.each(data, function () {
-                                    if (data == 'BELUM ADA SPPB') {
+                                    if (data == 'BELUM ADA PENGAJUAN') {
                                         $('#alert-msg').html('<div class="alert alert-danger">' + data + '</div>');
                                     } else {
-                                        window.location.href = '<?php echo base_url(); ?>SPPB_form/index/' + data.HASH_MD5_SPPB;
+                                        window.location.href = '<?php echo base_url(); ?>Pengajuan_form/index/' + data.HASH_MD5_PENGAJUAN;
                                     }
                                 });
                             }
@@ -825,7 +832,6 @@
                     }
                 }
             });
-
             return false;
         });
 
