@@ -12,7 +12,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
     <title><?php echo $title; ?></title>
 
-    <link rel="icon" href="<?php echo base_url(); ?>assets/logo_bpbd.jpg">
+    <link rel="icon" href="<?php echo base_url(); ?>assets/logo_bpbd.png">
 
     <link href="<?php echo base_url(); ?>assets/wasa/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/wasa/font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -29,7 +29,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
         <div class="row">
             <div class="col-md-6">
-                <img src="<?php echo base_url(); ?>assets/logo_bpbd.jpg" width="120" height="auto" />
+                <img src="<?php echo base_url(); ?>assets/logo_bpbd.png" width="120" height="auto" />
             </div>
         </div>
         <div class="row">
