@@ -31,10 +31,10 @@ class Auth extends CI_Controller
 			redirect('Dashboard_pegawai_bpbd', 'refresh');
 		} else if ($this->ion_auth->in_group(3)) {
 			//grup korban bencana
-			redirect('Dashboard_sm_sp', 'refresh');
+			redirect('Dashboard_korban_bencana', 'refresh');
 		} else if ($this->ion_auth->in_group(4)) {
 			//grup donatur
-			redirect('Dashboard_pm_sp', 'refresh');
+			redirect('Dashboard_donatur', 'refresh');
 		} else if ($this->ion_auth->in_group(5)) {
 			redirect('Dashboard_staff_procurement_kp', 'refresh');
 		} else if ($this->ion_auth->in_group(6)) {
