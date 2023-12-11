@@ -14,10 +14,11 @@ class Penyaluran extends CI_Controller
         $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
         $this->lang->load('auth');
-        $this->data['title'] = 'SiPESUT | SPPB';
+        $this->data['title'] = 'SiKembar| Penyaluran';
 
         $this->load->model('RASD_model');
         $this->load->model('SPPB_model');
+        // $this->load->model('Penyaluran_model'); 
         $this->load->model('SPP_model');
         $this->load->model('PO_model');
         $this->load->model('Foto_model');
@@ -26,16 +27,16 @@ class Penyaluran extends CI_Controller
         $this->load->model('Organisasi_model');
 
         date_default_timezone_set('Asia/Jakarta');
-        $this->data['left_menu'] = "sppb_aktif";
+        $this->data['left_menu'] = "Penyaluran_aktif";
     }
 
     /**
      * Log the user out
      */
-    public function logout() //102023
+    public function logout() //belum diperbaiki
     {
         $ID_FSTB = 0;
-        $KETERANGAN = "Paksa Logout Ketika Akses SPPB";
+        $KETERANGAN = "Paksa Logout Ketika Akses Penyaluran";
         $this->user_log_sppb($ID_SPPB, $KETERANGAN);
 
         $this->ion_auth->logout();
@@ -44,7 +45,7 @@ class Penyaluran extends CI_Controller
         $this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
     }
 
-    public function user_log_sppb($ID_SPPB, $KETERANGAN) //102023
+    public function user_log_sppb($ID_SPPB, $KETERANGAN) // belum diperbaiki
     {
 
         $user = $this->ion_auth->user()->row();
@@ -55,7 +56,7 @@ class Penyaluran extends CI_Controller
     /**
      * Redirect if needed, otherwise display the user list
      */
-    public function index() //BELUM CLEAN SEMUA USER //102023
+    public function index() //BELUM CLEAN SEMUA USER // belum diperbaiki
     {
         //jika mereka belum login
         if (!$this->ion_auth->logged_in()) {
@@ -67,10 +68,10 @@ class Penyaluran extends CI_Controller
         $user = $this->ion_auth->user()->row();
         $this->data['user_id'] = $user->id;
         $this->data['USER_ID'] = $user->id;
-        $this->data['ID_PEGAWAI'] = $user->ID_PEGAWAI;
+        $this->data['ID_PEGAWAI'] = $user->ID_PEGAWAI; //harusnya tidak ada
         $data_role_user = $this->Manajemen_user_model->get_data_role_user_by_id($this->data['user_id']);
         $this->data['role_user'] = $data_role_user['description'];
-        $this->data['NAMA_PROYEK'] = $data_role_user['NAMA_PROYEK'];
+        $this->data['NAMA_PROYEK'] = $data_role_user['NAMA_PROYEK']; //harusnya tidak ada
         $this->data['ip_address'] = $user->ip_address;
         $this->data['email'] = $user->email;
         $this->data['user_id'] = $user->id;
@@ -106,58 +107,18 @@ class Penyaluran extends CI_Controller
         //jika mereka sudah login
         if ($this->ion_auth->logged_in()) {
 
-            //jika mereka sebagai admin
-            if ($this->ion_auth->is_admin()) {
+            if ($this->ion_auth->in_group(3)) { //user_korban_bencana
 
                 // tampilkan seluruh proyek
                 $this->data['proyek_dropdown'] = $this->SPPB_model->proyek_list();
                 $this->data['proyek_dropdown_list'] = $this->SPPB_model->proyek_list();
 
-                $this->load->view('wasa/user_admin/head_normal', $this->data);
-                $this->load->view('wasa/user_admin/user_menu');
-                $this->load->view('wasa/user_admin/left_menu');
-                $this->load->view('wasa/user_admin/header_menu');
-                $this->load->view('wasa/user_admin/content_sppb_list');
-                $this->load->view('wasa/user_admin/footer');
-
-            } 
-            else if ($this->ion_auth->in_group(5)) { //user_staff_procurement_kp
-
-                // tampilkan seluruh proyek
-                $this->data['proyek_dropdown'] = $this->SPPB_model->proyek_list();
-                $this->data['proyek_dropdown_list'] = $this->SPPB_model->proyek_list();
-
-                $this->load->view('wasa/user_staff_procurement_kp/head_normal', $this->data);
-                $this->load->view('wasa/user_staff_procurement_kp/user_menu');
-                $this->load->view('wasa/user_staff_procurement_kp/left_menu');
-                $this->load->view('wasa/user_staff_procurement_kp/header_menu');
-                $this->load->view('wasa/user_staff_procurement_kp/content_sppb_list');
-                $this->load->view('wasa/user_staff_procurement_kp/footer');
-            } else if ($this->ion_auth->in_group(8)) { //user_staff_procurement_sp
-
-                // tampilkan hanya proyek site user
-                $this->data['proyek_dropdown'] = $this->SPPB_model->proyek_list_by_id_proyek($this->data['ID_PROYEK']);
-                $this->data['proyek_dropdown_list'] = $this->SPPB_model->proyek_list_by_id_proyek($this->data['ID_PROYEK']);
-
-                $this->load->view('wasa/user_staff_procurement_sp/head_normal', $this->data);
-                $this->load->view('wasa/user_staff_procurement_sp/user_menu');
-                $this->load->view('wasa/user_staff_procurement_sp/left_menu');
-                $this->load->view('wasa/user_staff_procurement_sp/header_menu');
-                $this->load->view('wasa/user_staff_procurement_sp/content_sppb_list');
-                $this->load->view('wasa/user_staff_procurement_sp/footer');
-                
-            } else if ($this->ion_auth->in_group(9)) { //user_supervisi_procurement_sp
-
-                // tampilkan hanya proyek site user
-                $this->data['proyek_dropdown'] = $this->SPPB_model->proyek_list_by_id_proyek($this->data['ID_PROYEK']);
-                $this->data['proyek_dropdown_list'] = $this->SPPB_model->proyek_list_by_id_proyek($this->data['ID_PROYEK']);
-
-                $this->load->view('wasa/user_supervisi_procurement_sp/head_normal', $this->data);
-                $this->load->view('wasa/user_supervisi_procurement_sp/user_menu');
-                $this->load->view('wasa/user_supervisi_procurement_sp/left_menu');
-                $this->load->view('wasa/user_supervisi_procurement_sp/header_menu');
-                $this->load->view('wasa/user_supervisi_procurement_sp/content_sppb_list');
-                $this->load->view('wasa/user_supervisi_procurement_sp/footer');
+                $this->load->view('wasa/user_korban_bencana/head_normal', $this->data);
+                $this->load->view('wasa/user_korban_bencana/user_menu');
+                $this->load->view('wasa/user_korban_bencana/left_menu');
+                $this->load->view('wasa/user_korban_bencana/header_menu');
+                $this->load->view('wasa/user_korban_bencana/content_penyaluran_list');
+                $this->load->view('wasa/user_korban_bencana/footer');
             } else {
                 $this->logout();
             }
