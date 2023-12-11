@@ -53,7 +53,7 @@ class Dashboard_korban_bencana extends CI_Controller
 
 
 		//jika mereka sudah login dan sebagai manajer proyek
-		if ($this->ion_auth->logged_in()&&$this->ion_auth->in_group(2)) {
+		if ($this->ion_auth->logged_in()&&$this->ion_auth->in_group(3)) {
 			$this->load->view('wasa/user_korban_bencana/head_normal', $this->data);
 			$this->load->view('wasa/user_korban_bencana/user_menu');
 			$this->load->view('wasa/user_korban_bencana/left_menu');

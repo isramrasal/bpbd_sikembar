@@ -53,7 +53,7 @@ class Dashboard_donatur extends CI_Controller
 
 
 		//jika mereka sudah login dan sebagai manajer proyek
-		if ($this->ion_auth->logged_in()&&$this->ion_auth->in_group(2)) {
+		if ($this->ion_auth->logged_in()&&$this->ion_auth->in_group(4)) {
 			$this->load->view('wasa/user_donatur/head_normal', $this->data);
 			$this->load->view('wasa/user_donatur/user_menu');
 			$this->load->view('wasa/user_donatur/left_menu');
