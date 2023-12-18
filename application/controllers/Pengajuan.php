@@ -690,9 +690,10 @@ class Pengajuan extends CI_Controller
             //set validation rules
             $this->form_validation->set_rules('ID_JENIS_BENCANA', 'Jenis Bencana', 'trim|required');
             $this->form_validation->set_rules('NAMA_PEMOHON', 'Nama Pemohon', 'trim|required|max_length[255]');
-            $this->form_validation->set_rules('NIP', 'NIP', 'trim|required|max_length[255]');
-            $this->form_validation->set_rules('JABATAN', 'Jabatan', 'trim|required|max_length[255]');
-            $this->form_validation->set_rules('INSTANSI', 'Instansi', 'trim|required|max_length[255]');
+            $this->form_validation->set_rules('NIK', 'NIK', 'trim|required|max_length[255]');
+            $this->form_validation->set_rules('NIP', 'NIP', 'trim|max_length[255]');
+            $this->form_validation->set_rules('JABATAN', 'Jabatan', 'trim|max_length[255]');
+            $this->form_validation->set_rules('INSTANSI', 'Instansi', 'trim|max_length[255]');
             $this->form_validation->set_rules('ID_KABUPATEN_KOTA', 'Kabupaten/Kota', 'trim|required|max_length[255]');
             $this->form_validation->set_rules('ID_KECAMATAN', 'Kecamatan', 'trim|required|max_length[255]');
             $this->form_validation->set_rules('ID_DESA_KELURAHAN', 'Desa/Kelurahan', 'trim|required|max_length[255]');
@@ -711,6 +712,7 @@ class Pengajuan extends CI_Controller
                 $CODE_MD5 = $this->input->post('CODE_MD5');
                 $ID_JENIS_BENCANA = $this->input->post('ID_JENIS_BENCANA');
                 $NAMA_PEMOHON = $this->input->post('NAMA_PEMOHON');
+                $NIK = $this->input->post('NIK');
                 $NIP = $this->input->post('NIP');
                 $JABATAN = $this->input->post('JABATAN');
                 $INSTANSI = $this->input->post('INSTANSI');
@@ -741,6 +743,7 @@ class Pengajuan extends CI_Controller
                         $CODE_MD5,
                         $ID_JENIS_BENCANA,
                         $NAMA_PEMOHON,
+                        $NIK,
                         $NIP,
                         $JABATAN,
                         $INSTANSI,
