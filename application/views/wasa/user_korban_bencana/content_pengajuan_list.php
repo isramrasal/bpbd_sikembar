@@ -52,7 +52,9 @@
                         <div class="sk-rect5"></div>
                     </div>
                     
-                    <a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalAdd"><span class="fa fa-plus"></span> Buat Pengajuan Bantuan</a>
+                    <a href="#" class="btn btn-primary btn-xs" name="btn_buat" id="btn_buat" ><span class="fa fa-plus"></span> Buat Pengajuan Bantuan</a>
+
+                    <!-- <a href="#" class="btn btn-primary btn-xs" name="btn_buat" id="btn_buat" data-toggle="modal" data-target="#ModalAdd"><span class="fa fa-plus"></span> Buat Pengajuan Bantuan</a> -->
                     </br>
                     </br>
 
@@ -92,6 +94,7 @@
                 <small class="font-bold">Silakan isi identitas formulir pengajuan bantuan</small>
             </div>
             <input type="hidden" class="form-control" value="" name="FILE_NAME_TEMP" id="FILE_NAME_TEMP" disabled />
+            <input type="text" class="form-control" value="" name="CODE_MD5" id="CODE_MD5" disabled />
 
             <div class="form-horizontal">
                 <div class="modal-body">
@@ -799,6 +802,7 @@
             TANGGAL_KEJADIAN_BENCANA = TANGGAL_KEJADIAN_BENCANA.split("/").reverse().join("-");
 
             var form_data = {
+                CODE_MD5: $('#CODE_MD5').val(),
                 ID_JENIS_BENCANA: $('#ID_JENIS_BENCANA').val(),
                 NAMA_PEMOHON: $('#NAMA_PEMOHON').val(),
                 NIP: $('#NIP').val(),
@@ -842,6 +846,22 @@
                 }
             });
             return false;
+        });
+
+        $('#btn_buat').click(function () {
+
+            $.ajax({
+                url: "<?php echo site_url('Pengajuan/generate_md5'); ?>",
+                type: 'POST',
+                success: function (data) {
+
+                    $('[name="CODE_MD5"]').val(data);
+                    console.log(data);
+                    $('#ModalAdd').modal('show');
+                    
+                }
+            });
+        return false;
         });
 
     });

@@ -1006,6 +1006,7 @@ class Pengajuan_model extends CI_Model
 
 
 	function simpan_data_pengajuan_bantuan(
+		$CODE_MD5,
 		$ID_JENIS_BENCANA,
 		$NAMA_PEMOHON,
 		$NIP,
@@ -1030,6 +1031,7 @@ class Pengajuan_model extends CI_Model
 	)
 	{
 		$hasil = $this->db->query("INSERT INTO form_inventaris_kebutuhan_korban_bencana (
+				CODE_MD5,
 				Tanggal_Pembuatan,
 				Tanggal_Surat,
 				Hari_Surat,
@@ -1054,6 +1056,7 @@ class Pengajuan_model extends CI_Model
 				PROGRESS_PENGAJUAN,
                 STATUS_PENGAJUAN)
 			VALUES(
+				'$CODE_MD5',
 				'$TANGGAL_PEMBUATAN_PENGAJUAN_JAM',
 				'$TANGGAL_DOKUMEN_PENGAJUAN',
 				'$TANGGAL_PEMBUATAN_PENGAJUAN_HARI',
@@ -1086,17 +1089,17 @@ class Pengajuan_model extends CI_Model
 	//SUMBER TABEL: tabel sppb
 	//DIPAKAI: 1. controller SPPB / function get_data_sppb_baru
 	//         2. 
-	function get_data_sppb_baru($NO_URUT_SPPB)
+	function get_data_pengajuan_baru($CODE_MD5)
 	{
-		$hsl = $this->db->query("SELECT * FROM form_inventaris_kebutuhan_korban_bencana WHERE NO_URUT_SPPB = '$NO_URUT_SPPB'");
+		$hsl = $this->db->query("SELECT * FROM form_inventaris_kebutuhan_korban_bencana WHERE CODE_MD5 = '$CODE_MD5'");
 		if ($hsl->num_rows() > 0) {
 			foreach ($hsl->result() as $data) {
 				$hasil = array(
-					'HASH_MD5_SPPB' => $data->HASH_MD5_SPPB
+					'CODE_MD5' => $data->CODE_MD5
 				);
 			}
 		} else {
-			$hasil = "BELUM ADA SPPB";
+			$hasil = "BELUM ADA PENGAJUAN";
 		}
 		return $hasil;
 	}

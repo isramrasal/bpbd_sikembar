@@ -163,6 +163,20 @@ class Pengajuan extends CI_Controller
 		}
 	}
 
+    function generate_md5() //102023
+	{
+        if ($this->ion_auth->logged_in())
+        {
+            $TANGGAL_PEMBUATAN_PENGAJUAN_JAM = date("h:i:s.u");
+            $CODE_md5 = md5($TANGGAL_PEMBUATAN_PENGAJUAN_JAM);
+            echo json_encode($CODE_md5);
+        }
+		else {
+			$this->logout();
+            $this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
+		}
+	}
+
     function data_sppb_by_id_proyek()//BEDA KP DAN SP
     {
 
@@ -261,17 +275,13 @@ class Pengajuan extends CI_Controller
         }
     }
 
-    function get_data_sppb_pembelian_baru() //102023
+    function get_data_pengajuan_bantuan_baru() //102023
     {
         if ($this->ion_auth->logged_in()) {
-            $NO_URUT_SPPB = $this->input->post('NO_URUT_SPPB');
+            $CODE_MD5 = $this->input->post('CODE_MD5');
 
-            $data = $this->SPPB_model->get_data_sppb_pembelian_baru($NO_URUT_SPPB);
+            $data = $this->Pengajuan_model->get_data_pengajuan_baru($CODE_MD5);
             echo json_encode($data);
-
-            $ID_SPPB = 0;
-            $KETERANGAN = "Get Data MD5 SPPB Baru: " . json_encode($data);
-            $this->user_log_sppb($ID_SPPB, $KETERANGAN);
         } else {
             $this->logout();
             $this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
@@ -698,6 +708,7 @@ class Pengajuan extends CI_Controller
                 echo validation_errors();
             } else {
                 //get the form data
+                $CODE_MD5 = $this->input->post('CODE_MD5');
                 $ID_JENIS_BENCANA = $this->input->post('ID_JENIS_BENCANA');
                 $NAMA_PEMOHON = $this->input->post('NAMA_PEMOHON');
                 $NIP = $this->input->post('NIP');
@@ -727,6 +738,7 @@ class Pengajuan extends CI_Controller
                 // if ($this->SPPB_model->cek_no_urut_sppb($NO_URUT_SPPB) == 'Data belum ada') { 
 
                     $hasil = $this->Pengajuan_model->simpan_data_pengajuan_bantuan(
+                        $CODE_MD5,
                         $ID_JENIS_BENCANA,
                         $NAMA_PEMOHON,
                         $NIP,
