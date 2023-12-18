@@ -27,7 +27,7 @@ class Donatur extends CI_Controller
         $this->load->model('Organisasi_model');
 
         date_default_timezone_set('Asia/Jakarta');
-        $this->data['left_menu'] = "pengajuan_aktif";
+        $this->data['left_menu'] = "donatur_aktif";
     }
 
     /**
@@ -97,8 +97,6 @@ class Donatur extends CI_Controller
         $this->data['ID_JABATAN_PEGAWAI'] = $data_pegawai['ID_JABATAN_PEGAWAI'];
 
         $data_proyek = $this->Proyek_model->get_data_by_id_proyek($this->data['ID_PROYEK']);
-        $this->data['INISIAL'] = $data_proyek['INISIAL'];
-        $this->data['NAMA_PROYEK'] = $data_proyek['NAMA_PROYEK'];
 
         $sess_data['ID_PROYEK'] = $this->data['ID_PROYEK'];
         $sess_data['ID_JABATAN_PEGAWAI'] = $this->data['ID_JABATAN_PEGAWAI'];
