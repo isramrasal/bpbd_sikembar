@@ -36,14 +36,14 @@
 						</li>
 					<?php } ?>
 
-					<?php if ($left_menu == "data_diri_aktif") { ?>
+					<?php if ($left_menu == "data_korban_aktif") { ?>
 						<li class="active">
-							<a href="<?php echo base_url(); ?>index.php/Data_diri"><i class="fa fa-bandcamp"></i> <span class="nav-label">Data Diri</span></a>
+							<a href="<?php echo base_url(); ?>index.php/Data_korban"><i class="fa fa-bandcamp"></i> <span class="nav-label">Data Korban</span></a>
 
 						</li>
 					<?php } else { ?>
 						<li>
-							<a href="<?php echo base_url(); ?>index.php/Data_diri"><i class="fa fa-bandcamp"></i> <span class="nav-label">Data Diri</span></a>
+							<a href="<?php echo base_url(); ?>index.php/Data_korban"><i class="fa fa-bandcamp"></i> <span class="nav-label">Data Korban</span></a>
 						</li>
 					<?php } ?>
 
