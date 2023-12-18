@@ -12,7 +12,7 @@
 						</li>
 					<?php } ?>
 
-					
+
 
 					<?php if ($left_menu == "donasi_aktif") { ?>
 						<li class="active">

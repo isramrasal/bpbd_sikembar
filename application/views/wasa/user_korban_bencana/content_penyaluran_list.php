@@ -26,7 +26,7 @@
 
     <div class="alert alert-info alert-dismissable">
         <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-        Sistem menampilkan seluruh penyaluran bantuan kepada anda.
+        Sistem menampilkan seluruh Penyaluran bantuan yang Anda ajukan.
     </div>
 
     <div class="row">
@@ -52,13 +52,22 @@
                         <div class="sk-rect5"></div>
                     </div>
                     
-                    <a href="#" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ModalAdd"><span class="fa fa-plus"></span> Buat Penyaluran Bantuan</a>
+                    <a href="#" class="btn btn-primary btn-xs" name="btn_buat" id="btn_buat" ><span class="fa fa-plus"></span> Buat Penyaluran Bantuan</a>
+
+                    <!-- <a href="#" class="btn btn-primary btn-xs" name="btn_buat" id="btn_buat" data-toggle="modal" data-target="#ModalAdd"><span class="fa fa-plus"></span> Buat Penyaluran Bantuan</a> -->
                     </br>
                     </br>
 
                     <select class="chosen-select" name="ID_PROYEK_LIST" class="form-control" id="ID_PROYEK_LIST">
-                        <option value=''>- Pilih Penyaluran Bedasarkan Bencana -</option>
-                        <option value='Semua'>Semua Proyek</option>
+                        <option value=''>- Pilih Bantuan Berdasarkan Bencana -</option>
+                        <option value='Gempa Bumi'>Gempa Bumi</option>
+                        <option value='Angin Puting Beliung'>Angin Puting Beliung</option>
+                        <option value='Banjir'>Banjir</option>
+                        <option value='Longsor'>Longsor</option>
+                        <option value='Tsunami'>Tsunami</option>
+                        <option value='Kebakaran'>Kebakaran</option>
+                        <option value='Pohon Tumbang'>Pohon Tumbang</option>
+                        <option value='Kekeringan'>Kekeringan</option>
                         <?php foreach ($proyek_dropdown_list as $proyek_dropdown_list) {
                             echo '<option value="' . $proyek_dropdown_list->ID_PROYEK . '">' . $proyek_dropdown_list->NAMA_PROYEK . '</option>';
                         } ?>
@@ -89,60 +98,213 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Close</span></button>
                 <h4 class="modal-title">Buat Penyaluran Bantuan</h4>
-                <small class="font-bold">Silakan isi identitas formulir SPPB</small>
+                <small class="font-bold">Silakan isi identitas formulir Penyaluran bantuan</small>
             </div>
-            <?php $attributes = array("NAMA_JENIS_BARANG" => "contact_form", "id" => "contact_form");
-            echo form_open("SPPB/simpan_data_sppb_pembelian", $attributes); ?>
-
-            <input type="hidden" class="form-control" value="" name="JUMLAH_COUNT" id="JUMLAH_COUNT" disabled />
-            <input type="hidden" class="form-control" value="" name="INISIAL" id="INISIAL" disabled />
-            <input type="hidden" class="form-control" value="<?php echo ($USER_ID); ?>" name="USER_ID" id="USER_ID" disabled />
-            <input type="hidden" class="form-control" value="<?php echo ($ID_JABATAN_PEGAWAI); ?>" name="ID_JABATAN_PEGAWAI" id="ID_JABATAN_PEGAWAI" disabled />
             <input type="hidden" class="form-control" value="" name="FILE_NAME_TEMP" id="FILE_NAME_TEMP" disabled />
+            <!-- <input type="text" class="form-control" value="" name="CODE_MD5" id="CODE_MD5" disabled /> -->
 
             <div class="form-horizontal">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label class="control-label col-xs-3">Proyek *</label>
+                        <label class="control-label col-xs-3">Jenis Bencana *</label>
                         <div class="col-xs-9">
-                            <select class="chosen-select" name="ID_PROYEK" class="form-control" id="ID_PROYEK">
-                                <option value=''>- Pilih Proyek -</option>
-                                <?php foreach ($proyek_dropdown as $proyek_dropdown) {
-                                    echo '<option value="' . $proyek_dropdown->ID_PROYEK.'">' . $proyek_dropdown->NAMA_PROYEK . '</option>';
-                                } ?>
+                            <select class="chosen-select" name="ID_JENIS_BENCANA" class="form-control" id="ID_JENIS_BENCANA">
+                                <option value=''>- Pilih Bencana -</option>
+                                <option value='Gempa Bumi'>Gempa Bumi</option>
+                                <option value='Angin Puting Beliung'>Angin Puting Beliung</option>
+                                <option value='Banjir'>Banjir</option>
+                                <option value='Longsor'>Longsor</option>
+                                <option value='Tsunami'>Tsunami</option>
+                                <option value='Kebakaran'>Kebakaran</option>
+                                <option value='Pohon Tumbang'>Pohon Tumbang</option>
+                                <option value='Kekeringan'>Kekeringan</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-xs-3">Pekerjaan *</label>
+                        <label class="col-xs-3 control-label">Nama Pegawai *</label>
                         <div class="col-xs-9">
-                            <select class="chosen-select" name="ID_PROYEK_SUB_PEKERJAAN" class="form-control" id="ID_PROYEK_SUB_PEKERJAAN">
-                                <option value=''>- Pilih Pekerjaan -</option>
-                            </select>
+                            <input type="text" class="form-control" value="" name="NAMA_PEGAWAI_BPBD" id="NAMA_PEGAWAI_BPBD"
+                                placeholder="Contoh: UCUP SURUCUP" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-3 control-label">Nomor Urut SPPB *</label>
+                        <label class="col-xs-3 control-label">NIK Pegawai *</label>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" value="" name="NO_URUT_SPPB" id="NO_URUT_SPPB"
-                                placeholder="Contoh: 003/WME/SPPB/CC-CRB2/Main-Work/2022" />
+                            <input type="text" class="form-control" value="" name="NIK_PEGAWAI_BPBD" id="NIK_PEGAWAI_BPBD"
+                                placeholder="Contoh: 3602041211870001" />
                         </div>
                     </div>
-
-                    <div class="form-group" id="data_TANGGAL_DOKUMEN_SPPB">
-                        <label class="col-xs-3 control-label">Tanggal Dokumen SPPB */**</label>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">NIP Pegawai *</label>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" value="" name="NIP_PEGAWAI_BPBD" id="NIP_PEGAWAI_BPBD"
+                                placeholder="Contoh: 3602041211870001" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">Jabatan Pegawai *</label>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" value="" name="JABATAN_PEGAWAI_BPBD" id="JABATAN_PEGAWAI_BPBD"
+                                placeholder="Contoh: Kepala sub seksi" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">Nama Korban *</label>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" value="" name="NAMA_PENERIMA" id="NAMA_PENERIMA"
+                                placeholder="Contoh: Ucup Saepudin" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">NIK Korban *</label>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" value="" name="NIK_PENERIMA" id="NIK_PENERIMA"
+                                placeholder="Contoh: 3602041211870001" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">NIP Korban *</label>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" value="" name="NIP_PENERIMA" id="NIP_PENERIMA"
+                                placeholder="Contoh: 3602041211870001" />
+                        </div>
+                    </div>
+                    <div class="form-group" id="data_TANGGAL_LAHIR_KORBAN">
+                        <label class="col-xs-3 control-label">Tanggal Lahir Korban *</label>
                         <div class="col-xs-9">
                             <div class="input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="TANGGAL_DOKUMEN_SPPB" type="text" class="form-control" placeholder="dd/mm/yyyy">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="TANGGAL_LAHIR_PENERIMA" type="text" class="form-control" placeholder="dd/mm/yyyy">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">Tempat Lahir Korban *</label>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" value="" name="TEMPAT_LAHIR_PENERIMA" id="TEMPAT_LAHIR_PENERIMA"
+                                placeholder="Contoh: Deket Cugenang" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">Jabatan Korban</label>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" value="" name="JABATAN_PENERIMA" id="JABATAN_PENERIMA"
+                                placeholder="Contoh: Kepala sub seksi" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">Instansi Korban</label>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" value="" name="INSTANSI_KORBAN" id="INSTANSI_KORBAN"
+                                placeholder="Contoh: Universitas Gunadarma" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3">Kabupaten/Kota *</label>
+                        <div class="col-xs-9">
+                            <select class="chosen-select" name="ID_KABUPATEN_KOTA" class="form-control" id="ID_KABUPATEN_KOTA">
+                                <option value=''>- Pilih Kabupaten/Kota -</option>
+                                <option value='Cianjur'>Cianjur</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3">Kecamatan *</label>
+                        <div class="col-xs-9">
+                            <select class="chosen-select" name="ID_KECAMATAN" class="form-control" id="ID_KECAMATAN">
+                                <option value=''>- Pilih Kecamatan -</option>
+                                <option value='Bojongpicung'>Bojongpicung</option>
+                                <option value='Campaka'>Campaka</option>
+                                <option value='Campaka Mulya'>Campaka Mulya</option>
+                                <option value='Cianjur'>Cianjur</option>
+                                <option value='Cibeber'>Cibeber</option>
+                                <option value='Cibinong'>Cibinong</option>
+                                <option value='Cidaun'>Cidaun</option>
+                                <option value='Cijati'>Cijati</option>
+                                <option value='Cikadu'>Cikadu</option>
+                                <option value='Cikalongkulon'>Cikalongkulon</option>
+                                <option value='Cilaku'>Cilaku</option>
+                                <option value='Cipanas'>Cipanas</option>
+                                <option value='Ciranjang'>Ciranjang</option>
+                                <option value='Cugenang'>Cugenang</option>
+                                <option value='Gekbrong'>Gekbrong</option>
+                                <option value='Haurwangi'>Haurwangi</option>
+                                <option value='Kadupandak'>Kadupandak</option>
+                                <option value='Karangtengah'>Karangtengah</option>
+                                <option value='Leles'>Leles</option>
+                                <option value='Mande'>Mande</option>
+                                <option value='Naringgul'>Naringgul</option>
+                                <option value='Pacet'>Pacet</option>
+                                <option value='Pagelaran'>Pagelaran</option>
+                                <option value='Pasirkuda'>Pasirkuda</option>
+                                <option value='Sindangbarang'>Sindangbarang</option>
+                                <option value='Sukaluyu'>Sukaluyu</option>
+                                <option value='Sukanagara'>Sukanagara</option>
+                                <option value='Sukaresmi'>Sukaresmi</option>
+                                <option value='Takokak'>Takokak</option>
+                                <option value='Tanggeung'>Tanggeung</option>
+                                <option value='Warungkondang'>Warungkondang</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3">Desa/Kelurahan *</label>
+                        <div class="col-xs-9">
+                            <select class="chosen-select" name="ID_DESA_KELURAHAN" class="form-control" id="ID_DESA_KELURAHAN">
+                                <option value=''>- Pilih Desa/Kelurahan -</option>
+                                <option value='Bojongkaso'>Bojongkaso</option>
+                                <option value='Bunisari'>Bunisari</option>   
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">RW *</label>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" value="" name="RW" id="RW"
+                                placeholder="Contoh: 02" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">RT *</label>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" value="" name="RT" id="RT"
+                                placeholder="Contoh: 03" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">Kampung</label>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" value="" name="KAMPUNG" id="KAMPUNG"
+                                placeholder="Contoh: Kp. Ciater" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">Kode Pos</label>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" value="" name="KODE_POS" id="KODE_POS"
+                                placeholder="Contoh: 43273" />
+                        </div>
+                    </div>
+                    <div class="form-group" id="data_TANGGAL_KEJADIAN_BENCANA">
+                        <label class="col-xs-3 control-label">Tanggal Kejadian Bencana *</label>
+                        <div class="col-xs-9">
+                            <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="TANGGAL_KEJADIAN_BENCANA" type="text" class="form-control" placeholder="dd/mm/yyyy">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" id="data_TANGGAL_DOKUMEN_Penyaluran">
+                        <label class="col-xs-3 control-label">Tanggal Penyaluran */**</label>
+                        <div class="col-xs-9">
+                            <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="TANGGAL_DOKUMEN_Penyaluran" type="text" class="form-control" placeholder="dd/mm/yyyy">
                             </div>
                             </br>
                             *wajib diisi
                             </br>
-                            **Sistem juga menyimpan tanggal aktual pembuatan SPPB ini by system
+                            **Sistem juga menyimpan tanggal aktual pembuatan Penyaluran ini by system
                         </div>
                     </div>
-
-
                     <div id="alert-msg"></div>
 
                 </div>
@@ -150,10 +312,9 @@
                 <div class="modal-footer">
                     <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true"><i
                             class="fa fa-window-close"></i> Batal</button>
-                    <button class="btn btn-primary" id="btn_simpan"><i class="fa fa-save"></i> Buat SPPB Pembelian</button>
+                    <button class="btn btn-primary" id="btn_simpan"><i class="fa fa-save"></i> Buat Penyaluran Bantuan</button>
                 </div>
             </div>
-            <?php echo form_close(); ?>
         </div>
     </div>
 </div>
@@ -231,7 +392,16 @@
 
         var today = new Date().toISOString().substr(0, 10);
 
-        $('#data_TANGGAL_DOKUMEN_SPPB .input-group.date').datepicker({
+        $('#data_TANGGAL_DOKUMEN_Penyaluran .input-group.date').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true,
+            format: 'dd/mm/yyyy'
+        });
+
+        $('#data_TANGGAL_KEJADIAN_BENCANA .input-group.date').datepicker({
             todayBtn: "linked",
             keyboardNavigation: false,
             forceParse: false,
@@ -682,24 +852,39 @@
         //SIMPAN DATA
         $('#btn_simpan').click(function () {
 
-            var FILE_NAME_TEMP = $('#NO_URUT_SPPB').val();
-            FILE_NAME_TEMP = FILE_NAME_TEMP.replace(/[^a-zA-Z0-9]/g, '_');
+            var TANGGAL_DOKUMEN_Penyaluran = $('#TANGGAL_DOKUMEN_Penyaluran').val(),
+            TANGGAL_DOKUMEN_Penyaluran = TANGGAL_DOKUMEN_Penyaluran.split("/").reverse().join("-");
 
-            var TANGGAL_DOKUMEN_SPPB = $('#TANGGAL_DOKUMEN_SPPB').val(),
-            TANGGAL_DOKUMEN_SPPB = TANGGAL_DOKUMEN_SPPB.split("/").reverse().join("-");
+            var TANGGAL_KEJADIAN_BENCANA = $('#TANGGAL_KEJADIAN_BENCANA').val(),
+            TANGGAL_KEJADIAN_BENCANA = TANGGAL_KEJADIAN_BENCANA.split("/").reverse().join("-");
 
             var form_data = {
-                ID_PROYEK: $('#ID_PROYEK').val(),
-                ID_PROYEK_SUB_PEKERJAAN: $('#ID_PROYEK_SUB_PEKERJAAN').val(),
-                TANGGAL_DOKUMEN_SPPB: TANGGAL_DOKUMEN_SPPB,
-                JUMLAH_COUNT: $('#JUMLAH_COUNT').val(),
-                NO_URUT_SPPB: $('#NO_URUT_SPPB').val(),
-                USER_ID: $('#USER_ID').val(),
-                FILE_NAME_TEMP: FILE_NAME_TEMP
+                CODE_MD5: $('#CODE_MD5').val(),
+                ID_JENIS_BENCANA: $('#ID_JENIS_BENCANA').val(),
+                NAMA_PEGAWAI_BPBD: $('#NAMA_PEGAWAI_BPBD').val(),
+                NIK_PEGAWAI_BPBD: $('#NIK_PEGAWAI_BPBD').val(),
+                NIP_PEGAWAI_BPBD: $('#NIP_PEGAWAI_BPBD').val(),
+                JABATAN_PEGAWAI_BPBD: $('#JABATAN_PEGAWAI_BPBD').val(),
+                NAMA_PENERIMA: $('#NAMA_PENERIMA').val(),
+                NIK_PENERIMA: $('#NIK_PENERIMA').val(),
+                NIP_PENERIMA: $('#NIP_PENERIMA').val(),
+                TANGGAL_LAHIR_PENERIMA: $('#TANGGAL_LAHIR_PENERIMA').val(),
+                TEMPAT_LAHIR_PENERIMA: $('#TEMPAT_LAHIR_PENERIMA').val(),
+                JABATAN_PENERIMA: $('#JABATAN_PENERIMA').val(),
+                INSTANSI_PENERIMA: $('#INSTANSI_PENERIMA').val(),
+                ID_KABUPATEN_KOTA: $('#ID_KABUPATEN_KOTA').val(),
+                ID_KECAMATAN: $('#ID_KECAMATAN').val(),
+                ID_DESA_KELURAHAN: $('#ID_DESA_KELURAHAN').val(),
+                RW: $('#RW').val(),
+                RT: $('#RT').val(),
+                KAMPUNG: $('#KAMPUNG').val(),
+                KODE_POS: $('#KODE_POS').val(),
+                TANGGAL_DOKUMEN_Penyaluran: TANGGAL_DOKUMEN_Penyaluran,
+                TANGGAL_KEJADIAN_BENCANA: TANGGAL_KEJADIAN_BENCANA
             };
 
             $.ajax({
-                url: "<?php echo site_url('SPPB/simpan_data_sppb_pembelian'); ?>",
+                url: "<?php echo site_url('Penyaluran/simpan_data_Penyaluran_bantuan'); ?>",
                 type: 'POST',
                 data: form_data,
                 success: function (data) {
@@ -708,15 +893,15 @@
                     } else {
                         $.ajax({
                             type: "POST",
-                            url: "<?php echo base_url('SPPB/get_data_sppb_pembelian_baru') ?>",
+                            url: "<?php echo base_url('Penyaluran/get_data_Penyaluran_bantuan_baru') ?>",
                             dataType: "JSON",
                             data: form_data,
                             success: function (data) {
                                 $.each(data, function () {
-                                    if (data == 'BELUM ADA SPPB') {
+                                    if (data == 'BELUM ADA Penyaluran') {
                                         $('#alert-msg').html('<div class="alert alert-danger">' + data + '</div>');
                                     } else {
-                                        window.location.href = '<?php echo base_url(); ?>SPPB_form/index/' + data.HASH_MD5_SPPB;
+                                        window.location.href = '<?php echo base_url(); ?>Penyaluran_form/index/' + data.HASH_MD5_Penyaluran;
                                     }
                                 });
                             }
@@ -724,8 +909,23 @@
                     }
                 }
             });
-
             return false;
+        });
+
+        $('#btn_buat').click(function () {
+
+            $.ajax({
+                url: "<?php echo site_url('Penyaluran/generate_md5'); ?>",
+                type: 'POST',
+                success: function (data) {
+
+                    $('[name="CODE_MD5"]').val(data);
+                    console.log(data);
+                    $('#ModalAdd').modal('show');
+                    
+                }
+            });
+        return false;
         });
 
     });
