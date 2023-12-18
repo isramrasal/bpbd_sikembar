@@ -144,7 +144,7 @@
                         <div class="col-xs-9">
                             <select class="chosen-select" name="ID_KABUPATEN_KOTA" class="form-control" id="ID_KABUPATEN_KOTA">
                                 <option value=''>- Pilih Kabupaten/Kota -</option>
-                                <option value=''>Cianjur</option>
+                                <option value='Cianjur'>Cianjur</option>
                             </select>
                         </div>
                     </div>
@@ -332,7 +332,16 @@
 
         var today = new Date().toISOString().substr(0, 10);
 
-        $('#data_TANGGAL_DOKUMEN_SPPB .input-group.date').datepicker({
+        $('#data_TANGGAL_DOKUMEN_PENGAJUAN .input-group.date').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true,
+            format: 'dd/mm/yyyy'
+        });
+
+        $('#data_TANGGAL_KEJADIAN_BENCANA .input-group.date').datepicker({
             todayBtn: "linked",
             keyboardNavigation: false,
             forceParse: false,

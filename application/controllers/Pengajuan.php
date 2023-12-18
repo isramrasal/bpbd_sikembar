@@ -18,7 +18,7 @@ class Pengajuan extends CI_Controller
 
         $this->load->model('RASD_model');
         $this->load->model('SPPB_model');
-        // $this->load->model('Pengajuan_model');
+        $this->load->model('Pengajuan_model');
         $this->load->model('SPP_model');
         $this->load->model('PO_model');
         $this->load->model('Foto_model');
@@ -692,73 +692,89 @@ class Pengajuan extends CI_Controller
             $this->form_validation->set_rules('KODE_POS', 'Kode Pos', 'trim|required|max_length[255]');
             $this->form_validation->set_rules('TANGGAL_DOKUMEN_PENGAJUAN', 'Tanggal Pengajuan', 'trim|required|max_length[255]');
             $this->form_validation->set_rules('TANGGAL_KEJADIAN_BENCANA', 'Tanggal Kejadian Bencana', 'trim|required|max_length[255]');           
-
+            
             //run validation check
             if ($this->form_validation->run() == FALSE) {   //validation fails
                 echo validation_errors();
             } else {
                 //get the form data
-                $ID_PROYEK = $this->input->post('ID_PROYEK');
-                $ID_PROYEK_SUB_PEKERJAAN = $this->input->post('ID_PROYEK_SUB_PEKERJAAN');
-                $TANGGAL_DOKUMEN_SPPB = $this->input->post('TANGGAL_DOKUMEN_SPPB');
-                $TANGGAL_PEMBUATAN_SPPB_JAM = date("h:i:s.u");
-                $TANGGAL_PEMBUATAN_SPPB_HARI = date('Y-m-d');
+                $ID_JENIS_BENCANA = $this->input->post('ID_JENIS_BENCANA');
+                $NAMA_PEMOHON = $this->input->post('NAMA_PEMOHON');
+                $NIP = $this->input->post('NIP');
+                $JABATAN = $this->input->post('JABATAN');
+                $INSTANSI = $this->input->post('INSTANSI');
+                $ID_KABUPATEN_KOTA = $this->input->post('ID_KABUPATEN_KOTA');
+                $ID_KECAMATAN = $this->input->post('ID_KECAMATAN');
+                $ID_DESA_KELURAHAN = $this->input->post('ID_DESA_KELURAHAN');
+                $RW = $this->input->post('RW');
+                $RT = $this->input->post('RT');
+                $KAMPUNG = $this->input->post('KAMPUNG');
+                $KODE_POS = $this->input->post('KODE_POS');
+                $TANGGAL_DOKUMEN_PENGAJUAN = $this->input->post('TANGGAL_DOKUMEN_PENGAJUAN');
+                $TANGGAL_KEJADIAN_BENCANA = $this->input->post('TANGGAL_KEJADIAN_BENCANA');
+
+                $TANGGAL_PEMBUATAN_PENGAJUAN_JAM = date("h:i:s.u");
+                $TANGGAL_PEMBUATAN_PENGAJUAN_HARI = date('Y-m-d');
                 $dt = date('F');
-                $TANGGAL_PEMBUATAN_SPPB_BULAN = $dt;
-                $TANGGAL_PEMBUATAN_SPPB_TAHUN = date("Y");
-                $NO_URUT_SPPB = $this->input->post('NO_URUT_SPPB');
-                $JUMLAH_COUNT = $this->input->post('JUMLAH_COUNT');
-                $FILE_NAME_TEMP = $this->input->post('FILE_NAME_TEMP');
+                $TANGGAL_PEMBUATAN_PENGAJUAN_BULAN = $dt;
+                $TANGGAL_PEMBUATAN_PENGAJUAN_TAHUN = date("Y");
                 $CREATE_BY_USER =  $this->data['user_id'];
 
-                $PROGRESS_SPPB = "Diproses oleh Staff Procurement KP";
-                $STATUS_SPPB = "DRAFT";
+                $PROGRESS_PENGAJUAN = "Diproses oleh Staff BPBD";
+                $STATUS_PENGAJUAN = "DRAFT";
 
+                
+                // if ($this->SPPB_model->cek_no_urut_sppb($NO_URUT_SPPB) == 'Data belum ada') { 
 
-                //check apakah NO URUT SPPB sudah ada. jika belum ada, akan disimpan.
-                if ($this->SPPB_model->cek_no_urut_sppb($NO_URUT_SPPB) == 'Data belum ada') {
-
-                    $hasil = $this->SPPB_model->simpan_data_sppb_pembelian_by_staff_proc_kp(
-                        $ID_PROYEK,
-                        $ID_PROYEK_SUB_PEKERJAAN,
-                        $TANGGAL_DOKUMEN_SPPB,
-                        $TANGGAL_PEMBUATAN_SPPB_JAM,
-                        $TANGGAL_PEMBUATAN_SPPB_HARI,
-                        $TANGGAL_PEMBUATAN_SPPB_BULAN,
-                        $TANGGAL_PEMBUATAN_SPPB_TAHUN,
-                        $NO_URUT_SPPB,
-                        $JUMLAH_COUNT,
+                    $hasil = $this->Pengajuan_model->simpan_data_pengajuan_bantuan(
+                        $ID_JENIS_BENCANA,
+                        $NAMA_PEMOHON,
+                        $NIP,
+                        $JABATAN,
+                        $INSTANSI,
+                        $ID_KABUPATEN_KOTA,
+                        $ID_KECAMATAN,
+                        $ID_DESA_KELURAHAN,
+                        $RW,
+                        $RT,
+                        $KAMPUNG,
+                        $KODE_POS,
+                        $TANGGAL_DOKUMEN_PENGAJUAN,
+                        $TANGGAL_KEJADIAN_BENCANA,
+                        $TANGGAL_PEMBUATAN_PENGAJUAN_JAM,
+                        $TANGGAL_PEMBUATAN_PENGAJUAN_HARI,
+                        $TANGGAL_PEMBUATAN_PENGAJUAN_BULAN,
+                        $TANGGAL_PEMBUATAN_PENGAJUAN_TAHUN,
                         $CREATE_BY_USER,
-                        $PROGRESS_SPPB,
-                        $STATUS_SPPB,
-                        $FILE_NAME_TEMP
+                        $PROGRESS_PENGAJUAN,
+                        $STATUS_PENGAJUAN
                     );
 
-                    $KETERANGAN = "Simpan SPPB: "
-                        . "; " . $ID_PROYEK
-                        . "; " . $TANGGAL_DOKUMEN_SPPB
-                        . "; " . $TANGGAL_PEMBUATAN_SPPB_JAM
-                        . "; " . $TANGGAL_PEMBUATAN_SPPB_HARI
-                        . "; " . $TANGGAL_PEMBUATAN_SPPB_BULAN
-                        . "; " . $TANGGAL_PEMBUATAN_SPPB_TAHUN
-                        . "; " . $NO_URUT_SPPB
-                        . "; " . $JUMLAH_COUNT
-                        . "; " . $CREATE_BY_USER
-                        . "; " . $PROGRESS_SPPB
-                        . "; " . $STATUS_SPPB
-                        . "; " . $FILE_NAME_TEMP;
-                    $ID_SPPB = 0;
-                    $this->user_log_sppb($ID_SPPB, $KETERANGAN);
+                    // $KETERANGAN = "Simpan SPPB: "
+                    //     . "; " . $ID_PROYEK
+                    //     . "; " . $TANGGAL_DOKUMEN_SPPB
+                    //     . "; " . $TANGGAL_PEMBUATAN_SPPB_JAM
+                    //     . "; " . $TANGGAL_PEMBUATAN_SPPB_HARI
+                    //     . "; " . $TANGGAL_PEMBUATAN_SPPB_BULAN
+                    //     . "; " . $TANGGAL_PEMBUATAN_SPPB_TAHUN
+                    //     . "; " . $NO_URUT_SPPB
+                    //     . "; " . $JUMLAH_COUNT
+                    //     . "; " . $CREATE_BY_USER
+                    //     . "; " . $PROGRESS_SPPB
+                    //     . "; " . $STATUS_SPPB
+                    //     . "; " . $FILE_NAME_TEMP;
+                    // $ID_SPPB = 0;
+                    // $this->user_log_sppb($ID_SPPB, $KETERANGAN);
 
-                    $hasil_2 = $this->SPPB_model->set_md5_id_sppb_pembelian($ID_PROYEK, $NO_URUT_SPPB, $CREATE_BY_USER);
+                    // $hasil_2 = $this->SPPB_model->set_md5_id_sppb_pembelian($ID_PROYEK, $NO_URUT_SPPB, $CREATE_BY_USER);
 
-                    $ID_SPPB = 0;
-                    $KETERANGAN = "Update MD5 SPPB: " . $ID_PROYEK . "; " . $NO_URUT_SPPB
-                        . "; " . $CREATE_BY_USER;
-                    $this->user_log_sppb($ID_SPPB, $KETERANGAN);
-                } else {
-                    echo 'Nomor Urut SPPB sudah terekam sebelumnya';
-                }
+                    // $ID_SPPB = 0;
+                    // $KETERANGAN = "Update MD5 SPPB: " . $ID_PROYEK . "; " . $NO_URUT_SPPB
+                    //     . "; " . $CREATE_BY_USER;
+                    // $this->user_log_sppb($ID_SPPB, $KETERANGAN);
+                // } else {
+                //     echo 'Nomor Urut SPPB sudah terekam sebelumnya';
+                // }
             }
         } else {
             $this->logout();
