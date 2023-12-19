@@ -101,7 +101,7 @@
                 <small class="font-bold">Silakan isi identitas formulir penyaluran bantuan</small>
             </div>
             <input type="hidden" class="form-control" value="" name="FILE_NAME_TEMP" id="FILE_NAME_TEMP" disabled />
-            <!-- <input type="text" class="form-control" value="" name="CODE_MD5" id="CODE_MD5" disabled /> -->
+            <input type="hidden" class="form-control" value="" name="CODE_MD5" id="CODE_MD5" disabled />
 
             <div class="form-horizontal">
                 <div class="modal-body">
@@ -125,7 +125,7 @@
                         <label class="col-xs-3 control-label">Nama Pegawai *</label>
                         <div class="col-xs-9">
                             <input type="text" class="form-control" value="" name="NAMA_PEGAWAI_BPBD" id="NAMA_PEGAWAI_BPBD"
-                                placeholder="Contoh: UCUP SURUCUP" />
+                                placeholder="Contoh: ASEP SAEPUDIN" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -139,7 +139,7 @@
                         <label class="col-xs-3 control-label">NIP Pegawai *</label>
                         <div class="col-xs-9">
                             <input type="text" class="form-control" value="" name="NIP_PEGAWAI_BPBD" id="NIP_PEGAWAI_BPBD"
-                                placeholder="Contoh: 3602041211870001" />
+                                placeholder="Contoh: 197002092007011005" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -153,7 +153,7 @@
                         <label class="col-xs-3 control-label">Nama Penerima *</label>
                         <div class="col-xs-9">
                             <input type="text" class="form-control" value="" name="NAMA_PENERIMA" id="NAMA_PENERIMA"
-                                placeholder="Contoh: Ucup Saepudin" />
+                                placeholder="Contoh: Wangwang Kuswaya" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -182,14 +182,14 @@
                         <label class="col-xs-3 control-label">Tempat Lahir Penerima *</label>
                         <div class="col-xs-9">
                             <input type="text" class="form-control" value="" name="TEMPAT_LAHIR_PENERIMA" id="TEMPAT_LAHIR_PENERIMA"
-                                placeholder="Contoh: Deket Cugenang" />
+                                placeholder="Contoh: Cianjur" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-3 control-label">NIP Penerima</label>
                         <div class="col-xs-9">
                             <input type="text" class="form-control" value="" name="NIP_PENERIMA" id="NIP_PENERIMA"
-                                placeholder="Contoh: 3602041211870001" />
+                                placeholder="Contoh: 197509282005011007" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -265,17 +265,17 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-3 control-label">RW *</label>
-                        <div class="col-xs-9">
-                            <input type="text" class="form-control" value="" name="RW" id="RW"
-                                placeholder="Contoh: 02" />
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label class="col-xs-3 control-label">RT *</label>
                         <div class="col-xs-9">
                             <input type="text" class="form-control" value="" name="RT" id="RT"
                                 placeholder="Contoh: 03" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">RW *</label>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" value="" name="RW" id="RW"
+                                placeholder="Contoh: 02" />
                         </div>
                     </div>
                     <div class="form-group">

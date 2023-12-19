@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
-class Pengajuan extends CI_Controller
+class Penyaluran extends CI_Controller
 {
 
     public function __construct() //092023
@@ -14,11 +14,11 @@ class Pengajuan extends CI_Controller
         $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
         $this->lang->load('auth');
-        $this->data['title'] = 'SiKembar | Pengajuan';
+        $this->data['title'] = 'SiKembar | Penyaluran';
 
         $this->load->model('RASD_model');
         $this->load->model('SPPB_model');
-        $this->load->model('Pengajuan_model');
+        $this->load->model('Penyaluran_model');
         $this->load->model('SPP_model');
         $this->load->model('PO_model');
         $this->load->model('Foto_model');
@@ -27,7 +27,7 @@ class Pengajuan extends CI_Controller
         $this->load->model('Organisasi_model');
 
         date_default_timezone_set('Asia/Jakarta');
-        $this->data['left_menu'] = "pengajuan_aktif";
+        $this->data['left_menu'] = "penyaluran_aktif";
     }
 
     /**
@@ -36,7 +36,7 @@ class Pengajuan extends CI_Controller
     public function logout() //belum diperbaiki
     {
         $ID_FSTB = 0;
-        $KETERANGAN = "Paksa Logout Ketika Akses Pengajuan";
+        $KETERANGAN = "Paksa Logout Ketika Akses Penyaluran";
         $this->user_log_sppb($ID_SPPB, $KETERANGAN);
 
         $this->ion_auth->logout();
@@ -97,8 +97,8 @@ class Pengajuan extends CI_Controller
         $this->data['ID_JABATAN_PEGAWAI'] = $data_pegawai['ID_JABATAN_PEGAWAI'];
 
         $data_proyek = $this->Proyek_model->get_data_by_id_proyek($this->data['ID_PROYEK']);
-        $this->data['INISIAL'] = $data_proyek['INISIAL'];
-        $this->data['NAMA_PROYEK'] = $data_proyek['NAMA_PROYEK'];
+        //$this->data['INISIAL'] = $data_proyek['INISIAL'];
+       // $this->data['NAMA_PROYEK'] = $data_proyek['NAMA_PROYEK'];
 
         $sess_data['ID_PROYEK'] = $this->data['ID_PROYEK'];
         $sess_data['ID_JABATAN_PEGAWAI'] = $this->data['ID_JABATAN_PEGAWAI'];
@@ -112,12 +112,12 @@ class Pengajuan extends CI_Controller
                 $this->data['proyek_dropdown'] = $this->SPPB_model->proyek_list();
                 $this->data['proyek_dropdown_list'] = $this->SPPB_model->proyek_list();
 
-                $this->load->view('wasa/user_korban_bencana/head_normal', $this->data);
-                $this->load->view('wasa/user_korban_bencana/user_menu');
-                $this->load->view('wasa/user_korban_bencana/left_menu');
-                $this->load->view('wasa/user_korban_bencana/header_menu');
-                $this->load->view('wasa/user_korban_bencana/content_penyaluran_list');
-                $this->load->view('wasa/user_korban_bencana/footer');
+                $this->load->view('wasa/user_pegawai_bpbd/head_normal', $this->data);
+                $this->load->view('wasa/user_pegawai_bpbd/user_menu');
+                $this->load->view('wasa/user_pegawai_bpbd/left_menu');
+                $this->load->view('wasa/user_pegawai_bpbd/header_menu');
+                $this->load->view('wasa/user_pegawai_bpbd/content_penyaluran_list');
+                $this->load->view('wasa/user_pegawai_bpbd/footer');
             } else {
                 $this->logout();
             }
@@ -169,7 +169,7 @@ class Pengajuan extends CI_Controller
         {
             $TANGGAL_PEMBUATAN_PENGAJUAN_JAM = date("h:i:s.u");
             $CODE_md5 = md5($TANGGAL_PEMBUATAN_PENGAJUAN_JAM);
-            echo json_encode($CODE_md5);
+            echo ($CODE_md5);
         }
 		else {
 			$this->logout();
@@ -680,7 +680,7 @@ class Pengajuan extends CI_Controller
         }
     }
 
-    function simpan_data_pengajuan_bantuan() //BEDA KP DAN SP //102023
+    function simpan_data_PENYALURAN_bantuan() //BEDA KP DAN SP //102023
     {
         if ($this->ion_auth->logged_in() && $this->ion_auth->in_group(2)) {
 
@@ -689,11 +689,18 @@ class Pengajuan extends CI_Controller
 
             //set validation rules
             $this->form_validation->set_rules('ID_JENIS_BENCANA', 'Jenis Bencana', 'trim|required');
-            $this->form_validation->set_rules('NAMA_PEMOHON', 'Nama Pemohon', 'trim|required|max_length[255]');
-            $this->form_validation->set_rules('NIK', 'NIK', 'trim|required|max_length[255]');
-            $this->form_validation->set_rules('NIP', 'NIP', 'trim|max_length[255]');
-            $this->form_validation->set_rules('JABATAN', 'Jabatan', 'trim|max_length[255]');
-            $this->form_validation->set_rules('INSTANSI', 'Instansi', 'trim|max_length[255]');
+            $this->form_validation->set_rules('NAMA_PEGAWAI_BPBD', 'Nama Pegawai', 'trim|required|max_length[255]');
+            $this->form_validation->set_rules('NIK_PEGAWAI_BPBD', 'NIK Pegawai', 'trim|required|max_length[255]');
+            $this->form_validation->set_rules('NIP_PEGAWAI_BPBD', 'NIP Pegawai', 'trim|required|max_length[255]');
+            $this->form_validation->set_rules('JABATAN_PEGAWAI_BPBD', 'Jabatan Pegawai', 'trim|required|max_length[255]');
+            $this->form_validation->set_rules('NAMA_PENERIMA', 'Nama Penerima', 'trim|required|max_length[255]');
+            $this->form_validation->set_rules('NOMOR_KK_PENERIMA', 'Nomor KK Penerima', 'trim|max_length[255]');
+            $this->form_validation->set_rules('NIK_PENERIMA', 'NIK Penerima', 'trim|max_length[255]');
+            $this->form_validation->set_rules('TANGGAL_LAHIR_PENERIMA', 'Tanggal Lahir Penerima', 'trim|required|max_length[255]');
+            $this->form_validation->set_rules('TEMPAT_LAHIR_PENERIMA', 'Tempat Lahir Penerima', 'trim|required|max_length[255]');
+            $this->form_validation->set_rules('NIP_PENERIMA', 'NIP Penerima', 'trim|max_length[255]');
+            $this->form_validation->set_rules('JABATAN_PENERIMA', 'Jabatan Penerima', 'trim|max_length[255]');
+            $this->form_validation->set_rules('INSTANSI_PENERIMA', 'Instansi Penerima', 'trim|max_length[255]');
             $this->form_validation->set_rules('ID_KABUPATEN_KOTA', 'Kabupaten/Kota', 'trim|required|max_length[255]');
             $this->form_validation->set_rules('ID_KECAMATAN', 'Kecamatan', 'trim|required|max_length[255]');
             $this->form_validation->set_rules('ID_DESA_KELURAHAN', 'Desa/Kelurahan', 'trim|required|max_length[255]');
@@ -701,7 +708,7 @@ class Pengajuan extends CI_Controller
             $this->form_validation->set_rules('RT', 'RT', 'trim|required|max_length[255]');
             $this->form_validation->set_rules('KAMPUNG', 'Kampung', 'trim|required|max_length[255]');
             $this->form_validation->set_rules('KODE_POS', 'Kode Pos', 'trim|required|max_length[255]');
-            $this->form_validation->set_rules('TANGGAL_DOKUMEN_PENGAJUAN', 'Tanggal Pengajuan', 'trim|required|max_length[255]');
+            $this->form_validation->set_rules('TANGGAL_DOKUMEN_PENYALURAN', 'Tanggal Penyaluran', 'trim|required|max_length[255]');
             $this->form_validation->set_rules('TANGGAL_KEJADIAN_BENCANA', 'Tanggal Kejadian Bencana', 'trim|required|max_length[255]');           
             
             //run validation check
@@ -711,11 +718,18 @@ class Pengajuan extends CI_Controller
                 //get the form data
                 $CODE_MD5 = $this->input->post('CODE_MD5');
                 $ID_JENIS_BENCANA = $this->input->post('ID_JENIS_BENCANA');
-                $NAMA_PEMOHON = $this->input->post('NAMA_PEMOHON');
-                $NIK = $this->input->post('NIK');
-                $NIP = $this->input->post('NIP');
-                $JABATAN = $this->input->post('JABATAN');
-                $INSTANSI = $this->input->post('INSTANSI');
+                $NAMA_PEGAWAI_BPBD = $this->input->post('NAMA_PEGAWAI_BPBD');
+                $NIK_PEGAWAI_BPBD = $this->input->post('NIK_PEGAWAI_BPBD');
+                $NIP_PEGAWAI_BPBD = $this->input->post('NIP_PEGAWAI_BPBD');
+                $JABATAN_PEGAWAI_BPBD = $this->input->post('JABATAN_PEGAWAI_BPBD');
+                $NAMA_PENERIMA = $this->input->post('NAMA_PENERIMA');
+                $NOMOR_KK_PENERIMA = $this->input->post('NOMOR_KK_PENERIMA');
+                $NIK_PENERIMA = $this->input->post('NIK_PENERIMA');
+                $TANGGAL_LAHIR_PENERIMA = $this->input->post('TANGGAL_LAHIR_PENERIMA');
+                $TEMPAT_LAHIR_PENERIMA = $this->input->post('TEMPAT_LAHIR_PENERIMA');
+                $NIP_PENERIMA = $this->input->post('NIP_PENERIMA');
+                $JABATAN_PENERIMA = $this->input->post('JABATAN_PENERIMA');
+                $INSTANSI_PENERIMA = $this->input->post('INSTANSI_PENERIMA');
                 $ID_KABUPATEN_KOTA = $this->input->post('ID_KABUPATEN_KOTA');
                 $ID_KECAMATAN = $this->input->post('ID_KECAMATAN');
                 $ID_DESA_KELURAHAN = $this->input->post('ID_DESA_KELURAHAN');
@@ -723,30 +737,35 @@ class Pengajuan extends CI_Controller
                 $RT = $this->input->post('RT');
                 $KAMPUNG = $this->input->post('KAMPUNG');
                 $KODE_POS = $this->input->post('KODE_POS');
-                $TANGGAL_DOKUMEN_PENGAJUAN = $this->input->post('TANGGAL_DOKUMEN_PENGAJUAN');
+                $TANGGAL_DOKUMEN_PENYALURAN = $this->input->post('TANGGAL_DOKUMEN_PENYALURAN');
                 $TANGGAL_KEJADIAN_BENCANA = $this->input->post('TANGGAL_KEJADIAN_BENCANA');
-
-                $TANGGAL_PEMBUATAN_PENGAJUAN_JAM = date("h:i:s.u");
-                $TANGGAL_PEMBUATAN_PENGAJUAN_HARI = date('Y-m-d');
+                $TANGGAL_PEMBUATAN_PENYALURAN_JAM = date("h:i:s.u");
+                $TANGGAL_PEMBUATAN_PENYALURAN_HARI = date('Y-m-d');
                 $dt = date('F');
-                $TANGGAL_PEMBUATAN_PENGAJUAN_BULAN = $dt;
-                $TANGGAL_PEMBUATAN_PENGAJUAN_TAHUN = date("Y");
+                $TANGGAL_PEMBUATAN_PENYALURAN_BULAN = $dt;
+                $TANGGAL_PEMBUATAN_PENYALURAN_TAHUN = date("Y");
                 $CREATE_BY_USER =  $this->data['user_id'];
-
-                $PROGRESS_PENGAJUAN = "Diproses oleh Staff BPBD";
-                $STATUS_PENGAJUAN = "DRAFT";
+                $PROGRESS_PENYALURAN = "Diproses oleh Staff BPBD";
+                $STATUS_PENYALURAN = "DRAFT";
 
                 
                 // if ($this->SPPB_model->cek_no_urut_sppb($NO_URUT_SPPB) == 'Data belum ada') { 
 
-                    $hasil = $this->Pengajuan_model->simpan_data_pengajuan_bantuan(
+                    $hasil = $this->Penyaluran_model->simpan_data_PENYALURAN_bantuan(
                         $CODE_MD5,
                         $ID_JENIS_BENCANA,
-                        $NAMA_PEMOHON,
-                        $NIK,
-                        $NIP,
-                        $JABATAN,
-                        $INSTANSI,
+                        $NAMA_PEGAWAI_BPBD,
+                        $NIK_PEGAWAI_BPBD,
+                        $NIP_PEGAWAI_BPBD,
+                        $JABATAN_PEGAWAI_BPBD,
+                        $NAMA_PENERIMA,
+                        $NOMOR_KK_PENERIMA,
+                        $NIK_PENERIMA,
+                        $TANGGAL_LAHIR_PENERIMA,
+                        $TEMPAT_LAHIR_PENERIMA,
+                        $NIP_PENERIMA,
+                        $JABATAN_PENERIMA,
+                        $INSTANSI_PENERIMA,
                         $ID_KABUPATEN_KOTA,
                         $ID_KECAMATAN,
                         $ID_DESA_KELURAHAN,
@@ -754,15 +773,15 @@ class Pengajuan extends CI_Controller
                         $RT,
                         $KAMPUNG,
                         $KODE_POS,
-                        $TANGGAL_DOKUMEN_PENGAJUAN,
+                        $TANGGAL_DOKUMEN_PENYALURAN,
                         $TANGGAL_KEJADIAN_BENCANA,
-                        $TANGGAL_PEMBUATAN_PENGAJUAN_JAM,
-                        $TANGGAL_PEMBUATAN_PENGAJUAN_HARI,
-                        $TANGGAL_PEMBUATAN_PENGAJUAN_BULAN,
-                        $TANGGAL_PEMBUATAN_PENGAJUAN_TAHUN,
+                        $TANGGAL_PEMBUATAN_PENYALURAN_JAM,
+                        $TANGGAL_PEMBUATAN_PENYALURAN_HARI,
+                        $TANGGAL_PEMBUATAN_PENYALURAN_BULAN,
+                        $TANGGAL_PEMBUATAN_PENYALURAN_TAHUN,
                         $CREATE_BY_USER,
-                        $PROGRESS_PENGAJUAN,
-                        $STATUS_PENGAJUAN
+                        $PROGRESS_PENYALURAN,
+                        $STATUS_PENYALURAN
                     );
 
                     // $KETERANGAN = "Simpan SPPB: "
