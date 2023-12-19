@@ -1005,10 +1005,9 @@ class Donatur_model extends CI_Model
 	}
 
 
-	function simpan_data_pengajuan_bantuan(
+	function simpan_data_pengajuan_donasi(
 		$CODE_MD5,
-		$ID_JENIS_BENCANA,
-		$NAMA_PEMOHON,
+		$NAMA_DONATUR,
 		$NIK,
 		$NIP,
 		$JABATAN,
@@ -1020,8 +1019,7 @@ class Donatur_model extends CI_Model
 		$RT,
 		$KAMPUNG,
 		$KODE_POS,
-		$TANGGAL_DOKUMEN_PENGAJUAN,
-		$TANGGAL_KEJADIAN_BENCANA,
+		$TANGGAL_DOKUMEN_DONASI,
 		$TANGGAL_PEMBUATAN_PENGAJUAN_JAM,
 		$TANGGAL_PEMBUATAN_PENGAJUAN_HARI,
 		$TANGGAL_PEMBUATAN_PENGAJUAN_BULAN,
@@ -1031,12 +1029,12 @@ class Donatur_model extends CI_Model
 		$STATUS_PENGAJUAN
 	)
 	{
-		$hasil = $this->db->query("INSERT INTO form_inventaris_kebutuhan_korban_bencana (
+		$hasil = $this->db->query("INSERT INTO form_pengadaan_barang (
 				CODE_MD5,
 				Tanggal_Pembuatan,
 				Tanggal_Surat,
 				Hari_Surat,
-				Nama_Pemohon,
+				Nama_Donatur,
 				NIK,
 				NIP,
 				Jabatan,
@@ -1048,8 +1046,6 @@ class Donatur_model extends CI_Model
 				Kecamatan_Bencana,
 				Kabupaten_Kota_Bencana,
 				Kode_Pos_Bencana,
-				Jenis_Bencana,
-				TANGGAL_KEJADIAN_BENCANA,
 				TANGGAL_PEMBUATAN_PENGAJUAN_JAM,
 				TANGGAL_PEMBUATAN_PENGAJUAN_HARI,
 				TANGGAL_PEMBUATAN_PENGAJUAN_BULAN,
@@ -1060,9 +1056,9 @@ class Donatur_model extends CI_Model
 			VALUES(
 				'$CODE_MD5',
 				'$TANGGAL_PEMBUATAN_PENGAJUAN_JAM',
-				'$TANGGAL_DOKUMEN_PENGAJUAN',
+				'$TANGGAL_DOKUMEN_DONASI',
 				'$TANGGAL_PEMBUATAN_PENGAJUAN_HARI',
-				'$NAMA_PEMOHON',
+				'$NAMA_DONATUR',
 				'$NIK',
 				'$NIP',
 				'$JABATAN',
@@ -1074,8 +1070,6 @@ class Donatur_model extends CI_Model
 				'$ID_KECAMATAN',
                 '$ID_KABUPATEN_KOTA',
                 '$KODE_POS',
-                '$ID_JENIS_BENCANA',
-                '$TANGGAL_KEJADIAN_BENCANA',
                 '$TANGGAL_PEMBUATAN_PENGAJUAN_JAM',
 				'$TANGGAL_PEMBUATAN_PENGAJUAN_HARI',
                 '$TANGGAL_PEMBUATAN_PENGAJUAN_BULAN',
@@ -1092,9 +1086,9 @@ class Donatur_model extends CI_Model
 	//SUMBER TABEL: tabel sppb
 	//DIPAKAI: 1. controller SPPB / function get_data_sppb_baru
 	//         2. 
-	function get_data_pengajuan_baru($CODE_MD5)
+	function get_data_donatur_baru($CODE_MD5)
 	{
-		$hsl = $this->db->query("SELECT * FROM form_inventaris_kebutuhan_korban_bencana WHERE CODE_MD5 = '$CODE_MD5'");
+		$hsl = $this->db->query("SELECT * FROM form_pengadaan_barang WHERE CODE_MD5 = '$CODE_MD5'");
 		if ($hsl->num_rows() > 0) {
 			foreach ($hsl->result() as $data) {
 				$hasil = array(

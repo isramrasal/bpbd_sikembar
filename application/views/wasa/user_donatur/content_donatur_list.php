@@ -1,6 +1,6 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>List Pengajuan Domasi</h2>
+        <h2>List Pengajuan Donasi</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="<?php echo base_url('index.php') ?>">Home</a>
@@ -26,7 +26,7 @@
 
     <div class="alert alert-info alert-dismissable">
         <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-        Sistem menampilkan seluruh pengajuan bantuan yang Anda ajukan.
+        Sistem menampilkan seluruh pengajuan donasi yang Anda berikan.
     </div>
 
     <div class="row">
@@ -92,57 +92,41 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Close</span></button>
-                <h4 class="modal-title">Buat Pengajuan Bantuan</h4>
-                <small class="font-bold">Silakan isi identitas formulir pengajuan bantuan</small>
+                <h4 class="modal-title">Buat Pengajuan Donasi</h4>
+                <small class="font-bold">Silakan isi identitas formulir pengajuan donasi</small>
             </div>
             <input type="hidden" class="form-control" value="" name="FILE_NAME_TEMP" id="FILE_NAME_TEMP" disabled />
             <!-- <input type="text" class="form-control" value="" name="CODE_MD5" id="CODE_MD5" disabled /> -->
 
             <div class="form-horizontal">
                 <div class="modal-body">
+
                     <div class="form-group">
-                        <label class="control-label col-xs-3">Jenis Bencana *</label>
+                        <label class="col-xs-3 control-label">Nama Donatur *</label>
                         <div class="col-xs-9">
-                            <select class="chosen-select" name="ID_JENIS_BENCANA" class="form-control"
-                                id="ID_JENIS_BENCANA">
-                                <option value=''>- Pilih Bencana -</option>
-                                <option value='Gempa Bumi'>Gempa Bumi</option>
-                                <option value='Angin Puting Beliung'>Angin Puting Beliung</option>
-                                <option value='Banjir'>Banjir</option>
-                                <option value='Longsor'>Longsor</option>
-                                <option value='Tsunami'>Tsunami</option>
-                                <option value='Kebakaran'>Kebakaran</option>
-                                <option value='Pohon Tumbang'>Pohon Tumbang</option>
-                                <option value='Kekeringan'>Kekeringan</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-3 control-label">Nama Pemohon *</label>
-                        <div class="col-xs-9">
-                            <input type="text" class="form-control" value="" name="NAMA_PEMOHON" id="NAMA_PEMOHON"
-                                placeholder="Contoh: UCUP SURUCUP" />
+                            <input type="text" class="form-control" value="" name="NAMA_DONATUR" id="NAMA_DONATUR"
+                                placeholder="Contoh: Dewa Audzan Rinjani" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-3 control-label">NIK *</label>
                         <div class="col-xs-9">
                             <input type="text" class="form-control" value="" name="NIK" id="NIK"
-                                placeholder="Contoh: 3602041211870001" />
+                                placeholder="Contoh: 3216060703020021" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-3 control-label">NIP</label>
                         <div class="col-xs-9">
                             <input type="text" class="form-control" value="" name="NIP" id="NIP"
-                                placeholder="Contoh: 3602041211870001" />
+                                placeholder="Contoh: 50420360" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-3 control-label">Jabatan</label>
                         <div class="col-xs-9">
                             <input type="text" class="form-control" value="" name="JABATAN" id="JABATAN"
-                                placeholder="Contoh: Kepala sub seksi" />
+                                placeholder="Contoh: Kepala Divisi" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -153,109 +137,60 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-xs-3">Kabupaten/Kota *</label>
+                        <label class="col-xs-3 control-label">Kabupaten/Kota *</label>
                         <div class="col-xs-9">
-                            <select class="chosen-select" name="ID_KABUPATEN_KOTA" class="form-control"
-                                id="ID_KABUPATEN_KOTA">
-                                <option value=''>- Pilih Kabupaten/Kota -</option>
-                                <option value='Cianjur'>Cianjur</option>
-                            </select>
+                            <input type="text" class="form-control" value="" name="ID_KABUPATEN_KOTA"
+                                id="ID_KABUPATEN_KOTA" placeholder="Contoh: BEKASI" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-xs-3">Kecamatan *</label>
+                        <label class="col-xs-3 control-label">Kecamatan *</label>
                         <div class="col-xs-9">
-                            <select class="chosen-select" name="ID_KECAMATAN" class="form-control" id="ID_KECAMATAN">
-                                <option value=''>- Pilih Kecamatan -</option>
-                                <option value='Bojongpicung'>Bojongpicung</option>
-                                <option value='Campaka'>Campaka</option>
-                                <option value='Campaka Mulya'>Campaka Mulya</option>
-                                <option value='Cianjur'>Cianjur</option>
-                                <option value='Cibeber'>Cibeber</option>
-                                <option value='Cibinong'>Cibinong</option>
-                                <option value='Cidaun'>Cidaun</option>
-                                <option value='Cijati'>Cijati</option>
-                                <option value='Cikadu'>Cikadu</option>
-                                <option value='Cikalongkulon'>Cikalongkulon</option>
-                                <option value='Cilaku'>Cilaku</option>
-                                <option value='Cipanas'>Cipanas</option>
-                                <option value='Ciranjang'>Ciranjang</option>
-                                <option value='Cugenang'>Cugenang</option>
-                                <option value='Gekbrong'>Gekbrong</option>
-                                <option value='Haurwangi'>Haurwangi</option>
-                                <option value='Kadupandak'>Kadupandak</option>
-                                <option value='Karangtengah'>Karangtengah</option>
-                                <option value='Leles'>Leles</option>
-                                <option value='Mande'>Mande</option>
-                                <option value='Naringgul'>Naringgul</option>
-                                <option value='Pacet'>Pacet</option>
-                                <option value='Pagelaran'>Pagelaran</option>
-                                <option value='Pasirkuda'>Pasirkuda</option>
-                                <option value='Sindangbarang'>Sindangbarang</option>
-                                <option value='Sukaluyu'>Sukaluyu</option>
-                                <option value='Sukanagara'>Sukanagara</option>
-                                <option value='Sukaresmi'>Sukaresmi</option>
-                                <option value='Takokak'>Takokak</option>
-                                <option value='Tanggeung'>Tanggeung</option>
-                                <option value='Warungkondang'>Warungkondang</option>
-                            </select>
+                            <input type="text" class="form-control" value="" name="ID_KECAMATAN" id="ID_KECAMATAN"
+                                placeholder="Contoh: Tambun Selatan" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-xs-3">Desa/Kelurahan *</label>
+                        <label class="col-xs-3 control-label">Desa/Kelurahan *</label>
                         <div class="col-xs-9">
-                            <select class="chosen-select" name="ID_DESA_KELURAHAN" class="form-control"
-                                id="ID_DESA_KELURAHAN">
-                                <option value=''>- Pilih Desa/Kelurahan -</option>
-                                <option value='Bojongkaso'>Bojongkaso</option>
-                                <option value='Bunisari'>Bunisari</option>
-                            </select>
+                            <input type="text" class="form-control" value="" name="ID_DESA_KELURAHAN"
+                                id="ID_DESA_KELURAHAN" placeholder="Contoh: Tridayasakti" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-3 control-label">RW *</label>
                         <div class="col-xs-9">
                             <input type="text" class="form-control" value="" name="RW" id="RW"
-                                placeholder="Contoh: 02" />
+                                placeholder="Contoh: 015" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-3 control-label">RT *</label>
                         <div class="col-xs-9">
                             <input type="text" class="form-control" value="" name="RT" id="RT"
-                                placeholder="Contoh: 03" />
+                                placeholder="Contoh: 09" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-3 control-label">Kampung</label>
                         <div class="col-xs-9">
                             <input type="text" class="form-control" value="" name="KAMPUNG" id="KAMPUNG"
-                                placeholder="Contoh: Kp. Ciater" />
+                                placeholder="Contoh: Kp.Buwek" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-3 control-label">Kode Pos</label>
                         <div class="col-xs-9">
                             <input type="text" class="form-control" value="" name="KODE_POS" id="KODE_POS"
-                                placeholder="Contoh: 43273" />
+                                placeholder="Contoh: 17510" />
                         </div>
                     </div>
-                    <div class="form-group" id="data_TANGGAL_KEJADIAN_BENCANA">
-                        <label class="col-xs-3 control-label">Tanggal Kejadian Bencana *</label>
+                    <div class="form-group" id="data_TANGGAL_DOKUMEN_DONASI">
+                        <label class="col-xs-3 control-label">Tanggal Pengajuan Donasi */**</label>
                         <div class="col-xs-9">
                             <div class="input-group date">
                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input
-                                    id="TANGGAL_KEJADIAN_BENCANA" type="text" class="form-control"
-                                    placeholder="dd/mm/yyyy">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group" id="data_TANGGAL_DOKUMEN_PENGAJUAN">
-                        <label class="col-xs-3 control-label">Tanggal Pengajuan */**</label>
-                        <div class="col-xs-9">
-                            <div class="input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input
-                                    id="TANGGAL_DOKUMEN_PENGAJUAN" type="text" class="form-control"
+                                    id="TANGGAL_DOKUMEN_DONASI" type="text" class="form-control"
                                     placeholder="dd/mm/yyyy">
                             </div>
                             </br>
@@ -272,7 +207,7 @@
                     <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true"><i
                             class="fa fa-window-close"></i> Batal</button>
                     <button class="btn btn-primary" id="btn_simpan"><i class="fa fa-save"></i> Buat Pengajuan
-                        Bantuan</button>
+                        Donasi</button>
                 </div>
             </div>
         </div>
@@ -354,16 +289,7 @@ $(document).ready(function() {
 
     var today = new Date().toISOString().substr(0, 10);
 
-    $('#data_TANGGAL_DOKUMEN_PENGAJUAN .input-group.date').datepicker({
-        todayBtn: "linked",
-        keyboardNavigation: false,
-        forceParse: false,
-        calendarWeeks: true,
-        autoclose: true,
-        format: 'dd/mm/yyyy'
-    });
-
-    $('#data_TANGGAL_KEJADIAN_BENCANA .input-group.date').datepicker({
+    $('#data_TANGGAL_DOKUMEN_DONASI .input-group.date').datepicker({
         todayBtn: "linked",
         keyboardNavigation: false,
         forceParse: false,
@@ -900,16 +826,12 @@ $(document).ready(function() {
     //SIMPAN DATA
     $('#btn_simpan').click(function() {
 
-        var TANGGAL_DOKUMEN_PENGAJUAN = $('#TANGGAL_DOKUMEN_PENGAJUAN').val(),
-            TANGGAL_DOKUMEN_PENGAJUAN = TANGGAL_DOKUMEN_PENGAJUAN.split("/").reverse().join("-");
-
-        var TANGGAL_KEJADIAN_BENCANA = $('#TANGGAL_KEJADIAN_BENCANA').val(),
-            TANGGAL_KEJADIAN_BENCANA = TANGGAL_KEJADIAN_BENCANA.split("/").reverse().join("-");
+        var TANGGAL_DOKUMEN_DONASI = $('#TANGGAL_DOKUMEN_DONASI').val(),
+            TANGGAL_DOKUMEN_DONASI = TANGGAL_DOKUMEN_DONASI.split("/").reverse().join("-");
 
         var form_data = {
             CODE_MD5: $('#CODE_MD5').val(),
-            ID_JENIS_BENCANA: $('#ID_JENIS_BENCANA').val(),
-            NAMA_PEMOHON: $('#NAMA_PEMOHON').val(),
+            NAMA_DONATUR: $('#NAMA_DONATUR').val(),
             NIK: $('#NIK').val(),
             NIP: $('#NIP').val(),
             JABATAN: $('#JABATAN').val(),
@@ -921,12 +843,11 @@ $(document).ready(function() {
             RT: $('#RT').val(),
             KAMPUNG: $('#KAMPUNG').val(),
             KODE_POS: $('#KODE_POS').val(),
-            TANGGAL_DOKUMEN_PENGAJUAN: TANGGAL_DOKUMEN_PENGAJUAN,
-            TANGGAL_KEJADIAN_BENCANA: TANGGAL_KEJADIAN_BENCANA
+            TANGGAL_DOKUMEN_DONASI: TANGGAL_DOKUMEN_DONASI
         };
 
         $.ajax({
-            url: "<?php echo site_url('Pengajuan/simpan_data_pengajuan_bantuan'); ?>",
+            url: "<?php echo site_url('Donatur/simpan_data_donatur'); ?>",
             type: 'POST',
             data: form_data,
             success: function(data) {
@@ -936,7 +857,7 @@ $(document).ready(function() {
                 } else {
                     $.ajax({
                         type: "POST",
-                        url: "<?php echo base_url('Pengajuan/get_data_pengajuan_bantuan_baru') ?>",
+                        url: "<?php echo base_url('Donatur/get_data_donatur_baru') ?>",
                         dataType: "JSON",
                         data: form_data,
                         success: function(data) {
@@ -947,7 +868,7 @@ $(document).ready(function() {
                                         data + '</div>');
                                 } else {
                                     window.location.href =
-                                        '<?php echo base_url(); ?>Pengajuan_form/index/' +
+                                        '<?php echo base_url(); ?>Donatur_form/index/' +
                                         data.HASH_MD5_PENGAJUAN;
                                 }
                             });
@@ -962,7 +883,7 @@ $(document).ready(function() {
     $('#btn_buat').click(function() {
 
         $.ajax({
-            url: "<?php echo site_url('Pengajuan/generate_md5'); ?>",
+            url: "<?php echo site_url('Donatur/generate_md5'); ?>",
             type: 'POST',
             success: function(data) {
 
