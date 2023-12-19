@@ -169,7 +169,7 @@ class Pengajuan extends CI_Controller
         {
             $TANGGAL_PEMBUATAN_PENGAJUAN_JAM = date("h:i:s.u");
             $CODE_md5 = md5($TANGGAL_PEMBUATAN_PENGAJUAN_JAM);
-            echo json_encode($CODE_md5);
+            echo ($CODE_md5);
         }
 		else {
 			$this->logout();
