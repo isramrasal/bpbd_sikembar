@@ -118,7 +118,7 @@
                         <label class="col-xs-3 control-label">Nama Korban *</label>
                         <div class="col-xs-9">
                             <input type="text" class="form-control" value="" name="NAMA_KORBAN" id="NAMA_KORBAN"
-                                placeholder="Contoh: ASEP SUASEP" />
+                                placeholder="Contoh: Apprilia Agusti" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -831,9 +831,8 @@
                 success: function (data) {
                     console.log(data);
                     
-                    // if (data != '') {
-                    //     $('#alert-msg').html('<div class="alert alert-danger">' + data + '</div>');
-                    // } else {
+                    // 
+                    
                         $.ajax({
                             type: "POST",
                             url: "<?php echo base_url('Data_Korban/get_data_korban') ?>",
