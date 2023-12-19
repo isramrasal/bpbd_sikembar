@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
-class Pengajuan extends CI_Controller
+class Data_Korban extends CI_Controller
 {
 
     public function __construct() //092023
@@ -18,7 +18,7 @@ class Pengajuan extends CI_Controller
 
         $this->load->model('RASD_model');
         $this->load->model('SPPB_model');
-        $this->load->model('Pengajuan_model');
+        $this->load->model('Data_Korban_model');
         $this->load->model('SPP_model');
         $this->load->model('PO_model');
         $this->load->model('Foto_model');
