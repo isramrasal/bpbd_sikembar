@@ -59,13 +59,7 @@
                     </br>
                     </br>
 
-                    <select class="chosen-select" name="ID_PROYEK_LIST" class="form-control" id="ID_PROYEK_LIST">
-                        <option value=''>- Pilih Bantuan Berdasarkan Bencana -</option>
-                        <option value='Semua'>Semua Proyek</option>
-                        <?php foreach ($proyek_dropdown_list as $proyek_dropdown_list) {
-                            echo '<option value="' . $proyek_dropdown_list->ID_PROYEK . '">' . $proyek_dropdown_list->NAMA_PROYEK . '</option>';
-                        } ?>
-                    </select>
+
 
                     </br>
                     </br>
@@ -283,6 +277,98 @@
 <!-- Page-Level Scripts -->
 <script>
 $(document).ready(function() {
+
+    tampil_data();
+
+    function tampil_data() {
+        // $("#mydata").dataTable().fnDestroy();
+        // $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
+
+        $.ajax({
+            url: "<?php echo base_url(); ?>/Donatur/list_donatur_by_nik",
+            method: "POST",
+
+            async: false,
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+
+                var html, html_head = '';
+                var i, j, k;
+
+                $('#show_data_head').html(html_head);
+                $('#show_data').html(html);
+
+                if (data.length > 0) {
+                    for (i = 0; i < data.length; i++) {
+
+                        html += '<tr>' +
+                            '<td>' +
+                            '<a href="<?php echo base_url() ?>sppb_form/view/' + data[i]
+                            .CODE_MD5 +
+                            '" class="btn btn-default btn-xs btn-outline"><i class="fa fa-eye"></i> ' +
+                            data[i].CODE_MD5 + '</a>' + '</td>' +
+                            '<td>' + data[i].Nama_Donatur + '</td>' +
+                            '<td>' + data[i].NIK + '</td>' +
+                            '<td>' + data[i].Instansi + '</td>' +
+                            '<td>' +
+                            '<a href="javascript:;" class="btn btn-primary btn-xs item_status block" data="' +
+                            data[i].CODE_MD5 + '"><i class="fa fa-search"></i>' + data[i]
+                            .STATUS_SPPB + '</a>' + '</td>' +
+                            '</tr>';
+                    }
+                } else {
+                    html = '';
+                }
+
+
+
+                html_head =
+                    '<tr><th>No. Registrasi Donatur</th><th>Nama Donatur</th><th>NIK</th><th>Instansi</th><th>Aksi</th></tr>';
+                $('#show_data_head').html(html_head);
+                $('#show_data').html(html);
+
+
+                // $('#mydata').dataTable({
+                //     aaSorting: [],
+                //     pageLength: 10,
+                //     lengthMenu: [
+                //         [10, 25, 50, -1],
+                //         [10, 25, 50, 'All'],
+                //     ],
+                //     responsive: true,
+                //     dom: '<"html5buttons"B>lTfgitp',
+                //     buttons: [{
+                //             extend: 'excel',
+                //             title: JUDUL
+                //         },
+                //         {
+                //             extend: 'print',
+                //             customize: function(win) {
+                //                 $(win.document.body).addClass(
+                //                     'white-bg');
+                //                 $(win.document.body).css('font-size',
+                //                     '10px');
+
+                //                 $(win.document.body).find('table')
+                //                     .addClass('compact')
+                //                     .css('font-size', 'inherit');
+                //             }
+                //         }
+                //     ]
+
+                // });
+                // $("#mydata").dataTable().fnDestroy();
+
+            }
+        });
+
+        // setTimeout(function() {
+        //     $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
+        // }, 3000);
+
+    }
+
     $('.chosen-select').chosen({
         width: "100%"
     });

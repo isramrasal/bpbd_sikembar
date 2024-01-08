@@ -15,6 +15,13 @@ class Donatur_model extends CI_Model
 		return $hasil->result();
 	}
 
+	function list_donatur_by_nik($NIK)
+	{
+		$hasil = $this->db->query("SELECT * FROM form_pengadaan_barang WHERE NIK = '$NIK'");
+		return $hasil->result();
+	}
+	//FUN
+
 	//FUNGSI: Fungsi ini untuk menampilkan data sppb berdasarkan ID_SPPB
 	//SUMBER TABEL: tabel sppb
 	//DIPAKAI: 1. controller SPPB_form / function index

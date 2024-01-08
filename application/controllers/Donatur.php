@@ -216,18 +216,26 @@ class Donatur extends CI_Controller
         }
     }
 
-    function list_sppb_by_id_proyek() //102023
+    function list_donatur_by_nik() //102023
     {
         if ($this->ion_auth->logged_in()) {
 
-            $ID_PROYEK = $this->input->post('ID_PROYEK');
-            $data = $this->SPPB_model->list_sppb_by_id_proyek($ID_PROYEK);
-            echo json_encode($data);
+            $user = $this->ion_auth->user()->row();
+            $this->data['user_id'] = $user->id;
+            $this->data['USER_ID'] = $user->id;
+            $this->data['ID_PEGAWAI'] = $user->ID_PEGAWAI; //harusnya tidak ada
+            $data_role_user = $this->Manajemen_user_model->get_data_role_user_by_id($this->data['user_id']);
+            $this->data['role_user'] = $data_role_user['description'];
+            $this->data['NAMA_PROYEK'] = $data_role_user['NAMA_PROYEK']; //harusnya tidak ada
+            $this->data['ip_address'] = $user->ip_address;
+            $this->data['email'] = $user->email;
+            $this->data['user_id'] = $user->id;
+            $this->data['NIK'] = $user->NIK;
 
-            $ID_SPPB = 0;
-            $KETERANGAN = "Melihat Data SPPB: " . json_encode($data);
-            $this->user_log_sppb($ID_SPPB, $KETERANGAN);
-            
+
+            $data = $this->Donatur_model->list_donatur_by_nik($this->data['NIK']);
+            echo json_encode($data);
+        
         } else {
             // set the flash data error message if there is one
             $this->ion_auth->logout();
