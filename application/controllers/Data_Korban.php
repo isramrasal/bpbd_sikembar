@@ -14,7 +14,7 @@ class Data_Korban extends CI_Controller
         $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
         $this->lang->load('auth');
-        $this->data['title'] = 'SiKembar | Data_Korban';
+        $this->data['title'] = 'SiKembar | Data Korban';
 
         $this->load->model('RASD_model');
         $this->load->model('SPPB_model');
@@ -169,7 +169,7 @@ class Data_Korban extends CI_Controller
         {
             $TANGGAL_PEMBUATAN_PENGAJUAN_JAM = date("h:i:s.u");
             $CODE_md5 = md5($TANGGAL_PEMBUATAN_PENGAJUAN_JAM);
-            echo json_encode($CODE_md5);
+            echo ($CODE_md5);
         }
 		else {
 			$this->logout();
@@ -275,12 +275,12 @@ class Data_Korban extends CI_Controller
         }
     }
 
-    function get_data_pengajuan_bantuan_baru() //102023
+    function get_data_data_korban_baru() //102023
     {
         if ($this->ion_auth->logged_in()) {
             $CODE_MD5 = $this->input->post('CODE_MD5');
 
-            $data = $this->Pengajuan_model->get_data_pengajuan_baru($CODE_MD5);
+            $data = $this->Pengajuan_model->get_data_korban_baru($CODE_MD5);
             echo json_encode($data);
         } else {
             $this->logout();
@@ -680,7 +680,7 @@ class Data_Korban extends CI_Controller
         }
     }
 
-    function simpan_data_pengajuan_bantuan() //BEDA KP DAN SP //102023
+    function simpan_data_korban() //BEDA KP DAN SP //102023
     {
         if ($this->ion_auth->logged_in() && $this->ion_auth->in_group(3)) {
 
@@ -688,20 +688,20 @@ class Data_Korban extends CI_Controller
             $this->data['user_id'] = $user->id;
 
             //set validation rules
-            $this->form_validation->set_rules('ID_JENIS_BENCANA', 'Jenis Bencana', 'trim|required');
-            $this->form_validation->set_rules('NAMA_PEMOHON', 'Nama Pemohon', 'trim|required|max_length[255]');
+            $this->form_validation->set_rules('JENIS_BENCANA', 'Jenis Bencana', 'trim|required');
+            $this->form_validation->set_rules('NAMA_KORBAN', 'Nama Korban', 'trim|required|max_length[255]');
+            $this->form_validation->set_rules('NO_KK', 'NO KK', 'trim|max_length[255]');
             $this->form_validation->set_rules('NIK', 'NIK', 'trim|required|max_length[255]');
-            $this->form_validation->set_rules('NIP', 'NIP', 'trim|max_length[255]');
-            $this->form_validation->set_rules('JABATAN', 'Jabatan', 'trim|max_length[255]');
-            $this->form_validation->set_rules('INSTANSI', 'Instansi', 'trim|max_length[255]');
+            $this->form_validation->set_rules('TEMPAT_LAHIR', 'Tempat Lahir', 'trim|required|max_length[255]');
+            $this->form_validation->set_rules('TANGGAL_LAHIR', 'Tanggal Lahir', 'trim|required|max_length[255]');
+            $this->form_validation->set_rules('ALAMAT', 'Alamat', 'trim|required|max_length[255]');
             $this->form_validation->set_rules('ID_KABUPATEN_KOTA', 'Kabupaten/Kota', 'trim|required|max_length[255]');
             $this->form_validation->set_rules('ID_KECAMATAN', 'Kecamatan', 'trim|required|max_length[255]');
             $this->form_validation->set_rules('ID_DESA_KELURAHAN', 'Desa/Kelurahan', 'trim|required|max_length[255]');
             $this->form_validation->set_rules('RW', 'RW', 'trim|required|max_length[255]');
             $this->form_validation->set_rules('RT', 'RT', 'trim|required|max_length[255]');
-            $this->form_validation->set_rules('KAMPUNG', 'Kampung', 'trim|required|max_length[255]');
-            $this->form_validation->set_rules('KODE_POS', 'Kode Pos', 'trim|required|max_length[255]');
-            $this->form_validation->set_rules('TANGGAL_DOKUMEN_PENGAJUAN', 'Tanggal Pengajuan', 'trim|required|max_length[255]');
+            $this->form_validation->set_rules('KAMPUNG', 'Kampung', 'trim|max_length[255]');
+            $this->form_validation->set_rules('KODE_POS', 'Kode Pos', 'trim|max_length[255]');
             $this->form_validation->set_rules('TANGGAL_KEJADIAN_BENCANA', 'Tanggal Kejadian Bencana', 'trim|required|max_length[255]');           
             
             //run validation check
@@ -710,12 +710,13 @@ class Data_Korban extends CI_Controller
             } else {
                 //get the form data
                 $CODE_MD5 = $this->input->post('CODE_MD5');
-                $ID_JENIS_BENCANA = $this->input->post('ID_JENIS_BENCANA');
-                $NAMA_PEMOHON = $this->input->post('NAMA_PEMOHON');
+                $JENIS_BENCANA = $this->input->post('JENIS_BENCANA');
+                $NAMA_KORBAN = $this->input->post('NAMA_KORBAN');
+                $NO_KK = $this->input->post('NO_KK');
                 $NIK = $this->input->post('NIK');
-                $NIP = $this->input->post('NIP');
-                $JABATAN = $this->input->post('JABATAN');
-                $INSTANSI = $this->input->post('INSTANSI');
+                $TEMPAT_LAHIR = $this->input->post('TEMPAT_LAHIR');
+                $TANGGAL_LAHIR = $this->input->post('TANGGAL_LAHIR');
+                $ALAMAT = $this->input->post('ALAMAT');
                 $ID_KABUPATEN_KOTA = $this->input->post('ID_KABUPATEN_KOTA');
                 $ID_KECAMATAN = $this->input->post('ID_KECAMATAN');
                 $ID_DESA_KELURAHAN = $this->input->post('ID_DESA_KELURAHAN');
@@ -723,30 +724,26 @@ class Data_Korban extends CI_Controller
                 $RT = $this->input->post('RT');
                 $KAMPUNG = $this->input->post('KAMPUNG');
                 $KODE_POS = $this->input->post('KODE_POS');
-                $TANGGAL_DOKUMEN_PENGAJUAN = $this->input->post('TANGGAL_DOKUMEN_PENGAJUAN');
                 $TANGGAL_KEJADIAN_BENCANA = $this->input->post('TANGGAL_KEJADIAN_BENCANA');
 
-                $TANGGAL_PEMBUATAN_PENGAJUAN_JAM = date("h:i:s.u");
-                $TANGGAL_PEMBUATAN_PENGAJUAN_HARI = date('Y-m-d');
-                $dt = date('F');
-                $TANGGAL_PEMBUATAN_PENGAJUAN_BULAN = $dt;
-                $TANGGAL_PEMBUATAN_PENGAJUAN_TAHUN = date("Y");
+               
                 $CREATE_BY_USER =  $this->data['user_id'];
 
-                $PROGRESS_PENGAJUAN = "Diproses oleh Staff BPBD";
-                $STATUS_PENGAJUAN = "DRAFT";
+                $PROGRESS_DATA_KORBAN = "Diproses oleh Staff BPBD";
+                $STATUS_DATA_KORBAN = "DRAFT";
 
                 
                 // if ($this->SPPB_model->cek_no_urut_sppb($NO_URUT_SPPB) == 'Data belum ada') { 
 
-                    $hasil = $this->Pengajuan_model->simpan_data_pengajuan_bantuan(
+                    $hasil = $this->Data_Korban_model->simpan_data_korban(
                         $CODE_MD5,
-                        $ID_JENIS_BENCANA,
-                        $NAMA_PEMOHON,
+                        $JENIS_BENCANA,
+                        $NAMA_KORBAN,
+                        $NO_KK,
                         $NIK,
-                        $NIP,
-                        $JABATAN,
-                        $INSTANSI,
+                        $TEMPAT_LAHIR,
+                        $TANGGAL_LAHIR,
+                        $ALAMAT,
                         $ID_KABUPATEN_KOTA,
                         $ID_KECAMATAN,
                         $ID_DESA_KELURAHAN,
@@ -754,15 +751,10 @@ class Data_Korban extends CI_Controller
                         $RT,
                         $KAMPUNG,
                         $KODE_POS,
-                        $TANGGAL_DOKUMEN_PENGAJUAN,
                         $TANGGAL_KEJADIAN_BENCANA,
-                        $TANGGAL_PEMBUATAN_PENGAJUAN_JAM,
-                        $TANGGAL_PEMBUATAN_PENGAJUAN_HARI,
-                        $TANGGAL_PEMBUATAN_PENGAJUAN_BULAN,
-                        $TANGGAL_PEMBUATAN_PENGAJUAN_TAHUN,
                         $CREATE_BY_USER,
-                        $PROGRESS_PENGAJUAN,
-                        $STATUS_PENGAJUAN
+                        $PROGRESS_DATA_KORBAN,
+                        $STATUS_DATA_KORBAN
                     );
 
                     // $KETERANGAN = "Simpan SPPB: "

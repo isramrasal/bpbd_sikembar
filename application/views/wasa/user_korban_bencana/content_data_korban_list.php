@@ -26,14 +26,14 @@
 
     <div class="alert alert-info alert-dismissable">
         <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-        Sistem menampilkan seluruh Data Korban.
+        Sistem menampilkan seluruh data korban.
     </div>
 
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins" id="ibox1">
                 <div class="ibox-title">
-                    <h5>Pengajuan Bantuan</h5>
+                    <h5>Data Korban</h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
@@ -52,7 +52,7 @@
                         <div class="sk-rect5"></div>
                     </div>
                     
-                    <a href="#" class="btn btn-primary btn-xs" name="btn_buat" id="btn_buat" ><span class="fa fa-plus"></span> Buat Pengajuan Bantuan</a>
+                    <a href="#" class="btn btn-primary btn-xs" name="btn_buat" id="btn_buat" ><span class="fa fa-plus"></span> Tambah Data Korban</a>
 
                     <!-- <a href="#" class="btn btn-primary btn-xs" name="btn_buat" id="btn_buat" data-toggle="modal" data-target="#ModalAdd"><span class="fa fa-plus"></span> Buat Pengajuan Bantuan</a> -->
                     </br>
@@ -90,18 +90,18 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Close</span></button>
-                <h4 class="modal-title">Buat Pengajuan Bantuan</h4>
-                <small class="font-bold">Silakan isi identitas formulir pengajuan bantuan</small>
+                <h4 class="modal-title">Buat Data Korban</h4>
+                <small class="font-bold">Silakan isi identitas data korban</small>
             </div>
             <input type="hidden" class="form-control" value="" name="FILE_NAME_TEMP" id="FILE_NAME_TEMP" disabled />
-            <!-- <input type="text" class="form-control" value="" name="CODE_MD5" id="CODE_MD5" disabled /> -->
+            <input type="hidden" class="form-control" value="" name="CODE_MD5" id="CODE_MD5" disabled />
 
             <div class="form-horizontal">
                 <div class="modal-body">
                     <div class="form-group">
                         <label class="control-label col-xs-3">Jenis Bencana *</label>
                         <div class="col-xs-9">
-                            <select class="chosen-select" name="ID_JENIS_BENCANA" class="form-control" id="ID_JENIS_BENCANA">
+                            <select class="chosen-select" name="JENIS_BENCANA" class="form-control" id="JENIS_BENCANA">
                                 <option value=''>- Pilih Bencana -</option>
                                 <option value='Gempa Bumi'>Gempa Bumi</option>
                                 <option value='Angin Puting Beliung'>Angin Puting Beliung</option>
@@ -115,10 +115,17 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-3 control-label">Nama Pemohon *</label>
+                        <label class="col-xs-3 control-label">Nama Korban *</label>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" value="" name="NAMA_PEMOHON" id="NAMA_PEMOHON"
-                                placeholder="Contoh: UCUP SURUCUP" />
+                            <input type="text" class="form-control" value="" name="NAMA_KORBAN" id="NAMA_KORBAN"
+                                placeholder="Contoh: Apprilia Agusti" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">NO KK </label>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" value="" name="NO_KK" id="NO_KK"
+                                placeholder="Contoh: 3602041211870001" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -129,25 +136,27 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-3 control-label">NIP</label>
+                        <label class="col-xs-3 control-label">Tempat Lahir *</label>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" value="" name="NIP" id="NIP"
-                                placeholder="Contoh: 3602041211870001" />
+                            <input type="text" class="form-control" value="" name="TEMPAT_LAHIR" id="TEMPAT_LAHIR"
+                                placeholder="Contoh: Kota Cianjur" />
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-xs-3 control-label">Jabatan</label>
+                    <div class="form-group" id="data_TANGGAL_LAHIR">
+                        <label class="col-xs-3 control-label">Tanggal Lahir *</label>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" value="" name="JABATAN" id="JABATAN"
-                                placeholder="Contoh: Kepala sub seksi" />
+                            <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="TANGGAL_LAHIR" type="text" class="form-control" placeholder="dd/mm/yyyy">
+                            </div>
                         </div>
                     </div>
+
                     <div class="form-group">
-                        <label class="col-xs-3 control-label">Instansi</label>
+                        <label class="col-xs-3 control-label">Alamat *</label>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" value="" name="INSTANSI" id="INSTANSI"
-                                placeholder="Contoh: Universitas Gunadarma" />
-                        </div>
+                            <input type="text" class="form-control" value="" name="ALAMAT" id="ALAMAT"
+                                placeholder="Contoh: UG Technopark, Jamali, Kec. Mande, Kabupaten Cianjur" />
+                            </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-xs-3">Kabupaten/Kota *</label>
@@ -243,18 +252,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group" id="data_TANGGAL_DOKUMEN_PENGAJUAN">
-                        <label class="col-xs-3 control-label">Tanggal Pengajuan */**</label>
-                        <div class="col-xs-9">
-                            <div class="input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="TANGGAL_DOKUMEN_PENGAJUAN" type="text" class="form-control" placeholder="dd/mm/yyyy">
-                            </div>
-                            </br>
-                            *wajib diisi
-                            </br>
-                            **Sistem juga menyimpan tanggal aktual pembuatan pengajuan ini by system
-                        </div>
-                    </div>
                     <div id="alert-msg"></div>
 
                 </div>
@@ -262,7 +259,7 @@
                 <div class="modal-footer">
                     <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true"><i
                             class="fa fa-window-close"></i> Batal</button>
-                    <button class="btn btn-primary" id="btn_simpan"><i class="fa fa-save"></i> Buat Pengajuan Bantuan</button>
+                    <button class="btn btn-primary" id="btn_simpan"><i class="fa fa-save"></i> Simpan Data Korban</button>
                 </div>
             </div>
         </div>
@@ -342,7 +339,7 @@
 
         var today = new Date().toISOString().substr(0, 10);
 
-        $('#data_TANGGAL_DOKUMEN_PENGAJUAN .input-group.date').datepicker({
+        $('#data_TANGGAL_KEJADIAN_BENCANA .input-group.date').datepicker({
             todayBtn: "linked",
             keyboardNavigation: false,
             forceParse: false,
@@ -351,7 +348,7 @@
             format: 'dd/mm/yyyy'
         });
 
-        $('#data_TANGGAL_KEJADIAN_BENCANA .input-group.date').datepicker({
+        $('#data_TANGGAL_LAHIR .input-group.date').datepicker({
             todayBtn: "linked",
             keyboardNavigation: false,
             forceParse: false,
@@ -802,20 +799,21 @@
         //SIMPAN DATA
         $('#btn_simpan').click(function () {
 
-            var TANGGAL_DOKUMEN_PENGAJUAN = $('#TANGGAL_DOKUMEN_PENGAJUAN').val(),
-            TANGGAL_DOKUMEN_PENGAJUAN = TANGGAL_DOKUMEN_PENGAJUAN.split("/").reverse().join("-");
+            var TANGGAL_LAHIR= $('#TANGGAL_LAHIR').val(),
+            TANGGAL_LAHIR = TANGGAL_LAHIR.split("/").reverse().join("-");
 
             var TANGGAL_KEJADIAN_BENCANA = $('#TANGGAL_KEJADIAN_BENCANA').val(),
             TANGGAL_KEJADIAN_BENCANA = TANGGAL_KEJADIAN_BENCANA.split("/").reverse().join("-");
 
             var form_data = {
                 CODE_MD5: $('#CODE_MD5').val(),
-                ID_JENIS_BENCANA: $('#ID_JENIS_BENCANA').val(),
-                NAMA_PEMOHON: $('#NAMA_PEMOHON').val(),
+                JENIS_BENCANA: $('#JENIS_BENCANA').val(),
+                NAMA_KORBAN: $('#NAMA_KORBAN').val(),
+                NO_KK: $('#NO_KK').val(),
                 NIK: $('#NIK').val(),
-                NIP: $('#NIP').val(),
-                JABATAN: $('#JABATAN').val(),
-                INSTANSI: $('#INSTANSI').val(),
+                TEMPAT_LAHIR: $('#TEMPAT_LAHIR').val(),
+                TANGGAL_LAHIR: $('#TANGGAL_LAHIR').val(),
+                ALAMAT: $('#ALAMAT').val(),
                 ID_KABUPATEN_KOTA: $('#ID_KABUPATEN_KOTA').val(),
                 ID_KECAMATAN: $('#ID_KECAMATAN').val(),
                 ID_DESA_KELURAHAN: $('#ID_DESA_KELURAHAN').val(),
@@ -823,34 +821,34 @@
                 RT: $('#RT').val(),
                 KAMPUNG: $('#KAMPUNG').val(),
                 KODE_POS: $('#KODE_POS').val(),
-                TANGGAL_DOKUMEN_PENGAJUAN: TANGGAL_DOKUMEN_PENGAJUAN,
                 TANGGAL_KEJADIAN_BENCANA: TANGGAL_KEJADIAN_BENCANA
             };
 
             $.ajax({
-                url: "<?php echo site_url('Pengajuan/simpan_data_pengajuan_bantuan'); ?>",
+                url: "<?php echo site_url('Data_Korban/simpan_data_korban'); ?>",
                 type: 'POST',
                 data: form_data,
                 success: function (data) {
-                    if (data != '') {
-                        $('#alert-msg').html('<div class="alert alert-danger">' + data + '</div>');
-                    } else {
+                    console.log(data);
+                    
+                    // 
+                    
                         $.ajax({
                             type: "POST",
-                            url: "<?php echo base_url('Pengajuan/get_data_pengajuan_bantuan_baru') ?>",
+                            url: "<?php echo base_url('Data_Korban/get_data_korban') ?>",
                             dataType: "JSON",
                             data: form_data,
                             success: function (data) {
                                 $.each(data, function () {
-                                    if (data == 'BELUM ADA PENGAJUAN') {
+                                    if (data == 'BELUM ADA DATA KORBAN') {
                                         $('#alert-msg').html('<div class="alert alert-danger">' + data + '</div>');
                                     } else {
-                                        window.location.href = '<?php echo base_url(); ?>Pengajuan_form/index/' + data.HASH_MD5_PENGAJUAN;
+                                        window.location.href = '<?php echo base_url(); ?>Data_Korban_form/index/' + data.HASH_MD5_DATA_KORBAN;
                                     }
                                 });
                             }
                         });
-                    }
+                    // }
                 }
             });
             return false;
@@ -859,7 +857,7 @@
         $('#btn_buat').click(function () {
 
             $.ajax({
-                url: "<?php echo site_url('Pengajuan/generate_md5'); ?>",
+                url: "<?php echo site_url('Data_Korban/generate_md5'); ?>",
                 type: 'POST',
                 success: function (data) {
 

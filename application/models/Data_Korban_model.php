@@ -1,3 +1,4 @@
+
 <?php
 class Data_Korban_model extends CI_Model
 {
@@ -1005,14 +1006,15 @@ class Data_Korban_model extends CI_Model
 	}
 
 
-	function simpan_data_pengajuan_bantuan(
+	function simpan_data_korban(
 		$CODE_MD5,
-		$ID_JENIS_BENCANA,
-		$NAMA_PEMOHON,
+		$JENIS_BENCANA,
+		$NAMA_KORBAN,
+		$NO_KK,
 		$NIK,
-		$NIP,
-		$JABATAN,
-		$INSTANSI,
+		$TEMPAT_LAHIR,
+		$TANGGAL_LAHIR,
+		$ALAMAT,
 		$ID_KABUPATEN_KOTA,
 		$ID_KECAMATAN,
 		$ID_DESA_KELURAHAN,
@@ -1020,69 +1022,52 @@ class Data_Korban_model extends CI_Model
 		$RT,
 		$KAMPUNG,
 		$KODE_POS,
-		$TANGGAL_DOKUMEN_PENGAJUAN,
 		$TANGGAL_KEJADIAN_BENCANA,
-		$TANGGAL_PEMBUATAN_PENGAJUAN_JAM,
-		$TANGGAL_PEMBUATAN_PENGAJUAN_HARI,
-		$TANGGAL_PEMBUATAN_PENGAJUAN_BULAN,
-		$TANGGAL_PEMBUATAN_PENGAJUAN_TAHUN,
 		$CREATE_BY_USER,
-		$PROGRESS_PENGAJUAN,
-		$STATUS_PENGAJUAN
+		$PROGRESS_DATA_KORBAN,
+		$STATUS_DATA_KORBAN
 	)
 	{
-		$hasil = $this->db->query("INSERT INTO form_inventaris_kebutuhan_korban_bencana (
+		$hasil = $this->db->query("INSERT INTO data_korban (
 				CODE_MD5,
-				Tanggal_Pembuatan,
-				Tanggal_Surat,
-				Hari_Surat,
-				Nama_Pemohon,
+				JENIS_BENCANA,
+				NAMA_KORBAN,
+				NO_KK,
 				NIK,
-				NIP,
-				Jabatan,
-				Instansi,
-				Kampung_Bencana,
-				RT,
-				RW,
-				Desa_Kelurahan_Bencana,
-				Kecamatan_Bencana,
-				Kabupaten_Kota_Bencana,
-				Kode_Pos_Bencana,
-				Jenis_Bencana,
+				TEMPAT_LAHIR,
+				TANGGAL_LAHIR,
+				ALAMAT,
+				KABUPATEN_KOTA,
+				KECAMATAN,
+                DESA_KELURAHAN,
+                RW,
+                RT,
+                KAMPUNG,
+				KODE_POS,	
 				TANGGAL_KEJADIAN_BENCANA,
-				TANGGAL_PEMBUATAN_PENGAJUAN_JAM,
-				TANGGAL_PEMBUATAN_PENGAJUAN_HARI,
-				TANGGAL_PEMBUATAN_PENGAJUAN_BULAN,
-                TANGGAL_PEMBUATAN_PENGAJUAN_TAHUN,
                 CREATE_BY_USER,
-				PROGRESS_PENGAJUAN,
-                STATUS_PENGAJUAN)
+				PROGRESS_DATA_KORBAN,
+                STATUS_DATA_KORBAN)
 			VALUES(
 				'$CODE_MD5',
-				'$TANGGAL_PEMBUATAN_PENGAJUAN_JAM',
-				'$TANGGAL_DOKUMEN_PENGAJUAN',
-				'$TANGGAL_PEMBUATAN_PENGAJUAN_HARI',
-				'$NAMA_PEMOHON',
+				'$JENIS_BENCANA',
+				'$NAMA_KORBAN',
+				'$NO_KK',
 				'$NIK',
-				'$NIP',
-				'$JABATAN',
-				'$INSTANSI',
-				'$KAMPUNG',
-				'$RW',
-				'$RT',
+				'$TEMPAT_LAHIR',
+				'$TANGGAL_LAHIR',
+				'$ALAMAT',
 				'$ID_DESA_KELURAHAN',
 				'$ID_KECAMATAN',
                 '$ID_KABUPATEN_KOTA',
+				'$RW',
+				'$RT',
+				'$KAMPUNG',
                 '$KODE_POS',
-                '$ID_JENIS_BENCANA',
                 '$TANGGAL_KEJADIAN_BENCANA',
-                '$TANGGAL_PEMBUATAN_PENGAJUAN_JAM',
-				'$TANGGAL_PEMBUATAN_PENGAJUAN_HARI',
-                '$TANGGAL_PEMBUATAN_PENGAJUAN_BULAN',
-                '$TANGGAL_PEMBUATAN_PENGAJUAN_TAHUN',
                 '$CREATE_BY_USER',
-                '$PROGRESS_PENGAJUAN',
-				'$STATUS_PENGAJUAN'
+                '$PROGRESS_DATA_KORBAN',
+				'$STATUS_DATA_KORBAN'
 				)");
 
 		return $hasil;
@@ -1094,7 +1079,7 @@ class Data_Korban_model extends CI_Model
 	//         2. 
 	function get_data_pengajuan_baru($CODE_MD5)
 	{
-		$hsl = $this->db->query("SELECT * FROM form_inventaris_kebutuhan_korban_bencana WHERE CODE_MD5 = '$CODE_MD5'");
+		$hsl = $this->db->query("SELECT * FROM data_korban WHERE CODE_MD5 = '$CODE_MD5'");
 		if ($hsl->num_rows() > 0) {
 			foreach ($hsl->result() as $data) {
 				$hasil = array(
@@ -1102,7 +1087,7 @@ class Data_Korban_model extends CI_Model
 				);
 			}
 		} else {
-			$hasil = "BELUM ADA PENGAJUAN";
+			$hasil = "BELUM ADA DATA_KORBAN";
 		}
 		return $hasil;
 	}
