@@ -126,17 +126,17 @@ class Data_Korban extends CI_Controller
         }
     }
 
-    function list_sppb_by_all_proyek() //102023
+    function list_korban_by_all_bencana() //102023
     {
 
         if ($this->ion_auth->logged_in()) {
 
-            $data = $this->SPPB_model->list_sppb_by_all_proyek();
+            $data = $this->Data_Korban_model->list_korban_by_all_bencana();
             echo json_encode($data);
 
-            $ID_SPPB = 0;
-            $KETERANGAN = "Melihat Data SPPB: " . json_encode($data);
-            $this->user_log_sppb($ID_SPPB, $KETERANGAN);
+            // $ID_SPPB = 0;
+            // $KETERANGAN = "Melihat Data SPPB: " . json_encode($data);
+            // $this->user_log_sppb($ID_SPPB, $KETERANGAN);
             
         } else {
             // set the flash data error message if there is one
@@ -275,12 +275,12 @@ class Data_Korban extends CI_Controller
         }
     }
 
-    function get_data_data_korban_baru() //102023
+    function get_data_korban_baru() //102023
     {
         if ($this->ion_auth->logged_in()) {
             $CODE_MD5 = $this->input->post('CODE_MD5');
 
-            $data = $this->Pengajuan_model->get_data_korban_baru($CODE_MD5);
+            $data = $this->Data_Korban_model->get_data_korban_baru($CODE_MD5);
             echo json_encode($data);
         } else {
             $this->logout();

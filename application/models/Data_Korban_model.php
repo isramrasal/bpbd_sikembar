@@ -7,12 +7,9 @@ class Data_Korban_model extends CI_Model
 	//SUMBER TABEL: tabel sppb
 	//DIPAKAI: 1. controller SPPB / function index
 	//         2. controller SPPB / function list_sppb_by_all_proyek
-	function list_sppb_by_all_proyek()
+	function list_korban_by_all_bencana()
 	{
-		$hasil = $this->db->query("SELECT S.ID_SPPB, S.HASH_MD5_SPPB, S.ID_PROYEK, S.NO_URUT_SPPB, DATE_FORMAT(S.TANGGAL_DOKUMEN_SPPB, '%d/%m/%Y') AS TANGGAL_DOKUMEN_SPPB, DATE_FORMAT(S.TANGGAL_PEMBUATAN_SPPB_HARI, '%d/%m/%Y') AS TANGGAL_PEMBUATAN_SPPB_HARI, S.STATUS_SPPB, P.HASH_MD5_PROYEK, P.NAMA_PROYEK, PSP.NAMA_SUB_PEKERJAAN FROM sppb AS S
-		LEFT JOIN proyek AS P ON P.ID_PROYEK = S.ID_PROYEK
-		LEFT JOIN proyek_sub_pekerjaan AS PSP ON PSP.ID_PROYEK_SUB_PEKERJAAN = S.ID_PROYEK_SUB_PEKERJAAN
-		ORDER BY S.NO_URUT_SPPB DESC");
+		$hasil = $this->db->query("SELECT * FROM data_korban");
 		return $hasil->result();
 	}
 
@@ -1077,7 +1074,7 @@ class Data_Korban_model extends CI_Model
 	//SUMBER TABEL: tabel sppb
 	//DIPAKAI: 1. controller SPPB / function get_data_sppb_baru
 	//         2. 
-	function get_data_pengajuan_baru($CODE_MD5)
+	function get_data_korban_baru($CODE_MD5)
 	{
 		$hsl = $this->db->query("SELECT * FROM data_korban WHERE CODE_MD5 = '$CODE_MD5'");
 		if ($hsl->num_rows() > 0) {
