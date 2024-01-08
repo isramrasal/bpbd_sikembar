@@ -58,13 +58,19 @@
                     </br>
                     </br>
 
-                    <select class="chosen-select" name="ID_PROYEK_LIST" class="form-control" id="ID_PROYEK_LIST">
-                        <option value=''>- Pilih Bantuan Berdasarkan Bencana -</option>
-                        <option value='Semua'>Semua Proyek</option>
-                        <?php foreach ($proyek_dropdown_list as $proyek_dropdown_list) {
-                            echo '<option value="' . $proyek_dropdown_list->ID_PROYEK . '">' . $proyek_dropdown_list->NAMA_PROYEK . '</option>';
-                        } ?>
-                    </select>
+                        <select class="chosen-select" name="ID_JENIS_BENCANA_LIST" class="form-control" id="ID_JENIS_BENCANA_LIST">
+                            <option value=''>- Pilih Bencana -</option>
+                            <option value='Semua'>Semua Bencana</option>
+                            <option value='Gempa Bumi'>Gempa Bumi</option>
+                            <option value='Angin Puting Beliung'>Angin Puting Beliung</option>
+                            <option value='Banjir'>Banjir</option>
+                            <option value='Longsor'>Longsor</option>
+                            <option value='Tsunami'>Tsunami</option>
+                            <option value='Kebakaran'>Kebakaran</option>
+                            <option value='Pohon Tumbang'>Pohon Tumbang</option>
+                            <option value='Kekeringan'>Kekeringan</option>
+                        </select>
+             
 
                     </br>
                     </br>
@@ -118,7 +124,7 @@
                         <label class="col-xs-3 control-label">Nama Pemohon *</label>
                         <div class="col-xs-9">
                             <input type="text" class="form-control" value="" name="NAMA_PEMOHON" id="NAMA_PEMOHON"
-                                placeholder="Contoh: UCUP SURUCUP" />
+                                placeholder="Contoh: NURUL WULAN" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -390,29 +396,29 @@
 
         });
 
-        $("#ID_PROYEK_LIST").change(function () {
+        $("#ID_JENIS_BENCANA_LIST").change(function () {
 
             var form_data = {
-                ID_PROYEK: $('#ID_PROYEK_LIST').val()
+                ID_JENIS_BENCANA_LIST: $('#ID_JENIS_BENCANA_LIST').val()
             }
 
-            var ID_PROYEK = $('#ID_PROYEK_LIST').val();
-            var NAMA_PROYEK = $('#ID_PROYEK_LIST option:selected').text();
-            var JUDUL = "List SPPB " + NAMA_PROYEK;
+            var ID_JENIS_BENCANA_LIST = $('#ID_JENIS_BENCANA_LIST').val();
+            var NAMA_BENCANA = $('#ID_JENIS_BENCANA_LIST option:selected').text();
+            var JUDUL = "List Pengajuan Bantuan " + NAMA_BENCANA;
 
-            if (ID_PROYEK == "Semua") {
+            if (ID_JENIS_BENCANA_LIST == "Semua") {
                 $("#mydata").dataTable().fnDestroy();
                 $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
                 
                 $.ajax({
-                    url: "<?php echo base_url(); ?>/SPPB/list_sppb_by_all_proyek",
+                    url: "<?php echo base_url(); ?>/Pengajuan/list_pengajuan_by_all_bencana",
                     method: "POST",
                     data: form_data,
                     async: false,
                     dataType: 'json',
                     success: function (data) {
 
-                        
+                        console.log(data);
 
                         var html, html_head = '';
                         var i, j, k;
@@ -425,11 +431,15 @@
                             for (i = 0; i < data.length; i++) {
 
                                 html += '<tr>' +
-                                    '<td>' + '<a href="<?php echo base_url() ?>sppb_form/view/' + data[i].HASH_MD5_SPPB + '" class="btn btn-default btn-xs btn-outline"><i class="fa fa-eye"></i> ' + data[i].NO_URUT_SPPB + '</a>' + '</td>' +
-                                    '<td>' + data[i].NAMA_PROYEK + '</td>' +
-                                    '<td>' + data[i].NAMA_SUB_PEKERJAAN + '</td>' +
-                                    '<td>' + data[i].TANGGAL_DOKUMEN_SPPB + '</td>' +
-                                    '<td>' + '<a href="javascript:;" class="btn btn-primary btn-xs item_status block" data="' + data[i].ID_SPPB + '"><i class="fa fa-search"></i>'+ data[i].STATUS_SPPB + '</a>' + '</td>' +
+                                    '<td>' + '<a href="<?php echo base_url() ?>pengajuan_form/view/' + data[i].CODE_MD5 + '" class="btn btn-default btn-xs btn-outline"><i class="fa fa-eye"></i> ' + data[i].CODE_MD5 + '</a>' + '</td>' +
+                                    '<td>' + data[i].Jenis_Bencana + '</td>' +
+                                    '<td>' + data[i].Nama_Pemohon + '</td>' +
+                                    '<td>' + data[i].Instansi + '</td>' +
+                                    '<td>' + data[i].Kecamatan_Bencana + '</td>' +
+                                    '<td>' + data[i].Desa_Kelurahan_Bencana + '</td>' +
+                                    '<td>' + data[i].TANGGAL_KEJADIAN_BENCANA + '</td>' +
+                                    '<td>' + data[i].Tanggal_Pembuatan + '</td>' +
+                                    '<td>' + '<a href="javascript:;" class="btn btn-primary btn-xs item_status block" data="' + data[i].CODE_MD5 + '"><i class="fa fa-pencil"></i>'+ data[i].STATUS_SPPB + '</a>' + '</td>' +
                                     '</tr>';
                             }
                         }
@@ -441,7 +451,7 @@
 
                         
 
-                        html_head = '<tr><th>No. SPPB</th><th>Proyek</th><th>Pekerjaan</th><th>Tanggal Dokumen SPPB</th><th>Status SPPB</th></tr>';
+                        html_head = '<tr><th>No. Pengajuan</th><th>Jenis Bencana</th><th>Nama Pemohon</th><th>Instansi</th><th>Kecamatan</th><th>Desa</th><th>Tanggal Bencana</th><th>Tanggal Pengajuan</th><th>Aksi</th></tr>';
                         $('#show_data_head').html(html_head);
                         $('#show_data').html(html);
 
@@ -845,7 +855,7 @@
                                     if (data == 'BELUM ADA PENGAJUAN') {
                                         $('#alert-msg').html('<div class="alert alert-danger">' + data + '</div>');
                                     } else {
-                                        window.location.href = '<?php echo base_url(); ?>Pengajuan_form/index/' + data.HASH_MD5_PENGAJUAN;
+                                        window.location.href = '<?php echo base_url(); ?>Pengajuan_form/index/' + data.CODE_MD5;
                                     }
                                 });
                             }

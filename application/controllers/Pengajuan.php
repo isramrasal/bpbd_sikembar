@@ -126,17 +126,17 @@ class Pengajuan extends CI_Controller
         }
     }
 
-    function list_sppb_by_all_proyek() //102023
+    function list_pengajuan_by_all_bencana() //102023
     {
 
         if ($this->ion_auth->logged_in()) {
 
-            $data = $this->SPPB_model->list_sppb_by_all_proyek();
+            $data = $this->Pengajuan_model->list_pengajuan_by_all_bencana();
             echo json_encode($data);
 
-            $ID_SPPB = 0;
-            $KETERANGAN = "Melihat Data SPPB: " . json_encode($data);
-            $this->user_log_sppb($ID_SPPB, $KETERANGAN);
+            // $ID_SPPB = 0;
+            // $KETERANGAN = "Melihat Data SPPB: " . json_encode($data);
+            // $this->user_log_sppb($ID_SPPB, $KETERANGAN);
             
         } else {
             // set the flash data error message if there is one
