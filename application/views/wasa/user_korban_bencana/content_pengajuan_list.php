@@ -57,7 +57,7 @@
                     <!-- <a href="#" class="btn btn-primary btn-xs" name="btn_buat" id="btn_buat" data-toggle="modal" data-target="#ModalAdd"><span class="fa fa-plus"></span> Buat Pengajuan Bantuan</a> -->
                     </br>
                     </br>
-
+                    <!-- List jenis bencana -->
                         <select class="chosen-select" name="ID_JENIS_BENCANA_LIST" class="form-control" id="ID_JENIS_BENCANA_LIST">
                             <option value=''>- Pilih Bencana -</option>
                             <option value='Semua'>Semua Bencana</option>
