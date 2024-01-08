@@ -35,9 +35,9 @@ class Penyaluran extends CI_Controller
      */
     public function logout() //belum diperbaiki
     {
-        $ID_FSTB = 0;
-        $KETERANGAN = "Paksa Logout Ketika Akses Penyaluran";
-        $this->user_log_sppb($ID_SPPB, $KETERANGAN);
+        // $ID_FSTB = 0;
+        // $KETERANGAN = "Paksa Logout Ketika Akses Penyaluran";
+        // $this->user_log_sppb($ID_SPPB, $KETERANGAN);
 
         $this->ion_auth->logout();
 
@@ -75,6 +75,7 @@ class Penyaluran extends CI_Controller
         $this->data['ip_address'] = $user->ip_address;
         $this->data['email'] = $user->email;
         $this->data['user_id'] = $user->id;
+        $this->data['NIK'] = $user->NIK;
         date_default_timezone_set('Asia/Jakarta');
         $this->data['last_login'] =  date('d-m-Y H:i:s', $user->last_login);
         $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
@@ -118,6 +119,18 @@ class Penyaluran extends CI_Controller
                 $this->load->view('wasa/user_pegawai_bpbd/header_menu');
                 $this->load->view('wasa/user_pegawai_bpbd/content_penyaluran_list');
                 $this->load->view('wasa/user_pegawai_bpbd/footer');
+            }   else if ($this->ion_auth->in_group(3)) { //user_korban
+
+                // tampilkan seluruh proyek
+                $this->data['proyek_dropdown'] = $this->SPPB_model->proyek_list();
+                $this->data['proyek_dropdown_list'] = $this->SPPB_model->proyek_list();
+
+                $this->load->view('wasa/user_korban_bencana/head_normal', $this->data);
+                $this->load->view('wasa/user_korban_bencana/user_menu');
+                $this->load->view('wasa/user_korban_bencana/left_menu');
+                $this->load->view('wasa/user_korban_bencana/header_menu');
+                $this->load->view('wasa/user_korban_bencana/content_penyaluran_list');
+                $this->load->view('wasa/user_korban_bencana/footer');
             } else {
                 $this->logout();
             }
@@ -126,17 +139,36 @@ class Penyaluran extends CI_Controller
         }
     }
 
-    function list_sppb_by_all_proyek() //102023
+    function list_penyaluran_by_all_bencana() //102023
     {
 
         if ($this->ion_auth->logged_in()) {
+            if ($this->ion_auth->in_group(2)) {
+                $data = $this->Penyaluran_model->list_penyaluran_by_all_bencana();
+                echo json_encode($data);
+            }
+            else if ($this->ion_auth->in_group(3)) {
 
-            $data = $this->SPPB_model->list_sppb_by_all_proyek();
-            echo json_encode($data);
+                $user = $this->ion_auth->user()->row();
+                $this->data['user_id'] = $user->id;
+                $this->data['USER_ID'] = $user->id;
+                $this->data['ID_PEGAWAI'] = $user->ID_PEGAWAI; //harusnya tidak ada
+                $data_role_user = $this->Manajemen_user_model->get_data_role_user_by_id($this->data['user_id']);
+                $this->data['role_user'] = $data_role_user['description'];
+                $this->data['NAMA_PROYEK'] = $data_role_user['NAMA_PROYEK']; //harusnya tidak ada
+                $this->data['ip_address'] = $user->ip_address;
+                $this->data['email'] = $user->email;
+                $this->data['user_id'] = $user->id;
+                $this->data['NIK'] = $user->NIK;
 
-            $ID_SPPB = 0;
-            $KETERANGAN = "Melihat Data SPPB: " . json_encode($data);
-            $this->user_log_sppb($ID_SPPB, $KETERANGAN);
+
+                $data = $this->Penyaluran_model->list_penyaluran_by_all_bencana_by_NIK($this->data['NIK']);
+                echo json_encode($data);
+
+            }
+            // $ID_SPPB = 0;
+            // $KETERANGAN = "Melihat Data SPPB: " . json_encode($data);
+            // $this->user_log_sppb($ID_SPPB, $KETERANGAN);
             
         } else {
             // set the flash data error message if there is one
@@ -680,7 +712,7 @@ class Penyaluran extends CI_Controller
         }
     }
 
-    function simpan_data_PENYALURAN_bantuan() //BEDA KP DAN SP //102023
+    function simpan_data_penyaluran_bantuan() //BEDA KP DAN SP //102023
     {
         if ($this->ion_auth->logged_in() && $this->ion_auth->in_group(2)) {
 
@@ -751,7 +783,7 @@ class Penyaluran extends CI_Controller
                 
                 // if ($this->SPPB_model->cek_no_urut_sppb($NO_URUT_SPPB) == 'Data belum ada') { 
 
-                    $hasil = $this->Penyaluran_model->simpan_data_PENYALURAN_bantuan(
+                    $hasil = $this->Penyaluran_model->simpan_data_penyaluran_bantuan(
                         $CODE_MD5,
                         $ID_JENIS_BENCANA,
                         $NAMA_PEGAWAI_BPBD,

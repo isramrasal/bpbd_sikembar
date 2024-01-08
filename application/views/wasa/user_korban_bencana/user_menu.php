@@ -8,7 +8,7 @@
 								<img alt="image" class="img-circle" src="<?php echo base_url(); ?><?php echo $foto_user; ?>" />
 							</span>
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-								<span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><?php echo $email; ?></strong>
+								<span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><?php echo $email; ?> - <?php echo $NIK; ?></strong>
 									</span> <span class="text-muted text-xs block"><?php echo $role_user; ?> - <?php echo $NAMA_PROYEK; ?><b class="caret"></b></span> </span> </a>
 							<ul class="dropdown-menu animated fadeInRight m-t-xs">
 								<li><a href="#">Terakhir login:
