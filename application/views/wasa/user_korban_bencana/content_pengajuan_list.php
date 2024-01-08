@@ -124,7 +124,7 @@
                         <label class="col-xs-3 control-label">Nama Pemohon *</label>
                         <div class="col-xs-9">
                             <input type="text" class="form-control" value="" name="NAMA_PEMOHON" id="NAMA_PEMOHON"
-                                placeholder="Contoh: NURUL WULAN" />
+                                placeholder="Contoh: Nurul Fitri" />
                         </div>
                     </div>
                     <div class="form-group">
