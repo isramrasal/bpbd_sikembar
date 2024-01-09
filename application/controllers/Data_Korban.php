@@ -75,6 +75,7 @@ class Data_Korban extends CI_Controller
         $this->data['ip_address'] = $user->ip_address;
         $this->data['email'] = $user->email;
         $this->data['user_id'] = $user->id;
+        $this->data['NIK'] = $user->NIK;
         date_default_timezone_set('Asia/Jakarta');
         $this->data['last_login'] =  date('d-m-Y H:i:s', $user->last_login);
         $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
