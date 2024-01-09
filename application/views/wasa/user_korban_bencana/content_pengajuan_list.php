@@ -434,6 +434,7 @@
                                     '<td>' + '<a href="<?php echo base_url() ?>pengajuan_form/view/' + data[i].CODE_MD5 + '" class="btn btn-default btn-xs btn-outline"><i class="fa fa-eye"></i> ' + data[i].CODE_MD5 + '</a>' + '</td>' +
                                     '<td>' + data[i].Jenis_Bencana + '</td>' +
                                     '<td>' + data[i].Nama_Pemohon + '</td>' +
+                                    '<td>' + data[i].NIK + '</td>' +
                                     '<td>' + data[i].Instansi + '</td>' +
                                     '<td>' + data[i].Kecamatan_Bencana + '</td>' +
                                     '<td>' + data[i].Desa_Kelurahan_Bencana + '</td>' +
@@ -451,7 +452,7 @@
 
                         
 
-                        html_head = '<tr><th>No. Pengajuan</th><th>Jenis Bencana</th><th>Nama Pemohon</th><th>Instansi</th><th>Kecamatan</th><th>Desa</th><th>Tanggal Bencana</th><th>Tanggal Pengajuan</th><th>Aksi</th></tr>';
+                        html_head = '<tr><th>No. Pengajuan</th><th>Jenis Bencana</th><th>Nama Pemohon</th><th>NIK Pemohon</th><th>Instansi</th><th>Kecamatan</th><th>Desa</th><th>Tanggal Bencana</th><th>Tanggal Pengajuan</th><th>Aksi</th></tr>';
                         $('#show_data_head').html(html_head);
                         $('#show_data').html(html);
 
