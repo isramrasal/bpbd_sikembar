@@ -13,7 +13,7 @@ class Pengajuan_form extends CI_Controller
 		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
 		$this->lang->load('auth');
-		$this->data['title'] = 'SiPESUT | Form SPPB';
+		$this->data['title'] = 'SiKembar | Form Pengajuan';
 
 		$this->load->model('FPB_form_model');
 		$this->load->model('SPPB_form_model');
@@ -121,28 +121,10 @@ class Pengajuan_form extends CI_Controller
 			if ($PROGRESS_PENGAJUAN == "Diproses oleh Staff BPBD") {
 				$hasil = $this->Pengajuan_model->get_data_pengajuan_by_CODE_MD5($CODE_MD5);
 				$ID_FORM_INVENTARIS_KORBAN_BENCANA = $hasil['ID_FORM_INVENTARIS_KORBAN_BENCANA'];
-				// $this->data['Nomor_Surat_Form_Inventaris'] = $hasil['Nomor_Surat_Form_Inventaris'];
-				// $this->data['Tanggal_Pembuatan'] = $hasil['Tanggal_Pembuatan'];
-				// $this->data['Tanggal_Surat'] = $hasil['Tanggal_Surat'];
-				// $this->data['Nama_Pemohon'] = $hasil['Nama_Pemohon'];
-				// $this->data['NIK'] = $hasil['NIK'];
-				// $this->data['NIP'] = $hasil['NIP'];
-				// $this->data['Jabatan'] = $hasil['Jabatan'];
-				// $this->data['Instansi'] = $hasil['Instansi'];
-				// $this->data['Kampung_Bencana'] = $hasil['Kampung_Bencana'];
-				// $this->data['RT'] = $hasil['RT'];
-				// $this->data['RW'] = $hasil['RW'];
-				// $this->data['Desa_Kelurahan_Bencana'] = $hasil['Desa_Kelurahan_Bencana'];
-				// $this->data['Kecamatan_Bencana'] = $hasil['Kecamatan_Bencana'];
-				// $this->data['Kabupaten_Kota_Bencana'] = $hasil['Kabupaten_Kota_Bencana'];
-				// $this->data['Kode_Pos_Bencana'] = $hasil['Kode_Pos_Bencana'];
-				// $this->data['Jenis_Bencana'] = $hasil['Jenis_Bencana'];
-				// $this->data['Nama_Pejabat_BPBD'] = $hasil['Nama_Pejabat_BPBD'];
-				// $this->data['NIP_Pejabat_BPBD'] = $hasil['NIP_Pejabat_BPBD'];
-				// $this->data['Jabatan_Pejabat_BPBD'] = $hasil['Jabatan_Pejabat_BPBD'];
-				// $this->data['TANGGAL_KEJADIAN_BENCANA'] = $hasil['TANGGAL_KEJADIAN_BENCANA'];
+				$Nomor_Surat_Form_Inventaris = $hasil['Nomor_Surat_Form_Inventaris'];
 				$this->data['CODE_MD5'] = $CODE_MD5;
-
+				$this->data['ID_FORM_INVENTARIS_KORBAN_BENCANA'] = $ID_FORM_INVENTARIS_KORBAN_BENCANA;
+				$this->data['Nomor_Surat_Form_Inventaris'] = $Nomor_Surat_Form_Inventaris;
 
 				// $this->data['ID_SPPB'] = $ID_SPPB;
 				$this->data['Pengajuan'] = $this->Pengajuan_model->pengajuan_list_by_id_pengajuan($ID_FORM_INVENTARIS_KORBAN_BENCANA);
@@ -156,7 +138,7 @@ class Pengajuan_form extends CI_Controller
 				$this->load->view('wasa/user_korban_bencana/left_menu');
 				$this->load->view('wasa/user_korban_bencana/header_menu');
 				$this->load->view('wasa/user_korban_bencana/content_pengajuan_form_proses');
-				$this->load->view('wasa/user_korban_bencana/footer');
+				// $this->load->view('wasa/user_korban_bencana/footer');
 			} else {
 				redirect('Pengajuan', 'refresh');
 			}
