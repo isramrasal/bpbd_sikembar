@@ -26,13 +26,10 @@ class Donatur_model extends CI_Model
 	//SUMBER TABEL: tabel sppb
 	//DIPAKAI: 1. controller SPPB_form / function index
 	//         2. 
-	function sppb_list_by_id_sppb($ID_SPPB)
+	function donatur_list_by_id_donatur($ID_FORM_PENGADAAN_BARANG)
 	{
-		$hasil = $this->db->query("SELECT S.ID_SPPB, S.HASH_MD5_SPPB, S.SUB_PROYEK, PSP.ID_PROYEK_SUB_PEKERJAAN, PSP.NAMA_SUB_PEKERJAAN, P.HASH_MD5_PROYEK, P.NAMA_PROYEK,DATE_FORMAT(S.TANGGAL_DOKUMEN_SPPB, '%d/%m/%Y') AS TANGGAL_DOKUMEN_SPPB, S.TANGGAL_DOKUMEN_SPPB AS TANGGAL_DOKUMEN_SPPB_INDO, S.NO_URUT_SPPB,S.TANGGAL_PEMBUATAN_SPPB_JAM,DATE_FORMAT(S.TANGGAL_PEMBUATAN_SPPB_HARI, '%d/%m/%Y') AS TANGGAL_PEMBUATAN_SPPB_HARI, S.TANGGAL_PEMBUATAN_SPPB_HARI AS TANGGAL_PEMBUATAN_SPPB_HARI_INDO, S.TANGGAL_PEMBUATAN_SPPB_BULAN,S.TANGGAL_PEMBUATAN_SPPB_TAHUN,S.DUE_DATE_PM,S.DUE_DATE_M_LOG,S.DUE_DATE_MANAGER,S.DUE_DATE_DIR,S.DOK_SPPB,S.PROGRESS_SPPB,S.STATUS_SPPB, S.CTT_DEPT_PROC
-		FROM sppb AS S 
-		LEFT JOIN proyek AS P ON P.ID_PROYEK = S.ID_PROYEK
-        LEFT JOIN proyek_sub_pekerjaan AS PSP ON PSP.ID_PROYEK_SUB_PEKERJAAN = S.ID_PROYEK_SUB_PEKERJAAN
-        WHERE S.ID_SPPB =  '$ID_SPPB' ORDER BY S.NO_URUT_SPPB DESC");
+		$hasil = $this->db->query("SELECT FPBD.ID_FORM_PENGADAAN_BARANG, FPBD.CODE_MD5, FPBD.Nomor_Surat_Pengadaan_Barang, DATE_FORMAT(FPBD.Tanggal_Pembuatan, '%d/%m/%Y') AS TANGGAL_PEMBUATAN, DATE_FORMAT(FPBD.Tanggal_Surat, '%d/%m/%Y') AS TANGGAL_SURAT, FPBD.Nama_Donatur, FPBD.NIK, FPBD.NIP, FPBD.Jabatan, FPBD.Instansi, FPBD.Kampung_Bencana, FPBD.RT, FPBD.RW, FPBD.Desa_Kelurahan_Bencana, FPBD.Kecamatan_Bencana, FPBD.Kabupaten_Kota_Bencana, FPBD.Kode_Pos_Bencana, FPBD.Nama_Pejabat_BPBD, FPBD.NIP_Pejabat_BPBD, FPBD.Jabatan_Pejabat_BPBD FROM form_pengadaan_barang AS FPBD
+        WHERE FPBD.ID_FORM_PENGADAAN_BARANG =  '$ID_FORM_PENGADAAN_BARANG'");
 		return $hasil;
 		//return $hasil->result();
 	}
@@ -323,18 +320,17 @@ class Donatur_model extends CI_Model
 		return $hsl->result();
 	}
 
-	function get_data_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB)
+	function get_data_donatur_by_CODE_MD5($CODE_MD5)
 	{
-		$hsl = $this->db->query("SELECT * FROM sppb WHERE HASH_MD5_SPPB ='$HASH_MD5_SPPB'");
+		$hsl = $this->db->query("SELECT * FROM form_pengadaan_barang WHERE CODE_MD5 ='$CODE_MD5'");
 		if ($hsl->num_rows() > 0) {
 			foreach ($hsl->result() as $data) {
 				$hasil = array(
-					'ID_SPPB' => $data->ID_SPPB,
-					'ID_PROYEK_SUB_PEKERJAAN' => $data->ID_PROYEK_SUB_PEKERJAAN,
-					'HASH_MD5_SPPB' => $data->HASH_MD5_SPPB,
-					'NO_URUT_SPPB' => $data->NO_URUT_SPPB,
-					'PROGRESS_SPPB' => $data->PROGRESS_SPPB,
-					'STATUS_SPPB' => $data->STATUS_SPPB
+					'ID_FORM_PENGADAAN_BARANG ' => $data->ID_FORM_PENGADAAN_BARANG ,
+					'CODE_MD5' => $data->CODE_MD5,
+					'Nomor_Surat_Pengadaan_Barang' => $data->Nomor_Surat_Pengadaan_Barang,
+					'PROGRESS_PENGAJUAN' => $data->PROGRESS_PENGAJUAN,
+					'Status_Pengajuan' => $data->Status_Pengajuan
 				);
 			}
 			return $hasil;
