@@ -37,7 +37,7 @@ class Pengajuan extends CI_Controller
     {
         $ID_FSTB = 0;
         $KETERANGAN = "Paksa Logout Ketika Akses Pengajuan";
-        $this->user_log_sppb($ID_SPPB, $KETERANGAN);
+        // $this->user_log_sppb($ID_SPPB, $KETERANGAN);
 
         $this->ion_auth->logout();
 
@@ -98,8 +98,8 @@ class Pengajuan extends CI_Controller
         $this->data['ID_JABATAN_PEGAWAI'] = $data_pegawai['ID_JABATAN_PEGAWAI'];
 
         $data_proyek = $this->Proyek_model->get_data_by_id_proyek($this->data['ID_PROYEK']);
-        $this->data['INISIAL'] = $data_proyek['INISIAL'];
-        $this->data['NAMA_PROYEK'] = $data_proyek['NAMA_PROYEK'];
+        // $this->data['INISIAL'] = $data_proyek['INISIAL'];
+        // $this->data['NAMA_PROYEK'] = $data_proyek['NAMA_PROYEK'];
 
         $sess_data['ID_PROYEK'] = $this->data['ID_PROYEK'];
         $sess_data['ID_JABATAN_PEGAWAI'] = $this->data['ID_JABATAN_PEGAWAI'];
@@ -119,6 +119,18 @@ class Pengajuan extends CI_Controller
                 $this->load->view('wasa/user_korban_bencana/header_menu');
                 $this->load->view('wasa/user_korban_bencana/content_pengajuan_list');
                 $this->load->view('wasa/user_korban_bencana/footer');
+            } else if ($this->ion_auth->in_group(2)){ //user_pegawai_BPBD
+
+                    // tampilkan seluruh proyek
+                    $this->data['proyek_dropdown'] = $this->SPPB_model->proyek_list();
+                    $this->data['proyek_dropdown_list'] = $this->SPPB_model->proyek_list();
+    
+                    $this->load->view('wasa/user_pegawai_bpbd/head_normal', $this->data);
+                    $this->load->view('wasa/user_pegawai_bpbd/user_menu');
+                    $this->load->view('wasa/user_pegawai_bpbd/left_menu');
+                    $this->load->view('wasa/user_pegawai_bpbd/header_menu');
+                    $this->load->view('wasa/user_pegawai_bpbd/content_pengajuan_list');
+                    $this->load->view('wasa/user_pegawai_bpbd/footer'); 
             } else {
                 $this->logout();
             }
