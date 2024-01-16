@@ -99,7 +99,7 @@
                 <small class="font-bold">Silakan isi identitas data korban</small>
             </div>
             <input type="hidden" class="form-control" value="" name="FILE_NAME_TEMP" id="FILE_NAME_TEMP" disabled />
-            <input type="hidden" class="form-control" value="" name="CODE_MD5" id="CODE_MD5" disabled />
+            <input type="text" class="form-control" value="" name="CODE_MD5" id="CODE_MD5" disabled />
 
             <div class="form-horizontal">
                 <div class="modal-body">

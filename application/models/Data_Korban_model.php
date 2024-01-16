@@ -249,12 +249,10 @@ class Data_Korban_model extends CI_Model
 		return $hasil->result();
 	}
 
-	function proyek_list_by_id_proyek($ID_PROYEK) //122023
+	function korban_list_by_id_korban($ID_KORBAN) //122023
 	{
-		$hasil = $this->db->query("SELECT A.ID_PROYEK, A.HASH_MD5_PROYEK, A.STATUS_PROYEK, A.NAMA_PROYEK, A.LOKASI, A.INISIAL, C.NAMA as PEGAWAI_PM, D.NAMA as PEGAWAI_SM FROM proyek as A
-		LEFT JOIN pegawai as C ON C.ID_PEGAWAI=A.ID_PEGAWAI_PM 
-		LEFT JOIN pegawai as D ON D.ID_PEGAWAI=A.ID_PEGAWAI_SM WHERE A.ID_PROYEK = '$ID_PROYEK'
-		ORDER BY A.NAMA_PROYEK ASC");
+		$hasil = $this->db->query("SELECT DK.CODE_MD5, DK.ID_KORBAN, DK.JENIS_BENCANA, DK.NAMA_KORBAN, DK.NO_KK, DK.NIK, DK.TEMPAT_LAHIR, DATE_FORMAT(DK.TANGGAL_LAHIR, '%d/%m/%Y') AS TANGGAL_LAHIR, DK.ALAMAT,DK.KABUPATEN_KOTA, DK.KECAMATAN, DK.DESA_KELURAHAN, DK.RT, DK.RW, DK.KAMPUNG, DK.KODE_POS, DATE_FORMAT(DK.TANGGAL_KEJADIAN_BENCANA, '%d/%m/%Y') AS TANGGAL_KEJADIAN_BENCANA FROM data_korban AS DK  WHERE DK.ID_KORBAN = '$ID_KORBAN'
+		");
 		return $hasil->result();
 	}
 
@@ -793,16 +791,16 @@ class Data_Korban_model extends CI_Model
 	// SUMBER TABEL: tabel sppb
 	// DIPAKAI: 1. controller (BELUM) / function (BELUM)
 	//         2. 
-	function get_id_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB)
+	function get_data_korban_by_CODE_MD5($CODE_MD5)
 	{
-		$hsl = $this->db->query("SELECT * FROM SPPB WHERE HASH_MD5_SPPB ='$HASH_MD5_SPPB'");
+		$hsl = $this->db->query("SELECT * FROM data_korban WHERE CODE_MD5 ='$CODE_MD5'");
 		if ($hsl->num_rows() > 0) {
 			foreach ($hsl->result() as $data) {
 				$hasil = array(
-					'ID_SPPB' => $data->ID_SPPB,
-					'ID_PROYEK' => $data->ID_PROYEK,
-					'ID_PROYEK_SUB_PEKERJAAN' => $data->ID_PROYEK_SUB_PEKERJAAN,
-					'NO_URUT_SPPB' => $data->NO_URUT_SPPB
+					'ID_KORBAN' => $data->ID_KORBAN,
+					'CODE_MD5' => $data->CODE_MD5,
+					'PROGRESS_DATA_KORBAN' => $data->PROGRESS_DATA_KORBAN,
+					'STATUS_DATA_KORBAN' => $data->STATUS_DATA_KORBAN
 				);
 			}
 		} else {

@@ -169,8 +169,8 @@ class Data_Korban extends CI_Controller
         if ($this->ion_auth->logged_in())
         {
             $TANGGAL_PEMBUATAN_PENGAJUAN_JAM = date("h:i:s.u");
-            $CODE_md5 = md5($TANGGAL_PEMBUATAN_PENGAJUAN_JAM);
-            echo ($CODE_md5);
+            $CODE_MD5 = md5($TANGGAL_PEMBUATAN_PENGAJUAN_JAM);
+            echo ($CODE_MD5);
         }
 		else {
 			$this->logout();
