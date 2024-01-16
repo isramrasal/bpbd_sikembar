@@ -33,7 +33,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins" id="ibox1">
                 <div class="ibox-title">
-                    <h5>Penyaluran Bantuan</h5>
+                    <h5>Penyaluran Bantuan Inisiatif</h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
@@ -79,6 +79,65 @@
                             <thead id="show_data_head">
                             </thead>
                             <tbody id="show_data">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins" id="ibox1_pengajuan">
+                <div class="ibox-title">
+                    <h5>Pengajuan Bantuan dari Pengajuan Korban</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="fullscreen-link">
+                            <i class="fa fa-expand"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="sk-spinner sk-spinner-wave">
+                        <div class="sk-rect1"></div>
+                        <div class="sk-rect2"></div>
+                        <div class="sk-rect3"></div>
+                        <div class="sk-rect4"></div>
+                        <div class="sk-rect5"></div>
+                    </div>
+                    
+                    <!-- <a href="#" class="btn btn-primary btn-xs" name="btn_buat" id="btn_buat" ><span class="fa fa-plus"></span> Buat Pengajuan Bantuan</a> -->
+
+                    <!-- <a href="#" class="btn btn-primary btn-xs" name="btn_buat" id="btn_buat" data-toggle="modal" data-target="#ModalAdd"><span class="fa fa-plus"></span> Buat Pengajuan Bantuan</a>
+                    </br>
+                    </br> -->
+                    <!-- List jenis bencana -->
+                        <select class="chosen-select" name="ID_JENIS_BENCANA_LIST_PENGAJUAN" class="form-control" id="ID_JENIS_BENCANA_LIST_PENGAJUAN">
+                            <option value=''>- Pilih Bencana -</option>
+                            <option value='Semua'>Semua Bencana</option>
+                            <option value='Gempa Bumi'>Gempa Bumi</option>
+                            <option value='Angin Puting Beliung'>Angin Puting Beliung</option>
+                            <option value='Banjir'>Banjir</option>
+                            <option value='Longsor'>Longsor</option>
+                            <option value='Tsunami'>Tsunami</option>
+                            <option value='Kebakaran'>Kebakaran</option>
+                            <option value='Pohon Tumbang'>Pohon Tumbang</option>
+                            <option value='Kekeringan'>Kekeringan</option>
+                        </select>
+             
+
+                    </br>
+                    </br>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="mydata_pengajuan">
+                            <thead id="show_data_head_pengajuan">
+                            </thead>
+                            <tbody id="show_data_pengajuan">
                             </tbody>
                         </table>
                     </div>
@@ -454,22 +513,229 @@
 
         });
 
+        $('#mydata_pengajuan').dataTable({
+            aaSorting: [],
+            pageLength: 10,
+            lengthMenu: [
+                [10, 25, 50, -1],
+                [10, 25, 50, 'All'],
+            ],
+            responsive: true,
+            dom: '<"html5buttons"B>lTfgitp',
+            buttons: [{
+                extend: 'excel',
+                title: 'SPPB'
+            },
+            {
+                extend: 'print',
+                customize: function (win) {
+                    $(win.document.body).addClass('white-bg');
+                    $(win.document.body).css('font-size', '10px');
+
+                    $(win.document.body).find('table')
+                        .addClass('compact')
+                        .css('font-size', 'inherit');
+                }
+            }
+            ]
+
+        });
+
         $("#ID_JENIS_BENCANA_LIST").change(function () {
 
+            var form_data = {
+                ID_JENIS_BENCANA_LIST: $('#ID_JENIS_BENCANA_LIST').val()
+            }
+
+            var ID_JENIS_BENCANA_LIST = $('#ID_JENIS_BENCANA_LIST').val();
+            var NAMA_BENCANA = $('#ID_JENIS_BENCANA_LIST option:selected').text();
+            var JUDUL = "List Penyaluran Bantuan " + NAMA_BENCANA;
+
+            if (ID_JENIS_BENCANA_LIST == "Semua") {
+                $("#mydata").dataTable().fnDestroy();
+                $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
+                
+                $.ajax({
+                    url: "<?php echo base_url(); ?>/Penyaluran/list_penyaluran_by_all_bencana",
+                    method: "POST",
+                    data: form_data,
+                    async: false,
+                    dataType: 'json',
+                    success: function (data) {
+
+                        console.log(data);
+
+                        var html, html_head = '';
+                        var i, j, k;
+
+                        $('#show_data_head').html(html_head);
+                        $('#show_data').html(html);
+
+                        if (data.length > 0)
+                        {
+                            for (i = 0; i < data.length; i++) {
+
+                                html += '<tr>' +
+                                    '<td>' + '<a href="<?php echo base_url() ?>Penyaluran_form/view/' + data[i].CODE_MD5 + '" class="btn btn-default btn-xs btn-outline"><i class="fa fa-eye"></i> ' + data[i].CODE_MD5 + '</a>' + '</td>' +
+                                    '<td>' + data[i].Jenis_Bencana + '</td>' +
+                                    '<td>' + data[i].Nama_Pejabat_BPBD + '</td>' +
+                                    '<td>' + data[i].Nama_Penerima + '</td>' +
+                                    '<td>' + data[i].NIK_Penerima + '</td>' +
+                                    '<td>' + data[i].Instansi_Penerima + '</td>' +
+                                    '<td>' + data[i].Desa_Kelurahan_Bencana + '</td>' +
+                                    '<td>' + data[i].Kecamatan_Bencana + '</td>' +
+                                    '<td>' + data[i].TANGGAL_KEJADIAN_BENCANA + '</td>' +
+                                    '<td>' + '<a href="javascript:;" class="btn btn-primary btn-xs item_status block" data="' + data[i].CODE_MD5 + '"><i class="fa fa-pencil"></i>'+ data[i].STATUS_SPPB + '</a>' + '</td>' +
+                                    '</tr>';
+                            }
+                        }
+
+                        else
+                        {
+                            html = '';
+                        }
+
+                        
+
+                        html_head = '<tr><th>No. Penyaluran</th><th>Jenis Bencana</th><th>Nama Pegawai</th><th>Nama Penerima</th><th>NIK Penerima</th><th>Instansi Penerima</th><th>Desa Penerima</th><th>Kecamatan Penerima</th><th>Tanggal Kejadian Bencana</th><th>Aksi</th></tr>';
+                        $('#show_data_head').html(html_head);
+                        $('#show_data').html(html);
+
+                        
+                        $('#mydata').dataTable({
+                            aaSorting: [],
+                            pageLength: 10,
+                            lengthMenu: [
+                                [10, 25, 50, -1],
+                                [10, 25, 50, 'All'],
+                            ],
+                            responsive: true,
+                            dom: '<"html5buttons"B>lTfgitp',
+                            buttons: [{
+                                extend: 'excel',
+                                title: JUDUL
+                            },
+                            {
+                                extend: 'print',
+                                customize: function (win) {
+                                    $(win.document.body).addClass('white-bg');
+                                    $(win.document.body).css('font-size', '10px');
+
+                                    $(win.document.body).find('table')
+                                        .addClass('compact')
+                                        .css('font-size', 'inherit');
+                                }
+                            }
+                            ]
+
+                        });
+                        // $("#mydata").dataTable().fnDestroy();
+
+                    }
+                });
+
+                setTimeout(function(){
+                    $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
+                }, 3000); 
+
+            }
+            else {
+                $("#mydata").dataTable().fnDestroy();
+                $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
+
+                $.ajax({
+                    url: "<?php echo base_url(); ?>/SPPB/list_sppb_by_id_proyek",
+                    method: "POST",
+                    data: form_data,
+                    async: false,
+                    dataType: 'json',
+                    success: function (data) {
+
+                        var html, html_head = '';
+                        var i, j, k;
+
+                        $('#show_data_head').html(html_head);
+                        $('#show_data').html(html);
+
+                        if (data.length > 0)
+                        {
+                            for (i = 0; i < data.length; i++) {
+
+                                html += '<tr>' +
+                                    '<td>' + '<a href="<?php echo base_url() ?>sppb_form/view/' + data[i].HASH_MD5_SPPB + '" class="btn btn-default btn-xs btn-outline"><i class="fa fa-eye"></i> ' + data[i].NO_URUT_SPPB + '</a>' + '</td>' +
+                                    '<td>' + data[i].NAMA_SUB_PEKERJAAN + '</td>' +
+                                    '<td>' + data[i].TANGGAL_DOKUMEN_SPPB + '</td>' +
+                                    '<td>' + '<a href="javascript:;" class="btn btn-primary btn-xs item_status block" data="' + data[i].ID_SPPB + '"><i class="fa fa-search"></i> '+ data[i].STATUS_SPPB + '</a>' + '</td>' +
+                                    '</tr>';
+                            }
+                        }
+
+                        else
+                        {
+                            html = '';
+                        }
+                        
+
+                        html_head = '<tr><th>No. SPPB</th><th>Pekerjaan</th><th>Tanggal Dokumen SPPB</th><th>Status SPPB</th></tr>';
+                        $('#show_data_head').html(html_head);
+                        $('#show_data').html(html);
+
+                        
+                        $('#mydata').dataTable({
+                            aaSorting: [],
+                            pageLength: 10,
+                            lengthMenu: [
+                                [10, 25, 50, -1],
+                                [10, 25, 50, 'All'],
+                            ],
+                            responsive: true,
+                            dom: '<"html5buttons"B>lTfgitp',
+                            buttons: [{
+                                extend: 'excel',
+                                title: JUDUL
+                            },
+                            {
+                                extend: 'print',
+                                customize: function (win) {
+                                    $(win.document.body).addClass('white-bg');
+                                    $(win.document.body).css('font-size', '10px');
+
+                                    $(win.document.body).find('table')
+                                        .addClass('compact')
+                                        .css('font-size', 'inherit');
+                                }
+                            }
+                            ]
+
+                        });
+
+                        // $("#mydata").dataTable().fnDestroy();
+
+                    }
+                });
+
+                setTimeout(function(){
+                    $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
+                }, 3000); 
+            }
+        });
+
+    $("#ID_JENIS_BENCANA_LIST_PENGAJUAN").change(function () {
+
         var form_data = {
-            ID_JENIS_BENCANA_LIST: $('#ID_JENIS_BENCANA_LIST').val()
+            ID_JENIS_BENCANA_LIST_PENGAJUAN: $('#ID_JENIS_BENCANA_LIST_PENGAJUAN').val()
         }
 
-        var ID_JENIS_BENCANA_LIST = $('#ID_JENIS_BENCANA_LIST').val();
-        var NAMA_BENCANA = $('#ID_JENIS_BENCANA_LIST option:selected').text();
-        var JUDUL = "List Penyaluran Bantuan " + NAMA_BENCANA;
+        var ID_JENIS_BENCANA_LIST_PENGAJUAN = $('#ID_JENIS_BENCANA_LIST_PENGAJUAN').val();
+        var NAMA_BENCANA = $('#ID_JENIS_BENCANA_LIST_PENGAJUAN option:selected').text();
+        var JUDUL = "List Pengajuan Bantuan dari Korban" + NAMA_BENCANA;
 
-        if (ID_JENIS_BENCANA_LIST == "Semua") {
-            $("#mydata").dataTable().fnDestroy();
-            $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
+        if (ID_JENIS_BENCANA_LIST_PENGAJUAN == "Semua") {
+            $("#mydata_pengajuan").dataTable().fnDestroy();
+            $('#ibox1_pengajuan').children('.ibox-content').toggleClass('sk-loading');
             
             $.ajax({
-                url: "<?php echo base_url(); ?>/Penyaluran/list_penyaluran_by_all_bencana",
+                url: "<?php echo base_url(); ?>/Pengajuan/list_pengajuan_by_all_bencana",
                 method: "POST",
                 data: form_data,
                 async: false,
@@ -481,8 +747,8 @@
                     var html, html_head = '';
                     var i, j, k;
 
-                    $('#show_data_head').html(html_head);
-                    $('#show_data').html(html);
+                    $('#show_data_head_pengajuan').html(html_head);
+                    $('#show_data_pengajuan').html(html);
 
                     if (data.length > 0)
                     {
@@ -491,13 +757,13 @@
                             html += '<tr>' +
                                 '<td>' + '<a href="<?php echo base_url() ?>pengajuan_form/view/' + data[i].CODE_MD5 + '" class="btn btn-default btn-xs btn-outline"><i class="fa fa-eye"></i> ' + data[i].CODE_MD5 + '</a>' + '</td>' +
                                 '<td>' + data[i].Jenis_Bencana + '</td>' +
-                                '<td>' + data[i].Nama_Pejabat_BPBD + '</td>' +
-                                '<td>' + data[i].Nama_Penerima + '</td>' +
-                                '<td>' + data[i].NIK_Penerima + '</td>' +
-                                '<td>' + data[i].Instansi_Penerima + '</td>' +
-                                '<td>' + data[i].Desa_Kelurahan_Bencana + '</td>' +
+                                '<td>' + data[i].Nama_Pemohon + '</td>' +
+                                '<td>' + data[i].NIK + '</td>' +
+                                '<td>' + data[i].Instansi + '</td>' +
                                 '<td>' + data[i].Kecamatan_Bencana + '</td>' +
+                                '<td>' + data[i].Desa_Kelurahan_Bencana + '</td>' +
                                 '<td>' + data[i].TANGGAL_KEJADIAN_BENCANA + '</td>' +
+                                '<td>' + data[i].Tanggal_Pembuatan + '</td>' +
                                 '<td>' + '<a href="javascript:;" class="btn btn-primary btn-xs item_status block" data="' + data[i].CODE_MD5 + '"><i class="fa fa-pencil"></i>'+ data[i].STATUS_SPPB + '</a>' + '</td>' +
                                 '</tr>';
                         }
@@ -510,12 +776,12 @@
 
                     
 
-                    html_head = '<tr><th>No. Penyaluran</th><th>Jenis Bencana</th><th>Nama Pegawai</th><th>Nama Penerima</th><th>NIK Penerima</th><th>Instansi Penerima</th><th>Desa Penerima</th><th>Kecamatan Penerima</th><th>Tanggal Kejadian Bencana</th><th>Aksi</th></tr>';
-                    $('#show_data_head').html(html_head);
-                    $('#show_data').html(html);
+                    html_head = '<tr><th>No. Pengajuan</th><th>Jenis Bencana</th><th>Nama Pemohon</th><th>NIK Pemohon</th><th>Instansi</th><th>Kecamatan</th><th>Desa</th><th>Tanggal Bencana</th><th>Tanggal Pengajuan</th><th>Aksi</th></tr>';
+                    $('#show_data_head_pengajuan').html(html_head);
+                    $('#show_data_pengajuan').html(html);
 
                     
-                    $('#mydata').dataTable({
+                    $('#mydata_pengajuan').dataTable({
                         aaSorting: [],
                         pageLength: 10,
                         lengthMenu: [
@@ -548,13 +814,13 @@
             });
 
             setTimeout(function(){
-                $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
+                $('#ibox1_pengajuan').children('.ibox-content').toggleClass('sk-loading');
             }, 3000); 
 
         }
         else {
-            $("#mydata").dataTable().fnDestroy();
-            $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
+            $("#mydata_pengajuan").dataTable().fnDestroy();
+            $('#ibox1_pengajuan').children('.ibox-content').toggleClass('sk-loading');
 
             $.ajax({
                 url: "<?php echo base_url(); ?>/SPPB/list_sppb_by_id_proyek",

@@ -17,6 +17,14 @@ class Penyaluran_model extends CI_Model
 		$hasil = $this->db->query("SELECT * FROM form_penyaluran_barang_bencana WHERE NIK_Penerima = '$NIK'");
 		return $hasil->result();
 	}
+
+	function penyaluran_list_by_id_penyaluran($ID_FORM_PENYALURAN_BARANG_BENCANA)
+	{
+		$hasil = $this->db->query("SELECT FPBB.ID_FORM_PENYALURAN_BARANG_BENCANA AS ID_FORM_PENYALURAN_BARANG_BENCANA, FPBB.CODE_MD5 AS CODE_MD5, FPBB.Nomor_Surat AS Nomor_Surat, DATE_FORMAT(FPBB.Tanggal_Pembuatan, '%d/%m/%Y') AS Tanggal_Pembuatan, DATE_FORMAT(FPBB.Tanggal_Surat, '%d/%m/%Y') AS Tanggal_Surat, FPBB.Nama_Penerima AS Nama_Penerima, FPBB.Nomor_KK_Penerima AS Nomor_KK_Penerima, FPBB.NIK_Penerima AS NIK_Penerima, DATE_FORMAT(FPBB.Tanggal_Lahir_Penerima, '%d/%m/%Y') AS Tanggal_Lahir_Penerima, FPBB.Tempat_Lahir_Penerima AS Tempat_Lahir_Penerima, FPBB.NIP_Penerima AS NIP_Penerima, FPBB.Jabatan_Penerima AS Jabatan_Penerima, FPBB.Instansi_Penerima AS Instansi_Penerima, FPBB.Kampung_Bencana AS Kampung_Bencana, FPBB.RT_Bencana AS RT_Bencana, FPBB.RW_Bencana AS RW_Bencana, FPBB.Desa_Kelurahan_Bencana AS Desa_Kelurahan_Bencana, FPBB.Kecamatan_Bencana AS Kecamatan_Bencana, FPBB.Kabupaten_Kota_Bencana AS Kabupaten_Kota_Bencana, FPBB.Kode_Pos_Bencana AS Kode_Pos_Bencana, FPBB.Jenis_Bencana AS Jenis_Bencana, FPBB.Nama_Pejabat_BPBD AS Nama_Pejabat_BPBD, FPBB.NIK_Pejabat_BPBD AS NIK_Pejabat_BPBD, FPBB.NIP_Pejabat_BPBD AS NIP_Pejabat_BPBD, FPBB.Jabatan_Pejabat_BPBD AS Jabatan_Pejabat_BPBD, DATE_FORMAT(FPBB.TANGGAL_KEJADIAN_BENCANA, '%d/%m/%Y') AS TANGGAL_KEJADIAN_BENCANA FROM form_penyaluran_barang_bencana AS FPBB
+        WHERE FPBB.ID_FORM_PENYALURAN_BARANG_BENCANA =  '$ID_FORM_PENYALURAN_BARANG_BENCANA'");
+		return $hasil;
+		//return $hasil->result();
+	}
 	//FUNGSI: Fungsi ini untuk menampilkan data sppb berdasarkan ID_SPPB
 	//SUMBER TABEL: tabel sppb
 	//DIPAKAI: 1. controller SPPB_form / function index
@@ -309,6 +317,25 @@ class Penyaluran_model extends CI_Model
 	{
 		$hsl = $this->db->query("SELECT * FROM RASD where ID_RAB ='$ID_RAB'");
 		return $hsl->result();
+	}
+
+	function get_data_penyaluran_by_CODE_MD5($CODE_MD5)
+	{
+		$hsl = $this->db->query("SELECT * FROM form_penyaluran_barang_bencana WHERE CODE_MD5 ='$CODE_MD5'");
+		if ($hsl->num_rows() > 0) {
+			foreach ($hsl->result() as $data) {
+				$hasil = array(
+					'ID_FORM_PENYALURAN_BARANG_BENCANA' => $data->ID_FORM_PENYALURAN_BARANG_BENCANA,
+					'CODE_MD5' => $data->CODE_MD5,
+					'Nomor_Surat' => $data->Nomor_Surat,
+					'PROGRESS_PENGAJUAN' => $data->PROGRESS_PENGAJUAN,
+					'STATUS_PENGAJUAN' => $data->STATUS_PENGAJUAN
+				);
+			}
+			return $hasil;
+		} else {
+			return 'TIDAK ADA DATA';
+		}
 	}
 
 	function get_data_id_rasd_by_id_rab_form($ID_RAB_FORM)
@@ -1138,9 +1165,9 @@ class Penyaluran_model extends CI_Model
 	//SUMBER TABEL: tabel sppb
 	//DIPAKAI: 1. controller SPPB / function get_data_sppb_baru
 	//         2. 
-	function get_data_pengajuan_baru($CODE_MD5)
+	function get_data_penyaluran_baru($CODE_MD5)
 	{
-		$hsl = $this->db->query("SELECT * FROM form_inventaris_kebutuhan_korban_bencana WHERE CODE_MD5 = '$CODE_MD5'");
+		$hsl = $this->db->query("SELECT * FROM form_penyaluran_barang_bencana WHERE CODE_MD5 = '$CODE_MD5'");
 		if ($hsl->num_rows() > 0) {
 			foreach ($hsl->result() as $data) {
 				$hasil = array(
@@ -1148,7 +1175,7 @@ class Penyaluran_model extends CI_Model
 				);
 			}
 		} else {
-			$hasil = "BELUM ADA PENGAJUAN";
+			$hasil = "BELUM ADA PENYALURAN";
 		}
 		return $hasil;
 	}

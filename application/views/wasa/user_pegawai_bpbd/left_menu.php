@@ -47,7 +47,7 @@
 						</li>
 					<?php } ?>
 
-					<?php if ($left_menu == "pengajuan_aktif") { ?>
+					<!-- <?php if ($left_menu == "pengajuan_aktif") { ?>
 						<li class="active">
 							<a href="<?php echo base_url(); ?>index.php/Pengajuan"><i class="fa fa-compass"></i> <span class="nav-label">Pengajuan Bantuan</span> </a>
 
@@ -56,7 +56,7 @@
 						<li>
 						<a href="<?php echo base_url(); ?>index.php/Pengajuan"><i class="fa fa-compass"></i> <span class="nav-label">Pengajuan Bantuan</span> </a>
 						</li>
-					<?php } ?>
+					<?php } ?> -->
 
 					<?php if ($left_menu == "barang_aktif") { ?>
 						<li class="active">
