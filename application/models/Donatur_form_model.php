@@ -5,106 +5,9 @@ class Donatur_form_model extends CI_Model
 	//SUMBER TABEL: tabel sppb_form
 	//DIPAKAI: 1. controller SPPB_form / function data_sppb_form
 	//         2. 
-	function sppb_form_list_by_id_sppb($ID_SPPB, $ID_RAB_FORM)
+	function data_barang_bantuan_form($ID_FORM_PENGADAAN_BARANG)
 	{
-		$hasil = $this->db->query("SELECT 
-		sppb_form.ID_SPPB, 
-		sppb_form.ID_SPPB_FORM,
-		sppb_form.ID_FPB_FORM,
-		sppb_form.ID_RASD_FORM,
-		sppb_form.ID_RAB_FORM,
-		sppb_form.ID_PROYEK_SUB_PEKERJAAN,
-		sppb_form.NAMA_BARANG,
-		sppb_form.SATUAN_BARANG,
-		sppb_form.MEREK,
-		sppb_form.ID_KLASIFIKASI_BARANG,
-		sppb_form.PERALATAN_PERLENGKAPAN,
-		sppb_form.SPESIFIKASI_SINGKAT, 
-		sppb_form.JUMLAH_MINTA,
-		sppb_form.BIDANG_PEMAKAI,
-		sppb_form.CORET,
-		sppb_form.CATATAN_CORET,
-		sppb_form.CATATAN_BATAL_CORET,
-		sppb_form.KETERANGAN_UMUM,
-		sppb_form.POSISI,
-		sppb_form.JUMLAH_SETUJU_TERAKHIR,
-		sppb_form.JUMLAH_SETUJU_STAFF_LOG,
-		sppb_form.JUMLAH_SETUJU_TERAKHIR,
-		sppb_form.JUMLAH_SETUJU_SPV_LOG,
-		sppb_form.JUMLAH_SETUJU_CHIEF,
-		sppb_form.JUMLAH_SETUJU_SM,
-		sppb_form.JUMLAH_SETUJU_PM,
-		sppb_form.JUMLAH_SETUJU_M_LOG,
-		sppb_form.JUMLAH_SETUJU_M_PROC,
-		sppb_form.JUMLAH_SETUJU_M_SDM,
-		sppb_form.JUMLAH_SETUJU_M_KONS,
-		sppb_form.JUMLAH_SETUJU_M_EP,
-		sppb_form.JUMLAH_SETUJU_M_QAQC,
-		sppb_form.JUMLAH_SETUJU_M_KEU,
-		sppb_form.JUMLAH_SETUJU_D_PSDS,
-		sppb_form.JUMLAH_SETUJU_D_KEU,
-		sppb_form.JUMLAH_SETUJU_D_KEU,
-		sppb_form.TOLAK_SPV_LOG,
-		sppb_form.TOLAK_SM,
-		sppb_form.TOLAK_PM,
-		sppb_form.TOLAK_M_LOG,
-		sppb_form.TOLAK_M_PROC,
-		sppb_form.TOLAK_M_SDM,
-		sppb_form.TOLAK_M_KONS,
-		sppb_form.TOLAK_M_EP,
-		sppb_form.TOLAK_M_QAQC,
-		sppb_form.TOLAK_M_KEU,
-		sppb_form.TOLAK_D_PSDS,
-		sppb_form.TOLAK_D_KONS,
-		sppb_form.TOLAK_D_KEU,
-		sppb_form.COMPLETE,
-		DATE_FORMAT(sppb_form.TANGGAL_MULAI_PAKAI_HARI, '%d/%m/%Y') AS TANGGAL_MULAI_PAKAI_HARI,
-		DATE_FORMAT(sppb_form.TANGGAL_SELESAI_PAKAI_HARI, '%d/%m/%Y') AS TANGGAL_SELESAI_PAKAI_HARI,
-		sppb_form.TANGGAL_MULAI_PAKAI_HARI AS TANGGAL_MULAI_PAKAI_HARI_INDO,
-		sppb_form.TANGGAL_SELESAI_PAKAI_HARI AS TANGGAL_SELESAI_PAKAI_HARI_INDO,
-		sppb_form.JUMLAH_QTY_GUDANG,
-		sppb_form.JUMLAH_QTY_SPP,
-		M.ID_BARANG_MASTER, 
-		M.KODE_BARANG, 
-		M.HASH_MD5_BARANG_MASTER,
-        RB.ID_RASD, 
-		RB.ID_RASD_FORM, 
-		RB.TOTAL_PENGADAAN_SAAT_INI,
-        RB.JUMLAH_BARANG AS JUMLAH_RASD,
-        J.NAMA_JENIS_BARANG,
-		SPB.ID_PROYEK,
-		SPB.SIGN_USER_STAFF_UMUM_LOG_SP,
-		SPB.SIGN_USER_CHIEF_SP,
-		SPB.SIGN_USER_SM_SP,
-		SPB.SIGN_USER_PM_SP,
-		SPB.SIGN_USER_M_HRD_KP,
-		SPB.SIGN_USER_M_KEU_KP,
-		SPB.SIGN_USER_M_KONS_KP,
-		SPB.SIGN_USER_M_SDM_KP,
-		SPB.SIGN_USER_M_QAQC_KP,
-		SPB.SIGN_USER_M_EP_KP,
-		SPB.SIGN_USER_M_HSSE_KP,
-		SPB.SIGN_USER_M_KOMERSIAL_KP,
-		SPB.SIGN_USER_M_LOG_KP,
-		SPB.SIGN_USER_D_KEU_KP,
-		SPB.SIGN_USER_D_EP_KONS_KP,
-		SPB.SIGN_USER_D_PSDS_KP,
-        FF.ID_FPB,
-        FB.HASH_MD5_FPB,
-        FB.NO_URUT_FPB,
-		RABF.NAMA_KATEGORI,
-		KB.NAMA_KLASIFIKASI_BARANG
-        FROM sppb_form
-        LEFT JOIN barang_master AS M ON sppb_form.ID_BARANG_MASTER = M.ID_BARANG_MASTER
-        LEFT JOIN RASD_FORM AS RB ON RB.ID_RASD_FORM = sppb_form.ID_RASD_FORM
-        LEFT JOIN FPB_FORM AS FF ON FF.ID_FPB_FORM = sppb_form.ID_FPB_FORM
-        LEFT JOIN FPB AS FB ON FF.ID_FPB = FB.ID_FPB
-        LEFT JOIN jenis_barang AS J ON J.ID_JENIS_BARANG = sppb_form.ID_JENIS_BARANG
-        LEFT JOIN sppb as SPB ON SPB.ID_SPPB = sppb_form.ID_SPPB
-		LEFT JOIN RAB_FORM as RABF ON RABF.ID_RAB_FORM = sppb_form.ID_RAB_FORM
-		LEFT JOIN klasifikasi_barang as KB ON KB.ID_KLASIFIKASI_BARANG = sppb_form.ID_KLASIFIKASI_BARANG
-        WHERE sppb_form.ID_SPPB = '$ID_SPPB' AND sppb_form.ID_RAB_FORM = '$ID_RAB_FORM'
-		ORDER BY sppb_form.NAMA_BARANG ASC");
+		$hasil = $this->db->query("SELECT * FROM item_form_pengadaan_barang WHERE ID_FORM_PENGADAAN_BARANG = '$ID_FORM_PENGADAAN_BARANG'");
 		return $hasil->result();
 	}
 
@@ -1504,42 +1407,35 @@ class Donatur_form_model extends CI_Model
 	//SUMBER TABEL: tabel sppb_form
 	//DIPAKAI: 1. controller SPPB_form / function simpan_data_dari_rasd_form
 	//         2. 
-	function simpan_data_dari_rasd_form(
-		$ID_SPPB,
-		$ID_BARANG_MASTER,
-		$ID_RASD_FORM,
-		$ID_JENIS_BARANG,
+	function simpan_data_barang_bantuan(
+		$ID_FORM_PENGADAAN_BARANG,
 		$NAMA,
 		$MEREK,
-		$PERALATAN_PERLENGKAPAN,
 		$SPESIFIKASI_SINGKAT,
-		$JUMLAH_MINTA
+		$JUMLAH_BARANG,
+		$SATUAN_BARANG,
+		$KLASIFIKASI_BARANG,
+		$KETERANGAN
 	) {
-		$hasil = $this->db->query("INSERT INTO sppb_form (
-				ID_SPPB,
-				ID_BARANG_MASTER,
-				ID_RASD_FORM,
-				ID_JENIS_BARANG,
+		$hasil = $this->db->query("INSERT INTO item_form_pengadaan_barang (
+				ID_FORM_PENGADAAN_BARANG,
 				NAMA_BARANG,
 				MEREK,
-				PERALATAN_PERLENGKAPAN,
 				SPESIFIKASI_SINGKAT,
-				JUMLAH_MINTA,
-				JUMLAH_SETUJU_TERAKHIR,
-				JUMLAH_QTY_SPP
+				JUMLAH_BARANG,
+				SATUAN_BARANG,
+				KLASIFIKASI_BARANG,
+				KETERANGAN
 				)
 			VALUES(
-				'$ID_SPPB',
-				'$ID_BARANG_MASTER',
-				'$ID_RASD_FORM',
-				'$ID_JENIS_BARANG',
+				'$ID_FORM_PENGADAAN_BARANG',
 				'$NAMA',
 				'$MEREK',
-				'$PERALATAN_PERLENGKAPAN',
 				'$SPESIFIKASI_SINGKAT',
-				'$JUMLAH_MINTA',
-				'$JUMLAH_MINTA',
-				'$JUMLAH_MINTA'
+				'$JUMLAH_BARANG',
+				'$SATUAN_BARANG',
+				'$KLASIFIKASI_BARANG',
+                '$KETERANGAN'
 				 )");
 		return $hasil;
 	}
