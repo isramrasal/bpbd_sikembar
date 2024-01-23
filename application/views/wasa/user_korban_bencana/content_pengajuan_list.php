@@ -431,7 +431,7 @@
                             for (i = 0; i < data.length; i++) {
 
                                 html += '<tr>' +
-                                    '<td>' + '<a href="<?php echo base_url() ?>pengajuan_form/view/' + data[i].CODE_MD5 + '" class="btn btn-default btn-xs btn-outline"><i class="fa fa-eye"></i> ' + data[i].CODE_MD5 + '</a>' + '</td>' +
+                                    '<td>' + '<a href="<?php echo base_url() ?>pengajuan_form/index/' + data[i].CODE_MD5 + '" class="btn btn-default btn-xs btn-outline"><i class="fa fa-eye"></i> ' + data[i].CODE_MD5 + '</a>' + '</td>' +
                                     '<td>' + data[i].Jenis_Bencana + '</td>' +
                                     '<td>' + data[i].Nama_Pemohon + '</td>' +
                                     '<td>' + data[i].NIK + '</td>' +

@@ -91,7 +91,7 @@ class Penyaluran extends CI_Controller
 
         $ID_SPPB = 0; //91-93 harus diubah
         $KETERANGAN = "Melihat Halaman Index SPPB List: ";
-        $this->user_log_sppb($ID_SPPB, $KETERANGAN);
+        // $this->user_log_sppb($ID_SPPB, $KETERANGAN);
 
         $data_pegawai = $this->Organisasi_model->get_data_by_id($this->data['ID_PEGAWAI']);
         $this->data['ID_PROYEK'] = $data_pegawai['ID_PROYEK_PEGAWAI'];

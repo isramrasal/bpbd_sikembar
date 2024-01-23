@@ -5,6 +5,13 @@ class Pengajuan_form_model extends CI_Model
 	//SUMBER TABEL: tabel sppb_form
 	//DIPAKAI: 1. controller SPPB_form / function data_sppb_form
 	//         2. 
+
+	function data_barang_bantuan_form($ID_FORM_INVENTARIS_KORBAN_BENCANA)
+	{
+		$hasil = $this->db->query("SELECT * FROM item_form_pengajuan_barang WHERE ID_FORM_INVENTARIS_KORBAN_BENCANA = '$ID_FORM_INVENTARIS_KORBAN_BENCANA'");
+		return $hasil->result();
+	}
+
 	function sppb_form_list_by_id_sppb($ID_SPPB, $ID_RAB_FORM)
 	{
 		$hasil = $this->db->query("SELECT 
@@ -1881,6 +1888,40 @@ class Pengajuan_form_model extends CI_Model
 			WHERE ID_SPPB='$ID_SPPB'");
 		return $hasil;
 	}
+
+	function simpan_data_barang_bantuan(
+		$ID_FORM_INVENTARIS_KORBAN_BENCANA,
+		$NAMA,
+		$MEREK,
+		$SPESIFIKASI_SINGKAT,
+		$JUMLAH_BARANG,
+		$SATUAN_BARANG,
+		$KLASIFIKASI_BARANG,
+		$KETERANGAN
+	) {
+		$hasil = $this->db->query("INSERT INTO item_form_pengajuan_barang (
+				ID_FORM_INVENTARIS_KORBAN_BENCANA,
+				NAMA_BARANG,
+				MEREK,
+				SPESIFIKASI_SINGKAT,
+				JUMLAH_BARANG,
+				SATUAN_BARANG,
+				KLASIFIKASI_BARANG,
+				KETERANGAN
+				)
+			VALUES(
+				'$ID_FORM_INVENTARIS_KORBAN_BENCANA',
+				'$NAMA',
+				'$MEREK',
+				'$SPESIFIKASI_SINGKAT',
+				'$JUMLAH_BARANG',
+				'$SATUAN_BARANG',
+				'$KLASIFIKASI_BARANG',
+                '$KETERANGAN'
+				 )");
+		return $hasil;
+	}
+
 
 
 	//FUNGSI: Fungsi ini untuk menambahkan data sppb form ID_USER
