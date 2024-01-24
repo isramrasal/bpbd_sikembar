@@ -304,17 +304,14 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
                         <table class="table table-striped table-bordered table-hover" id="mydata">
                             <thead>
                                 <tr>
-                                    <th>Nama Barang/Jasa</th>
-                                    <th>Merek Barang/Jasa</th>
+                                    <th>Nama Barang</th>
+                                    <th>Merek Barang</th>
                                     <th>Spesifikasi Singkat</th>
-                                    <th>Kategori RAB dan Klasifikasi Barang/Jasa</th>
-                                    <th>Qty Diajukan SPP</th>
-                                    <th>Satuan Barang/Jasa</th>
-                                    <th>Item dan Qty RASD</th>
-                                    <th>Total Pengadaan s/d Saat Ini</th>
-                                    <th>Tanggal Mulai dan Selesai Pemakaian</th>
+                                    <th>Jumlah Barang</th>
+                                    <th>Satuan Barang</th>
+                                    <th>Jenis Bantuan</th>
                                     <th>Keterangan</th>
-                                    <th>Pilihan</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody id="show_data">
@@ -999,7 +996,7 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
         let ID_FORM_PENYALURAN_BARANG_BENCANA = <?php echo $ID_FORM_PENYALURAN_BARANG_BENCANA ?>;
         let CODE_MD5 = "<?php echo $CODE_MD5 ?>";
         let Nomor_Surat = "<?php echo $Nomor_Surat ?>";
-        // tampil_data_pengajuan_form(); //pemanggilan fungsi tampil data.
+        tampil_data_penyaluran_form(); //pemanggilan fungsi tampil data.
 
         $('#data_TANGGAL_MULAI_PAKAI_HARI_2 .input-group.date').datepicker({
             todayBtn: "linked",
@@ -1089,216 +1086,46 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
         });
 
         
-        //fungsi tampil data
-        // function tampil_data_pengajuan_form() {
-        //     $.ajax({
-        //         type: 'GET',
-        //         url: '<?php echo base_url() ?>Pengajuan_form/data_grup_rab_sppb_form',
-        //         async: false,
-        //         dataType: 'json',
-        //         data: {
-        //             id: ID_FORM_INVENTARIS_KORBAN_BENCANA
-        //         },
-        //         success: function (data) {
+        function tampil_data_penyaluran_form() {
 
-        //             var html = '';
-
-        //             for (l = 0; l < data.length; l++) {
-
-        //                 ID_RAB_FORM = data[l].ID_RAB_FORM;
-        //                 NAMA_KATEGORI = data[l].NAMA_KATEGORI;
-
-        //                 html +=
-        //                 '<tr>'+
-        //                 '<td>' + '<b>' + NAMA_KATEGORI + '</b>' + '</td>' +
-        //                 '<td>' + '</td>' +
-        //                 '<td>' + '</td>' +
-        //                 '<td>' + '</td>' +
-        //                 '<td>' + '</td>' +
-        //                 '<td>' + '</td>' +
-        //                 '<td>' + '</td>' +
-        //                 '<td>' + '</td>' +
-        //                 '<td>' + '</td>' +
-        //                 '<td>' + '</td>' +
-        //                 '<td>' + '</td>' +
-        //                 '</tr>';
-
-        //                 $.ajax({
-        //                     type: 'GET',
-        //                     url: '<?php echo base_url() ?>SPPB_form/data_sppb_form',
-        //                     async: false,
-        //                     dataType: 'json',
-        //                     data: {
-        //                         ID_SPPB: ID_SPPB,
-        //                         ID_RAB_FORM: ID_RAB_FORM
-        //                     },
-        //                     success: function (data) {
-
-        //                         var data_1 = data;
-        //                         var i, j, k = 0;
-        //                         var jumlah_quantity, jumlah_qty_spp, jumlah_rasd, jumlah_realisasi = 0;
-        //                         var nama_rasd,NAMA_BARANG,SPESIFIKASI_SINGKAT,SATUAN_BARANG,JUMLAH_QTY_SPP,TANGGAL_MULAI_PAKAI_HARI,NAMA_KATEGORI,TD_KLASIFIKASI = '';
-
-        //                         for (i = 0; i < data_1.length; i++) {
-
-        //                             JUMLAH_QTY_SPP = data_1[i].JUMLAH_QTY_SPP;
-
-        //                             if (data_1[i].ID_RASD_FORM == null) {
-        //                                 jumlah_rasd = null;
-        //                                 nama_rasd = null;
-        //                             }
-        //                             else {
-        //                                 var form_data = {
-        //                                     ID_RASD_FORM: data_1[i].ID_RASD_FORM
-        //                                 };
-            
-        //                                 $.ajax({
-        //                                     url: "<?php echo site_url('SPPB_form/data_qty_rasd') ?>",
-        //                                     type: "POST",
-        //                                     dataType: "JSON",
-        //                                     async: false,
-        //                                     data: form_data,
-        //                                     success: function (data) {
-        //                                         var data_2 = data;
-
-        //                                         if (data_2[0] == null) {
-
-        //                                         }
-        //                                         else {
-        //                                             jumlah_rasd = data_2[0].jumlah_quantity_rasd;
-        //                                             nama_rasd = data_2[0].NAMA;
-        //                                         }
-
-        //                                     }
-        //                                 });
-        //                             }
-
-
-        //                             if (data[i].JUMLAH_QTY_SPP == null || data[i].JUMLAH_QTY_SPP == 0) {
-        //                                 JUMLAH_QTY_SPP = '<td style="background-color:#DAF7A6">' + data_1[i].JUMLAH_QTY_SPP + '</td>';
-        //                             }
-        //                             else
-        //                             {
-        //                                 JUMLAH_QTY_SPP = '<td>' + data_1[i].JUMLAH_QTY_SPP + '</td>';
-        //                             }
-
-        //                             if (data[i].NAMA_BARANG == null || data[i].NAMA_BARANG == "") {
-        //                                 NAMA_BARANG = '<td style="background-color:#DAF7A6">' + data_1[i].NAMA_BARANG + '</td>';
-        //                             }
-        //                             else
-        //                             {
-        //                                 NAMA_BARANG = '<td>' + data_1[i].NAMA_BARANG + '</td>';
-        //                             }
-
-
-        //                             if (data[i].SPESIFIKASI_SINGKAT == null || data[i].SPESIFIKASI_SINGKAT == "") {
-        //                                 SPESIFIKASI_SINGKAT = '<td style="background-color:#DAF7A6">' + data_1[i].SPESIFIKASI_SINGKAT + '</td>';
-        //                             }
-        //                             else
-        //                             {
-        //                                 SPESIFIKASI_SINGKAT = '<td>' + data_1[i].SPESIFIKASI_SINGKAT + '</td>';
-        //                             }
-
-
-        //                             if (data[i].ID_RAB_FORM == "" && data[i].NAMA_KATEGORI_RAB == "") {
-        //                                 TD_KLASIFIKASI = '<td style="background-color:#DAF7A6">';
-        //                             }
-
-        //                             else if (data[i].ID_RAB_FORM == null && data[i].NAMA_KATEGORI_RAB == null) {
-        //                                 TD_KLASIFIKASI = '<td style="background-color:#DAF7A6">';
-        //                             }
-
-        //                             else if (data[i].ID_RAB_FORM == null && data[i].NAMA_KATEGORI_RAB == "") {
-        //                                 TD_KLASIFIKASI = '<td style="background-color:#DAF7A6">';
-        //                             }
-
-        //                             else if (data[i].ID_RAB_FORM == "" && data[i].NAMA_KATEGORI_RAB == null) {
-        //                                 TD_KLASIFIKASI = '<td style="background-color:#DAF7A6">';
-        //                             }
-
-        //                             else if (data[i].ID_RAB_FORM == "0" && data[i].NAMA_KATEGORI_RAB == null) {
-        //                                 TD_KLASIFIKASI = '<td style="background-color:#DAF7A6">';
-        //                             }
-        //                             else
-        //                             {
-        //                                 TD_KLASIFIKASI = '<td>';
-        //                             }
-
-        //                             if (data[i].ID_KLASIFIKASI_BARANG == null || data[i].ID_KLASIFIKASI_BARANG == "" || data[i].ID_KLASIFIKASI_BARANG == "0" || TD_KLASIFIKASI=='<td style="background-color:#DAF7A6">') {
-        //                                 TD_KLASIFIKASI = '<td style="background-color:#DAF7A6">';
-        //                             }
-        //                             else
-        //                             {
-        //                                 TD_KLASIFIKASI = '<td>';
-        //                             }
-
-        //                             if (data[i].SATUAN_BARANG == null || data[i].SATUAN_BARANG == "") {
-        //                                 SATUAN_BARANG = '<td style="background-color:#DAF7A6">' + data_1[i].SATUAN_BARANG + '</td>';
-        //                             }
-        //                             else
-        //                             {
-        //                                 SATUAN_BARANG = '<td>' + data_1[i].SATUAN_BARANG + '</td>';
-        //                             }
-                                    
-
-        //                             if (data[i].TANGGAL_MULAI_PAKAI_HARI == "" || data[i].TANGGAL_MULAI_PAKAI_HARI == "00/00/0000" || data[i].TANGGAL_MULAI_PAKAI_HARI == null) {
-        //                                 TANGGAL_MULAI_PAKAI_HARI = '<td style="background-color:#DAF7A6">' + 'Mulai: ' + data_1[i].TANGGAL_MULAI_PAKAI_HARI;
-        //                             }
-
-        //                             else{
-        //                                 TANGGAL_MULAI_PAKAI_HARI = '<td>' + 'Mulai: ' + data_1[i].TANGGAL_MULAI_PAKAI_HARI;
-        //                             }
-
-
-        //                             var form_data = {
-        //                                 ID_RASD_FORM: data_1[i].ID_RASD_FORM
-        //                             };
-        
-        //                             $.ajax({
-        //                                 url: "<?php echo site_url('SPPB_form/data_qty_rasd_realisasi') ?>",
-        //                                 type: "POST",
-        //                                 dataType: "JSON",
-        //                                 async: false,
-        //                                 data: form_data,
-        //                                 success: function (data) {
-        //                                     var data_3 = data;
-
-        //                                     if (data_3[0].JUMLAH_BARANG == null) {
-        //                                         jumlah_realisasi = 0;
-        //                                     }
-        //                                     else {
-        //                                         jumlah_realisasi = data_3[0].JUMLAH_BARANG;
-        //                                     }
-
-        //                                 }
-        //                             });
-                                    
-
-        //                             html +=
-        //                             '<tr>'+
-        //                             NAMA_BARANG +
-        //                             '<td>' + data_1[i].MEREK + '</td>' +
-        //                             SPESIFIKASI_SINGKAT +
-        //                             TD_KLASIFIKASI + 'RAB: ' + data_1[i].NAMA_KATEGORI + '</br> Klasifikasi:' + data_1[i].NAMA_KLASIFIKASI_BARANG + '</td>' +
-        //                             JUMLAH_QTY_SPP +
-        //                             SATUAN_BARANG +
-        //                             '<td>' + 'Item: ' + nama_rasd + '</br>' + 'Qty: ' + jumlah_rasd + '</td>' +
-        //                             '<td>' + jumlah_realisasi + ' item barang/jasa</td>' +
-        //                             TANGGAL_MULAI_PAKAI_HARI + '</br> Selesai: ' + data_1[i].TANGGAL_SELESAI_PAKAI_HARI + '</td>' +
-        //                             '<td>' + data_1[i].KETERANGAN_UMUM + '</td>' +
-        //                             '<td>' + '<a href="javascript:;" class="btn btn-warning btn-xs item_edit block" data="' + data_1[i].ID_SPPB_FORM + '"><i class="fa fa-pencil"></i> Edit</a>' + ' ' +
-        //                             '<a href="javascript:;" class="btn btn-danger btn-xs item_hapus block" data="' + data_1[i].ID_SPPB_FORM + '"><i class="fa fa-trash"></i> Hapus</a>' +
-        //                             '</td>' +
-        //                             '</tr>';
-        //                         }
-        //                     }
-        //                 });
-        //                 $('#show_data').html(html);
-        //             }
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo base_url() ?>Penyaluran_form/data_barang_bantuan_form',
+                async: false,
+                dataType: 'json',
+                data: {
+                    ID_FORM_PENYALURAN_BARANG_BENCANA: ID_FORM_PENYALURAN_BARANG_BENCANA
+                },
+                success: function(data) {
                     
-        //         }
-        //     });
-        // }
+
+                    var html = '';
+
+                    for (l = 0; l < data.length; l++) {
+                        html +=
+                            '<tr>' +
+                            '<td>' + data[l].NAMA_BARANG + '</td>' +
+                            '<td>' + data[l].MEREK + '</td>' +
+                            '<td>' + data[l].SPESIFIKASI_SINGKAT + '</td>' +
+                            '<td>' + data[l].JUMLAH_BARANG + '</td>' +
+                            '<td>' + data[l].SATUAN_BARANG + '</td>' +
+                            '<td>' + data[l].KLASIFIKASI_BARANG + '</td>' +
+                            '<td>' + data[l].KETERANGAN + '</td>' +
+                            data[l].NAMA_BARANG +
+                            '<td>' +
+                            '<a href="javascript:;" class="btn btn-warning btn-xs item_edit block" data="' +
+                            data[l].ID_ITEM_FORM_PENYALURAN_BARANG +
+                            '"><i class="fa fa-pencil"></i> Edit</a>' + ' ' +
+                            '<a href="javascript:;" class="btn btn-danger btn-xs item_hapus block" data="' +
+                            data[l].ID_ITEM_FORM_PENYALURAN_BARANG +
+                            '"><i class="fa fa-trash"></i> Hapus</a>' +
+                            '</td>' +
+                            '</tr>';
+                    }
+                    $('#show_data').html(html);
+                }
+            });
+        }
 
         $('#btn_simpan_identitas_form').click(function () {
 
@@ -1938,39 +1765,26 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
 
 
         //SIMPAN DATA
-        $('#btn_simpan_data_1_item').click(function () {
-            var TANGGAL_MULAI_PAKAI_HARI = $('#TANGGAL_MULAI_PAKAI_HARI_4').val(),
-                TANGGAL_MULAI_PAKAI_HARI = TANGGAL_MULAI_PAKAI_HARI.split("/").reverse().join("-");
-
-            var TANGGAL_SELESAI_PAKAI_HARI = $('#TANGGAL_SELESAI_PAKAI_HARI_4').val(),
-                TANGGAL_SELESAI_PAKAI_HARI = TANGGAL_SELESAI_PAKAI_HARI.split("/").reverse().join("-");
-
+        $('#btn_simpan_data_1_item').click(function() {
             var form_data = {
-                ID_SPPB: ID_SPPB,
+                ID_FORM_PENYALURAN_BARANG_BENCANA: ID_FORM_PENYALURAN_BARANG_BENCANA,
                 NAMA: $('#NAMA_4').val(),
                 MEREK: $('#MEREK_4').val(),
                 SPESIFIKASI_SINGKAT: $('#SPESIFIKASI_SINGKAT_4').val(),
-                JUMLAH_QTY_SPP: $('#JUMLAH_QTY_SPP_4').val(),
                 SATUAN_BARANG: $('#SATUAN_BARANG_4').val(),
+                JUMLAH_BARANG: $('#JUMLAH_BARANG_4').val(),
                 KLASIFIKASI_BARANG: $('#KLASIFIKASI_BARANG_4').val(),
-                TANGGAL_MULAI_PAKAI_HARI: TANGGAL_MULAI_PAKAI_HARI,
-                TANGGAL_SELESAI_PAKAI_HARI: TANGGAL_SELESAI_PAKAI_HARI,
                 KETERANGAN: $('#KETERANGAN_4').val(),
-                ID_PROYEK_SUB_PEKERJAAN: $('#ID_PROYEK_SUB_PEKERJAAN_4').val(),
-                ID_RAB: $('#ID_RAB_4').val(),
-                ID_RAB_FORM: $('#ID_RAB_FORM_4').val(),
-                NAMA_RAB: $('#ID_RAB_FORM_4 option:selected').text(),
-                NAMA_KATEGORI_RAB: $('#NAMA_KATEGORI_RAB_4').val(),
-                ID_RASD_FORM: $('#ID_RASD_FORM_4').val(),
-                ID_PROYEK: ID_PROYEK
+
             };
             $.ajax({
-                url: "<?php echo site_url('SPPB_form/simpan_data_sppb_pembelian_1_item'); ?>",
+                url: "<?php echo site_url('Penyaluran_form/simpan_data_barang_bantuan'); ?>",
                 type: 'POST',
                 data: form_data,
-                success: function (data) {
+                success: function(data) {
                     if (data != '') {
-                        $('#alert-msg-1').html('<div class="alert alert-danger">' + data + '</div>');
+                        $('#alert-msg-1').html('<div class="alert alert-danger">' + data +
+                            '</div>');
                     } else {
                         $('#ModalAdd1Item').modal('hide');
                         window.location.reload();
@@ -1979,7 +1793,6 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
             });
             return false;
         });
-
         //UPDATE DATA 
         $('#btn_update').on('click', function () {
 

@@ -10,7 +10,7 @@ class Penyaluran_form_model extends CI_Model
 		$hasil = $this->db->query("SELECT 
 		sppb_form.ID_SPPB, 
 		sppb_form.ID_SPPB_FORM,
-		sppb_form.ID_FPB_FORM,
+		sppb_form.ID_FPB_FORMid,
 		sppb_form.ID_RASD_FORM,
 		sppb_form.ID_RAB_FORM,
 		sppb_form.ID_PROYEK_SUB_PEKERJAAN,
@@ -490,9 +490,9 @@ class Penyaluran_form_model extends CI_Model
 		return $hasil;
 	}
 
-	function data_spp_form_by_id_sppb_form($ID_SPPB_FORM)
+	function data_barang_bantuan_form($ID_FORM_PENYALURAN_BARANG_BENCANA)
 	{
-		$hasil = $this->db->query("SELECT ID_SPP, JUMLAH_BARANG, SATUAN_BARANG from spp_form WHERE ID_SPPB_FORM='$ID_SPPB_FORM'");
+		$hasil = $this->db->query("SELECT * FROM item_form_penyaluran_barang WHERE ID_FORM_PENYALURAN_BARANG_BENCANA = '$ID_FORM_PENYALURAN_BARANG_BENCANA'");
 		return $hasil->result();
 	}
 
@@ -1882,6 +1882,38 @@ class Penyaluran_form_model extends CI_Model
 		return $hasil;
 	}
 
+	function simpan_data_barang_bantuan(
+		$ID_FORM_PENYALURAN_BARANG_BENCANA,
+		$NAMA,
+		$MEREK,
+		$SPESIFIKASI_SINGKAT,
+		$JUMLAH_BARANG,
+		$SATUAN_BARANG,
+		$KLASIFIKASI_BARANG,
+		$KETERANGAN
+	) {
+		$hasil = $this->db->query("INSERT INTO item_form_penyaluran_barang (
+				ID_FORM_PENYALURAN_BARANG_BENCANA,
+				NAMA_BARANG,
+				MEREK,
+				SPESIFIKASI_SINGKAT,
+				JUMLAH_BARANG,
+				SATUAN_BARANG,
+				KLASIFIKASI_BARANG,
+				KETERANGAN
+				)
+			VALUES(
+				'$ID_FORM_PENYALURAN_BARANG_BENCANA',
+				'$NAMA',
+				'$MEREK',
+				'$SPESIFIKASI_SINGKAT',
+				'$JUMLAH_BARANG',
+				'$SATUAN_BARANG',
+				'$KLASIFIKASI_BARANG',
+                '$KETERANGAN'
+				 )");
+		return $hasil;
+	}
 
 	//FUNGSI: Fungsi ini untuk menambahkan data sppb form ID_USER
 	//SUMBER TABEL: tabel sppb_form

@@ -50,7 +50,7 @@ class Penyaluran extends CI_Controller
 
         $user = $this->ion_auth->user()->row();
         $WAKTU = date('Y-m-d H:i:s');
-        $this->SPPB_model->user_log_sppb($user->ID_PEGAWAI, $ID_SPPB, $KETERANGAN, $WAKTU);
+        // $this->SPPB_model->user_log_sppb($user->ID_PEGAWAI, $ID_SPPB, $KETERANGAN, $WAKTU);
     }
 
     /**

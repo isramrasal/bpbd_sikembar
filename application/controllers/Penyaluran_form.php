@@ -114,19 +114,19 @@ class Penyaluran_form extends CI_Controller
 		if ($this->ion_auth->logged_in() && $this->ion_auth->in_group(2)) { //User bpbd
 			$hasil_2 = $this->Penyaluran_model->get_data_penyaluran_by_CODE_MD5($CODE_MD5);
 			$PROGRESS_PENGAJUAN = $hasil_2['PROGRESS_PENGAJUAN'];
-			var_dump($PROGRESS_PENGAJUAN);
+			// var_dump($PROGRESS_PENGAJUAN);
 
 			// $sess_data['HASH_MD5_SPPB'] = $HASH_MD5_SPPB;
 			// $this->session->set_userdata($sess_data);
 
 			if ($PROGRESS_PENGAJUAN == "Diproses oleh Staff BPBD") {
 				$hasil = $this->Penyaluran_model->get_data_penyaluran_by_CODE_MD5($CODE_MD5);
-				var_dump($hasil);
-				// $ID_FORM_INVENTARIS_KORBAN_BENCANA = $hasil['ID_FORM_PENYALURAN_BARANG_BENCANA'];
-				// $Nomor_Surat = $hasil['Nomor_Surat'];
-				// $this->data['CODE_MD5'] = $CODE_MD5;
-				// $this->data['ID_FORM_PENYALURAN_BARANG_BENCANA'] = $ID_FORM_PENYALURAN_BARANG_BENCANA;
-				// $this->data['Nomor_Surat'] = $Nomor_Surat;
+				// var_dump($hasil);
+				$ID_FORM_PENYALURAN_BARANG_BENCANA = $hasil['ID_FORM_PENYALURAN_BARANG_BENCANA'];
+				$Nomor_Surat = $hasil['Nomor_Surat'];
+				$this->data['CODE_MD5'] = $CODE_MD5;
+				$this->data['ID_FORM_PENYALURAN_BARANG_BENCANA'] = $ID_FORM_PENYALURAN_BARANG_BENCANA;
+				$this->data['Nomor_Surat'] = $Nomor_Surat;
 
 				// $this->data['ID_SPPB'] = $ID_SPPB;
 				$this->data['Penyaluran'] = $this->Penyaluran_model->penyaluran_list_by_id_penyaluran($ID_FORM_PENYALURAN_BARANG_BENCANA);
@@ -135,11 +135,11 @@ class Penyaluran_form extends CI_Controller
 				// $this->data['klasifikasi_barang_list'] = $this->Klasifikasi_barang_model->klasifikasi_barang_list();
 				// $this->data['RAB_list'] = $this->RAB_form_model->rab_list_by_id_proyek_sub_pekerjaan($this->data['ID_PROYEK_SUB_PEKERJAAN']);
 
-				$this->load->view('wasa/user_korban_bencana/head_normal', $this->data);
-				$this->load->view('wasa/user_korban_bencana/user_menu');
-				$this->load->view('wasa/user_korban_bencana/left_menu');
-				$this->load->view('wasa/user_korban_bencana/header_menu');
-				$this->load->view('wasa/user_korban_bencana/content_penyaluran_form_proses');
+				$this->load->view('wasa/user_pegawai_bpbd/head_normal', $this->data);
+				$this->load->view('wasa/user_pegawai_bpbd/user_menu');
+				$this->load->view('wasa/user_pegawai_bpbd/left_menu');
+				$this->load->view('wasa/user_pegawai_bpbd/header_menu');
+				$this->load->view('wasa/user_pegawai_bpbd/content_penyaluran_form_proses');
 				// $this->load->view('wasa/user_korban_bencana/footer');
 			} else {
 				redirect('Penyaluran', 'refresh');
@@ -726,17 +726,12 @@ class Penyaluran_form extends CI_Controller
 		}
 	}
 
-	function data_sppb_form() //102023
+	function data_barang_bantuan_form() //102023
 	{
 		if ($this->ion_auth->logged_in()) {
-			$ID_SPPB = $this->input->get('ID_SPPB');
-			$ID_RAB_FORM = $this->input->get('ID_RAB_FORM');
-			$data = $this->SPPB_form_model->sppb_form_list_by_id_sppb($ID_SPPB, $ID_RAB_FORM);
+			$ID_FORM_PENYALURAN_BARANG_BENCANA = $this->input->post('ID_FORM_PENYALURAN_BARANG_BENCANA');
+			$data = $this->Penyaluran_form_model->data_barang_bantuan_form($ID_FORM_PENYALURAN_BARANG_BENCANA);
 			echo json_encode($data);
-
-			$ID_SPPB = $ID_SPPB;
-			$KETERANGAN = "Melihat Data SPPB Form: " . json_encode($data);
-			$this->user_log_sppb($ID_SPPB, $KETERANGAN);
 		} else {
 			$this->logout();
 			$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
@@ -1131,204 +1126,47 @@ class Penyaluran_form extends CI_Controller
 		}
 	}
 
-	function simpan_data_sppb_pembelian_1_item()
+	function simpan_data_barang_bantuan()
 	{
 		if ($this->ion_auth->logged_in()) {
 
-			$ID_RAB_FORM = $this->input->post('ID_RAB_FORM');
-			if ($ID_RAB_FORM == '999999999') {
-				//set validation rules
-				$this->form_validation->set_rules('NAMA', 'Nama Barang', 'trim|max_length[100]');
-				$this->form_validation->set_rules('MEREK', 'Merek Barang', 'trim|max_length[100]');
-				$this->form_validation->set_rules('SPESIFIKASI_SINGKAT', 'Spesifikasi Singkat', 'trim|max_length[100]');
-				$this->form_validation->set_rules('JUMLAH_QTY_SPP', 'Jumlah Barang', 'trim|numeric|required|greater_than[0]|less_than[99999999999]');
-				$this->form_validation->set_rules('SATUAN_BARANG', 'Satuan Barang', 'trim');
-				$this->form_validation->set_rules('KLASIFIKASI_BARANG', 'Klasifikasi Barang', 'trim');
-				$this->form_validation->set_rules('KETERANGAN', 'Keterangan', 'trim|max_length[300]');
-				$this->form_validation->set_rules('NAMA_KATEGORI_RAB', 'Nama Kategori RAB', 'trim|required');
-
-				$TANGGAL_MULAI_PAKAI_HARI = $this->input->post('TANGGAL_MULAI_PAKAI_HARI');
-				$TANGGAL_SELESAI_PAKAI_HARI = $this->input->post('TANGGAL_SELESAI_PAKAI_HARI');
-
-				// run validation check
-				if ($this->form_validation->run() == FALSE) { //validation fails
-					echo validation_errors();
-				} else {
-					$ID_SPPB = $this->input->post('ID_SPPB');
-					$ID_PROYEK = $this->input->post('ID_PROYEK');
-					$NAMA = $this->input->post('NAMA');
-					$MEREK = $this->input->post('MEREK');
-					$SPESIFIKASI_SINGKAT = $this->input->post('SPESIFIKASI_SINGKAT');
-					$JUMLAH_QTY_SPP = $this->input->post('JUMLAH_QTY_SPP');
-					$SATUAN_BARANG = $this->input->post('SATUAN_BARANG');
-					$ID_KLASIFIKASI_BARANG = $this->input->post('KLASIFIKASI_BARANG');
-					$ID_PROYEK_SUB_PEKERJAAN = $this->input->post('ID_PROYEK_SUB_PEKERJAAN');
-					$ID_RAB = $this->input->post('ID_RAB');
-
-					$KETERANGAN = $this->input->post('KETERANGAN');
-					$NAMA_KATEGORI_RAB = $this->input->post('NAMA_KATEGORI_RAB');
-
-					$NAMA_KATEGORI = strtoupper($NAMA_KATEGORI_RAB);
-					$NAMA_RASD = $NAMA_KATEGORI;
-					// $JENIS_RASD = "TANPA_RASD";
-					// $PERALATAN_PERLENGKAPAN = $NAMA_KATEGORI;
-
-
-					//check apakah nama NAMA_KATEGORI sudah ada. jika belum ada, akan disimpan.
-					if ($this->RAB_form_model->cek_nama_kategori_rab($ID_RAB, $NAMA_KATEGORI) == 'Data belum ada') {
-
-						//APAKAH TIDAK PERLU CEK NAMA RASD YANG BARU DIBUAT???
-						// if ($this->RAB_form_model->cek_nama_rasd_by_id_rab($ID_RAB, $NAMA_RASD) == 'Data belum ada') {
-						// } else {
-						// 	echo 'Nama RASD sudah terekam sebelumnya';
-						// }
-
-						// $KETERANGAN = "Tambah Data RAB: " . ";" . $ID_RAB . ";" . $NAMA_KATEGORI . ";" . $NAMA_RASD . ";" . $JENIS_RASD;
-						// $this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
-
-						// SIMPAN RAB FORM dulu
-						$this->RAB_form_model->simpan_data_nama_kategori_MENGGUNAKAN_RASD($ID_RAB, $NAMA_KATEGORI);
-
-						// AMBIL ID RAB FORM YANG BARU DIBUAT
-						$ID_RAB_FORM = $this->RAB_form_model->get_data_id_rab_form($ID_RAB, $NAMA_KATEGORI);
-
-						// kemudian SIMPAN RASD
-						$this->RAB_form_model->simpan_data_rasd($ID_PROYEK, $ID_PROYEK_SUB_PEKERJAAN, $ID_RAB, $ID_RAB_FORM, $NAMA_RASD);
-
-						//SET HASH MD5 RASD YANG BARU
-						$this->RAB_form_model->set_md5_id_rasd($ID_PROYEK, $ID_PROYEK_SUB_PEKERJAAN, $ID_RAB, $NAMA_RASD);
-
-						// AMBIL ID RASD YANG BARU DIBUAT
-						$ID_RASD = $this->RAB_form_model->get_data_id_rasd($ID_PROYEK, $ID_PROYEK_SUB_PEKERJAAN, $ID_RAB, $NAMA_RASD);
-
-						//JIKA NAMA SUDAH ADA, TETAP MASUK KE DEVIASI KAH??
-
-						$data = $this->RASD_form_model->simpan_data_dari_sppb_form_deviasi(
-							$ID_RASD,
-							$SATUAN_BARANG,
-							$NAMA,
-							$MEREK,
-							$SPESIFIKASI_SINGKAT
-						);
-
-						$ID_RASD_FORM = $this->RASD_form_model->get_data_id_rasd_form($ID_RASD, $NAMA, $SPESIFIKASI_SINGKAT);
-
-						// //check apakah nama SPPB_form sudah ada. jika belum ada, akan disimpan.
-						// if ($this->SPPB_form_model->cek_nama_barang_sppb_form($NAMA, $ID_SPPB) == 'Data belum ada') {
-						// } else {
-						// 	echo 'Nama SPPB Barang sudah terekam sebelumnya';
-						// }
-
-						$data = $this->SPPB_form_model->simpan_data_spbb_pembelian_1_item_by_rab_and_by_rasd(
-							$ID_SPPB,
-							$SATUAN_BARANG,
-							$ID_RASD_FORM,
-							$ID_RAB_FORM,
-							$ID_KLASIFIKASI_BARANG,
-							$ID_PROYEK_SUB_PEKERJAAN,
-							$NAMA,
-							$MEREK,
-							$SPESIFIKASI_SINGKAT,
-							$JUMLAH_QTY_SPP,
-							$TANGGAL_MULAI_PAKAI_HARI,
-							$TANGGAL_SELESAI_PAKAI_HARI,
-							$KETERANGAN
-						);
-
-						// $KETERANGAN = "Tambah Data SPPB Form (di luar barang master dan RASD): " . ";" . $ID_SPPB . ";" . $ID_BARANG_MASTER . ";" . $ID_RASD_FORM . ";" . $ID_SATUAN_BARANG . ";" . $ID_JENIS_BARANG . ";" . $NAMA . ";" . $MEREK . ";" . $PERALATAN_PERLENGKAPAN . ";" . $SPESIFIKASI_SINGKAT . ";" . $JUMLAH_MINTA . ";" . $TANGGAL_MULAI_PAKAI_HARI . ";" . $TANGGAL_SELESAI_PAKAI_HARI;
-						// $this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
-
-					} else {
-						echo 'Nama Kategori RAB sudah terekam sebelumnya';
-					}
-				}
-			} else {
-				//set validation rules
-				$this->form_validation->set_rules('NAMA', 'Nama Barang', 'trim|max_length[100]');
-				$this->form_validation->set_rules('MEREK', 'Merek Barang', 'trim|max_length[100]');
-				$this->form_validation->set_rules('SPESIFIKASI_SINGKAT', 'Spesifikasi Singkat', 'trim|max_length[100]');
-				$this->form_validation->set_rules('JUMLAH_QTY_SPP', 'Jumlah Barang', 'trim|numeric|required|greater_than[0]|less_than[99999999999]');
-				$this->form_validation->set_rules('SATUAN_BARANG', 'Satuan Barang', 'trim');
-				$this->form_validation->set_rules('KLASIFIKASI_BARANG', 'Klasifikasi Barang', 'trim');
-				$this->form_validation->set_rules('KETERANGAN', 'Keterangan', 'trim|max_length[300]');
-				$this->form_validation->set_rules('ID_RAB_FORM', 'Kategori RAB', 'trim');
-
-				$TANGGAL_MULAI_PAKAI_HARI = $this->input->post('TANGGAL_MULAI_PAKAI_HARI');
-				$TANGGAL_SELESAI_PAKAI_HARI = $this->input->post('TANGGAL_SELESAI_PAKAI_HARI');
-
-				// run validation check
-				if ($this->form_validation->run() == FALSE) { //validation fails
-					echo validation_errors();
-				}
-
-				else {
-
-					$ID_SPPB = $this->input->post('ID_SPPB');
-					$ID_PROYEK = $this->input->post('ID_PROYEK');
-					$NAMA = $this->input->post('NAMA');
-					$MEREK = $this->input->post('MEREK');
-					$SPESIFIKASI_SINGKAT = $this->input->post('SPESIFIKASI_SINGKAT');
-					$JUMLAH_QTY_SPP = $this->input->post('JUMLAH_QTY_SPP');
-					$SATUAN_BARANG = $this->input->post('SATUAN_BARANG');
-					$ID_KLASIFIKASI_BARANG = $this->input->post('KLASIFIKASI_BARANG');
-					$ID_PROYEK_SUB_PEKERJAAN = $this->input->post('ID_PROYEK_SUB_PEKERJAAN');
-
-					$KETERANGAN = $this->input->post('KETERANGAN');
-					$ID_RAB = $this->input->post('ID_RAB');
-					$NAMA_RAB = $this->input->post('NAMA_RAB');
-					$ID_RAB_FORM = $this->input->post('ID_RAB_FORM');
-					$ID_RASD_FORM = $this->input->post('ID_RASD_FORM');
-
-					if ($ID_RASD_FORM == '666666') {
-
-						// AMBIL ID RASD
-						$ID_RASD = $this->RAB_form_model->get_data_id_rasd($ID_PROYEK, $ID_PROYEK_SUB_PEKERJAAN, $ID_RAB, $NAMA_RAB);
-
-						$data = $this->RASD_form_model->simpan_data_dari_sppb_form_deviasi(
-							$ID_RASD,
-							$SATUAN_BARANG,
-							$NAMA,
-							$MEREK,
-							$SPESIFIKASI_SINGKAT
-						);
-
-						$ID_RASD_FORM = $this->RASD_form_model->get_data_id_rasd_form($ID_RASD, $NAMA, $SPESIFIKASI_SINGKAT);
-
-						$data = $this->SPPB_form_model->simpan_data_spbb_pembelian_1_item_by_rab_and_by_rasd(
-							$ID_SPPB,
-							$SATUAN_BARANG,
-							$ID_RASD_FORM,
-							$ID_RAB_FORM,
-							$ID_KLASIFIKASI_BARANG,
-							$ID_PROYEK_SUB_PEKERJAAN,
-							$NAMA,
-							$MEREK,
-							$SPESIFIKASI_SINGKAT,
-							$JUMLAH_QTY_SPP,
-							$TANGGAL_MULAI_PAKAI_HARI,
-							$TANGGAL_SELESAI_PAKAI_HARI,
-							$KETERANGAN
-						);
-
-					} else {
-						$data = $this->SPPB_form_model->simpan_data_spbb_pembelian_1_item_by_rab_and_by_rasd(
-							$ID_SPPB,
-							$SATUAN_BARANG,
-							$ID_RASD_FORM,
-							$ID_RAB_FORM,
-							$ID_KLASIFIKASI_BARANG,
-							$ID_PROYEK_SUB_PEKERJAAN,
-							$NAMA,
-							$MEREK,
-							$SPESIFIKASI_SINGKAT,
-							$JUMLAH_QTY_SPP,
-							$TANGGAL_MULAI_PAKAI_HARI,
-							$TANGGAL_SELESAI_PAKAI_HARI,
-							$KETERANGAN
-						);
-					}
-				}
+			$ID_FORM_PENYALURAN_BARANG_BENCANA = $this->input->post('ID_FORM_PENYALURAN_BARANG_BENCANA');
+		
+			//set validation rules
+			$this->form_validation->set_rules('NAMA', 'Nama Barang', 'trim|max_length[100]');
+			$this->form_validation->set_rules('MEREK', 'Merek Barang', 'trim|max_length[100]');
+			$this->form_validation->set_rules('SPESIFIKASI_SINGKAT', 'Spesifikasi Singkat', 'trim|max_length[100]');
+			$this->form_validation->set_rules('JUMLAH_BARANG', 'Jumlah Barang', 'trim|numeric|required|greater_than[0]|less_than[99999999999]');
+			$this->form_validation->set_rules('SATUAN_BARANG', 'Satuan Barang', 'trim');
+			$this->form_validation->set_rules('KLASIFIKASI_BARANG', 'Klasifikasi Barang', 'trim');
+			$this->form_validation->set_rules('KETERANGAN', 'Keterangan', 'trim|max_length[300]');
+			
+			// run validation check
+			if ($this->form_validation->run() == FALSE) { //validation fails
+				echo validation_errors();
 			}
+			else {
+				$NAMA = $this->input->post('NAMA');
+				$MEREK = $this->input->post('MEREK');
+				$SPESIFIKASI_SINGKAT = $this->input->post('SPESIFIKASI_SINGKAT');
+				$JUMLAH_BARANG = $this->input->post('JUMLAH_BARANG');
+				$SATUAN_BARANG = $this->input->post('SATUAN_BARANG');
+				$KLASIFIKASI_BARANG = $this->input->post('KLASIFIKASI_BARANG');
+				$KETERANGAN = $this->input->post('KETERANGAN');
+				
+				$data = $this->Penyaluran_form_model->simpan_data_barang_bantuan(
+					$ID_FORM_PENYALURAN_BARANG_BENCANA,
+					$NAMA,
+					$MEREK,
+					$SPESIFIKASI_SINGKAT,
+					$JUMLAH_BARANG,
+					$SATUAN_BARANG,
+					$KLASIFIKASI_BARANG,
+					$KETERANGAN
+				);
+				
+			}
+			
 		} else {
 			$this->logout();
 		}
