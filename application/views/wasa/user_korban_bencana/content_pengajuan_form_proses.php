@@ -1105,10 +1105,10 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
                         data[l].NAMA_BARANG +
                         '<td>' +
                         '<a href="javascript:;" class="btn btn-warning btn-xs item_edit block" data="' +
-                        data[l].ID_ITEM_FORM_PENGADAAN_BARANG +
+                        data[l].ID_ITEM_FORM_PENGAJUAN_BARANG +
                         '"><i class="fa fa-pencil"></i> Edit</a>' + ' ' +
                         '<a href="javascript:;" class="btn btn-danger btn-xs item_hapus block" data="' +
-                        data[l].ID_ITEM_FORM_PENGADAAN_BARANG +
+                        data[l].ID_ITEM_FORM_PENGAJUAN_BARANG +
                         '"><i class="fa fa-trash"></i> Hapus</a>' +
                         '</td>' +
                         '</tr>';
