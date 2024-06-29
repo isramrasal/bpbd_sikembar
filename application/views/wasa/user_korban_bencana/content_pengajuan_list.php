@@ -876,7 +876,7 @@
 
                     $('[name="CODE_MD5"]').val(data);
                     console.log(data);
-                    //$('#ModalAdd').modal('show');
+                    $('#ModalAdd').modal('show');
                     
                 }
             });
