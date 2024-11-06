@@ -1171,12 +1171,12 @@ class Pengajuan_form extends CI_Controller
 			$ID_FORM_INVENTARIS_KORBAN_BENCANA = $this->input->post('ID_FORM_INVENTARIS_KORBAN_BENCANA');
 		
 			//set validation rules
-			$this->form_validation->set_rules('NAMA', 'Nama Barang', 'trim|max_length[100]');
+			$this->form_validation->set_rules('NAMA', 'Nama Barang', 'trim|required|max_length[100]');
 			$this->form_validation->set_rules('MEREK', 'Merek Barang', 'trim|max_length[100]');
 			$this->form_validation->set_rules('SPESIFIKASI_SINGKAT', 'Spesifikasi Singkat', 'trim|max_length[100]');
 			$this->form_validation->set_rules('JUMLAH_BARANG', 'Jumlah Barang', 'trim|numeric|required|greater_than[0]|less_than[99999999999]');
-			$this->form_validation->set_rules('SATUAN_BARANG', 'Satuan Barang', 'trim');
-			$this->form_validation->set_rules('KLASIFIKASI_BARANG', 'Klasifikasi Barang', 'trim');
+			$this->form_validation->set_rules('SATUAN_BARANG', 'Satuan Barang', 'trim|required|max_length[100]');
+			$this->form_validation->set_rules('JENIS_BANTUAN', 'Jenis Bantuan', 'trim|required|max_length[100]');
 			$this->form_validation->set_rules('KETERANGAN', 'Keterangan', 'trim|max_length[300]');
 			
 			// run validation check
@@ -1189,7 +1189,7 @@ class Pengajuan_form extends CI_Controller
 				$SPESIFIKASI_SINGKAT = $this->input->post('SPESIFIKASI_SINGKAT');
 				$JUMLAH_BARANG = $this->input->post('JUMLAH_BARANG');
 				$SATUAN_BARANG = $this->input->post('SATUAN_BARANG');
-				$KLASIFIKASI_BARANG = $this->input->post('KLASIFIKASI_BARANG');
+				$JENIS_BANTUAN = $this->input->post('JENIS_BANTUAN');
 				$KETERANGAN = $this->input->post('KETERANGAN');
 				
 				$data = $this->Pengajuan_form_model->simpan_data_barang_bantuan(
@@ -1199,7 +1199,7 @@ class Pengajuan_form extends CI_Controller
 					$SPESIFIKASI_SINGKAT,
 					$JUMLAH_BARANG,
 					$SATUAN_BARANG,
-					$KLASIFIKASI_BARANG,
+					$JENIS_BANTUAN,
 					$KETERANGAN
 				);
 				

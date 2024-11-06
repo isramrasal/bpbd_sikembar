@@ -1896,7 +1896,7 @@ class Pengajuan_form_model extends CI_Model
 		$SPESIFIKASI_SINGKAT,
 		$JUMLAH_BARANG,
 		$SATUAN_BARANG,
-		$KLASIFIKASI_BARANG,
+		$JENIS_BANTUAN,
 		$KETERANGAN
 	) {
 		$hasil = $this->db->query("INSERT INTO item_form_pengajuan_barang (
@@ -1906,7 +1906,7 @@ class Pengajuan_form_model extends CI_Model
 				SPESIFIKASI_SINGKAT,
 				JUMLAH_BARANG,
 				SATUAN_BARANG,
-				KLASIFIKASI_BARANG,
+				JENIS_BANTUAN,
 				KETERANGAN
 				)
 			VALUES(
@@ -1916,7 +1916,7 @@ class Pengajuan_form_model extends CI_Model
 				'$SPESIFIKASI_SINGKAT',
 				'$JUMLAH_BARANG',
 				'$SATUAN_BARANG',
-				'$KLASIFIKASI_BARANG',
+				'$JENIS_BANTUAN',
                 '$KETERANGAN'
 				 )");
 		return $hasil;

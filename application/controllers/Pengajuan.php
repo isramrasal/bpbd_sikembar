@@ -740,7 +740,7 @@ class Pengajuan extends CI_Controller
                 $TANGGAL_KEJADIAN_BENCANA = $this->input->post('TANGGAL_KEJADIAN_BENCANA');
 
                 $TANGGAL_PEMBUATAN_PENGAJUAN_JAM = date("h:i:s.u");
-                $TANGGAL_PEMBUATAN_PENGAJUAN_HARI = date('Y-m-d');
+                $TANGGAL_PEMBUATAN = date('Y-m-d');
                 $dt = date('F');
                 $TANGGAL_PEMBUATAN_PENGAJUAN_BULAN = $dt;
                 $TANGGAL_PEMBUATAN_PENGAJUAN_TAHUN = date("Y");
@@ -770,7 +770,7 @@ class Pengajuan extends CI_Controller
                         $TANGGAL_DOKUMEN_PENGAJUAN,
                         $TANGGAL_KEJADIAN_BENCANA,
                         $TANGGAL_PEMBUATAN_PENGAJUAN_JAM,
-                        $TANGGAL_PEMBUATAN_PENGAJUAN_HARI,
+                        $TANGGAL_PEMBUATAN,
                         $TANGGAL_PEMBUATAN_PENGAJUAN_BULAN,
                         $TANGGAL_PEMBUATAN_PENGAJUAN_TAHUN,
                         $CREATE_BY_USER,
@@ -810,5 +810,3 @@ class Pengajuan extends CI_Controller
         }
     }
 }
-
-

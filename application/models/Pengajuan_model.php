@@ -6,11 +6,12 @@ class Pengajuan_model extends CI_Model
 	//SUMBER TABEL: tabel sppb
 	//DIPAKAI: 1. controller SPPB / function index
 	//         2. controller SPPB / function list_sppb_by_all_proyek
-	function list_pengajuan_by_all_bencana()
-	{
-		$hasil = $this->db->query("SELECT * FROM form_inventaris_kebutuhan_korban_bencana");
-		return $hasil->result();
+	public function list_pengajuan_by_all_bencana() {
+		// $this->db->select('Jenis_Bencana, Nama_Pemohon, NIK, Instansi, Kecamatan_Bencana, Desa_Kelurahan_Bencana, TANGGAL_KEJADIAN_BENCANA, Tanggal_Pembuatan, CODE_MD5, STATUS_PENGAJUAN ');
+		$query = $this->db->get('form_inventaris_kebutuhan_korban_bencana');
+		return $query->result_array();
 	}
+	
 
 	//FUNGSI: Fungsi ini untuk menampilkan data sppb berdasarkan ID_SPPB
 	//SUMBER TABEL: tabel sppb
@@ -1016,7 +1017,7 @@ class Pengajuan_model extends CI_Model
 		$TANGGAL_DOKUMEN_PENGAJUAN,
 		$TANGGAL_KEJADIAN_BENCANA,
 		$TANGGAL_PEMBUATAN_PENGAJUAN_JAM,
-		$TANGGAL_PEMBUATAN_PENGAJUAN_HARI,
+		$TANGGAL_PEMBUATAN,
 		$TANGGAL_PEMBUATAN_PENGAJUAN_BULAN,
 		$TANGGAL_PEMBUATAN_PENGAJUAN_TAHUN,
 		$CREATE_BY_USER,
@@ -1043,18 +1044,14 @@ class Pengajuan_model extends CI_Model
 				Kode_Pos_Bencana,
 				Jenis_Bencana,
 				TANGGAL_KEJADIAN_BENCANA,
-				TANGGAL_PEMBUATAN_PENGAJUAN_JAM,
-				TANGGAL_PEMBUATAN_PENGAJUAN_HARI,
-				TANGGAL_PEMBUATAN_PENGAJUAN_BULAN,
-                TANGGAL_PEMBUATAN_PENGAJUAN_TAHUN,
                 CREATE_BY_USER,
 				PROGRESS_PENGAJUAN,
                 STATUS_PENGAJUAN)
 			VALUES(
 				'$CODE_MD5',
-				'$TANGGAL_PEMBUATAN_PENGAJUAN_JAM',
+				'$TANGGAL_PEMBUATAN',
 				'$TANGGAL_DOKUMEN_PENGAJUAN',
-				'$TANGGAL_PEMBUATAN_PENGAJUAN_HARI',
+				'$TANGGAL_PEMBUATAN',
 				'$NAMA_PEMOHON',
 				'$NIK',
 				'$NIP',
@@ -1069,10 +1066,6 @@ class Pengajuan_model extends CI_Model
                 '$KODE_POS',
                 '$ID_JENIS_BENCANA',
                 '$TANGGAL_KEJADIAN_BENCANA',
-                '$TANGGAL_PEMBUATAN_PENGAJUAN_JAM',
-				'$TANGGAL_PEMBUATAN_PENGAJUAN_HARI',
-                '$TANGGAL_PEMBUATAN_PENGAJUAN_BULAN',
-                '$TANGGAL_PEMBUATAN_PENGAJUAN_TAHUN',
                 '$CREATE_BY_USER',
                 '$PROGRESS_PENGAJUAN',
 				'$STATUS_PENGAJUAN'
