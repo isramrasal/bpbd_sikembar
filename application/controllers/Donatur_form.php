@@ -120,43 +120,24 @@ class Donatur_form extends CI_Controller
 
 			if ($PROGRESS_PENGAJUAN == "Diproses oleh Staff BPBD") {
 				$hasil = $this->Donatur_model->get_data_donatur_by_CODE_MD5($CODE_MD5);
-				$ID_FORM_PENGADAAN_BARANG  = $hasil['ID_FORM_PENGADAAN_BARANG '];
-				// $this->data['Nomor_Surat_Form_Inventaris'] = $hasil['Nomor_Surat_Form_Inventaris'];
-				// $this->data['Tanggal_Pembuatan'] = $hasil['Tanggal_Pembuatan'];
-				// $this->data['Tanggal_Surat'] = $hasil['Tanggal_Surat'];
-				// $this->data['Nama_Pemohon'] = $hasil['Nama_Pemohon'];
-				// $this->data['NIK'] = $hasil['NIK'];
-				// $this->data['NIP'] = $hasil['NIP'];
-				// $this->data['Jabatan'] = $hasil['Jabatan'];
-				// $this->data['Instansi'] = $hasil['Instansi'];
-				// $this->data['Kampung_Bencana'] = $hasil['Kampung_Bencana'];
-				// $this->data['RT'] = $hasil['RT'];
-				// $this->data['RW'] = $hasil['RW'];
-				// $this->data['Desa_Kelurahan_Bencana'] = $hasil['Desa_Kelurahan_Bencana'];
-				// $this->data['Kecamatan_Bencana'] = $hasil['Kecamatan_Bencana'];
-				// $this->data['Kabupaten_Kota_Bencana'] = $hasil['Kabupaten_Kota_Bencana'];
-				// $this->data['Kode_Pos_Bencana'] = $hasil['Kode_Pos_Bencana'];
-				// $this->data['Jenis_Bencana'] = $hasil['Jenis_Bencana'];
-				// $this->data['Nama_Pejabat_BPBD'] = $hasil['Nama_Pejabat_BPBD'];
-				// $this->data['NIP_Pejabat_BPBD'] = $hasil['NIP_Pejabat_BPBD'];
-				// $this->data['Jabatan_Pejabat_BPBD'] = $hasil['Jabatan_Pejabat_BPBD'];
-				// $this->data['TANGGAL_KEJADIAN_BENCANA'] = $hasil['TANGGAL_KEJADIAN_BENCANA'];
+				$ID_FORM_INVENTARIS_BANTUAN_DONASI = $hasil['ID_FORM_INVENTARIS_BANTUAN_DONASI'];
+				$Nomor_Surat_Form_Inventaris = $hasil['Nomor_Surat_Form_Inventaris'];
 				$this->data['CODE_MD5'] = $CODE_MD5;
-				$this->data['ID_FORM_PENGADAAN_BARANG'] = $ID_FORM_PENGADAAN_BARANG;
-
+				$this->data['ID_FORM_INVENTARIS_BANTUAN_DONASI'] = $ID_FORM_INVENTARIS_BANTUAN_DONASI;
+				$this->data['Nomor_Surat_Form_Inventaris'] = $Nomor_Surat_Form_Inventaris;
 
 				// $this->data['ID_SPPB'] = $ID_SPPB;
-				$this->data['Donatur'] = $this->Donatur_model->donatur_list_by_id_donatur($ID_FORM_PENGADAAN_BARANG );
+				$this->data['Donatur'] = $this->Donatur_model->donatur_list_by_id_donatur($ID_FORM_INVENTARIS_BANTUAN_DONASI);
 				// $this->data['CATATAN_SPPB'] = $this->SPPB_form_model->get_data_catatan_sppb_by_id_sppb($ID_SPPB);
 				
 				// $this->data['klasifikasi_barang_list'] = $this->Klasifikasi_barang_model->klasifikasi_barang_list();
 				// $this->data['RAB_list'] = $this->RAB_form_model->rab_list_by_id_proyek_sub_pekerjaan($this->data['ID_PROYEK_SUB_PEKERJAAN']);
 
-				$this->load->view('wasa/user_korban_bencana/head_normal', $this->data);
-				$this->load->view('wasa/user_korban_bencana/user_menu');
-				$this->load->view('wasa/user_korban_bencana/left_menu');
-				$this->load->view('wasa/user_korban_bencana/header_menu');
-				$this->load->view('wasa/user_korban_bencana/content_donatur_form_proses');
+				$this->load->view('wasa/user_donatur/head_normal', $this->data);
+				$this->load->view('wasa/user_donatur/user_menu');
+				$this->load->view('wasa/user_donatur/left_menu');
+				$this->load->view('wasa/user_donatur/header_menu');
+				$this->load->view('wasa/user_donatur/content_donatur_form_proses');
 				// $this->load->view('wasa/user_korban_bencana/footer');
 			} else {
 				redirect('Donatur', 'refresh');
@@ -746,8 +727,8 @@ class Donatur_form extends CI_Controller
 	function data_barang_bantuan_form() //102023
 	{
 		if ($this->ion_auth->logged_in()) {
-			$ID_FORM_PENGADAAN_BARANG = $this->input->post('ID_FORM_PENGADAAN_BARANG');
-			$data = $this->Donatur_form_model->data_barang_bantuan_form($ID_FORM_PENGADAAN_BARANG);
+			$ID_FORM_INVENTARIS_BANTUAN_DONASI = $this->input->post('ID_FORM_INVENTARIS_BANTUAN_DONASI');
+			$data = $this->Donatur_form_model->data_barang_bantuan_form($ID_FORM_INVENTARIS_BANTUAN_DONASI);
 			echo json_encode($data);
 		} else {
 			$this->logout();
@@ -1147,7 +1128,7 @@ class Donatur_form extends CI_Controller
 	{
 		if ($this->ion_auth->logged_in()) {
 
-			$ID_FORM_PENGADAAN_BARANG = $this->input->post('ID_FORM_PENGADAAN_BARANG');
+			$ID_FORM_INVENTARIS_BANTUAN_DONASI = $this->input->post('ID_FORM_INVENTARIS_BANTUAN_DONASI');
 		
 			//set validation rules
 			$this->form_validation->set_rules('NAMA', 'Nama Barang', 'trim|max_length[100]');
@@ -1172,7 +1153,7 @@ class Donatur_form extends CI_Controller
 				$KETERANGAN = $this->input->post('KETERANGAN');
 				
 				$data = $this->Donatur_form_model->simpan_data_barang_bantuan(
-					$ID_FORM_PENGADAAN_BARANG,
+					$ID_FORM_INVENTARIS_BANTUAN_DONASI,
 					$NAMA,
 					$MEREK,
 					$SPESIFIKASI_SINGKAT,

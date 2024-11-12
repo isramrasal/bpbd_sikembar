@@ -17,7 +17,7 @@ class Donatur_model extends CI_Model
 
 	function list_donatur_by_nik($NIK)
 	{
-		$hasil = $this->db->query("SELECT * FROM form_pengadaan_barang WHERE NIK = '$NIK'");
+		$hasil = $this->db->query("SELECT * FROM form_inventaris_bantuan_donasi WHERE NIK = '$NIK'");
 		return $hasil->result();
 	}
 	//FUN
@@ -26,10 +26,10 @@ class Donatur_model extends CI_Model
 	//SUMBER TABEL: tabel sppb
 	//DIPAKAI: 1. controller SPPB_form / function index
 	//         2. 
-	function donatur_list_by_id_donatur($ID_FORM_PENGADAAN_BARANG)
+	function donatur_list_by_id_donatur($ID_FORM_INVENTARIS_BANTUAN_DONASI)
 	{
-		$hasil = $this->db->query("SELECT FPBD.ID_FORM_PENGADAAN_BARANG, FPBD.CODE_MD5, FPBD.Nomor_Surat_Pengadaan_Barang, DATE_FORMAT(FPBD.Tanggal_Pembuatan, '%d/%m/%Y') AS TANGGAL_PEMBUATAN, DATE_FORMAT(FPBD.Tanggal_Surat, '%d/%m/%Y') AS TANGGAL_SURAT, FPBD.Nama_Donatur, FPBD.NIK, FPBD.NIP, FPBD.Jabatan, FPBD.Instansi, FPBD.Kampung_Bencana, FPBD.RT, FPBD.RW, FPBD.Desa_Kelurahan_Bencana, FPBD.Kecamatan_Bencana, FPBD.Kabupaten_Kota_Bencana, FPBD.Kode_Pos_Bencana, FPBD.Nama_Pejabat_BPBD, FPBD.NIP_Pejabat_BPBD, FPBD.Jabatan_Pejabat_BPBD FROM form_pengadaan_barang AS FPBD
-        WHERE FPBD.ID_FORM_PENGADAAN_BARANG =  '$ID_FORM_PENGADAAN_BARANG'");
+		$hasil = $this->db->query("SELECT FPBD.ID_FORM_INVENTARIS_BANTUAN_DONASI, FPBD.CODE_MD5, FPBD.Nomor_Surat_Bantuan_Donasi, DATE_FORMAT(FPBD.Tanggal_Pembuatan, '%d/%m/%Y') AS TANGGAL_PEMBUATAN, DATE_FORMAT(FPBD.Tanggal_Surat, '%d/%m/%Y') AS TANGGAL_SURAT, FPBD.Nama_Donatur, FPBD.NIK, FPBD.NIP, FPBD.Jabatan, FPBD.Instansi, FPBD.Kampung_Bencana, FPBD.RT, FPBD.RW, FPBD.Desa_Kelurahan_Bencana, FPBD.Kecamatan_Bencana, FPBD.Kabupaten_Kota_Bencana, FPBD.Kode_Pos_Bencana, FPBD.Jenis_Bencana, FPBD.Nama_Pejabat_BPBD, FPBD.NIP_Pejabat_BPBD, FPBD.Jabatan_Pejabat_BPBD FROM form_inventaris_bantuan_donasi AS FPBD
+        WHERE FPBD.ID_FORM_INVENTARIS_BANTUAN_DONASI =  '$ID_FORM_INVENTARIS_BANTUAN_DONASI'");
 		return $hasil;
 		//return $hasil->result();
 	}
@@ -322,15 +322,15 @@ class Donatur_model extends CI_Model
 
 	function get_data_donatur_by_CODE_MD5($CODE_MD5)
 	{
-		$hsl = $this->db->query("SELECT * FROM form_pengadaan_barang WHERE CODE_MD5 ='$CODE_MD5'");
+		$hsl = $this->db->query("SELECT * FROM form_inventaris_bantuan_donasi WHERE CODE_MD5 ='$CODE_MD5'");
 		if ($hsl->num_rows() > 0) {
 			foreach ($hsl->result() as $data) {
 				$hasil = array(
-					'ID_FORM_PENGADAAN_BARANG ' => $data->ID_FORM_PENGADAAN_BARANG ,
+					'ID_FORM_INVENTARIS_BANTUAN_DONASI' => $data->ID_FORM_INVENTARIS_BANTUAN_DONASI,
 					'CODE_MD5' => $data->CODE_MD5,
-					'Nomor_Surat_Pengadaan_Barang' => $data->Nomor_Surat_Pengadaan_Barang,
+					'Nomor_Surat_Form_Inventaris' => $data->Nomor_Surat_Form_Inventaris,
 					'PROGRESS_PENGAJUAN' => $data->PROGRESS_PENGAJUAN,
-					'Status_Pengajuan' => $data->Status_Pengajuan
+					'STATUS_PENGAJUAN' => $data->STATUS_PENGAJUAN
 				);
 			}
 			return $hasil;
@@ -1023,6 +1023,7 @@ class Donatur_model extends CI_Model
 		$KAMPUNG,
 		$KODE_POS,
 		$TANGGAL_DOKUMEN_DONASI,
+		$TANGGAL_PEMBUATAN,
 		$TANGGAL_PEMBUATAN_PENGAJUAN_JAM,
 		$TANGGAL_PEMBUATAN_PENGAJUAN_HARI,
 		$TANGGAL_PEMBUATAN_PENGAJUAN_BULAN,
@@ -1032,7 +1033,7 @@ class Donatur_model extends CI_Model
 		$STATUS_PENGAJUAN
 	)
 	{
-		$hasil = $this->db->query("INSERT INTO form_pengadaan_barang (
+		$hasil = $this->db->query("INSERT INTO form_inventaris_bantuan_donasi (
 				CODE_MD5,
 				Tanggal_Pembuatan,
 				Tanggal_Surat,
@@ -1058,7 +1059,7 @@ class Donatur_model extends CI_Model
                 STATUS_PENGAJUAN)
 			VALUES(
 				'$CODE_MD5',
-				'$TANGGAL_PEMBUATAN_PENGAJUAN_JAM',
+				'$TANGGAL_PEMBUATAN',
 				'$TANGGAL_DOKUMEN_DONASI',
 				'$TANGGAL_PEMBUATAN_PENGAJUAN_HARI',
 				'$NAMA_DONATUR',
@@ -1089,20 +1090,23 @@ class Donatur_model extends CI_Model
 	//SUMBER TABEL: tabel sppb
 	//DIPAKAI: 1. controller SPPB / function get_data_sppb_baru
 	//         2. 
-	function get_data_donatur_baru($CODE_MD5)
+	public function get_data_donatur_baru($CODE_MD5)
 	{
-		$hsl = $this->db->query("SELECT * FROM form_pengadaan_barang WHERE CODE_MD5 = '$CODE_MD5'");
-		if ($hsl->num_rows() > 0) {
-			foreach ($hsl->result() as $data) {
-				$hasil = array(
-					'CODE_MD5' => $data->CODE_MD5
-				);
-			}
-		} else {
-			$hasil = "BELUM ADA PENGAJUAN";
-		}
-		return $hasil;
-	}
+    // Query untuk mendapatkan data dengan CODE_MD5 yang cocok
+    $query = $this->db->query("SELECT * FROM form_inventaris_bantuan_donasi WHERE CODE_MD5 = '$CODE_MD5'");
+    if ($query->num_rows() > 0) {
+        $data = $query->row();
+        return array(
+            'ID_FORM_INVENTARIS_BANTUAN_DONASI' => $data->ID_FORM_INVENTARIS_BANTUAN_DONASI,
+            'CODE_MD5' => $data->CODE_MD5,
+            'Nomor_Surat_Form_Inventaris' => $data->Nomor_Surat_Form_Inventaris,
+            'PROGRESS_PENGAJUAN' => $data->PROGRESS_PENGAJUAN,
+            'STATUS_PENGAJUAN' => $data->STATUS_PENGAJUAN
+        );
+    } else {
+        return 'TIDAK ADA DATA';
+    }
+}
 
 	function get_data_sppb_pembelian_baru($NO_URUT_SPPB)
 	{

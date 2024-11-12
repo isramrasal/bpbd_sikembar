@@ -1094,7 +1094,7 @@ class SPPB_model extends CI_Model
 	//         2. controller SPPB / function user_log
 	function user_log_sppb($ID_USER, $ID_SPPB, $KETERANGAN, $WAKTU)
 	{
-		$db2 = $this->load->database('logs', TRUE);
+		$db2 = $this->load->database('default', TRUE);
 
 		$hasil = $db2->query("INSERT INTO user_log_sppb (ID_USER, ID_SPPB, KETERANGAN, WAKTU) VALUES('$ID_USER', '$ID_SPPB', '$KETERANGAN', '$WAKTU')");
 		return $hasil;

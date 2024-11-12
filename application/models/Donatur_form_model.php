@@ -5,9 +5,9 @@ class Donatur_form_model extends CI_Model
 	//SUMBER TABEL: tabel sppb_form
 	//DIPAKAI: 1. controller SPPB_form / function data_sppb_form
 	//         2. 
-	function data_barang_bantuan_form($ID_FORM_PENGADAAN_BARANG)
+	function data_barang_bantuan_form($ID_FORM_INVENTARIS_BANTUAN_DONASI)
 	{
-		$hasil = $this->db->query("SELECT * FROM item_form_pengadaan_barang WHERE ID_FORM_PENGADAAN_BARANG = '$ID_FORM_PENGADAAN_BARANG'");
+		$hasil = $this->db->query("SELECT * FROM item_form_bantuan_donasi WHERE ID_FORM_INVENTARIS_BANTUAN_DONASI = '$ID_FORM_INVENTARIS_BANTUAN_DONASI'");
 		return $hasil->result();
 	}
 
@@ -1408,7 +1408,7 @@ class Donatur_form_model extends CI_Model
 	//DIPAKAI: 1. controller SPPB_form / function simpan_data_dari_rasd_form
 	//         2. 
 	function simpan_data_barang_bantuan(
-		$ID_FORM_PENGADAAN_BARANG,
+		$ID_FORM_INVENTARIS_BANTUAN_DONASI,
 		$NAMA,
 		$MEREK,
 		$SPESIFIKASI_SINGKAT,
@@ -1417,8 +1417,8 @@ class Donatur_form_model extends CI_Model
 		$KLASIFIKASI_BARANG,
 		$KETERANGAN
 	) {
-		$hasil = $this->db->query("INSERT INTO item_form_pengadaan_barang (
-				ID_FORM_PENGADAAN_BARANG,
+		$hasil = $this->db->query("INSERT INTO item_form_bantuan_donasi (
+				ID_FORM_INVENTARIS_BANTUAN_DONASI,
 				NAMA_BARANG,
 				MEREK,
 				SPESIFIKASI_SINGKAT,
@@ -1428,7 +1428,7 @@ class Donatur_form_model extends CI_Model
 				KETERANGAN
 				)
 			VALUES(
-				'$ID_FORM_PENGADAAN_BARANG',
+				'$ID_FORM_INVENTARIS_BANTUAN_DONASI',
 				'$NAMA',
 				'$MEREK',
 				'$SPESIFIKASI_SINGKAT',

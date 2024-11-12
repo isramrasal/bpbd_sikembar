@@ -403,6 +403,7 @@ class Donatur extends CI_Controller
             
                 $TANGGAL_PEMBUATAN_PENGAJUAN_JAM = date("h:i:s.u");
                 $TANGGAL_PEMBUATAN_PENGAJUAN_HARI = date('Y-m-d');
+                $TANGGAL_PEMBUATAN = date('Y-m-d');
                 $dt = date('F');
                 $TANGGAL_PEMBUATAN_PENGAJUAN_BULAN = $dt;
                 $TANGGAL_PEMBUATAN_PENGAJUAN_TAHUN = date("Y");
@@ -429,6 +430,7 @@ class Donatur extends CI_Controller
                         $KAMPUNG,
                         $KODE_POS,
                         $TANGGAL_DOKUMEN_DONASI,
+                        $TANGGAL_PEMBUATAN,
                         $TANGGAL_PEMBUATAN_PENGAJUAN_JAM,
                         $TANGGAL_PEMBUATAN_PENGAJUAN_HARI,
                         $TANGGAL_PEMBUATAN_PENGAJUAN_BULAN,
