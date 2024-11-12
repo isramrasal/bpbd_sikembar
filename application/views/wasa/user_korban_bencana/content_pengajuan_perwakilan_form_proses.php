@@ -118,7 +118,7 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
                                     </div>
                                 </div>
 
-                                <div class="form-group" id="data_TANGGAL_DOKUMEN_PENGAJUAN"><label
+                                <div class="form-group" id="data_TANGGAL_DOKUMEN_PENGAJUAN_PERWAKILAN"><label
                                         class="col-sm-2 control-label">Tanggal Dokumen Pengajuan</label>
                                     <div class="col-sm-10">
                                         <?php
@@ -126,16 +126,18 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
                                                 ?>
                                         <div class="input-group date">
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input
-                                                id="TANGGAL_DOKUMEN_PENGAJUAN" name="TANGGAL_DOKUMEN_PENGAJUAN"
-                                                type="text" class="form-control" placeholder="dd/mm/yyyy">
+                                                id="TANGGAL_DOKUMEN_PENGAJUAN_PERWAKILAN"
+                                                name="TANGGAL_DOKUMEN_PENGAJUAN_PERWAKILAN" type="text"
+                                                class="form-control" placeholder="dd/mm/yyyy">
                                         </div>
                                         <?php
                                                 } else {
                                                 ?>
                                         <div class="input-group date">
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input
-                                                id="TANGGAL_DOKUMEN_PENGAJUAN" name="TANGGAL_DOKUMEN_PENGAJUAN"
-                                                type="text" class="form-control" placeholder="dd/mm/yyyy"
+                                                id="TANGGAL_DOKUMEN_PENGAJUAN_PERWAKILAN"
+                                                name="TANGGAL_DOKUMEN_PENGAJUAN_PERWAKILAN" type="text"
+                                                class="form-control" placeholder="dd/mm/yyyy"
                                                 value="<?php echo $Pengajuan->TANGGAL_SURAT; ?>">
                                         </div>
                                         <?php
@@ -144,16 +146,24 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
                                     </div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">Nama Pemohon</label>
-                                    <div class="col-sm-10"><input name="NAMA_PEMOHON" id="NAMA_PEMOHON" type="text"
-                                            class="form-control" value="<?php echo $Pengajuan->Nama_Pemohon; ?>">
+                                    <div class="col-sm-10"><input name="NAMA_PEMOHON_PERWAKILAN"
+                                            id="NAMA_PEMOHON_PERWAKILAN" type="text" class="form-control"
+                                            value="<?php echo $Pengajuan->Nama_Pemohon; ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group"><label class="col-sm-2 control-label">Jumlah Korban yang
+                                        Diwakili</label>
+                                    <div class="col-sm-10"><input name="JUMLAH_KORBAN_DIWAKILI"
+                                            id="JUMLAH_KORBAN_DIWAKILI" type="text" class="form-control"
+                                            value="<?php echo $Pengajuan->Jumlah_Korban_Diwakili; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">NIK</label>
-                                    <div class="col-sm-10"><input name="NIK" id="NIK" type="text" class="form-control"
-                                            value="<?php echo $Pengajuan->NIK; ?>">
+                                    <div class="col-sm-10"><input name="NIK_PERWAKILAN" id="NIK_PERWAKILAN" type="text"
+                                            class="form-control" value="<?php echo $Pengajuan->NIK; ?>">
                                     </div>
                                 </div>
-                                <!-- <div class="form-group"><label class="col-sm-2 control-label">NIP</label>
+                                <div class="form-group"><label class="col-sm-2 control-label">NIP</label>
                                     <div class="col-sm-10"><input name="NIP" id="NIP" type="text" class="form-control"
                                             value="<?php echo $Pengajuan->NIP; ?>">
                                     </div>
@@ -167,53 +177,54 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
                                     <div class="col-sm-10"><input name="INSTANSI" id="INSTANSI" type="text"
                                             class="form-control" value="<?php echo $Pengajuan->Instansi; ?>">
                                     </div>
-                                </div> -->
+                                </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">Kampung Bencana</label>
-                                    <div class="col-sm-10"><input name="KAMPUNG_BENCANA" id="KAMPUNG_BENCANA"
-                                            type="text" class="form-control"
+                                    <div class="col-sm-10"><input name="KAMPUNG_BENCANA_PERWAKILAN"
+                                            id="KAMPUNG_BENCANA_PERWAKILAN" type="text" class="form-control"
                                             value="<?php echo $Pengajuan->Kampung_Bencana; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">RT</label>
-                                    <div class="col-sm-10"><input name="RT" id="RT" type="text" class="form-control"
-                                            value="<?php echo $Pengajuan->RT; ?>">
+                                    <div class="col-sm-10"><input name="RT_PERWAKILAN" id="RT_PERWAKILAN" type="text"
+                                            class="form-control" value="<?php echo $Pengajuan->RT; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">RW</label>
-                                    <div class="col-sm-10"><input name="RW" id="RW" type="text" class="form-control"
-                                            value="<?php echo $Pengajuan->RW; ?>">
+                                    <div class="col-sm-10"><input name="RW_PERWAKILAN" id="RW_PERWAKILAN" type="text"
+                                            class="form-control" value="<?php echo $Pengajuan->RW; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">Desa/Kelurahan</label>
-                                    <div class="col-sm-10"><input name="DESA_KELURAHAN_BENCANA"
-                                            id="DESA_KELURAHAN_BENCANA" type="text" class="form-control"
+                                    <div class="col-sm-10"><input name="DESA_KELURAHAN_BENCANA_PERWAKILAN"
+                                            id="DESA_KELURAHAN_BENCANA_PERWAKILAN" type="text" class="form-control"
                                             value="<?php echo $Pengajuan->Desa_Kelurahan_Bencana; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">Kecamatan</label>
-                                    <div class="col-sm-10"><input name="KECAMATAN_BENCANA" id="KECAMATAN_BENCANA"
-                                            type="text" class="form-control"
+                                    <div class="col-sm-10"><input name="KECAMATAN_BENCANA_PERWAKILAN"
+                                            id="KECAMATAN_BENCANA_PERWAKILAN" type="text" class="form-control"
                                             value="<?php echo $Pengajuan->Kecamatan_Bencana; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">Kabupaten/Kota</label>
-                                    <div class="col-sm-10"><input name="KABUPATEN_KOTA_BENCANA"
-                                            id="KABUPATEN_KOTA_BENCANA" type="text" class="form-control"
+                                    <div class="col-sm-10"><input name="KABUPATEN_KOTA_BENCANA_PERWAKILAN"
+                                            id="KABUPATEN_KOTA_BENCANA_PERWAKILAN" type="text" class="form-control"
                                             value="<?php echo $Pengajuan->Kabupaten_Kota_Bencana; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">Kode Pos</label>
-                                    <div class="col-sm-10"><input name="KODE_POS_BENCANA" id="KODE_POS_BENCANA"
-                                            type="text" class="form-control"
+                                    <div class="col-sm-10"><input name="KODE_POS_BENCANA_PERWAKILAN"
+                                            id="KODE_POS_BENCANA_PERWAKILAN" type="text" class="form-control"
                                             value="<?php echo $Pengajuan->Kode_Pos_Bencana; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group"><label class="col-sm-2 control-label">Jenis Bencana</label>
-                                    <div class="col-sm-10"><input name="JENIS_BENCANA" id="JENIS_BENCANA" type="text"
-                                            class="form-control" value="<?php echo $Pengajuan->Jenis_Bencana; ?>">
+                                    <div class="col-sm-10"><input name="JENIS_BENCANA_PERWAKILAN"
+                                            id="JENIS_BENCANA_PERWAKILAN" type="text" class="form-control"
+                                            value="<?php echo $Pengajuan->Jenis_Bencana; ?>">
                                     </div>
                                 </div>
-                                <div class="form-group" id="data_TANGGAL_KEJADIAN_BENCANA"><label
+                                <div class="form-group" id="data_TANGGAL_KEJADIAN_BENCANA_PERWAKILAN"><label
                                         class="col-sm-2 control-label">Tanggal Kejadian Bencana</label>
                                     <div class="col-sm-10">
                                         <?php
@@ -221,16 +232,18 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
                                                 ?>
                                         <div class="input-group date">
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input
-                                                id="TANGGAL_KEJADIAN_BENCANA" name="TANGGAL_KEJADIAN_BENCANA"
-                                                type="text" class="form-control" placeholder="dd/mm/yyyy">
+                                                id="TANGGAL_KEJADIAN_BENCANA_PERWAKILAN"
+                                                name="TANGGAL_KEJADIAN_BENCANA_PERWAKILAN" type="text"
+                                                class="form-control" placeholder="dd/mm/yyyy">
                                         </div>
                                         <?php
                                                 } else {
                                                 ?>
                                         <div class="input-group date">
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input
-                                                id="TANGGAL_KEJADIAN_BENCANA" name="TANGGAL_KEJADIAN_BENCANA"
-                                                type="text" class="form-control" placeholder="dd/mm/yyyy"
+                                                id="TANGGAL_KEJADIAN_BENCANA_PERWAKILAN"
+                                                name="TANGGAL_KEJADIAN_BENCANA_PERWAKILAN" type="text"
+                                                class="form-control" placeholder="dd/mm/yyyy"
                                                 value="<?php echo $Pengajuan->TANGGAL_KEJADIAN_BENCANA; ?>">
                                         </div>
                                         <?php
@@ -1060,7 +1073,7 @@ $(document).ready(function() {
         format: 'dd/mm/yyyy'
     });
 
-    $('#data_TANGGAL_KEJADIAN_BENCANA .input-group.date').datepicker({
+    $('#data_TANGGAL_KEJADIAN_BENCANA_PERWAKILAN .input-group.date').datepicker({
         todayBtn: "linked",
         keyboardNavigation: false,
         forceParse: false,
@@ -1069,7 +1082,7 @@ $(document).ready(function() {
         format: 'dd/mm/yyyy'
     });
 
-    $('#data_TANGGAL_DOKUMEN_PENGAJUAN .input-group.date').datepicker({
+    $('#data_TANGGAL_DOKUMEN_PENGAJUAN_PERWAKILAN .input-group.date').datepicker({
         todayBtn: "linked",
         keyboardNavigation: false,
         forceParse: false,

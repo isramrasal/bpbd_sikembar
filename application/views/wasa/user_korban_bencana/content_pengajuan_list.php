@@ -166,13 +166,13 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-xs-3 control-label">NIK *</label>
+                        <label class="col-xs-3 control-label">NIK Pemohon *</label>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" value="" name="NIK" id="NIK"
+                            <input type="number" class="form-control" value="" name="NIK" id="NIK"
                                 placeholder="Contoh: 3602041211870001" />
                         </div>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label class="col-xs-3 control-label">NIP</label>
                         <div class="col-xs-9">
                             <input type="text" class="form-control" value="" name="NIP" id="NIP"
@@ -192,7 +192,7 @@
                             <input type="text" class="form-control" value="" name="INSTANSI" id="INSTANSI"
                                 placeholder="Contoh: Universitas Gunadarma" />
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label class="control-label col-xs-3">Kabupaten/Kota *</label>
                         <div class="col-xs-9">
@@ -256,14 +256,14 @@
                     <div class="form-group">
                         <label class="col-xs-3 control-label">RW *</label>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" value="" name="RW" id="RW"
+                            <input type="number" class="form-control" value="" name="RW" id="RW"
                                 placeholder="Contoh: 02" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-3 control-label">RT *</label>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" value="" name="RT" id="RT"
+                            <input type="number" class="form-control" value="" name="RT" id="RT"
                                 placeholder="Contoh: 03" />
                         </div>
                     </div>
@@ -277,7 +277,7 @@
                     <div class="form-group">
                         <label class="col-xs-3 control-label">Kode Pos</label>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" value="" name="KODE_POS" id="KODE_POS"
+                            <input type="number" class="form-control" value="" name="KODE_POS" id="KODE_POS"
                                 placeholder="Contoh: 43273" />
                         </div>
                     </div>
@@ -334,15 +334,16 @@
                 <small class="font-bold">Silakan isi identitas formulir pengajuan bantuan</small>
             </div>
             <input type="hidden" class="form-control" value="" name="FILE_NAME_TEMP" id="FILE_NAME_TEMP" disabled />
-            <input type="hidden" class="form-control" value="" name="CODE_MD5" id="CODE_MD5" disabled />
+            <input type="hidden" class="form-control" value="" name="CODE_MD5_PERWAKILAN" id="CODE_MD5_PERWAKILAN"
+                disabled />
 
             <div class="form-horizontal">
                 <div class="modal-body">
                     <div class="form-group">
                         <label class="control-label col-xs-3">Jenis Bencana *</label>
                         <div class="col-xs-9">
-                            <select class="chosen-select" name="ID_JENIS_BENCANA" class="form-control"
-                                id="ID_JENIS_BENCANA">
+                            <select class="chosen-select" name="ID_JENIS_BENCANA_PERWAKILAN" class="form-control"
+                                id="ID_JENIS_BENCANA_PERWAKILAN">
                                 <option value=''>- Pilih Bencana -</option>
                                 <option value='Gempa Bumi'>Gempa Bumi</option>
                                 <option value='Angin Puting Beliung'>Angin Puting Beliung</option>
@@ -358,21 +359,28 @@
                     <div class="form-group">
                         <label class="col-xs-3 control-label">Nama Pemohon *</label>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" value="" name="NAMA_PEMOHON" id="NAMA_PEMOHON"
-                                placeholder="Contoh: Nurul Fitri" />
+                            <input type="text" class="form-control" value="" name="NAMA_PEMOHON_PERWAKILAN"
+                                id="NAMA_PEMOHON_PERWAKILAN" placeholder="Contoh: Nurul Fitri" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-3 control-label">Jumlah Korban yang Diwakili *</label>
+                        <div class="col-xs-9">
+                            <input type="number" class="form-control" value="" name="JUMLAH_KORBAN_DIWAKILI"
+                                id="JUMLAH_KORBAN_DIWAKILI" placeholder="Contoh: 10" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-3 control-label">NIK *</label>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" value="" name="NIK" id="NIK"
+                            <input type="number" class="form-control" value="" name="NIK_PERWAKILAN" id="NIK_PERWAKILAN"
                                 placeholder="Contoh: 3602041211870001" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-3 control-label">NIP</label>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" value="" name="NIP" id="NIP"
+                            <input type="number" class="form-control" value="" name="NIP" id="NIP"
                                 placeholder="Contoh: 3602041211870001" />
                         </div>
                     </div>
@@ -393,8 +401,8 @@
                     <div class="form-group">
                         <label class="control-label col-xs-3">Kabupaten/Kota *</label>
                         <div class="col-xs-9">
-                            <select class="chosen-select" name="ID_KABUPATEN_KOTA" class="form-control"
-                                id="ID_KABUPATEN_KOTA">
+                            <select class="chosen-select" name="ID_KABUPATEN_KOTA_PERWAKILAN" class="form-control"
+                                id="ID_KABUPATEN_KOTA_PERWAKILAN">
                                 <option value=''>- Pilih Kabupaten/Kota -</option>
                                 <option value='Cianjur'>Cianjur</option>
                             </select>
@@ -403,7 +411,8 @@
                     <div class="form-group">
                         <label class="control-label col-xs-3">Kecamatan *</label>
                         <div class="col-xs-9">
-                            <select class="chosen-select" name="ID_KECAMATAN" class="form-control" id="ID_KECAMATAN">
+                            <select class="chosen-select" name="ID_KECAMATAN_PERWAKILAN" class="form-control"
+                                id="ID_KECAMATAN_PERWAKILAN">
                                 <option value=''>- Pilih Kecamatan -</option>
                                 <option value='Bojongpicung'>Bojongpicung</option>
                                 <option value='Campaka'>Campaka</option>
@@ -442,8 +451,8 @@
                     <div class="form-group">
                         <label class="control-label col-xs-3">Desa/Kelurahan *</label>
                         <div class="col-xs-9">
-                            <select class="chosen-select" name="ID_DESA_KELURAHAN" class="form-control"
-                                id="ID_DESA_KELURAHAN">
+                            <select class="chosen-select" name="ID_DESA_KELURAHAN_PERWAKILAN" class="form-control"
+                                id="ID_DESA_KELURAHAN_PERWAKILAN">
                                 <option value=''>- Pilih Desa/Kelurahan -</option>
                                 <option value='Bojongkaso'>Bojongkaso</option>
                                 <option value='Bunisari'>Bunisari</option>
@@ -453,47 +462,48 @@
                     <div class="form-group">
                         <label class="col-xs-3 control-label">RW *</label>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" value="" name="RW" id="RW"
+                            <input type="number" class="form-control" value="" name="RW_PERWAKILAN" id="RW_PERWAKILAN"
                                 placeholder="Contoh: 02" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-3 control-label">RT *</label>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" value="" name="RT" id="RT"
+                            <input type="number" class="form-control" value="" name="RT_PERWAKILAN" id="RT_PERWAKILAN"
                                 placeholder="Contoh: 03" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-3 control-label">Kampung</label>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" value="" name="KAMPUNG" id="KAMPUNG"
-                                placeholder="Contoh: Kp. Ciater" />
+                            <input type="text" class="form-control" value="" name="KAMPUNG_PERWAKILAN"
+                                id="KAMPUNG_PERWAKILAN" placeholder="Contoh: Kp. Ciater" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-3 control-label">Kode Pos</label>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" value="" name="KODE_POS" id="KODE_POS"
-                                placeholder="Contoh: 43273" />
+                            <input type="number" class="form-control" value="" name="KODE_POS_PERWAKILAN"
+                                id="KODE_POS_PERWAKILAN" placeholder="Contoh: 43273" />
                         </div>
                     </div>
-                    <div class="form-group" id="data_TANGGAL_KEJADIAN_BENCANA">
+                    <div class="form-group" id="data_TANGGAL_KEJADIAN_BENCANA_PERWAKILAN">
                         <label class="col-xs-3 control-label">Tanggal Kejadian Bencana *</label>
                         <div class="col-xs-9">
                             <div class="input-group date">
                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input
-                                    id="TANGGAL_KEJADIAN_BENCANA" type="text" class="form-control"
-                                    placeholder="dd/mm/yyyy">
+                                    id="TANGGAL_KEJADIAN_BENCANA_PERWAKILAN" name="TANGGAL_KEJADIAN_BENCANA_PERWAKILAN"
+                                    type="text" class="form-control" placeholder="dd/mm/yyyy">
                             </div>
                         </div>
                     </div>
-                    <div class="form-group" id="data_TANGGAL_DOKUMEN_PENGAJUAN">
+                    <div class="form-group" id="data_TANGGAL_DOKUMEN_PENGAJUAN_PERWAKILAN">
                         <label class="col-xs-3 control-label">Tanggal Pengajuan */**</label>
                         <div class="col-xs-9">
                             <div class="input-group date">
                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input
-                                    id="TANGGAL_DOKUMEN_PENGAJUAN" type="text" class="form-control"
+                                    id="TANGGAL_DOKUMEN_PENGAJUAN_PERWAKILAN"
+                                    name="TANGGAL_DOKUMEN_PENGAJUAN_PERWAKILAN" type="text" class="form-control"
                                     placeholder="dd/mm/yyyy">
                             </div>
                             </br>
@@ -509,14 +519,14 @@
                 <div class="modal-footer">
                     <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true"><i
                             class="fa fa-window-close"></i> Batal</button>
-                    <button class="btn btn-primary" id="btn_simpan"><i class="fa fa-save"></i> Buat Pengajuan
-                        Bantuan</button>
+                    <button class="btn btn-primary" id="btn_simpan_perwakilan"><i class="fa fa-save"></i>
+                        Buat Pengajuan Bantuan</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!--END MODAL ADD-->
+<!-- end modal perwakilan -->
 </br>
 
 <!-- MODAL STATUS -->
@@ -561,6 +571,7 @@
         </div>
     </div>
 </div>
+
 <!--END MODAL STATUS-->
 </br>
 
@@ -602,6 +613,24 @@ $(document).ready(function() {
     });
 
     $('#data_TANGGAL_KEJADIAN_BENCANA .input-group.date').datepicker({
+        todayBtn: "linked",
+        keyboardNavigation: false,
+        forceParse: false,
+        calendarWeeks: true,
+        autoclose: true,
+        format: 'dd/mm/yyyy'
+    });
+
+    $('#data_TANGGAL_DOKUMEN_PENGAJUAN_PERWAKILAN .input-group.date').datepicker({
+        todayBtn: "linked",
+        keyboardNavigation: false,
+        forceParse: false,
+        calendarWeeks: true,
+        autoclose: true,
+        format: 'dd/mm/yyyy'
+    });
+
+    $('#data_TANGGAL_KEJADIAN_BENCANA_PERWAKILAN .input-group.date').datepicker({
         todayBtn: "linked",
         keyboardNavigation: false,
         forceParse: false,
@@ -1058,14 +1087,16 @@ $(document).ready(function() {
         var TANGGAL_KEJADIAN_BENCANA = $('#TANGGAL_KEJADIAN_BENCANA').val(),
             TANGGAL_KEJADIAN_BENCANA = TANGGAL_KEJADIAN_BENCANA.split("/").reverse().join("-");
 
+
+
         var form_data = {
             CODE_MD5: $('#CODE_MD5').val(),
             ID_JENIS_BENCANA: $('#ID_JENIS_BENCANA').val(),
             NAMA_PEMOHON: $('#NAMA_PEMOHON').val(),
             NIK: $('#NIK').val(),
-            NIP: $('#NIP').val(),
-            JABATAN: $('#JABATAN').val(),
-            INSTANSI: $('#INSTANSI').val(),
+            // NIP: $('#NIP').val(),
+            // JABATAN: $('#JABATAN').val(),
+            // INSTANSI: $('#INSTANSI').val(),
             ID_KABUPATEN_KOTA: $('#ID_KABUPATEN_KOTA').val(),
             ID_KECAMATAN: $('#ID_KECAMATAN').val(),
             ID_DESA_KELURAHAN: $('#ID_DESA_KELURAHAN').val(),
@@ -1111,6 +1142,101 @@ $(document).ready(function() {
         return false;
     });
 
+    $('#btn_simpan_perwakilan').click(function() {
+
+        // Ambil dan format ulang tanggal dokumen pengajuan
+        var TANGGAL_DOKUMEN_PENGAJUAN = $('#TANGGAL_DOKUMEN_PENGAJUAN_PERWAKILAN').val();
+        TANGGAL_DOKUMEN_PENGAJUAN = TANGGAL_DOKUMEN_PENGAJUAN.split("/").reverse().join("-");
+
+        // Ambil dan format ulang tanggal kejadian bencana
+        var TANGGAL_KEJADIAN_BENCANA = $('#TANGGAL_KEJADIAN_BENCANA_PERWAKILAN').val();
+        TANGGAL_KEJADIAN_BENCANA = TANGGAL_KEJADIAN_BENCANA.split("/").reverse().join("-");
+
+        // console.log("Tanggal Dokumen Pengajuan:", TANGGAL_DOKUMEN_PENGAJUAN_PERWAKILAN);
+        // console.log("Tanggal Kejadian Bencana:", TANGGAL_KEJADIAN_BENCANA_PERWAKILAN);
+
+        // Kumpulkan data formulir
+        var form_data = {
+            CODE_MD5_PERWAKILAN: $('#CODE_MD5_PERWAKILAN').val(),
+            ID_JENIS_BENCANA_PERWAKILAN: $('#ID_JENIS_BENCANA_PERWAKILAN').val(),
+            NAMA_PEMOHON_PERWAKILAN: $('#NAMA_PEMOHON_PERWAKILAN').val(),
+            JUMLAH_KORBAN_DIWAKILI: $('#JUMLAH_KORBAN_DIWAKILI').val(),
+            NIK_PERWAKILAN: $('#NIK_PERWAKILAN').val(),
+            NIP: $('#NIP').val(),
+            JABATAN: $('#JABATAN').val(),
+            INSTANSI: $('#INSTANSI').val(),
+            ID_KABUPATEN_KOTA_PERWAKILAN: $('#ID_KABUPATEN_KOTA_PERWAKILAN').val(),
+            ID_KECAMATAN_PERWAKILAN: $('#ID_KECAMATAN_PERWAKILAN').val(),
+            ID_DESA_KELURAHAN_PERWAKILAN: $('#ID_DESA_KELURAHAN_PERWAKILAN').val(),
+            RW_PERWAKILAN: $('#RW_PERWAKILAN').val(),
+            RT_PERWAKILAN: $('#RT_PERWAKILAN').val(),
+            KAMPUNG_PERWAKILAN: $('#KAMPUNG_PERWAKILAN').val(),
+            KODE_POS_PERWAKILAN: $('#KODE_POS_PERWAKILAN').val(),
+            TANGGAL_DOKUMEN_PENGAJUAN_PERWAKILAN: TANGGAL_DOKUMEN_PENGAJUAN,
+            TANGGAL_KEJADIAN_BENCANA_PERWAKILAN: TANGGAL_KEJADIAN_BENCANA
+        };
+
+        console.log(form_data);
+
+        // Kirim data menggunakan AJAX
+        $.ajax({
+            url: "<?php echo site_url('Pengajuan/simpan_data_pengajuan_bantuan_perwakilan'); ?>",
+            type: 'POST',
+            data: form_data,
+            success: function(data) {
+                console.log(
+                    "Response dari server pada simpan_data_pengajuan_bantuan_perwakilan:",
+                    data); // Debug response dari server
+                if (data != '') {
+                    $('#alert-msg').html('<div class="alert alert-danger">' + data +
+                        '</div>');
+                } else {
+                    // Lakukan panggilan AJAX kedua
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo base_url('Pengajuan/get_data_pengajuan_bantuan_baru_perwakilan') ?>",
+                        dataType: "JSON",
+                        data: form_data,
+                        success: function(data) {
+                            console.log(
+                                "Response dari server pada get_data_pengajuan_bantuan_baru:",
+                                data); // Debug response dari server
+                            $.each(data, function() {
+                                if (data == 'BELUM ADA PENGAJUAN') {
+                                    $('#alert-msg').html(
+                                        '<div class="alert alert-danger">' +
+                                        data + '</div>');
+                                } else {
+                                    window.location.href =
+                                        '<?php echo base_url(); ?>Pengajuan_form/index_perwakilan/' +
+                                        data.CODE_MD5;
+                                }
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(
+                                "Error di get_data_pengajuan_bantuan_baru:",
+                                xhr.responseText);
+                        }
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("Error di simpan_data_pengajuan_bantuan_perwakilan:", xhr
+                    .responseText);
+                $('#alert-msg').html(
+                    '<div class="alert alert-danger">Terjadi kesalahan pada server. Silakan coba lagi nanti.</div>'
+                );
+            }
+        });
+
+
+        return false;
+    });
+
+
+
+
     $('#btn_perorangan').click(function() {
 
         $.ajax({
@@ -1127,16 +1253,15 @@ $(document).ready(function() {
         return false;
     });
     $('#btn_perwakilan').click(function() {
-
         $.ajax({
             url: "<?php echo site_url('Pengajuan/generate_md5'); ?>",
             type: 'POST',
             success: function(data) {
-
-                $('[name="CODE_MD5"]').val(data);
-                console.log(data);
+                $('#CODE_MD5_PERWAKILAN').val(
+                    data); // Pastikan CODE_MD5 diisi dengan benar untuk form perwakilan
+                console.log("CODE_MD5 untuk perwakilan: " +
+                    data); // Log hasil CODE_MD5 untuk debugging
                 $('#ModalPerwakilan').modal('show');
-
             }
         });
         return false;

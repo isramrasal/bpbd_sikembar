@@ -138,6 +138,7 @@ class Pengajuan_form extends CI_Controller
 				$this->load->view('wasa/user_korban_bencana/left_menu');
 				$this->load->view('wasa/user_korban_bencana/header_menu');
 				$this->load->view('wasa/user_korban_bencana/content_pengajuan_form_proses');
+				// $this->load->view('wasa/user_korban_bencana/content_pengajuan_perwakilan_form_proses');
 				// $this->load->view('wasa/user_korban_bencana/footer');
 			} else {
 				redirect('Pengajuan', 'refresh');
@@ -163,6 +164,108 @@ class Pengajuan_form extends CI_Controller
 			$this->load->view('wasa/user_pegawai_bpbd/left_menu');
 			$this->load->view('wasa/user_pegawai_bpbd/header_menu');
 			$this->load->view('wasa/user_pegawai_bpbd/content_pengajuan_form_proses');
+			// $this->load->view('wasa/user_pegawai_bpbd/content_pengajuan_perwakilan_form_proses');
+			// $this->load->view('wasa/user_pegawai_bpbd/footer');
+		}
+		 else {
+			$this->logout();
+			$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
+		}
+	}
+	public function index_perwakilan() //BEDA KP DAN SP
+	{
+		//jika mereka belum login
+		if (!$this->ion_auth->logged_in()) {
+			// alihkan mereka ke halaman login
+			redirect('auth/login', 'refresh');
+		}
+
+		//get data tabel users untuk ditampilkan
+		$user = $this->ion_auth->user()->row();
+		$this->data['user_id'] = $user->id;
+		$data_role_user = $this->Manajemen_user_model->get_data_role_user_by_id($this->data['user_id']);
+		$this->data['role_user'] = $data_role_user['description'];
+		$this->data['NAMA_PROYEK'] = $data_role_user['NAMA_PROYEK'];
+		$this->data['ip_address'] = $user->ip_address;
+		$this->data['email'] = $user->email;
+		$this->data['user_id'] = $user->id;
+		$this->data['NIK'] = $user->NIK;
+		date_default_timezone_set('Asia/Jakarta');
+		$this->data['last_login'] = date('d-m-Y H:i:s', $user->last_login);
+		$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+		$this->data['message_deaktivasi'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message_deaktivasi');
+
+		$query_foto_user = $this->Foto_model->get_data_by_id_pegawai($user->ID_PEGAWAI);
+		if ($query_foto_user == "BELUM ADA FOTO") {
+			$this->data['foto_user'] = "assets/wasa/img/profile_small.jpg";
+		} else {
+			$this->data['foto_user'] = $query_foto_user['KETERANGAN_2'];
+		}
+
+		// $ID_SPPB = 0;
+        // $KETERANGAN = "Melihat Halaman Index SPPB Form: ";
+        // $this->user_log_sppb($ID_SPPB, $KETERANGAN);
+
+		$CODE_MD5 = $this->uri->segment(3);
+		// if ($this->Pengajuan_model->get_id_pengajuan_by_CODE_MD5($CODE_MD5) == 'TIDAK ADA DATA') {
+		// 	redirect('Pengajuan', 'refresh');
+		// }
+
+		//jika mereka sudah login dan sebagai admin
+		if ($this->ion_auth->logged_in() && $this->ion_auth->in_group(3)) { //User korban
+			$hasil_2 = $this->Pengajuan_model->get_data_pengajuan_by_CODE_MD5($CODE_MD5);
+			$PROGRESS_PENGAJUAN = $hasil_2['PROGRESS_PENGAJUAN'];
+
+			// $sess_data['HASH_MD5_SPPB'] = $HASH_MD5_SPPB;
+			// $this->session->set_userdata($sess_data);
+
+			if ($PROGRESS_PENGAJUAN == "Diproses oleh Staff BPBD") {
+				$hasil = $this->Pengajuan_model->get_data_pengajuan_by_CODE_MD5_perwakilan($CODE_MD5);
+				$ID_FORM_INVENTARIS_KORBAN_BENCANA = $hasil['ID_FORM_INVENTARIS_KORBAN_BENCANA'];
+				$Nomor_Surat_Form_Inventaris = $hasil['Nomor_Surat_Form_Inventaris'];
+				$this->data['CODE_MD5'] = $CODE_MD5;
+				$this->data['ID_FORM_INVENTARIS_KORBAN_BENCANA'] = $ID_FORM_INVENTARIS_KORBAN_BENCANA;
+				$this->data['Nomor_Surat_Form_Inventaris'] = $Nomor_Surat_Form_Inventaris;
+
+				// $this->data['ID_SPPB'] = $ID_SPPB;
+				$this->data['Pengajuan'] = $this->Pengajuan_model->pengajuan_list_by_id_pengajuan($ID_FORM_INVENTARIS_KORBAN_BENCANA);
+				// $this->data['CATATAN_SPPB'] = $this->SPPB_form_model->get_data_catatan_sppb_by_id_sppb($ID_SPPB);
+				
+				// $this->data['klasifikasi_barang_list'] = $this->Klasifikasi_barang_model->klasifikasi_barang_list();
+				// $this->data['RAB_list'] = $this->RAB_form_model->rab_list_by_id_proyek_sub_pekerjaan($this->data['ID_PROYEK_SUB_PEKERJAAN']);
+
+				$this->load->view('wasa/user_korban_bencana/head_normal', $this->data);
+				$this->load->view('wasa/user_korban_bencana/user_menu');
+				$this->load->view('wasa/user_korban_bencana/left_menu');
+				$this->load->view('wasa/user_korban_bencana/header_menu');
+				// $this->load->view('wasa/user_korban_bencana/content_pengajuan_form_proses');
+				$this->load->view('wasa/user_korban_bencana/content_pengajuan_perwakilan_form_proses');
+				// $this->load->view('wasa/user_korban_bencana/footer');
+			} else {
+				redirect('Pengajuan', 'refresh');
+			}
+		
+		} else if ($this->ion_auth->logged_in() && $this->ion_auth->in_group(2)){
+			$hasil = $this->Pengajuan_model->get_data_pengajuan_by_CODE_MD5_perwakilan($CODE_MD5);
+			$ID_FORM_INVENTARIS_KORBAN_BENCANA = $hasil['ID_FORM_INVENTARIS_KORBAN_BENCANA'];
+			$Nomor_Surat_Form_Inventaris = $hasil['Nomor_Surat_Form_Inventaris'];
+			$this->data['CODE_MD5'] = $CODE_MD5;
+			$this->data['ID_FORM_INVENTARIS_KORBAN_BENCANA'] = $ID_FORM_INVENTARIS_KORBAN_BENCANA;
+			$this->data['Nomor_Surat_Form_Inventaris'] = $Nomor_Surat_Form_Inventaris;
+
+			// $this->data['ID_SPPB'] = $ID_SPPB;
+			$this->data['Pengajuan'] = $this->Pengajuan_model->pengajuan_list_by_id_pengajuan($ID_FORM_INVENTARIS_KORBAN_BENCANA);
+			// $this->data['CATATAN_SPPB'] = $this->SPPB_form_model->get_data_catatan_sppb_by_id_sppb($ID_SPPB);
+			
+			// $this->data['klasifikasi_barang_list'] = $this->Klasifikasi_barang_model->klasifikasi_barang_list();
+			// $this->data['RAB_list'] = $this->RAB_form_model->rab_list_by_id_proyek_sub_pekerjaan($this->data['ID_PROYEK_SUB_PEKERJAAN']);
+
+			$this->load->view('wasa/user_pegawai_bpbd/head_normal', $this->data);
+			$this->load->view('wasa/user_pegawai_bpbd/user_menu');
+			$this->load->view('wasa/user_pegawai_bpbd/left_menu');
+			$this->load->view('wasa/user_pegawai_bpbd/header_menu');
+			// $this->load->view('wasa/user_pegawai_bpbd/content_pengajuan_form_proses');
+			$this->load->view('wasa/user_pegawai_bpbd/content_pengajuan_perwakilan_form_proses');
 			// $this->load->view('wasa/user_pegawai_bpbd/footer');
 		}
 		 else {

@@ -1,4 +1,3 @@
-
 <?php
 class Data_Korban_model extends CI_Model
 {
