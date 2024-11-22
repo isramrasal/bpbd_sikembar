@@ -86,6 +86,7 @@
                                     <th></th>
                                     <th>Jenis Bencana</th>
                                     <th>Nama Pemohon</th>
+                                    <th>Jumalh Korban Diwakili</th>
                                     <th>NIK</th>
                                     <th>Instansi</th>
                                     <th>Kecamatan Bencana</th>
@@ -677,95 +678,95 @@ $(document).ready(function() {
         var NAMA_BENCANA = $('#ID_JENIS_BENCANA_LIST option:selected').text();
         var JUDUL = "List Pengajuan Bantuan " + NAMA_BENCANA;
 
-        // Cek apakah opsi "Semua" dipilih
-        if (ID_JENIS_BENCANA_LIST === "Semua") {
-            $("#mydata").dataTable().fnDestroy();
-            $('#ibox1').children('.ibox-content').toggleClass('sk-loading'); // Start loading animation
+        $("#mydata").dataTable().fnDestroy();
+        $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
 
-            // Request AJAX untuk mengambil semua data bencana
-            $.ajax({
-                url: "<?php echo base_url(); ?>/Pengajuan/list_pengajuan_by_all_bencana",
-                method: "POST",
-                data: form_data,
-                dataType: 'json',
-                success: function(data) {
-                    console.log("Data diterima:", data); // Debugging log
+        $.ajax({
+            url: "<?php echo base_url(); ?>/Pengajuan/list_pengajuan_by_all_bencana",
+            method: "POST",
+            data: form_data,
+            dataType: 'json',
+            success: function(data) {
+                console.log("Data diterima:", data);
 
-                    // Variabel untuk menampung baris tabel
-                    var html = '';
+                var html = '';
 
-                    // Periksa apakah data diterima dan berisi elemen
-                    if (data && Array.isArray(data) && data.length > 0) {
-                        data.forEach(function(item) {
-                            html += `
-                                <tr>
-                                    <td>
-                                        <a href="<?php echo base_url(); ?>pengajuan/list_pengajuan_by_all_bencana/${item.CODE_MD5}" 
-                                        class="btn btn-default btn-xs btn-outline">
-                                        <i class="fa fa-eye"></i>
-                                        </a>
-                                    </td>
-                                    <td>${item.Jenis_Bencana}</td>
-                                    <td>${item.Nama_Pemohon}</td>
-                                    <td>${item.NIK}</td>
-                                    <td>${item.Instansi}</td>
-                                    <td>${item.Kecamatan_Bencana}</td>
-                                    <td>${item.Desa_Kelurahan_Bencana}</td>
-                                    <td>${item.TANGGAL_KEJADIAN_BENCANA}</td>
-                                    <td>${item.Tanggal_Pembuatan}</td>
-                                    <td> ${item.PROGRESS_PENGAJUAN}</td>
-                                </tr>`;
-                        });
-
-                    } else {
-                        // Tampilkan pesan jika tidak ada data
-                        html =
-                            '<tr><td colspan="8" class="text-center">Tidak ada data yang tersedia</td></tr>';
-                    }
-
-                    // Isi tabel dengan data atau pesan "Tidak ada data"
-                    $('#show_data').html(html);
-
-                    // Inisialisasi ulang DataTable
-                    $('#mydata').dataTable({
-                        aaSorting: [],
-                        pageLength: 10,
-                        lengthMenu: [
-                            [10, 25, 50, -1],
-                            [10, 25, 50, 'All'],
-                        ],
-                        responsive: true,
-                        dom: '<"html5buttons"B>lTfgitp',
-                        buttons: [{
-                                extend: 'excel',
-                                title: JUDUL
-                            },
-                            {
-                                extend: 'print',
-                                customize: function(win) {
-                                    $(win.document.body).addClass(
-                                        'white-bg');
-                                    $(win.document.body).css('font-size',
-                                        '10px');
-                                    $(win.document.body).find('table')
-                                        .addClass('compact').css(
-                                            'font-size', 'inherit');
-                                }
-                            }
-                        ]
+                if (data && Array.isArray(data) && data.length > 0) {
+                    data.forEach(function(item) {
+                        html += `
+                        <tr>
+                            <td>
+                                <a href="<?php echo base_url(); ?>pengajuan/list_pengajuan_by_all_bencana" 
+                                class="btn btn-default btn-xs btn-outline">
+                                <i class="fa fa-eye"></i>
+                                </a>
+                            </td>
+                            <td>${item.Jenis_Bencana}</td>
+                            <td>${item.Nama_Pemohon}</td>
+                            <td>${item.Jumlah_Korban_Diwakili}</td>
+                            <td>${item.NIK}</td>
+                            <td>${item.Instansi}</td>
+                            <td>${item.Kecamatan_Bencana}</td>
+                            <td>${item.Desa_Kelurahan_Bencana}</td>
+                            <td>${item.TANGGAL_KEJADIAN_BENCANA}</td>
+                            <td>${item.Tanggal_Pembuatan}</td>
+                            <td>${item.PROGRESS_PENGAJUAN}</td>
+                        </tr>`;
+                        $('#show_data').html(html);
                     });
-
-                    $('#ibox1').children('.ibox-content').toggleClass(
-                        'sk-loading'); // Stop loading animation
-                },
-                error: function(error) {
-                    console.error("Error mengambil data:", error);
-                    $('#ibox1').children('.ibox-content').toggleClass(
-                        'sk-loading'); // Stop loading animation
+                } else {
+                    html =
+                        '<tr><td colspan="10" class="text-center">Tidak ada data yang tersedia</td></tr>';
+                    $('#show_data').html(html);
                 }
-            });
-        }
+
+                $('#show_data').html(html);
+
+                $('#mydata').dataTable({
+                    aaSorting: [],
+                    pageLength: 10,
+                    lengthMenu: [
+                        [10, 25, 50, -1],
+                        [10, 25, 50, 'All'],
+                    ],
+                    responsive: true,
+                    dom: '<"html5buttons"B>lTfgitp',
+                    buttons: [{
+                            extend: 'excel',
+                            title: JUDUL
+                        },
+                        {
+                            extend: 'print',
+                            customize: function(win) {
+                                $(win.document.body).addClass('white-bg');
+                                $(win.document.body).css('font-size',
+                                    '10px');
+                                $(win.document.body).find('table')
+                                    .addClass('compact').css('font-size',
+                                        'inherit');
+                            }
+                        }
+                    ]
+                });
+
+                // Stop loading animation
+                $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
+            },
+            error: function(error) {
+                console.error("Error mengambil data:", error);
+
+                // Jika terjadi error, tampilkan tabel default
+                $('#show_data').html(
+                    '<tr><td colspan="10" class="text-center text-danger">Gagal memuat data</td></tr>'
+                );
+
+                // Stop loading animation
+                $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
+            }
+        });
     });
+
+
 
 
     $("#ID_PROYEK").change(function() {
@@ -1178,7 +1179,6 @@ $(document).ready(function() {
 
         console.log(form_data);
 
-        // Kirim data menggunakan AJAX
         $.ajax({
             url: "<?php echo site_url('Pengajuan/simpan_data_pengajuan_bantuan_perwakilan'); ?>",
             type: 'POST',
@@ -1186,12 +1186,11 @@ $(document).ready(function() {
             success: function(data) {
                 console.log(
                     "Response dari server pada simpan_data_pengajuan_bantuan_perwakilan:",
-                    data); // Debug response dari server
+                    data);
                 if (data != '') {
                     $('#alert-msg').html('<div class="alert alert-danger">' + data +
                         '</div>');
                 } else {
-                    // Lakukan panggilan AJAX kedua
                     $.ajax({
                         type: "POST",
                         url: "<?php echo base_url('Pengajuan/get_data_pengajuan_bantuan_baru_perwakilan') ?>",
@@ -1200,7 +1199,7 @@ $(document).ready(function() {
                         success: function(data) {
                             console.log(
                                 "Response dari server pada get_data_pengajuan_bantuan_baru:",
-                                data); // Debug response dari server
+                                data);
                             $.each(data, function() {
                                 if (data == 'BELUM ADA PENGAJUAN') {
                                     $('#alert-msg').html(
@@ -1258,9 +1257,9 @@ $(document).ready(function() {
             type: 'POST',
             success: function(data) {
                 $('#CODE_MD5_PERWAKILAN').val(
-                    data); // Pastikan CODE_MD5 diisi dengan benar untuk form perwakilan
+                    data);
                 console.log("CODE_MD5 untuk perwakilan: " +
-                    data); // Log hasil CODE_MD5 untuk debugging
+                    data);
                 $('#ModalPerwakilan').modal('show');
             }
         });

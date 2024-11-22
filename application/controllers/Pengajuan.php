@@ -139,24 +139,23 @@ class Pengajuan extends CI_Controller
         }
     }
 
-    function list_pengajuan_by_all_bencana() //102023
-    {
-
+    function list_pengajuan_by_all_bencana() {
         if ($this->ion_auth->logged_in()) {
-
-            $data = $this->Pengajuan_model->list_pengajuan_by_all_bencana();
+            $ID_JENIS_BENCANA_LIST = $this->input->post('ID_JENIS_BENCANA_LIST');
+    
+            // Debug input untuk memastikan data diterima
+            log_message('debug', 'ID_JENIS_BENCANA_LIST: ' . $ID_JENIS_BENCANA_LIST);
+    
+            // Panggil model dengan parameter filter
+            $data = $this->Pengajuan_model->list_pengajuan_by_filter($ID_JENIS_BENCANA_LIST);
             echo json_encode($data);
-
-            // $ID_SPPB = 0;
-            // $KETERANGAN = "Melihat Data SPPB: " . json_encode($data);
-            // $this->user_log_sppb($ID_SPPB, $KETERANGAN);
-            
         } else {
-            // set the flash data error message if there is one
+            // Jika tidak login, logout dan tampilkan pesan
             $this->ion_auth->logout();
             $this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
         }
     }
+    
 
     function data_qty_sppb_form() //102023
 	{

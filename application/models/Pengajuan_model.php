@@ -6,11 +6,23 @@ class Pengajuan_model extends CI_Model
 	//SUMBER TABEL: tabel sppb
 	//DIPAKAI: 1. controller SPPB / function index
 	//         2. controller SPPB / function list_sppb_by_all_proyek
-	public function list_pengajuan_by_all_bencana() {
-		// $this->db->select('Jenis_Bencana, Nama_Pemohon, NIK, Instansi, Kecamatan_Bencana, Desa_Kelurahan_Bencana, TANGGAL_KEJADIAN_BENCANA, Tanggal_Pembuatan, CODE_MD5, STATUS_PENGAJUAN ');
-		$query = $this->db->get('form_inventaris_kebutuhan_korban_bencana');
+	public function list_pengajuan_by_filter($ID_JENIS_BENCANA_LIST) {
+		$this->db->select('*');
+		$this->db->from('form_inventaris_kebutuhan_korban_bencana');
+	
+		// Jika jenis bencana bukan "Semua", tambahkan filter
+		if ($ID_JENIS_BENCANA_LIST !== "Semua") {
+			$this->db->where('Jenis_Bencana', $ID_JENIS_BENCANA_LIST);
+		}
+	
+		$query = $this->db->get();
+	
+		// Debug query untuk memastikan hasilnya
+		log_message('debug', 'SQL Query: ' . $this->db->last_query());
+	
 		return $query->result_array();
 	}
+	
 	
 
 	//FUNGSI: Fungsi ini untuk menampilkan data sppb berdasarkan ID_SPPB
