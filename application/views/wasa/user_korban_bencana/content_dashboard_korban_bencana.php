@@ -21,7 +21,7 @@
     </div> -->
 
     <!-- <div class="col-lg-6"> -->
-        <div class="ibox float-e-margins">
+    <!-- <div class="ibox float-e-margins">
 
             <div class="ibox-title">
                 <h5>Pelatihan SiPESUT Versi Beta</h5>
@@ -110,7 +110,7 @@
                 </div>
             </div>
 
-        </div>
+        </div> -->
     <!-- </div> -->
 
 </div>
@@ -155,9 +155,9 @@
 <script src="<?php echo base_url(); ?>assets/wasa/js/demo/sparkline-demo.js"></script>
 
 <script>
-    $(document).ready(function() {
+$(document).ready(function() {
 
-    });
+});
 </script>
 </body>
 

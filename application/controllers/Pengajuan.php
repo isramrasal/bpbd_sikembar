@@ -139,24 +139,40 @@ class Pengajuan extends CI_Controller
         }
     }
 
-    function list_pengajuan_by_all_bencana() {
+    function list_pengajuan_by_all_bencana()
+    {
         if ($this->ion_auth->logged_in()) {
-            $ID_JENIS_BENCANA_LIST = $this->input->post('ID_JENIS_BENCANA_LIST');
+            $user = $this->ion_auth->user()->row(); // Data user yang login
     
-            // Debug input untuk memastikan data diterima
-            log_message('debug', 'ID_JENIS_BENCANA_LIST: ' . $ID_JENIS_BENCANA_LIST);
+            // Ambil ID user dari pengguna yang login
+            $user_id = $user->id;
     
-            // Panggil model dengan parameter filter
-            $data = $this->Pengajuan_model->list_pengajuan_by_filter($ID_JENIS_BENCANA_LIST);
+            // Panggil model dengan filter user_id
+            $data = $this->Pengajuan_model->list_pengajuan_by_filter($this->input->post('ID_JENIS_BENCANA_LIST'), $user_id);
+    
             echo json_encode($data);
         } else {
-            // Jika tidak login, logout dan tampilkan pesan
             $this->ion_auth->logout();
-            $this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
+            $this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silakan hubungi admin');
+            redirect('auth/login');
         }
     }
-    
 
+    function list_pengajuan_by_all_bencana_admin()
+    {
+        if ($this->ion_auth->logged_in()) {
+            // Panggil model untuk mengambil semua data tanpa filter user_id
+            $data = $this->Pengajuan_model->list_pengajuan_by_all_bencana($this->input->post('ID_JENIS_BENCANA_LIST'));
+
+            echo json_encode($data);
+        } else {
+            $this->ion_auth->logout();
+            $this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silakan hubungi admin');
+            redirect('auth/login');
+        }
+    }
+
+    
     function data_qty_sppb_form() //102023
 	{
         if ($this->ion_auth->logged_in())

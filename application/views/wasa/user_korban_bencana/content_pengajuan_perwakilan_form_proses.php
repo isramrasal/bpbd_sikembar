@@ -109,11 +109,11 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
                                 <div class="form-group"><label class="col-sm-2 control-label">No. Surat
                                         Pengajuan</label>
                                     <div class="col-sm-10">
-                                        <input name="NO_SURAT_GANTI" id="NO_SURAT_GANTI" type="text"
+                                        <input disabled='disabled' name="NO_SURAT_GANTI" id="NO_SURAT_GANTI" type="text"
                                             class="form-control"
                                             value="<?php echo $Pengajuan->Nomor_Surat_Form_Inventaris; ?>">
-                                        <input name="NO_SURAT_GANTI_ASLI" id="NO_SURAT_GANTI_ASLI" type="hidden"
-                                            class="form-control"
+                                        <input disabled='disabled' name="NO_SURAT_GANTI_ASLI" id="NO_SURAT_GANTI_ASLI"
+                                            type="hidden" class="form-control"
                                             value="<?php echo $Pengajuan->Nomor_Surat_Form_Inventaris; ?>">
                                     </div>
                                 </div>

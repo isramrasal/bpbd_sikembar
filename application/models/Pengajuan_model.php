@@ -6,22 +6,46 @@ class Pengajuan_model extends CI_Model
 	//SUMBER TABEL: tabel sppb
 	//DIPAKAI: 1. controller SPPB / function index
 	//         2. controller SPPB / function list_sppb_by_all_proyek
-	public function list_pengajuan_by_filter($ID_JENIS_BENCANA_LIST) {
+	public function list_pengajuan_by_all_bencana()
+    {
+        $this->db->select('*');
+        $this->db->from('form_inventaris_kebutuhan_korban_bencana');
+        $query = $this->db->get();
+
+        log_message('debug', 'SQL Query (Grup 2): ' . $this->db->last_query());
+
+        return $query->result_array();
+    }
+
+    public function list_pengajuan_by_CREATE_BY_USER($CREATE_BY_USER)
+    {
+        $this->db->select('*');
+        $this->db->from('form_inventaris_kebutuhan_korban_bencana');
+        $this->db->where('CREATE_BY_USER', $CREATE_BY_USER);
+        $query = $this->db->get();
+
+        log_message('debug', 'SQL Query (Grup 3): ' . $this->db->last_query());
+
+        return $query->result_array();
+    }
+
+    // Ambil data dengan filter jenis bencana
+	public function list_pengajuan_by_filter($ID_JENIS_BENCANA_LIST, $user_id)
+	{
 		$this->db->select('*');
 		$this->db->from('form_inventaris_kebutuhan_korban_bencana');
 	
-		// Jika jenis bencana bukan "Semua", tambahkan filter
 		if ($ID_JENIS_BENCANA_LIST !== "Semua") {
 			$this->db->where('Jenis_Bencana', $ID_JENIS_BENCANA_LIST);
 		}
 	
-		$query = $this->db->get();
+		$this->db->where('CREATE_BY_USER', $user_id);
 	
-		// Debug query untuk memastikan hasilnya
-		log_message('debug', 'SQL Query: ' . $this->db->last_query());
+		$query = $this->db->get();
 	
 		return $query->result_array();
 	}
+	
 	
 	
 

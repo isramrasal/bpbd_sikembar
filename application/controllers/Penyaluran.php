@@ -139,43 +139,27 @@ class Penyaluran extends CI_Controller
         }
     }
 
-    function list_penyaluran_by_all_bencana() //102023
+    function list_penyaluran_by_all_bencana()
     {
-
         if ($this->ion_auth->logged_in()) {
+            // Cek grup pengguna
             if ($this->ion_auth->in_group(2)) {
                 $data = $this->Penyaluran_model->list_penyaluran_by_all_bencana();
                 echo json_encode($data);
-            }
-            else if ($this->ion_auth->in_group(3)) {
-
+            } else if ($this->ion_auth->in_group(3)) {
                 $user = $this->ion_auth->user()->row();
-                $this->data['user_id'] = $user->id;
-                $this->data['USER_ID'] = $user->id;
-                $this->data['ID_PEGAWAI'] = $user->ID_PEGAWAI; //harusnya tidak ada
-                $data_role_user = $this->Manajemen_user_model->get_data_role_user_by_id($this->data['user_id']);
-                $this->data['role_user'] = $data_role_user['description'];
-                $this->data['NAMA_PROYEK'] = $data_role_user['NAMA_PROYEK']; //harusnya tidak ada
-                $this->data['ip_address'] = $user->ip_address;
-                $this->data['email'] = $user->email;
-                $this->data['user_id'] = $user->id;
-                $this->data['NIK'] = $user->NIK;
-
-
-                $data = $this->Penyaluran_model->list_penyaluran_by_all_bencana_by_NIK($this->data['NIK']);
+                $NIK_Penerima = $user->NIK;
+    
+                // Ambil data dari model berdasarkan NIK
+                $data = $this->Penyaluran_model->list_penyaluran_by_all_bencana_by_NIK($NIK_Penerima);
                 echo json_encode($data);
-
             }
-            // $ID_SPPB = 0;
-            // $KETERANGAN = "Melihat Data SPPB: " . json_encode($data);
-            // $this->user_log_sppb($ID_SPPB, $KETERANGAN);
-            
         } else {
-            // set the flash data error message if there is one
             $this->ion_auth->logout();
-            $this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
+            $this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silakan hubungi admin');
         }
     }
+    
 
     function data_qty_sppb_form() //102023
 	{
@@ -848,5 +832,3 @@ class Penyaluran extends CI_Controller
         }
     }
 }
-
-

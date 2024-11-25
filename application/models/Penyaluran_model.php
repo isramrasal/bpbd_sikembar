@@ -9,14 +9,19 @@ class Penyaluran_model extends CI_Model
 	function list_penyaluran_by_all_bencana()
 	{
 		$hasil = $this->db->query("SELECT * FROM form_penyaluran_barang_bencana");
-		return $hasil->result();
+		return $query->result_array();
 	}
 
-	function list_penyaluran_by_all_bencana_by_NIK($NIK)
+	function list_penyaluran_by_all_bencana_by_NIK($NIK_Penerima)
 	{
-		$hasil = $this->db->query("SELECT * FROM form_penyaluran_barang_bencana WHERE NIK_Penerima = '$NIK'");
-		return $hasil->result();
+		$this->db->where('NIK_Penerima', $NIK_Penerima);
+		$query = $this->db->get('form_penyaluran_barang_bencana');
+		
+		log_message('debug', 'Query Result: ' . json_encode($query->result()));
+		return $query->result();
 	}
+	
+	
 
 	function penyaluran_list_by_id_penyaluran($ID_FORM_PENYALURAN_BARANG_BENCANA)
 	{

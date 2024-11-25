@@ -86,7 +86,7 @@
                                     <th></th>
                                     <th>Jenis Bencana</th>
                                     <th>Nama Pemohon</th>
-                                    <th>Jumalh Korban Diwakili</th>
+                                    <th>Jumlah Korban Diwakili</th>
                                     <th>NIK</th>
                                     <th>Instansi</th>
                                     <th>Kecamatan Bencana</th>
@@ -134,8 +134,8 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Close</span></button>
-                <h4 class="modal-title">Buat Pengajuan Bantuan</h4>
-                <small class="font-bold">Silakan isi identitas formulir pengajuan bantuan</small>
+                <h4 class="modal-title">Buat Pengajuan Bantuan Perorangan</h4>
+                <small class="font-bold">Silakan isi identitas formulir pengajuan bantuan perorangan</small>
             </div>
             <input type="hidden" class="form-control" value="" name="FILE_NAME_TEMP" id="FILE_NAME_TEMP" disabled />
             <input type="hidden" class="form-control" value="" name="CODE_MD5" id="CODE_MD5" disabled />
@@ -148,14 +148,16 @@
                             <select class="chosen-select" name="ID_JENIS_BENCANA" class="form-control"
                                 id="ID_JENIS_BENCANA">
                                 <option value=''>- Pilih Bencana -</option>
-                                <option value='Gempa Bumi'>Gempa Bumi</option>
                                 <option value='Angin Puting Beliung'>Angin Puting Beliung</option>
                                 <option value='Banjir'>Banjir</option>
-                                <option value='Longsor'>Longsor</option>
-                                <option value='Tsunami'>Tsunami</option>
-                                <option value='Kebakaran'>Kebakaran</option>
-                                <option value='Pohon Tumbang'>Pohon Tumbang</option>
+                                <option value='Erupsi Gunung Api'>Erupsi Gunung Api</option>
+                                <option value='Gempa Bumi'>Gempa Bumi</option>
+                                <option value='Kebakaran Rumah'>Kebakaran Rumah</option>
+                                <option value='Kebakaran Hutan dan Lahan'>Kebakaran Hutan dan Lahan</option>
                                 <option value='Kekeringan'>Kekeringan</option>
+                                <option value='Tanah Longsor'>Tanah Longsor</option>
+                                <option value='Pohon Tumbang'>Pohon Tumbang</option>
+                                <option value='Tsunami'>Tsunami</option>
                             </select>
                         </div>
                     </div>
@@ -331,8 +333,8 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Close</span></button>
-                <h4 class="modal-title">Buat Pengajuan Bantuan</h4>
-                <small class="font-bold">Silakan isi identitas formulir pengajuan bantuan</small>
+                <h4 class="modal-title">Buat Pengajuan Bantuan Perwakilan</h4>
+                <small class="font-bold">Silakan isi identitas formulir pengajuan bantuan perwakilan</small>
             </div>
             <input type="hidden" class="form-control" value="" name="FILE_NAME_TEMP" id="FILE_NAME_TEMP" disabled />
             <input type="hidden" class="form-control" value="" name="CODE_MD5_PERWAKILAN" id="CODE_MD5_PERWAKILAN"
@@ -346,14 +348,16 @@
                             <select class="chosen-select" name="ID_JENIS_BENCANA_PERWAKILAN" class="form-control"
                                 id="ID_JENIS_BENCANA_PERWAKILAN">
                                 <option value=''>- Pilih Bencana -</option>
-                                <option value='Gempa Bumi'>Gempa Bumi</option>
                                 <option value='Angin Puting Beliung'>Angin Puting Beliung</option>
                                 <option value='Banjir'>Banjir</option>
-                                <option value='Longsor'>Longsor</option>
-                                <option value='Tsunami'>Tsunami</option>
-                                <option value='Kebakaran'>Kebakaran</option>
-                                <option value='Pohon Tumbang'>Pohon Tumbang</option>
+                                <option value='Erupsi Gunung Api'>Erupsi Gunung Api</option>
+                                <option value='Gempa Bumi'>Gempa Bumi</option>
+                                <option value='Kebakaran Rumah'>Kebakaran Rumah</option>
+                                <option value='Kebakaran Hutan dan Lahan'>Kebakaran Hutan dan Lahan</option>
                                 <option value='Kekeringan'>Kekeringan</option>
+                                <option value='Tanah Longsor'>Tanah Longsor</option>
+                                <option value='Pohon Tumbang'>Pohon Tumbang</option>
+                                <option value='Tsunami'>Tsunami</option>
                             </select>
                         </div>
                     </div>

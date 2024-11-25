@@ -760,7 +760,7 @@ $(document).ready(function() {
         $('#ibox1_pengajuan').children('.ibox-content').toggleClass('sk-loading');
 
         $.ajax({
-            url: "<?php echo base_url(); ?>/Pengajuan/list_pengajuan_by_all_bencana",
+            url: "<?php echo base_url(); ?>/Pengajuan/list_pengajuan_by_all_bencana_admin",
             method: "POST",
             data: form_data,
             dataType: 'json',
