@@ -109,10 +109,10 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
                                 <div class="form-group"><label class="col-sm-2 control-label">No. Surat
                                         Donasi</label>
                                     <div class="col-sm-10">
-                                        <input name="NO_SURAT_GANTI" id="NO_SURAT_GANTI" type="text"
+                                        <input disabled="disabled" name="NO_SURAT_GANTI" id="NO_SURAT_GANTI" type="text"
                                             class="form-control"
                                             value="<?php echo $Donatur->Nomor_Surat_Bantuan_Donasi; ?>">
-                                        <input name="NO_SURAT_GANTI_ASLI" id="NO_SURAT_GANTI_ASLI" type="hidden"
+                                        <input disabled="disabled" name="NO_SURAT_GANTI_ASLI" id="NO_SURAT_GANTI_ASLI" type="hidden"
                                             class="form-control"
                                             value="<?php echo $Donatur->Nomor_Surat_Bantuan_Donasi; ?>">
                                     </div>
@@ -213,7 +213,7 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
                                             class="form-control" value="<?php echo $Donatur->Jenis_Bencana; ?>">
                                     </div>
                                 </div> -->
-                                <div class="form-group" id="data_TANGGAL_KEJADIAN_BENCANA"><label
+                                <!-- <div class="form-group" id="data_TANGGAL_KEJADIAN_BENCANA"><label
                                         class="col-sm-2 control-label">Tanggal Kejadian Bencana</label>
                                     <div class="col-sm-10">
                                         <?php
@@ -237,7 +237,7 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
                                                 }
                                                 ?>
                                     </div>
-                                </div>
+                                </div> -->
 
 
                                 <?php endforeach;
@@ -313,7 +313,7 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
                                     <th>Spesifikasi Singkat</th>
                                     <th>Jumlah Barang</th>
                                     <th>Satuan Barang</th>
-                                    <th>Jenis Bantuan</th>
+                                    <th>Jenis Donasi</th>
                                     <th>Keterangan</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -362,17 +362,76 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Close</span></button>
-                <h4 class="modal-title">Tambah Item Barang Bantuan</h4>
-                <small class="font-bold">Silakan isi data Item Barang Bantuan</small></br>
+                <h4 class="modal-title">Tambah Item Barang Donasi</h4>
+                <small class="font-bold">Silakan isi data Item Barang Donasi</small></br>
             </div>
             <div class="form-horizontal">
                 <div class="modal-body">
                     <div class="form-group row">
-                        <label class="col-xs-2 control-label">Identitas Barang Bantuan</label>
+                        <label class="col-xs-2 control-label">Identitas Barang Donasi</label>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-xs-3">Nama Barang </label>
+                        <label class="control-label col-xs-3">Jenis Donasi*</label>
+                        <div class="col-xs-9">
+                            <select name="JENIS_BANTUAN_4" class="form-control" id="JENIS_BANTUAN_4">
+                                <option value=''>- Pilih Jenis Donasi -</option>
+                                <optgroup label="Barang Kebutuhan Dasar (Esensial)">
+                                    <option value='Pangan'>Pangan: Makanan instan, air minum, susu formula</option>
+                                    <option value='Pakaian'>Pakaian: Layak pakai, selimut, jaket, sarung</option>
+                                    <option value='Peralatan Kebersihan'>Peralatan Kebersihan: Sabun, pasta gigi, popok
+                                        bayi</option>
+                                </optgroup>
+                                <optgroup label="Barang Medis">
+                                    <option value='Obat-obatan dasar'>Obat-obatan dasar: Antiseptik, obat flu, obat
+                                        diare</option>
+                                    <option value='Peralatan Medis'>Peralatan Medis: Masker, perban, alat pengukur
+                                        tekanan darah</option>
+                                    <option value='Vitamin dan Suplemen'>Vitamin dan Suplemen</option>
+                                </optgroup>
+                                <optgroup label="Barang untuk Tempat Tinggal Sementara">
+                                    <option value='Tenda Darurat'>Tenda darurat</option>
+                                    <option value='Terpal'>Terpal</option>
+                                    <option value='Matras atau Alas Tidur'>Matras atau alas tidur</option>
+                                </optgroup>
+                                <optgroup label="Barang untuk Keperluan Balita dan Lansia">
+                                    <option value='Susu Formula dan Botol Susu'>Susu formula, botol susu</option>
+                                    <option value='Popok dan Mainan Sederhana'>Popok bayi, mainan sederhana</option>
+                                    <option value='Kursi Roda atau Alat Bantu Jalan'>Kursi roda, alat bantu jalan
+                                    </option>
+                                </optgroup>
+                                <optgroup label="Barang untuk Pemulihan Psikologis">
+                                    <option value='Mainan Edukasi'>Mainan edukasi untuk anak-anak</option>
+                                    <option value='Buku atau Alat Tulis'>Buku atau alat tulis</option>
+                                    <option value='Papan Permainan'>Papan permainan atau barang penghibur</option>
+                                </optgroup>
+                                <optgroup label="Barang Kebersihan Lingkungan">
+                                    <option value='Karbol atau Disinfektan'>Karbol atau disinfektan</option>
+                                    <option value='Alat Kebersihan'>Alat kebersihan: Sapu, pel, kantong sampah</option>
+                                    <option value='Masker dan Sarung Tangan'>Masker dan sarung tangan</option>
+                                </optgroup>
+                                <optgroup label="Barang untuk Memasak">
+                                    <option value='Kompor Portabel'>Kompor portabel</option>
+                                    <option value='Gas atau Bahan Bakar'>Gas atau bahan bakar</option>
+                                    <option value='Peralatan Memasak'>Peralatan memasak: Panci, wajan, sendok, piring
+                                    </option>
+                                </optgroup>
+                                <optgroup label="Barang Lainnya">
+                                    <option value='Power Bank atau Alat Penerangan'>Power bank, alat penerangan</option>
+                                    <option value='Generator Listrik'>Generator listrik</option>
+                                    <option value='Sandal atau Sepatu'>Sandal atau sepatu</option>
+                                </optgroup>
+                                <optgroup label="Barang untuk Rehabilitasi dan Rekonstruksi">
+                                    <option value='Peralatan Bangunan'>Peralatan bangunan: Palang, paku, gergaji, sekop
+                                    </option>
+                                    <option value='Bahan Bangunan'>Bahan bangunan: Semen, kayu, batu bata</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-xs-3">Nama Barang*</label>
                         <div class="col-xs-9">
                             <input name="NAMA_4" id="NAMA_4" class="form-control" type="text"
                                 placeholder="Contoh : Mie Instan">
@@ -397,43 +456,33 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-xs-3">Jumlah Barang</label>
+                        <label class="control-label col-xs-3">Jumlah Barang*</label>
                         <div class="col-xs-9">
                             <input class="touchspin1" type="number" name="JUMLAH_BARANG_4" id="JUMLAH_BARANG_4">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-xs-3">Satuan Barang</label>
+                        <label class="control-label col-xs-3">Satuan Barang*</label>
                         <div class="col-xs-9">
                             <input name="SATUAN_BARANG_4" id="SATUAN_BARANG_4" class="form-control" type="text"
-                                placeholder="Contoh : Kardus">
+                                placeholder="Contoh : Kardus, Botol, Liter, Box, Pcs, dll">
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="control-label col-xs-3">Jenis Bantuan</label>
-                        <div class="col-xs-9">
-                            <select name="JENIS_BANTUAN_4" class="form-control" id="JENIS_BANTUAN_4">
-                                <option value=''>- Pilih Jenis Bantuan -</option>
-                                <option value='medis_kesehatan'>Bantuan Medis dan Kesehatan</option>
-                                <option value='pangan'>Bantuan Pangan</option>
-                                <option value='evakuasi'>Bantuan Evakuasi</option>
-                                <option value='tempat_berteduh'>Bantuan Tempat Berteduh</option>
-                                <option value='pemulihan_ekonomi'>Bantuan Pemulihan Ekonomi</option>
-                                <option value='rekonstruksi'>Bantuan Rekonstruksi</option>
-                                <option value='pendidikan'>Bantuan Pendidikan</option>
-                                <option value='komunikasi'>Bantuan Komunikasi</option>
-                                <option value='air_sanitasi'>Bantuan Air dan Sanitasi</option>
-                            </select>
-                        </div>
-                    </div>
+
 
                     <div class="form-group">
                         <label class="control-label col-xs-3">Keterangan</label>
                         <div class="col-xs-9">
                             <input name="KETERANGAN_4" id="KETERANGAN_4" class="form-control" type="text"
                                 placeholder="Contoh: Belum termasuk peralatan makan">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-xs-3"></label>
+                        <div class="col-xs-9"> * Wajib diisi
                         </div>
                     </div>
 
@@ -462,25 +511,85 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Close</span></button>
-                <h4 class="modal-title">Ubah Item Barang/Jasa SPPB Pembelian</h4>
-                <small class="font-bold">Silakan edit item barang/jasa SPPB Pembelian</small>
+                <h4 class="modal-title">Ubah Item Barang Donasi</h4>
+                <small class="font-bold">Silakan edit data item barang donasi yang Anda ingin salurkan</small>
             </div>
             <?php $attributes = array("ID_SPPB_barang2" => "contact_form", "id" => "contact_form");
             echo form_open("SPPB_form/update_data", $attributes); ?>
             <div class="form-horizontal">
                 <div class="modal-body">
 
-                    <input name="ID_SPPB_FORM_2" id="ID_SPPB_FORM_2" class="form-control" type="hidden" readonly>
+                    <input name="ID_ITEM_FORM_BANTUAN_DONASI_2" id="ID_ITEM_FORM_BANTUAN_DONASI_2"
+                        class="form-control" type="hidden" readonly>
 
                     <div class="form-group row">
                         <label class="col-xs-2 control-label">Identitas Barang/Jasa</label>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-xs-3">Nama Barang</label>
+                        <label class="control-label col-xs-3">Jenis Bantuan*</label>
+                        <div class="col-xs-9">
+                            <select name="JENIS_BANTUAN_2" class="form-control" id="JENIS_BANTUAN_2">
+                                <option value=''>- Pilih Jenis Bantuan -</option>
+                                <optgroup label="Barang Kebutuhan Dasar (Esensial)">
+                                    <option value='Pangan'>Pangan: Makanan instan, air minum, susu formula</option>
+                                    <option value='Pakaian'>Pakaian: Layak pakai, selimut, jaket, sarung</option>
+                                    <option value='Peralatan Kebersihan'>Peralatan Kebersihan: Sabun, pasta gigi, popok
+                                        bayi</option>
+                                </optgroup>
+                                <optgroup label="Barang Medis">
+                                    <option value='Obat-obatan dasar'>Obat-obatan dasar: Antiseptik, obat flu, obat
+                                        diare</option>
+                                    <option value='Peralatan Medis'>Peralatan Medis: Masker, perban, alat pengukur
+                                        tekanan darah</option>
+                                    <option value='Vitamin dan Suplemen'>Vitamin dan Suplemen</option>
+                                </optgroup>
+                                <optgroup label="Barang untuk Tempat Tinggal Sementara">
+                                    <option value='Tenda Darurat'>Tenda darurat</option>
+                                    <option value='Terpal'>Terpal</option>
+                                    <option value='Matras atau Alas Tidur'>Matras atau alas tidur</option>
+                                </optgroup>
+                                <optgroup label="Barang untuk Keperluan Balita dan Lansia">
+                                    <option value='Susu Formula dan Botol Susu'>Susu formula, botol susu</option>
+                                    <option value='Popok dan Mainan Sederhana'>Popok bayi, mainan sederhana</option>
+                                    <option value='Kursi Roda atau Alat Bantu Jalan'>Kursi roda, alat bantu jalan
+                                    </option>
+                                </optgroup>
+                                <optgroup label="Barang untuk Pemulihan Psikologis">
+                                    <option value='Mainan Edukasi'>Mainan edukasi untuk anak-anak</option>
+                                    <option value='Buku atau Alat Tulis'>Buku atau alat tulis</option>
+                                    <option value='Papan Permainan'>Papan permainan atau barang penghibur</option>
+                                </optgroup>
+                                <optgroup label="Barang Kebersihan Lingkungan">
+                                    <option value='Karbol atau Disinfektan'>Karbol atau disinfektan</option>
+                                    <option value='Alat Kebersihan'>Alat kebersihan: Sapu, pel, kantong sampah</option>
+                                    <option value='Masker dan Sarung Tangan'>Masker dan sarung tangan</option>
+                                </optgroup>
+                                <optgroup label="Barang untuk Memasak">
+                                    <option value='Kompor Portabel'>Kompor portabel</option>
+                                    <option value='Gas atau Bahan Bakar'>Gas atau bahan bakar</option>
+                                    <option value='Peralatan Memasak'>Peralatan memasak: Panci, wajan, sendok, piring
+                                    </option>
+                                </optgroup>
+                                <optgroup label="Barang Lainnya">
+                                    <option value='Power Bank atau Alat Penerangan'>Power bank, alat penerangan</option>
+                                    <option value='Generator Listrik'>Generator listrik</option>
+                                    <option value='Sandal atau Sepatu'>Sandal atau sepatu</option>
+                                </optgroup>
+                                <optgroup label="Barang untuk Rehabilitasi dan Rekonstruksi">
+                                    <option value='Peralatan Bangunan'>Peralatan bangunan: Palang, paku, gergaji, sekop
+                                    </option>
+                                    <option value='Bahan Bangunan'>Bahan bangunan: Semen, kayu, batu bata</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-xs-3">Nama Barang*</label>
                         <div class="col-xs-9">
                             <input name="NAMA_2" id="NAMA_2" class="form-control" type="text"
-                                placeholder="Contoh : Crane">
+                                placeholder="Contoh : Mie Instan">
                         </div>
                     </div>
                     <div id="alert-msg"></div>
@@ -489,7 +598,7 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
                         <label class="control-label col-xs-3">Merek Barang</label>
                         <div class="col-xs-9">
                             <input name="MEREK_2" id="MEREK_2" class="form-control" type="text"
-                                placeholder="Contoh : Toyota">
+                                placeholder="Contoh : Indomie">
                         </div>
                     </div>
 
@@ -497,58 +606,22 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
                         <label class="control-label col-xs-3">Spesifikasi Singkat</label>
                         <div class="col-xs-9">
                             <input name="SPESIFIKASI_SINGKAT_2" id="SPESIFIKASI_SINGKAT_2" class="form-control"
-                                type="text" placeholder="Contoh: Mata Gerindra Stainless Grinding ukuran 4 inch ">
+                                type="text" placeholder="Contoh: Indomie Goreng 85gram ">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-xs-3">Jumlah Barang</label>
+                        <label class="control-label col-xs-3">Jumlah Barang*</label>
                         <div class="col-xs-9">
-                            <input class=" touchspin1" type="number" name="JUMLAH_QTY_SPP_2" id="JUMLAH_QTY_SPP_2">
+                            <input class="touchspin1" type="number" name="JUMLAH_BARANG_2" id="JUMLAH_BARANG_2">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-xs-3">Satuan Barang</label>
+                        <label class="control-label col-xs-3">Satuan Barang*</label>
                         <div class="col-xs-9">
-                            <select>
                             <input name="SATUAN_BARANG_2" id="SATUAN_BARANG_2" class="form-control" type="text"
-                                placeholder="Contoh : Pcs">
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label col-xs-3">Klasifikasi Barang</label>
-                        <div class="col-xs-9">
-                            <select name="KLASIFIKASI_BARANG_2" class="form-control" id="KLASIFIKASI_BARANG_2">
-                                <option value=''>- Pilih Klasifikasi Barang -</option>
-                                <?php foreach ($klasifikasi_barang_list as $item) {
-                                    echo '<option value="' . $item->ID_KLASIFIKASI_BARANG . '">' . $item->NAMA_KLASIFIKASI_BARANG . '</option>';
-                                } ?>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group" id="data_TANGGAL_MULAI_PAKAI_HARI_2">
-                        <label class="col-xs-3 control-label">Tanggal Mulai Pemakaian</label>
-                        <div class="col-xs-9">
-                            <div class="input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input
-                                    name="TANGGAL_MULAI_PAKAI_HARI_2" id="TANGGAL_MULAI_PAKAI_HARI_2" type="text"
-                                    class="form-control" placeholder="dd/mm/yyyy">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group" id="data_TANGGAL_SELESAI_PAKAI_HARI_2">
-                        <label class="col-xs-3 control-label">Tanggal Selesai Pemakaian</label>
-                        <div class="col-xs-9">
-                            <div class="input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input
-                                    name="TANGGAL_SELESAI_PAKAI_HARI_2" id="TANGGAL_SELESAI_PAKAI_HARI_2" type="text"
-                                    class="form-control" placeholder="dd/mm/yyyy">
-                            </div>
+                                placeholder="Contoh : Kardus, Botol, Liter, Box, Pcs, dll">
                         </div>
                     </div>
 
@@ -556,45 +629,13 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
                         <label class="control-label col-xs-3">Keterangan</label>
                         <div class="col-xs-9">
                             <input name="KETERANGAN_2" id="KETERANGAN_2" class="form-control" type="text"
-                                placeholder="Contoh: Dibutuhkan Segera">
+                                placeholder="Contoh: Belum termasuk peralatan makan">
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label class="col-xs-2 control-label">Sumber Mata Anggaran</label>
-                    </div>
-
-                    <div class="form-group row" hidden>
-                        <label class="col-xs-3 control-label">Jenis Pekerjaan</label>
-                        <div class="col-xs-9">
-                            <input name="ID_PROYEK_SUB_PEKERJAAN_2" id="ID_PROYEK_SUB_PEKERJAAN_2" class="form-control"
-                                type="text">
-
-                            <input name="ID_RAB_2" id="ID_RAB_2" class="form-control" type="text">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-xs-3 control-label">Kategori RAB</label>
-                        <div class="col-xs-9">
-                            <select name="ID_RAB_FORM_2" class="form-control" id="ID_RAB_FORM_2">
-                            </select>
-                        </div>
-                    </div>
-
-                    <div id="show_hidden_rab_baru_2" hidden class="form-group row">
-                        <label class="col-xs-3 control-label">Nama Kategori RAB (Input Baru)</label>
-                        <div class="col-xs-9">
-                            <input type="text" name="NAMA_KATEGORI_RAB_2" id="NAMA_KATEGORI_RAB_2" class="form-control">
-
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-xs-3 control-label">Item Barang/Jasa RAB</label>
-                        <div class="col-xs-9">
-                            <select name="ID_RASD_FORM_2" class="form-control" id="ID_RASD_FORM_2">
-                            </select>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3"></label>
+                        <div class="col-xs-9"> * Wajib diisi
                         </div>
                     </div>
 
@@ -1147,10 +1188,10 @@ $(document).ready(function() {
                         data[l].NAMA_BARANG +
                         '<td>' +
                         '<a href="javascript:;" class="btn btn-warning btn-xs item_edit block" data="' +
-                        data[l].ID_ITEM_FORM_PENGAJUAN_BARANG +
+                        data[l].ID_ITEM_FORM_BANTUAN_DONASI  +
                         '"><i class="fa fa-pencil"></i> Edit</a>' + ' ' +
                         '<a href="javascript:;" class="btn btn-danger btn-xs item_hapus block" data="' +
-                        data[l].ID_ITEM_FORM_PENGAJUAN_BARANG +
+                        data[l].ID_ITEM_FORM_BANTUAN_DONASI +
                         '"><i class="fa fa-trash"></i> Hapus</a>' +
                         '</td>' +
                         '</tr>';
@@ -1201,193 +1242,27 @@ $(document).ready(function() {
 
     //GET UPDATE untuk edit jumlah
     $('#show_data').on('click', '.item_edit', function() {
-        var ID_SPPB_FORM = $(this).attr('data');
+        var ID_ITEM_FORM_BANTUAN_DONASI = $(this).attr('data');
         $.ajax({
             type: "GET",
-            url: "<?php echo base_url('SPPB_form/get_data') ?>",
+            url: "<?php echo base_url('Donatur_form/get_data') ?>",
             dataType: "JSON",
             data: {
-                ID_SPPB_FORM: ID_SPPB_FORM
+                ID_ITEM_FORM_BANTUAN_DONASI: ID_ITEM_FORM_BANTUAN_DONASI
             },
             success: function(data) {
+                console.log(data);
 
-                $('[name="ID_SPPB_FORM_2"]').val(data.ID_SPPB_FORM);
+                $('[name="ID_ITEM_FORM_BANTUAN_DONASI_2"]').val(data.ID_ITEM_FORM_BANTUAN_DONASI);
+                $('[name="JENIS_BANTUAN_2"]').val(data.JENIS_BANTUAN);
                 $('[name="NAMA_2"]').val(data.NAMA_BARANG);
                 $('[name="MEREK_2"]').val(data.MEREK);
                 $('[name="SPESIFIKASI_SINGKAT_2"]').val(data.SPESIFIKASI_SINGKAT);
-                $('[name="JUMLAH_QTY_SPP_2"]').val(data.JUMLAH_QTY_SPP);
+                $('[name="JUMLAH_BARANG_2"]').val(data.JUMLAH_BARANG);
                 $('[name="SATUAN_BARANG_2"]').val(data.SATUAN_BARANG);
-                $('[name="KLASIFIKASI_BARANG_2"]').val(data.ID_KLASIFIKASI_BARANG);
-                $('[name="TANGGAL_MULAI_PAKAI_HARI_2"]').val(data.TANGGAL_MULAI_PAKAI_HARI);
-                $('[name="TANGGAL_SELESAI_PAKAI_HARI_2"]').val(data
-                    .TANGGAL_SELESAI_PAKAI_HARI);
-                $('[name="KETERANGAN_2"]').val(data.KETERANGAN_UMUM);
-                $('[name="ID_PROYEK_SUB_PEKERJAAN_2"]').val(data.ID_PROYEK_SUB_PEKERJAAN);
-                $('[name="NAMA_KATEGORI_RAB_2"]').val(data.NAMA_KATEGORI_RAB);
+                $('[name="KETERANGAN_2"]').val(data.KETERANGAN);
                 $('#alert-msg-2').html('<div></div>');
                 $('#ModalEdit').modal('show');
-
-                var ID_PROYEK_SUB_PEKERJAAN = $('[name="ID_PROYEK_SUB_PEKERJAAN_2"]').val();
-
-                var form_data = {
-                    ID_PROYEK: ID_PROYEK,
-                    ID_PROYEK_SUB_PEKERJAAN: ID_PROYEK_SUB_PEKERJAAN
-                }
-
-                $.ajax({
-                    url: "<?php echo base_url(); ?>/SPPB_form/get_data_id_rab_by_id_proyek",
-                    method: "POST",
-                    data: form_data,
-                    async: false,
-                    dataType: 'json',
-                    success: function(data) {
-
-                        var html = '';
-                        var i;
-
-                        for (i = 0; i < data.length; i++) {
-
-                            var form_data = {
-                                ID_RAB: data[i].ID_RAB,
-                            }
-
-                            $('[name="ID_RAB_2"]').val(data[i].ID_RAB);
-
-                            $.ajax({
-                                url: "<?php echo base_url(); ?>/SPPB_form/get_data_id_rab_form_by_id_rab",
-                                method: "POST",
-                                data: form_data,
-                                async: false,
-                                dataType: 'json',
-                                success: function(data) {
-
-                                    var html = '';
-                                    var i;
-
-                                    html =
-                                        "<option value=''>- Pilih Kategori RAB -</option>";
-
-                                    for (i = 0; i < data
-                                        .length; i++) {
-                                        html += '<option value="' +
-                                            data[i].ID_RAB_FORM +
-                                            '">' + data[i]
-                                            .NAMA_KATEGORI +
-                                            '</option>';
-
-                                    }
-                                    html +=
-                                        '<option value="999999999">' +
-                                        '-Tambah Kategori RAB Baru-' +
-                                        '</option>';
-                                    $('#ID_RAB_FORM_2').html(html);
-
-                                }
-                            });
-                        }
-
-                    }
-                });
-
-                $('[name="ID_RAB_FORM_2"]').val(data.ID_RAB_FORM);
-
-                var ID_PROYEK_SUB_PEKERJAAN = $('[name="ID_PROYEK_SUB_PEKERJAAN_2"]').val();
-
-                var form_data = {
-                    ID_RAB_FORM: $('#ID_RAB_FORM_2').val(),
-                    ID_PROYEK_SUB_PEKERJAAN: ID_PROYEK_SUB_PEKERJAAN
-
-                }
-                $.ajax({
-                    url: "<?php echo base_url(); ?>/SPPB_form/get_data_id_rasd_by_id_rab_form",
-                    method: "POST",
-                    data: form_data,
-                    async: false,
-                    dataType: 'json',
-                    success: function(data) {
-
-                        var html = '';
-                        var i;
-
-                        html = "<option value=''>- Pilih RASD -</option>";
-
-                        for (i = 0; i < data.length; i++) {
-
-                            var form_data = {
-                                ID_RASD: data[i].ID_RASD,
-                            }
-
-                            $.ajax({
-                                url: "<?php echo base_url(); ?>/SPPB_form/get_data_id_rasd_form_by_id_rasd",
-                                method: "POST",
-                                data: form_data,
-                                async: false,
-                                dataType: 'json',
-                                success: function(data) {
-
-                                    var html = '';
-                                    var i;
-
-                                    for (i = 0; i < data
-                                        .length; i++) {
-
-                                        if (data[i].DEVIASI ==
-                                            null) {
-                                            DATA_DEVIASI = '';
-
-                                            html +=
-                                                '<option value="' +
-                                                data[i]
-                                                .ID_RASD_FORM +
-                                                '">' + data[i]
-                                                .NAMA + ' | ' +
-                                                data[i]
-                                                .SPESIFIKASI_SINGKAT +
-                                                DATA_DEVIASI +
-                                                '</option>';
-
-                                        } else {
-                                            DATA_DEVIASI = ' | ' +
-                                                data[i].DEVIASI;
-                                            html +=
-                                                '<option value="' +
-                                                data[i]
-                                                .ID_RASD_FORM +
-                                                '">' + data[i]
-                                                .NAMA + ' | ' +
-                                                data[i]
-                                                .SPESIFIKASI_SINGKAT +
-                                                DATA_DEVIASI +
-                                                '</option>';
-                                        }
-
-
-
-                                    }
-                                    html +=
-                                        '<option value="666666">- Tambah sebagai item baru -</option>';
-                                    $('#ID_RASD_FORM_2').html(html);
-
-                                }
-                            });
-                        }
-
-                    }
-                });
-
-                $('[name="ID_RASD_FORM_2"]').val(data.ID_RASD_FORM);
-
-
-
-                var ID_RAB_FORM = $('#ID_RAB_FORM_2').val();
-                if (ID_RAB_FORM == "999999999") {
-                    $('#show_hidden_rab_baru_2').attr("hidden", false);
-                    $('#NAMA_KATEGORI_RAB_2').val("");
-                    $('#ID_RASD_FORM_2').val("");
-                } else {
-                    $('#show_hidden_rab_baru_2').attr("hidden", true);
-                    $('#NAMA_KATEGORI_RAB_2').val("");
-                }
 
             }
         });
@@ -1815,18 +1690,18 @@ $(document).ready(function() {
 
     //GET HAPUS
     $('#show_data').on('click', '.item_hapus', function() {
-        var ID_SPPB_FORM = $(this).attr('data');
+        var ID_ITEM_FORM_BANTUAN_DONASI = $(this).attr('data');
         $.ajax({
             type: "GET",
-            url: "<?php echo base_url('SPPB_form/get_data') ?>",
+            url: "<?php echo base_url('Donatur_form/get_data') ?>",
             dataType: "JSON",
             data: {
-                ID_SPPB_FORM: ID_SPPB_FORM
+                ID_ITEM_FORM_BANTUAN_DONASI: ID_ITEM_FORM_BANTUAN_DONASI
             },
             success: function(data) {
                 $.each(data, function() {
                     $('#ModalHapus').modal('show');
-                    $('[name="kode"]').val(ID_SPPB_FORM);
+                    $('[name="kode"]').val(ID_ITEM_FORM_BANTUAN_DONASI);
                     $('#NAMA_3').html('</br>Nama Barang : ' + data.NAMA_BARANG);
 
                 });
@@ -1885,40 +1760,24 @@ $(document).ready(function() {
     //UPDATE DATA 
     $('#btn_update').on('click', function() {
 
-        var TANGGAL_MULAI_PAKAI_HARI = $('#TANGGAL_MULAI_PAKAI_HARI_2').val(),
-            TANGGAL_MULAI_PAKAI_HARI = TANGGAL_MULAI_PAKAI_HARI.split("/").reverse().join("-");
-
-        var TANGGAL_SELESAI_PAKAI_HARI = $('#TANGGAL_SELESAI_PAKAI_HARI_2').val(),
-            TANGGAL_SELESAI_PAKAI_HARI = TANGGAL_SELESAI_PAKAI_HARI.split("/").reverse().join("-");
-
         var form_data = {
-            ID_SPPB: ID_SPPB,
-            ID_SPPB_FORM: $('#ID_SPPB_FORM_2').val(),
+            ID_ITEM_FORM_BANTUAN_DONASI: $('#ID_ITEM_FORM_BANTUAN_DONASI_2').val(),
+            JENIS_BANTUAN: $('#JENIS_BANTUAN_2').val(),
             NAMA: $('#NAMA_2').val(),
             MEREK: $('#MEREK_2').val(),
             SPESIFIKASI_SINGKAT: $('#SPESIFIKASI_SINGKAT_2').val(),
-            JUMLAH_QTY_SPP: $('#JUMLAH_QTY_SPP_2').val(),
+            JUMLAH_BARANG: $('#JUMLAH_BARANG_2').val(),
             SATUAN_BARANG: $('#SATUAN_BARANG_2').val(),
-            KLASIFIKASI_BARANG: $('#KLASIFIKASI_BARANG_2').val(),
-            TANGGAL_MULAI_PAKAI_HARI: TANGGAL_MULAI_PAKAI_HARI,
-            TANGGAL_SELESAI_PAKAI_HARI: TANGGAL_SELESAI_PAKAI_HARI,
-            KETERANGAN: $('#KETERANGAN_2').val(),
-            ID_PROYEK_SUB_PEKERJAAN: $('#ID_PROYEK_SUB_PEKERJAAN_2').val(),
-            ID_RAB_FORM: $('#ID_RAB_FORM_2').val(),
-            NAMA_KATEGORI_RAB: $('#NAMA_KATEGORI_RAB_2').val(),
-            ID_RASD_FORM: $('#ID_RASD_FORM_2').val(),
-            ID_RAB: $('#ID_RAB_2').val(),
-            NAMA_RAB: $('#ID_RAB_FORM_2 option:selected').text(),
-            ID_PROYEK: ID_PROYEK
+            KETERANGAN: $('#KETERANGAN_2').val()
         };
 
         $.ajax({
-            url: "<?php echo site_url('SPPB_form/update_data') ?>",
+            url: "<?php echo site_url('Donatur_form/update_data') ?>",
             type: "POST",
             data: form_data,
             success: function(data) {
 
-                if (data == "true") {
+                if (data == "") {
                     $('#ModalEdit').modal('hide');
                     window.location.reload();
                 } else {
@@ -1956,7 +1815,7 @@ $(document).ready(function() {
         var kode = $('#textkode').val();
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url('SPPB_form/hapus_data') ?>",
+            url: "<?php echo base_url('Donatur_form/hapus_data') ?>",
             dataType: "JSON",
             data: {
                 kode: kode
