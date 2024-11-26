@@ -628,8 +628,6 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
                         </div>
                     </div>
 
-
-
                     <div class="form-group">
                         <label class="control-label col-xs-3">Keterangan</label>
                         <div class="col-xs-9">
