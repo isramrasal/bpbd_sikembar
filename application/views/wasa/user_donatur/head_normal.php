@@ -12,7 +12,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 	<title><?php echo $title; ?></title>
 
-	<link rel="icon" href="<?php echo base_url(); ?>assets/logo_wasa.png">
+	<link rel="icon" href="<?php echo base_url(); ?>assets/logo_bpbd.png">
 
 	<link href="<?php echo base_url(); ?>assets/wasa/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">

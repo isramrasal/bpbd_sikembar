@@ -124,6 +124,23 @@ class Donatur extends CI_Controller
         }
     }
 
+    function list_pengajuan_by_user()
+    {
+        if ($this->ion_auth->logged_in()) {
+            $user = $this->ion_auth->user()->row(); // Data user yang login
+
+            // Ambil data berdasarkan user_id dari model
+            $data = $this->Donatur_model->list_pengajuan_by_user($user->id);
+
+            // Tampilkan data dalam format JSON
+            echo json_encode($data);
+        } else {
+            $this->ion_auth->logout();
+            $this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silakan hubungi admin');
+            redirect('auth/login');
+        }
+    }
+
     function list_sppb_by_all_proyek() //102023
     {
 

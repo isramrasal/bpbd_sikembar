@@ -6,6 +6,20 @@ class Donatur_model extends CI_Model
 	//SUMBER TABEL: tabel sppb
 	//DIPAKAI: 1. controller SPPB / function index
 	//         2. controller SPPB / function list_sppb_by_all_proyek
+
+    // Ambil data berdasarkan user_id (untuk user biasa)
+    public function list_pengajuan_by_user($CREATE_BY_USER)
+    {
+        $this->db->select('*'); // Pilih semua kolom
+        $this->db->from('form_inventaris_bantuan_donasi'); // Nama tabel
+        $this->db->where('CREATE_BY_USER', $CREATE_BY_USER); // Filter berdasarkan kolom CREATE_BY_USER
+        $query = $this->db->get(); // Eksekusi query
+
+        log_message('debug', 'SQL Query (Grup 4): ' . $this->db->last_query()); // Logging SQL query
+
+        return $query->result_array(); // Kembalikan hasil sebagai array
+    }
+
 	function list_sppb_by_all_proyek()
 	{
 		$hasil = $this->db->query("SELECT S.ID_SPPB, S.HASH_MD5_SPPB, S.ID_PROYEK, S.NO_URUT_SPPB, DATE_FORMAT(S.TANGGAL_DOKUMEN_SPPB, '%d/%m/%Y') AS TANGGAL_DOKUMEN_SPPB, DATE_FORMAT(S.TANGGAL_PEMBUATAN_SPPB_HARI, '%d/%m/%Y') AS TANGGAL_PEMBUATAN_SPPB_HARI, S.STATUS_SPPB, P.HASH_MD5_PROYEK, P.NAMA_PROYEK, PSP.NAMA_SUB_PEKERJAAN FROM sppb AS S

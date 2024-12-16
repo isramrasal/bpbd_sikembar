@@ -349,9 +349,9 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
                     <div id="alert-msg-9"></div>
                 </div>
             </div>
-        </div>d
+        </div>
     </div>
-    <!-- End Form Doantur -->
+    <!-- End Form Donatur -->
 </div>
 
 <!-- MODAL ADD 1 ITEM-->

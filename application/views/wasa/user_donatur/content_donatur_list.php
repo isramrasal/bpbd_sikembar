@@ -281,93 +281,70 @@ $(document).ready(function() {
     tampil_data();
 
     function tampil_data() {
-        // $("#mydata").dataTable().fnDestroy();
-        // $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
+    var form_data = {}; // Data yang dikirimkan jika diperlukan (di sini kosong)
 
-        $.ajax({
-            url: "<?php echo base_url(); ?>/Donatur/list_donatur_by_nik",
-            method: "POST",
+    $.ajax({
+        url: "<?php echo base_url(); ?>/Donatur/list_pengajuan_by_user",
+        method: "POST",
+        data: form_data,
+        async: false,
+        dataType: 'json',
+        success: function(data) {
+            var html = '', html_head = '';
 
-            async: false,
-            dataType: 'json',
-            success: function(data) {
-                console.log(data);
+            // Reset elemen HTML
+            $('#show_data_head').html('');
+            $('#show_data').html('');
 
-                var html, html_head = '';
-                var i, j, k;
-
-                $('#show_data_head').html(html_head);
-                $('#show_data').html(html);
-
-                if (data.length > 0) {
-                    for (i = 0; i < data.length; i++) {
-
-                        html += '<tr>' +
-                            '<td>' +
-                            '<a href="<?php echo base_url() ?>sppb_form/view/' + data[i]
-                            .CODE_MD5 +
-                            '" class="btn btn-default btn-xs btn-outline"><i class="fa fa-eye"></i> ' +
-                            data[i].CODE_MD5 + '</a>' + '</td>' +
-                            '<td>' + data[i].Nama_Donatur + '</td>' +
-                            '<td>' + data[i].NIK + '</td>' +
-                            '<td>' + data[i].Instansi + '</td>' +
-                            '<td>' +
-                            '<a href="javascript:;" class="btn btn-primary btn-xs item_status block" data="' +
-                            data[i].CODE_MD5 + '"><i class="fa fa-search"></i>' + data[i]
-                            .STATUS_SPPB + '</a>' + '</td>' +
-                            '</tr>';
-                    }
-                } else {
-                    html = '';
+            // Periksa jika ada data
+            if (data.length > 0) {
+                // Bangun baris tabel untuk setiap item data
+                for (var i = 0; i < data.length; i++) {
+                    html += '<tr>' +
+                        '<td>' +
+                        '<a href="<?php echo base_url() ?>donatur_form/view/' + data[i].CREATE_BY_USER + 
+                        '" class="btn btn-default btn-xs btn-outline"><i class="fa fa-eye"></i> ' + 
+                        data[i].CREATE_BY_USER + '</a>' + '</td>' +
+                        '<td>' + data[i].Nama_Donatur + '</td>' +
+                        '<td>' + data[i].NIK + '</td>' +
+                        '<td>' + data[i].Instansi + '</td>' +
+                        // data[i].NAMA_BARANG +
+                        '<td>' +
+                        '<a href="javascript:;" class="btn btn-warning btn-xs item_edit block" data="' +
+                        data[i].ID_ITEM_FORM_BANTUAN_DONASI  +
+                        '"><i class="fa fa-pencil"></i> Edit</a>' + ' ' +
+                        '<a href="javascript:;" class="btn btn-danger btn-xs item_hapus block" data="' +
+                        data[i].ID_ITEM_FORM_BANTUAN_DONASI +
+                        '"><i class="fa fa-trash"></i> Hapus</a>' +
+                        '</td>' +
+                        '</tr>';
                 }
-
-
-
-                html_head =
-                    '<tr><th>No. Registrasi Donatur</th><th>Nama Donatur</th><th>NIK</th><th>Instansi</th><th>Aksi</th></tr>';
-                $('#show_data_head').html(html_head);
-                $('#show_data').html(html);
-
-
-                // $('#mydata').dataTable({
-                //     aaSorting: [],
-                //     pageLength: 10,
-                //     lengthMenu: [
-                //         [10, 25, 50, -1],
-                //         [10, 25, 50, 'All'],
-                //     ],
-                //     responsive: true,
-                //     dom: '<"html5buttons"B>lTfgitp',
-                //     buttons: [{
-                //             extend: 'excel',
-                //             title: JUDUL
-                //         },
-                //         {
-                //             extend: 'print',
-                //             customize: function(win) {
-                //                 $(win.document.body).addClass(
-                //                     'white-bg');
-                //                 $(win.document.body).css('font-size',
-                //                     '10px');
-
-                //                 $(win.document.body).find('table')
-                //                     .addClass('compact')
-                //                     .css('font-size', 'inherit');
-                //             }
-                //         }
-                //     ]
-
-                // });
-                // $("#mydata").dataTable().fnDestroy();
-
+            } else {
+                // Jika tidak ada data, tambahkan baris kosong
+                html = '<tr><td colspan="5" class="text-center">Tidak ada data ditemukan</td></tr>';
             }
-        });
 
-        // setTimeout(function() {
-        //     $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
-        // }, 3000);
+            // Buat header tabel
+            html_head =
+                '<tr>' +
+                '<th>No. Registrasi Donatur</th>' +
+                '<th>Nama Donatur</th>' +
+                '<th>NIK</th>' +
+                '<th>Instansi</th>' +
+                '<th>Aksi</th>' +
+                '</tr>';
 
-    }
+            // Pasang header dan data ke elemen tabel
+            $('#show_data_head').html(html_head);
+            $('#show_data').html(html);
+
+            // Nonaktifkan DataTables dan hanya tampilkan data secara default
+        },
+        error: function() {
+            alert('Gagal memuat data.');
+        }
+    });
+}
 
     $('.chosen-select').chosen({
         width: "100%"
