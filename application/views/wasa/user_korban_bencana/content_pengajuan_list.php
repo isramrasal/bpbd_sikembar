@@ -697,32 +697,37 @@ $(document).ready(function() {
 
                 if (data && Array.isArray(data) && data.length > 0) {
                     data.forEach(function(item) {
+                        // URL yang akan digunakan untuk ikon "eye", menggunakan CODE_MD5 item
+                        var eyeIconUrl =
+                            "<?php echo base_url(); ?>Pengajuan_form/index_perwakilan/" +
+                            item.CODE_MD5;
+
+                        // Menambahkan row dengan URL pada ikon "eye"
                         html += `
-                        <tr>
-                            <td>
-                                <a href="<?php echo base_url(); ?>pengajuan/list_pengajuan_by_all_bencana" 
-                                class="btn btn-default btn-xs btn-outline">
-                                <i class="fa fa-eye"></i>
-                                </a>
-                            </td>
-                            <td>${item.Jenis_Bencana}</td>
-                            <td>${item.Nama_Pemohon}</td>
-                            <td>${item.Jumlah_Korban_Diwakili}</td>
-                            <td>${item.NIK}</td>
-                            <td>${item.Instansi}</td>
-                            <td>${item.Kecamatan_Bencana}</td>
-                            <td>${item.Desa_Kelurahan_Bencana}</td>
-                            <td>${item.TANGGAL_KEJADIAN_BENCANA}</td>
-                            <td>${item.Tanggal_Pembuatan}</td>
-                            <td>${item.PROGRESS_PENGAJUAN}</td>
-                        </tr>`;
-                        $('#show_data').html(html);
+        <tr>
+            <td>
+                <a href="${eyeIconUrl}" class="btn btn-default btn-xs btn-outline">
+                    <i class="fa fa-eye"></i>
+                </a>
+            </td>
+            <td>${item.Jenis_Bencana}</td>
+            <td>${item.Nama_Pemohon}</td>
+            <td>${item.Jumlah_Korban_Diwakili}</td>
+            <td>${item.NIK}</td>
+            <td>${item.Instansi}</td>
+            <td>${item.Kecamatan_Bencana}</td>
+            <td>${item.Desa_Kelurahan_Bencana}</td>
+            <td>${item.TANGGAL_KEJADIAN_BENCANA}</td>
+            <td>${item.Tanggal_Pembuatan}</td>
+            <td>${item.PROGRESS_PENGAJUAN}</td>
+        </tr>`;
                     });
                 } else {
                     html =
                         '<tr><td colspan="10" class="text-center">Tidak ada data yang tersedia</td></tr>';
                     $('#show_data').html(html);
                 }
+
 
                 $('#show_data').html(html);
 

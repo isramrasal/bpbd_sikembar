@@ -15,13 +15,30 @@
 </div>
 <div class="wrapper wrapper-content">
 
+    <div class="container" style="max-width: 100%">
+        <div class="row">
+            <div class="card white-bg" style="width: 400px; height: 200px;">
+                <div class="card-body" style="padding: 10px;">
+                    <h2 class="card-title font-bold text-center" style="padding-bottom: 20px">
+                        Jumlah Pengajuan Bantuan
+                    </h2>
+                    <h1 class="card-text font-bold text-center">
+                        <?php echo $jumlah_pengajuan; ?>
+                        <!-- Menampilkan jumlah pengajuan yang dikirimkan dari controller -->
+                    </h1>
+                </div>
+            </div>
+
+        </div>
 
 
-    <!-- <div class="row">
+
+
+        <!-- <div class="row">
     </div> -->
 
-    <!-- <div class="col-lg-6"> -->
-    <!-- <div class="ibox float-e-margins">
+        <!-- <div class="col-lg-6"> -->
+        <!-- <div class="ibox float-e-margins">
 
             <div class="ibox-title">
                 <h5>Pelatihan SiPESUT Versi Beta</h5>
@@ -111,54 +128,55 @@
             </div>
 
         </div> -->
-    <!-- </div> -->
+        <!-- </div> -->
 
-</div>
+    </div>
 
-<!-- Mainly scripts -->
-<script src="<?php echo base_url(); ?>assets/wasa/js/jquery-3.1.1.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/wasa/js/bootstrap.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/wasa/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="<?php echo base_url(); ?>assets/wasa/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- Mainly scripts -->
+    <script src="<?php echo base_url(); ?>assets/wasa/js/jquery-3.1.1.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/wasa/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/wasa/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="<?php echo base_url(); ?>assets/wasa/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-<!-- Flot -->
-<script src="<?php echo base_url(); ?>assets/wasa/js/plugins/flot/jquery.flot.js"></script>
-<script src="<?php echo base_url(); ?>assets/wasa/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/wasa/js/plugins/flot/jquery.flot.spline.js"></script>
-<script src="<?php echo base_url(); ?>assets/wasa/js/plugins/flot/jquery.flot.resize.js"></script>
-<script src="<?php echo base_url(); ?>assets/wasa/js/plugins/flot/jquery.flot.pie.js"></script>
-<script src="<?php echo base_url(); ?>assets/wasa/js/plugins/flot/jquery.flot.symbol.js"></script>
-<script src="<?php echo base_url(); ?>assets/wasa/js/plugins/flot/jquery.flot.time.js"></script>
+    <!-- Flot -->
+    <script src="<?php echo base_url(); ?>assets/wasa/js/plugins/flot/jquery.flot.js"></script>
+    <script src="<?php echo base_url(); ?>assets/wasa/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/wasa/js/plugins/flot/jquery.flot.spline.js"></script>
+    <script src="<?php echo base_url(); ?>assets/wasa/js/plugins/flot/jquery.flot.resize.js"></script>
+    <script src="<?php echo base_url(); ?>assets/wasa/js/plugins/flot/jquery.flot.pie.js"></script>
+    <script src="<?php echo base_url(); ?>assets/wasa/js/plugins/flot/jquery.flot.symbol.js"></script>
+    <script src="<?php echo base_url(); ?>assets/wasa/js/plugins/flot/jquery.flot.time.js"></script>
 
-<!-- Peity -->
-<script src="<?php echo base_url(); ?>assets/wasa/js/plugins/peity/jquery.peity.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/wasa/js/demo/peity-demo.js"></script>
+    <!-- Peity -->
+    <script src="<?php echo base_url(); ?>assets/wasa/js/plugins/peity/jquery.peity.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/wasa/js/demo/peity-demo.js"></script>
 
-<!-- Custom and plugin javascript -->
-<script src="<?php echo base_url(); ?>assets/wasa/js/inspinia.js"></script>
-<script src="<?php echo base_url(); ?>assets/wasa/js/plugins/pace/pace.min.js"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="<?php echo base_url(); ?>assets/wasa/js/inspinia.js"></script>
+    <script src="<?php echo base_url(); ?>assets/wasa/js/plugins/pace/pace.min.js"></script>
 
-<!-- jQuery UI -->
-<script src="<?php echo base_url(); ?>assets/wasa/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="<?php echo base_url(); ?>assets/wasa/js/plugins/jquery-ui/jquery-ui.min.js"></script>
 
-<!-- Jvectormap -->
-<script src="<?php echo base_url(); ?>assets/wasa/js/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/wasa/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- Jvectormap -->
+    <script src="<?php echo base_url(); ?>assets/wasa/js/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/wasa/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js">
+    </script>
 
-<!-- EayPIE -->
-<script src="<?php echo base_url(); ?>assets/wasa/js/plugins/easypiechart/jquery.easypiechart.js"></script>
+    <!-- EayPIE -->
+    <script src="<?php echo base_url(); ?>assets/wasa/js/plugins/easypiechart/jquery.easypiechart.js"></script>
 
-<!-- Sparkline -->
-<script src="<?php echo base_url(); ?>assets/wasa/js/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <!-- Sparkline -->
+    <script src="<?php echo base_url(); ?>assets/wasa/js/plugins/sparkline/jquery.sparkline.min.js"></script>
 
-<!-- Sparkline demo data  -->
-<script src="<?php echo base_url(); ?>assets/wasa/js/demo/sparkline-demo.js"></script>
+    <!-- Sparkline demo data  -->
+    <script src="<?php echo base_url(); ?>assets/wasa/js/demo/sparkline-demo.js"></script>
 
-<script>
-$(document).ready(function() {
+    <script>
+    $(document).ready(function() {
 
-});
-</script>
-</body>
+    });
+    </script>
+    </body>
 
-</html>
+    </html>

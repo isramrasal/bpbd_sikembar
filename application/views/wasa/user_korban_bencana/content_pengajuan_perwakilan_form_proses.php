@@ -848,13 +848,11 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
             </div>
             <form class="form-horizontal">
                 <div class="modal-body">
-
                     <input type="hidden" name="kode_semua" id="textkode_semua" value="">
                     <div class="alert alert-warning">
                         <p>Apakah Anda yakin ingin menghapus semua item barang/jasa pada SPPB ini?</p>
-                        <div name="NAMA_5" id="NAMA_5"></div>
+                        <div id="NAMA_5"></div> <!-- Menampilkan Nama Barang -->
                     </div>
-
                 </div>
                 <div id="alert-msg-9"></div>
                 <div class="modal-footer">
@@ -867,6 +865,8 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
     </div>
 </div>
 <!--END MODAL HAPUS-->
+
+
 
 <!-- MODAL UPLOAD DOCUMENT BULK -->
 <div class="modal inmodal fade" id="ModalEditExcel" tabindex="-1" role="dialog" aria-labelledby="largeModal"
@@ -1724,11 +1724,53 @@ $(document).ready(function() {
         });
     });
 
+    //GET HAPUS SEMUA
+    $('#show_data').on('click', '.hapus_semua_item', function() {
+        var ID_FORM_INVENTARIS_KORBAN_BENCANA = $(this).attr('data');
+        $.ajax({
+            type: "GET",
+            url: "<?php echo base_url('Pengajuan_form/get_data_hapus_semua') ?>",
+            dataType: "JSON",
+            data: {
+                ID_FORM_INVENTARIS_KORBAN_BENCANA: ID_FORM_INVENTARIS_KORBAN_BENCANA
+            },
+            success: function(data) {
+                $.each(data, function() {
+                    $('#ModalHapusSemua').modal('show');
+                    $('[name="kode_semua"]').val(ID_FORM_INVENTARIS_KORBAN_BENCANA);
+                    $('#NAMA_5').html('</br>Nama Barang : ' + data.NAMA_BARANG);
+
+                });
+            }
+        });
+    });
+
+
+    // Menghapus semua data saat tombol "Hapus" diklik
+    $('#btn_hapus_semua').on('click', function() {
+        var kode = $('#textkode_semua').val();
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('Pengajuan_form/hapus_data_semua') ?>",
+            dataType: "JSON",
+            data: {
+                kode: kode
+            },
+            success: function(data) {
+                $('#ModalHapusSemua').modal('hide');
+                window.location.reload();
+            }
+        });
+        return false;
+    });
+
+
+
     hapus_semua_item.onclick = function() {
         var id = $(this).attr('data');
         $('#ModalHapusSemua').modal('show');
         $('[name="kode_semua"]').val(id);
-        $('#NAMA_5').html('</br>SPPB kode : ' + id);
+        $('#NAMA_5').html('</br>Nama Barang : ' + id);
     };
 
     // jumlah-+
@@ -1844,12 +1886,19 @@ $(document).ready(function() {
         return false;
     });
 
+    // hapus_semua_item.onclick = function() {
+    //     var id = $(this).attr('data');
+    //     $('#ModalHapusSemua').modal('show');
+    //     $('[name="kode_semua"]').val(id);
+    //     $('#NAMA_5').html('</br>Nama Barang : ' + id);
+    // };
+
     //HAPUS DATA SEMUA
-    $('#btn_hapus_semua').on('click', function() {
+    $('#hapus_semua_item').on('click', function() {
         var kode = $('#textkode_semua').val();
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url('SPPB_form/hapus_data_semua') ?>",
+            url: "<?php echo base_url('Pengajuan_form/hapus_data_semua') ?>",
             dataType: "JSON",
             data: {
                 kode: kode

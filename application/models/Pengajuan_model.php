@@ -45,6 +45,27 @@ class Pengajuan_model extends CI_Model
 	
 		return $query->result_array();
 	}
+
+	public function count_pengajuan_by_filter($ID_JENIS_BENCANA_LIST, $user_id)
+    {
+        $this->db->select('COUNT(*) as total');
+        $this->db->from('form_inventaris_kebutuhan_korban_bencana');  // Ganti dengan nama tabel yang sesuai
+        
+        // Jika jenis bencana tidak "Semua", lakukan penyaringan berdasarkan jenis bencana
+        if ($ID_JENIS_BENCANA_LIST !== "Semua") {
+            $this->db->where('Jenis_Bencana', $ID_JENIS_BENCANA_LIST);  // Ganti dengan kolom yang sesuai
+        }
+
+        // Filter berdasarkan user ID
+        $this->db->where('CREATE_BY_USER', $user_id);  // Ganti dengan kolom yang sesuai dengan user ID
+        
+        // Eksekusi query
+        $query = $this->db->get();
+        $result = $query->row();
+
+        // Mengembalikan hasil jumlah pengajuan
+        return $result->total;
+    }
 	
 	
 	

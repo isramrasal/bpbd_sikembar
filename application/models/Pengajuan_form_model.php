@@ -498,6 +498,12 @@ class Pengajuan_form_model extends CI_Model
 		return $hasil;
 	}
 
+	function hapus_data_by_id_form_inventaris_korban_bencana($ID_FORM_INVENTARIS_KORBAN_BENCANA)
+	{
+		$hasil = $this->db->query("DELETE FROM item_form_pengajuan_barang WHERE ID_FORM_INVENTARIS_KORBAN_BENCANA='$ID_FORM_INVENTARIS_KORBAN_BENCANA'");
+        return $hasil;
+	}
+
 	function hapus_data_by_id_sppb($ID_SPPB)
 	{
 		$hasil = $this->db->query("DELETE FROM sppb_form WHERE ID_SPPB='$ID_SPPB'");
@@ -674,6 +680,29 @@ class Pengajuan_form_model extends CI_Model
 	function get_data_by_id_item_form_pengajuan_barang($ID_ITEM_FORM_PENGAJUAN_BARANG)
 	{
 		$hsl = $this->db->query("SELECT * FROM item_form_pengajuan_barang WHERE ID_ITEM_FORM_PENGAJUAN_BARANG = '$ID_ITEM_FORM_PENGAJUAN_BARANG'");
+		if ($hsl->num_rows() > 0) {
+			foreach ($hsl->result() as $data) {
+				$hasil = array(
+					'ID_ITEM_FORM_PENGAJUAN_BARANG' => $data->ID_ITEM_FORM_PENGAJUAN_BARANG,
+					'ID_FORM_INVENTARIS_KORBAN_BENCANA' => $data->ID_FORM_INVENTARIS_KORBAN_BENCANA,
+					'NAMA_BARANG' => $data->NAMA_BARANG,
+					'MEREK' => $data->MEREK,
+					'SPESIFIKASI_SINGKAT' => $data->SPESIFIKASI_SINGKAT,
+					'JUMLAH_BARANG' => $data->JUMLAH_BARANG,
+					'SATUAN_BARANG' => $data->SATUAN_BARANG,
+					'JENIS_BANTUAN' => $data->JENIS_BANTUAN,
+					'KETERANGAN' => $data->KETERANGAN
+				);
+			}
+		} else {
+			$hasil = "BELUM ADA Pengajuan Barang";
+		}
+		return $hasil;
+	}
+
+	function get_data_by_id_item_form_inventaris_korban_bencana($ID_ITEM_FORM_INVENTARIS_KORBAN_BENCANA)
+	{
+		$hsl = $this->db->query("SELECT * FROM item_form_pengajuan_barang WHERE ID_ITEM_FORM_INVENTARIS_KORBAN_BENCANA = '$ID_ITEM_FORM_INVENTARIS_KORBAN_BENCANA'");
 		if ($hsl->num_rows() > 0) {
 			foreach ($hsl->result() as $data) {
 				$hasil = array(

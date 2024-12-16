@@ -1093,6 +1093,20 @@ class Pengajuan_form extends CI_Controller
 		}
 	}
 
+	function get_data_hapus_semua()
+{
+    if ($this->ion_auth->logged_in()) {
+        $ID_FORM_INVENTARIS_KORBAN_BENCANA = $this->input->get('ID_FORM_INVENTARIS_KORBAN_BENCANA');
+        $data = $this->Pengajuan_form_model->get_data_by_id_item_form_inventaris_korban_bencana($ID_FORM_INVENTARIS_KORBAN_BENCANA);
+        
+        // Pastikan data yang dikembalikan adalah array atau object yang benar
+        echo json_encode($data);
+    } else {
+        $this->logout();
+    }
+}
+
+
 	function get_data_id_rab_form_by_id_rab() //102023
 	{
 		if ($this->ion_auth->logged_in()) {
@@ -1176,16 +1190,8 @@ class Pengajuan_form extends CI_Controller
 	function hapus_data_semua()
 	{
 		if ($this->ion_auth->logged_in()) {
-			$HASH_MD5_SPPB = $this->input->post('kode');
-			$data_hapus = $this->SPPB_model->get_data_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
-
-			$ID_SPPB_FORM = 0;
-			$KETERANGAN = "Hapus Data Barang: " . json_encode($data_hapus);
-			$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
-
-			$ID_SPPB = $data_hapus['ID_SPPB'];
-
-			$data = $this->SPPB_form_model->hapus_data_by_id_sppb($ID_SPPB);
+			$ID_FORM_INVENTARIS_KORBAN_BENCANA = $this->input->post('kode_semua');
+			$data = $this->Pengajuan_form_model->hapus_data_by_id_form_inventaris_korban_bencana($ID_FORM_INVENTARIS_KORBAN_BENCANA);
 			echo json_encode($data);
 		} else {
 			$this->logout();
