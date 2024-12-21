@@ -308,15 +308,6 @@ $(document).ready(function() {
                         '<td>' + data[i].Nama_Donatur + '</td>' +
                         '<td>' + data[i].NIK + '</td>' +
                         '<td>' + data[i].Instansi + '</td>' +
-                        // data[i].NAMA_BARANG +
-                        '<td>' +
-                        '<a href="javascript:;" class="btn btn-warning btn-xs item_edit block" data="' +
-                        data[i].ID_ITEM_FORM_BANTUAN_DONASI  +
-                        '"><i class="fa fa-pencil"></i> Edit</a>' + ' ' +
-                        '<a href="javascript:;" class="btn btn-danger btn-xs item_hapus block" data="' +
-                        data[i].ID_ITEM_FORM_BANTUAN_DONASI +
-                        '"><i class="fa fa-trash"></i> Hapus</a>' +
-                        '</td>' +
                         '</tr>';
                 }
             } else {
@@ -331,7 +322,6 @@ $(document).ready(function() {
                 '<th>Nama Donatur</th>' +
                 '<th>NIK</th>' +
                 '<th>Instansi</th>' +
-                '<th>Aksi</th>' +
                 '</tr>';
 
             // Pasang header dan data ke elemen tabel
