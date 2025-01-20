@@ -15,6 +15,7 @@ class Dashboard_donatur extends CI_Controller
 		$this->lang->load('auth');
 		$this->load->model('Foto_model');
 		$this->load->model('Manajemen_user_model');
+		$this->load->model('Donatur_model');
 
 		$this->data['title'] = 'SiKembar | Dashboard Donatur';
 		$this->data['left_menu'] = "dashboard_donatur_aktif";
@@ -50,6 +51,9 @@ class Dashboard_donatur extends CI_Controller
 		} else {
 			$this->data['foto_user'] = $query_foto_user['KETERANGAN_2'];
 		}
+
+        $jumlah_donasi = $this->Donatur_model->count_donatur($this->data['user_id']);
+        $this->data['jumlah_donasi'] = $jumlah_donasi;
 
 
 		//jika mereka sudah login dan sebagai manajer proyek

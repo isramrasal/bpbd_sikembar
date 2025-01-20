@@ -14,6 +14,22 @@
     </div>
 </div>
 <div class="wrapper wrapper-content">
+    <div class="wrapper wrapper-content d-flex"
+        style="display: flex; gap: 20px; flex-direction: row; flex-wrap: nowrap; overflow-x: auto;">
+        <!-- Container 1 -->
+        <div class="container" style="width: 400px;">
+            <div class="card white-bg" style="width: 100%; height: 200px;">
+                <div class="card-body" style="padding: 10px;">
+                    <h2 class="card-title font-bold text-center" style="padding-bottom: 20px;">
+                        Jumlah Pengajuan Donasi
+                    </h2>
+                    <h1 class="card-text font-bold text-center">
+                        <?php echo $jumlah_donasi; ?>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -21,7 +37,7 @@
     </div> -->
 
     <!-- <div class="col-lg-6"> -->
-        <!-- <div class="ibox float-e-margins">
+    <!-- <div class="ibox float-e-margins">
 
             <div class="ibox-title">
                 <h5>Pelatihan SiPESUT Versi Beta</h5>
@@ -155,9 +171,9 @@
 <script src="<?php echo base_url(); ?>assets/wasa/js/demo/sparkline-demo.js"></script>
 
 <script>
-    $(document).ready(function() {
+$(document).ready(function() {
 
-    });
+});
 </script>
 </body>
 

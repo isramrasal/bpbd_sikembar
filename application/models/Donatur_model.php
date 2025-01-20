@@ -20,6 +20,21 @@ class Donatur_model extends CI_Model
         return $query->result_array(); // Kembalikan hasil sebagai array
     }
 
+	public function count_donatur($user_id)
+    {
+        $this->db->select('COUNT(*) as total');
+        $this->db->from('form_inventaris_bantuan_donasi');  // Ganti dengan nama tabel yang sesuai
+        // Filter berdasarkan user ID
+        $this->db->where('CREATE_BY_USER', $user_id);  // Ganti dengan kolom yang sesuai dengan user ID
+        
+        // Eksekusi query
+        $query = $this->db->get();
+        $result = $query->row();
+
+        // Mengembalikan hasil jumlah pengajuan
+        return $result->total;
+    }
+
 	function list_sppb_by_all_proyek()
 	{
 		$hasil = $this->db->query("SELECT S.ID_SPPB, S.HASH_MD5_SPPB, S.ID_PROYEK, S.NO_URUT_SPPB, DATE_FORMAT(S.TANGGAL_DOKUMEN_SPPB, '%d/%m/%Y') AS TANGGAL_DOKUMEN_SPPB, DATE_FORMAT(S.TANGGAL_PEMBUATAN_SPPB_HARI, '%d/%m/%Y') AS TANGGAL_PEMBUATAN_SPPB_HARI, S.STATUS_SPPB, P.HASH_MD5_PROYEK, P.NAMA_PROYEK, PSP.NAMA_SUB_PEKERJAAN FROM sppb AS S
