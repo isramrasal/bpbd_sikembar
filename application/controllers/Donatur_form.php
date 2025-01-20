@@ -13,7 +13,7 @@ class Donatur_form extends CI_Controller
 		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
 		$this->lang->load('auth');
-		$this->data['title'] = 'SiPESUT | Form Donatur';
+		$this->data['title'] = 'SiKembar | Form Donatur';
 
 		$this->load->model('FPB_form_model');
 		$this->load->model('SPPB_form_model');
