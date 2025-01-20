@@ -12,6 +12,23 @@ class Data_Korban_model extends CI_Model
 		return $hasil->result();
 	}
 
+	public function count_data_korban_by_filter($ID_JENIS_BENCANA_LIST, $user_id)
+	{
+		$this->db->select('COUNT(*) as total');
+		$this->db->from('data_korban'); // Ganti dengan nama tabel yang sesuai
+
+		if ($ID_JENIS_BENCANA_LIST !== "Semua") {
+			$this->db->where('Jenis_Bencana', $ID_JENIS_BENCANA_LIST); // Ganti dengan nama kolom yang sesuai
+		}
+
+		$this->db->where('CREATE_BY_USER', $user_id); // Ganti dengan nama kolom yang sesuai
+		$query = $this->db->get();
+		$result = $query->row();
+
+		return $result->total;
+	}
+
+
 	//FUNGSI: Fungsi ini untuk menampilkan data sppb berdasarkan ID_SPPB
 	//SUMBER TABEL: tabel sppb
 	//DIPAKAI: 1. controller SPPB_form / function index

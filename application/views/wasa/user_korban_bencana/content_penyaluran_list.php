@@ -75,18 +75,18 @@
                     </br>
                     </br>
 
-                    <div class="table-responsive">
+                    <<div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover" id="mydata">
                             <thead id="show_data_head">
                             </thead>
                             <tbody id="show_data">
                             </tbody>
                         </table>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <!-- MODAL ADD -->
@@ -469,122 +469,196 @@ $(document).ready(function() {
     });
 
     $("#ID_JENIS_BENCANA_LIST").change(function() {
-        var ID_JENIS_BENCANA_LIST = $('#ID_JENIS_BENCANA_LIST').val();
-        var NAMA_BENCANA = $('#ID_JENIS_BENCANA_LIST option:selected').text();
-        var JUDUL = "List Penyaluran Bantuan " + NAMA_BENCANA;
 
-        // Siapkan data untuk dikirim ke server
         var form_data = {
-            ID_JENIS_BENCANA_LIST: ID_JENIS_BENCANA_LIST
-        };
-
-        console.log("Form Data: ", form_data);
-
-        // Hancurkan DataTable yang sudah ada
-        if ($.fn.DataTable.isDataTable("#mydata")) {
-            $("#mydata").DataTable().destroy();
+            ID_JENIS_BENCANA_LIST: $('#ID_JENIS_BENCANA_LIST').val()
         }
 
-        // Bersihkan tabel
-        $('#show_data_head').empty();
-        $('#show_data').empty();
+        var ID_JENIS_BENCANA_LIST = $('#ID_JENIS_BENCANA_LIST').val();
+        var NAMA_BENCANA = $('#ID_JENIS_BENCANA_LIST option:selected').text();
+        var JUDUL = "List Data Korban " + NAMA_BENCANA;
 
-        // Tampilkan efek loading
-        $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
+        if (ID_JENIS_BENCANA_LIST == "Semua") {
+            $("#mydata").dataTable().fnDestroy();
+            $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
 
-        $.ajax({
-            url: "<?php echo base_url(); ?>Penyaluran/list_penyaluran_by_all_bencana",
-            method: "POST",
-            data: form_data,
-            dataType: 'json',
-            success: function(data) {
-                console.log("Response Data: ", data);
+            $.ajax({
+                url: "<?php echo base_url(); ?>/Penyaluran/list_penyaluran_by_all_bencana",
+                method: "POST",
+                data: form_data,
+                async: false,
+                dataType: 'json',
+                success: function(data) {
 
-                var html = '';
-                var html_head = `
-                <tr>
-                    <th>No. Penyaluran</th>
-                    <th>Jenis Bencana</th>
-                    <th>Nama Penerima</th>
-                    <th>NIK Penerima</th>
-                    <th>Instansi Penerima</th>
-                    <th>Desa Penerima</th>
-                    <th>Kecamatan Penerima</th>
-                    <th>Tanggal Kejadian Bencana</th>
-                    <th>Aksi</th>
-                </tr>`;
+                    console.log(data);
 
-                if (data && data.length > 0) {
-                    data.forEach((item) => {
-                        html += `
-                    <tr>
-                        <td>
-                            <a href="<?php echo base_url() ?>pengajuan_form/view/${item.CODE_MD5}" class="btn btn-default btn-xs btn-outline">
-                                <i class="fa fa-eye"></i> ${item.CODE_MD5}
-                            </a>
-                        </td>
-                        <td>${item.Jenis_Bencana}</td>
-                        <td>${item.Nama_Penerima}</td>
-                        <td>${item.NIK_Penerima}</td>
-                        <td>${item.Instansi_Penerima}</td>
-                        <td>${item.Desa_Kelurahan_Bencana}</td>
-                        <td>${item.Kecamatan_Bencana}</td>
-                        <td>${item.TANGGAL_KEJADIAN_BENCANA}</td>
-                        <td>
-                            <a href="javascript:;" class="btn btn-primary btn-xs item_status block" data="${item.CODE_MD5}">
-                                <i class="fa fa-pencil"></i> ${item.STATUS_SPPB}
-                            </a>
-                        </td>
-                    </tr>`;
-                    });
-                } else {
-                    html = `
-                <tr>
-                    <td colspan="9" class="text-center">Data tidak ditemukan</td>
-                </tr>`;
-                }
+                    var html, html_head = '';
+                    var i, j, k;
 
-                $('#show_data_head').html(html_head);
-                $('#show_data').html(html);
+                    $('#show_data_head').html(html_head);
+                    $('#show_data').html(html);
 
-                // Inisialisasi ulang DataTable
-                $('#mydata').DataTable({
-                    aaSorting: [],
-                    pageLength: 10,
-                    lengthMenu: [
-                        [10, 25, 50, -1],
-                        [10, 25, 50, 'All']
-                    ],
-                    responsive: true,
-                    dom: '<"html5buttons"B>lTfgitp',
-                    buttons: [{
-                            extend: 'excel',
-                            title: JUDUL
-                        },
-                        {
-                            extend: 'print',
-                            customize: function(win) {
-                                $(win.document.body).addClass('white-bg');
-                                $(win.document.body).css('font-size',
-                                    '10px');
-                                $(win.document.body).find('table').addClass(
-                                    'compact').css('font-size',
-                                    'inherit');
-                            }
+                    if (data.length > 0) {
+                        for (i = 0; i < data.length; i++) {
+
+                            html += '<tr>' +
+                                '<td>' +
+                                '<a href="<?php echo base_url() ?>pengajuan_form/view/' +
+                                data[i].CODE_MD5 +
+                                '" class="btn btn-default btn-xs btn-outline">' +
+                                '<i class="fa fa-eye"></i></a></td>' +
+                                '<td>' + data[i].Jenis_Bencana + '</td>' +
+                                '<td>' + data[i].Nama_Penerima + '</td>' +
+                                '<td>' + data[i].NIK_Penerima + '</td>' +
+                                '<td>' + data[i].Instansi_Penerima + '</td>' +
+                                '<td>' + data[i].Desa_Kelurahan_Bencana + '</td>' +
+                                '<td>' + data[i].Kecamatan_Bencana + '</td>' +
+                                '<td>' + data[i].TANGGAL_KEJADIAN_BENCANA + '</td>' +
+                                '</tr>';
                         }
-                    ]
-                });
-            },
-            error: function(xhr, status, error) {
-                console.error("AJAX Error: ", status, error);
-                alert("Terjadi kesalahan saat mengambil data. Silakan coba lagi.");
-            },
-            complete: function() {
-                // Sembunyikan loading
+                    } else {
+                        html = '';
+                    }
+
+
+
+                    html_head =
+                        '<tr><th></th><th>Jenis Bencana</th><th>Nama Penerima</th><th>NIK Penerima</th><th>Instansi Penerima</th><th>Desa Penerima</th><th>Kecamatan Penerima</th><th>Tanggal Kejadian Bencana</th></tr>';
+                    $('#show_data_head').html(html_head);
+                    $('#show_data').html(html);
+
+
+                    $('#mydata').dataTable({
+                        aaSorting: [],
+                        pageLength: 10,
+                        lengthMenu: [
+                            [10, 25, 50, -1],
+                            [10, 25, 50, 'All'],
+                        ],
+                        responsive: true,
+                        dom: '<"html5buttons"B>lTfgitp',
+                        buttons: [{
+                                extend: 'excel',
+                                title: JUDUL
+                            },
+                            {
+                                extend: 'print',
+                                customize: function(win) {
+                                    $(win.document.body).addClass(
+                                        'white-bg');
+                                    $(win.document.body).css('font-size',
+                                        '10px');
+
+                                    $(win.document.body).find('table')
+                                        .addClass('compact')
+                                        .css('font-size', 'inherit');
+                                }
+                            }
+                        ]
+
+                    });
+                    // $("#mydata").dataTable().fnDestroy();
+
+                }
+            });
+
+            setTimeout(function() {
                 $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
-            }
-        });
+            }, 3000);
+
+        } else {
+            $("#mydata").dataTable().fnDestroy();
+            $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
+
+            $.ajax({
+                url: "<?php echo base_url(); ?>/Penyaluran/list_penyaluran_by_all_bencana",
+                method: "POST",
+                data: form_data,
+                async: false,
+                dataType: 'json',
+                success: function(data) {
+
+                    var html, html_head = '';
+                    var i, j, k;
+
+                    $('#show_data_head').html(html_head);
+                    $('#show_data').html(html);
+
+                    if (data.length > 0) {
+                        for (i = 0; i < data.length; i++) {
+
+                            html += '<tr>' +
+                                '<td>' +
+                                '<a href="<?php echo base_url() ?>pengajuan_form/view/' +
+                                data[i].CODE_MD5 +
+                                '" class="btn btn-default btn-xs btn-outline">' +
+                                '<i class="fa fa-eye"></i></a></td>' +
+                                '<td>' + data[i].JENIS_BENCANA + '</td>' +
+                                '<td>' + data[i].NAMA_PENERIMA + '</td>' +
+                                '<td>' + data[i].NIK_PENERIMA + '</td>' +
+                                '<td>' + data[i].INSTANSI_PENERIMA + '</td>' +
+                                '<td>' + data[i].DESA_KELURAHAN_BENCANA + '</td>' +
+                                '<td>' + data[i].KECAMATAN_BENCANA + '</td>' +
+                                '<td>' + data[i].TANGGAL_KEJADIAN_BENCANA + '</td>' +
+                                '</tr>';
+                        }
+                    } else {
+                        html = '';
+                    }
+
+
+                    html_head =
+                        '<tr><th></th><th>Jenis Bencana</th><th>Nama Penerima</th><th>NIK Penerima</th><th>Instansi Penerima</th><th>Desa Penerima</th><th>Kecamatan Penerima</th><th>Tanggal Kejadian Bencana</th></tr>';
+                    $('#show_data_head').html(html_head);
+                    $('#show_data').html(html);
+
+
+
+                    $('#mydata').dataTable({
+                        aaSorting: [],
+                        pageLength: 10,
+                        lengthMenu: [
+                            [10, 25, 50, -1],
+                            [10, 25, 50, 'All'],
+                        ],
+                        responsive: true,
+                        dom: '<"html5buttons"B>lTfgitp',
+                        buttons: [{
+                                extend: 'excel',
+                                title: JUDUL
+                            },
+                            {
+                                extend: 'print',
+                                customize: function(win) {
+                                    $(win.document.body).addClass(
+                                        'white-bg');
+                                    $(win.document.body).css('font-size',
+                                        '10px');
+
+                                    $(win.document.body).find('table')
+                                        .addClass('compact')
+                                        .css('font-size', 'inherit');
+                                }
+                            }
+                        ]
+
+                    });
+
+                    // $("#mydata").dataTable().fnDestroy();
+
+                }
+            });
+
+            setTimeout(function() {
+                $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
+            }, 3000);
+        }
     });
+
+
+
+
+
 
 
 

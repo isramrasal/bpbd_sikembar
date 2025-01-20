@@ -153,21 +153,6 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
                                             value="<?php echo $Pengajuan->NIK; ?>">
                                     </div>
                                 </div>
-                                <!-- <div class="form-group"><label class="col-sm-2 control-label">NIP</label>
-                                    <div class="col-sm-10"><input name="NIP" id="NIP" type="text" class="form-control"
-                                            value="<?php echo $Pengajuan->NIP; ?>">
-                                    </div>
-                                </div>
-                                <div class="form-group"><label class="col-sm-2 control-label">Jabatan</label>
-                                    <div class="col-sm-10"><input name="JABATAN" id="JABATAN" type="text"
-                                            class="form-control" value="<?php echo $Pengajuan->Jabatan; ?>">
-                                    </div>
-                                </div>
-                                <div class="form-group"><label class="col-sm-2 control-label">Instansi</label>
-                                    <div class="col-sm-10"><input name="INSTANSI" id="INSTANSI" type="text"
-                                            class="form-control" value="<?php echo $Pengajuan->Instansi; ?>">
-                                    </div>
-                                </div> -->
                                 <div class="form-group"><label class="col-sm-2 control-label">Kampung Bencana</label>
                                     <div class="col-sm-10"><input name="KAMPUNG_BENCANA" id="KAMPUNG_BENCANA"
                                             type="text" class="form-control"

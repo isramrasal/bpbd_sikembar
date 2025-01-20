@@ -142,23 +142,28 @@ class Penyaluran extends CI_Controller
     function list_penyaluran_by_all_bencana()
     {
         if ($this->ion_auth->logged_in()) {
-            // Cek grup pengguna
-            if ($this->ion_auth->in_group(2)) {
-                $data = $this->Penyaluran_model->list_penyaluran_by_all_bencana();
-                echo json_encode($data);
-            } else if ($this->ion_auth->in_group(3)) {
-                $user = $this->ion_auth->user()->row();
-                $NIK_Penerima = $user->NIK;
+            $user = $this->ion_auth->user()->row(); // Data user yang login
     
-                // Ambil data dari model berdasarkan NIK
-                $data = $this->Penyaluran_model->list_penyaluran_by_all_bencana_by_NIK($NIK_Penerima);
-                echo json_encode($data);
-            }
+            // Ambil ID user dari pengguna yang login
+            $user_id = $user->id;
+    
+            // Panggil model dengan filter user_id
+            $data = $this->Penyaluran_model->list_penyaluran_by_all_bencana($this->input->post('ID_JENIS_BENCANA_LIST'), $user_id);
+    
+            echo json_encode($data);
         } else {
             $this->ion_auth->logout();
             $this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silakan hubungi admin');
+            redirect('auth/login');
         }
     }
+
+    
+
+
+    
+    
+    
     
 
     function data_qty_sppb_form() //102023

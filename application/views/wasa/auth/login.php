@@ -41,7 +41,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 </p>
 
                 <p>
-                    adalah sistem informasi keluar masuk barang untuk membantu kegiatan Divisi Kedaruratan & Logistik BPBD Kabupaten Cianjur
+                    adalah sistem informasi keluar masuk barang untuk membantu kegiatan Divisi Kedaruratan & Logistik
+                    BPBD Kabupaten Cianjur
                 </p>
 
                 <p>
@@ -54,20 +55,22 @@ defined('BASEPATH') or exit('No direct script access allowed');
             </div>
             <div class="col-md-6">
                 <?php if ($message != "") { ?>
-                    <div class="alert alert-danger alert-dismissable">
-                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                        <?php echo $message; ?>
-                    </div>
+                <div class="alert alert-danger alert-dismissable">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    <?php echo $message; ?>
+                </div>
                 <?php
                 } ?>
 
                 <div class="ibox-content">
                     <?php echo form_open("auth/login"); ?>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="username" id="username" value="<?php echo set_value('username'); ?>" placeholder="Username" autofocus>
+                        <input type="text" class="form-control" name="username" id="username"
+                            value="<?php echo set_value('username'); ?>" placeholder="Username" autofocus>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" name="password" id="password" value="<?php echo set_value('password'); ?>" placeholder="Password">
+                        <input type="password" class="form-control" name="password" id="password"
+                            value="<?php echo set_value('password'); ?>" placeholder="Password">
                     </div>
 
                     <button type="submit" class="btn btn-primary block full-width m-b">Login</button>

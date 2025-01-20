@@ -57,7 +57,6 @@
                         <span class="fa fa-plus"></span> Buat Pengajuan Bantuan
                     </a>
 
-                    <!-- <a href="#" class="btn btn-primary btn-xs" name="btn_buat" id="btn_buat" data-toggle="modal" data-target="#ModalAdd"><span class="fa fa-plus"></span> Buat Pengajuan Bantuan</a> -->
                     </br>
                     </br>
                     <!-- List jenis bencana -->
@@ -79,31 +78,18 @@
                     </br>
                     </br>
 
-                    <div class="table-responsive">
+                    <<div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover" id="mydata">
                             <thead id="show_data_head">
-                                <tr>
-                                    <th></th>
-                                    <th>Jenis Bencana</th>
-                                    <th>Nama Pemohon</th>
-                                    <th>Jumlah Korban Diwakili</th>
-                                    <th>NIK</th>
-                                    <th>Instansi</th>
-                                    <th>Kecamatan Bencana</th>
-                                    <th>Desa/Kelurahan Bencana </th>
-                                    <th>Tanggal Kejadian Bencana</th>
-                                    <th>Tanggal Pengajuan</th>
-                                    <th>Proses Pengajuan</th>
-                                </tr>
                             </thead>
                             <tbody id="show_data">
                             </tbody>
                         </table>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <!-- Modal Add -->
@@ -175,27 +161,6 @@
                                 placeholder="Contoh: 3602041211870001" />
                         </div>
                     </div>
-                    <!-- <div class="form-group">
-                        <label class="col-xs-3 control-label">NIP</label>
-                        <div class="col-xs-9">
-                            <input type="text" class="form-control" value="" name="NIP" id="NIP"
-                                placeholder="Contoh: 3602041211870001" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-3 control-label">Jabatan</label>
-                        <div class="col-xs-9">
-                            <input type="text" class="form-control" value="" name="JABATAN" id="JABATAN"
-                                placeholder="Contoh: Kepala sub seksi" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-xs-3 control-label">Instansi</label>
-                        <div class="col-xs-9">
-                            <input type="text" class="form-control" value="" name="INSTANSI" id="INSTANSI"
-                                placeholder="Contoh: Universitas Gunadarma" />
-                        </div>
-                    </div> -->
                     <div class="form-group">
                         <label class="control-label col-xs-3">Kabupaten/Kota *</label>
                         <div class="col-xs-9">
@@ -678,57 +643,59 @@ $(document).ready(function() {
         var form_data = {
             ID_JENIS_BENCANA_LIST: $('#ID_JENIS_BENCANA_LIST').val()
         };
+
         var ID_JENIS_BENCANA_LIST = $('#ID_JENIS_BENCANA_LIST').val();
         var NAMA_BENCANA = $('#ID_JENIS_BENCANA_LIST option:selected').text();
-        var JUDUL = "List Pengajuan Bantuan " + NAMA_BENCANA;
+        var JUDUL = "List Data Korban " + NAMA_BENCANA;
 
         $("#mydata").dataTable().fnDestroy();
         $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
 
+        var url =
+            ID_JENIS_BENCANA_LIST === "Semua" ?
+            "<?php echo base_url(); ?>/Pengajuan/list_pengajuan_by_all_bencana" :
+            "<?php echo base_url(); ?>/Pengajuan/list_pengajuan_by_all_bencana";
+
         $.ajax({
-            url: "<?php echo base_url(); ?>/Pengajuan/list_pengajuan_by_all_bencana",
+            url: url,
             method: "POST",
             data: form_data,
+            async: false,
             dataType: 'json',
             success: function(data) {
-                console.log("Data diterima:", data);
+                console.log(data);
 
                 var html = '';
+                var html_head =
+                    '<tr><th></th><th>Jenis Bencana</th><th>Nama Korban</th><th>Jumlah Korban Diwakili</th><th>NIK</th><th>Instansi</th><th>Kecamatan Bencana</th><th>Desa/Kelurahan Bencana</th><th>Tanggal Kejadian Bencana</th><th>Tanggal Pengajuan</th><th>Proses Pengajuan</th></tr>';
 
-                if (data && Array.isArray(data) && data.length > 0) {
+                if (data && data.length > 0) {
                     data.forEach(function(item) {
-                        // URL yang akan digunakan untuk ikon "eye", menggunakan CODE_MD5 item
-                        var eyeIconUrl =
-                            "<?php echo base_url(); ?>Pengajuan_form/index_perwakilan/" +
-                            item.CODE_MD5;
-
-                        // Menambahkan row dengan URL pada ikon "eye"
                         html += `
-        <tr>
-            <td>
-                <a href="${eyeIconUrl}" class="btn btn-default btn-xs btn-outline">
-                    <i class="fa fa-eye"></i>
-                </a>
-            </td>
-            <td>${item.Jenis_Bencana}</td>
-            <td>${item.Nama_Pemohon}</td>
-            <td>${item.Jumlah_Korban_Diwakili}</td>
-            <td>${item.NIK}</td>
-            <td>${item.Instansi}</td>
-            <td>${item.Kecamatan_Bencana}</td>
-            <td>${item.Desa_Kelurahan_Bencana}</td>
-            <td>${item.TANGGAL_KEJADIAN_BENCANA}</td>
-            <td>${item.Tanggal_Pembuatan}</td>
-            <td>${item.PROGRESS_PENGAJUAN}</td>
-        </tr>`;
+                            <tr>
+                                <td>
+                                    <a href="<?php echo base_url(); ?>Pengajuan_form/index_perwakilan/${item.CODE_MD5}" class="btn btn-default btn-xs btn-outline">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                </td>
+                                <td>${item.Jenis_Bencana}</td>
+                                <td>${item.Nama_Pemohon}</td>
+                                <td>${item.Jumlah_Korban_Diwakili}</td>
+                                <td>${item.NIK}</td>
+                                <td>${item.Instansi}</td>
+                                <td>${item.Kecamatan_Bencana}</td>
+                                <td>${item.Desa_Kelurahan_Bencana}</td>
+                                <td>${item.TANGGAL_KEJADIAN_BENCANA}</td>
+                                <td>${item.Tanggal_Pembuatan}</td>
+                                <td>${item.STATUS_PENGAJUAN}</td>
+                            </tr>`;
                     });
                 } else {
                     html =
-                        '<tr><td colspan="10" class="text-center">Tidak ada data yang tersedia</td></tr>';
-                    $('#show_data').html(html);
+                        '<tr><td colspan="9" class="text-center text-danger">Data tidak tersedia</td></tr>';
                 }
 
-
+                $('#show_data_head').html(html_head);
                 $('#show_data').html(html);
 
                 $('#mydata').dataTable({
@@ -736,7 +703,7 @@ $(document).ready(function() {
                     pageLength: 10,
                     lengthMenu: [
                         [10, 25, 50, -1],
-                        [10, 25, 50, 'All'],
+                        [10, 25, 50, 'All']
                     ],
                     responsive: true,
                     dom: '<"html5buttons"B>lTfgitp',
@@ -750,9 +717,9 @@ $(document).ready(function() {
                                 $(win.document.body).addClass('white-bg');
                                 $(win.document.body).css('font-size',
                                     '10px');
-                                $(win.document.body).find('table')
-                                    .addClass('compact').css('font-size',
-                                        'inherit');
+                                $(win.document.body).find('table').addClass(
+                                    'compact').css('font-size',
+                                    'inherit');
                             }
                         }
                     ]
@@ -762,14 +729,11 @@ $(document).ready(function() {
                 $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
             },
             error: function(error) {
-                console.error("Error mengambil data:", error);
+                console.error("Error:", error);
 
-                // Jika terjadi error, tampilkan tabel default
                 $('#show_data').html(
-                    '<tr><td colspan="10" class="text-center text-danger">Gagal memuat data</td></tr>'
+                    '<tr><td colspan="9" class="text-center text-danger">Gagal memuat data</td></tr>'
                 );
-
-                // Stop loading animation
                 $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
             }
         });

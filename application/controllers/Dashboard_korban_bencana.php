@@ -14,7 +14,9 @@ class Dashboard_korban_bencana extends CI_Controller
         $this->lang->load('auth');
         $this->load->model('Foto_model');
         $this->load->model('Manajemen_user_model');
-        $this->load->model('Pengajuan_model');  // Pastikan model Pengajuan_model sudah diload
+        $this->load->model('Pengajuan_model');
+        $this->load->model('Penyaluran_model');
+        $this->load->model('Data_Korban_model');
 
         $this->data['title'] = 'SiKembar | Dashboard Korban Bencana';
         $this->data['left_menu'] = "dashboard_korban_bencana_aktif";
@@ -54,6 +56,12 @@ class Dashboard_korban_bencana extends CI_Controller
         $ID_JENIS_BENCANA_LIST = "Semua";  // Ganti dengan filter yang sesuai
         $jumlah_pengajuan = $this->Pengajuan_model->count_pengajuan_by_filter($ID_JENIS_BENCANA_LIST, $this->data['user_id']);
         $this->data['jumlah_pengajuan'] = $jumlah_pengajuan;
+
+        // Ambil jumlah penyaluran
+        $this->data['jumlah_penyaluran'] = $this->Penyaluran_model->count_penyaluran_by_filter($ID_JENIS_BENCANA_LIST, $this->data['user_id']);
+
+        // Ambil jumlah data korban
+        $this->data['jumlah_data_korban'] = $this->Data_Korban_model->count_data_korban_by_filter($ID_JENIS_BENCANA_LIST, $this->data['user_id']);
 
         // Cek role user, jika manajer proyek
         if ($this->ion_auth->logged_in() && $this->ion_auth->in_group(3)) {

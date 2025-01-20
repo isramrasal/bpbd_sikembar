@@ -134,11 +134,6 @@ class Data_Korban extends CI_Controller
 
             $data = $this->Data_Korban_model->list_korban_by_all_bencana();
             echo json_encode($data);
-
-            // $ID_SPPB = 0;
-            // $KETERANGAN = "Melihat Data SPPB: " . json_encode($data);
-            // $this->user_log_sppb($ID_SPPB, $KETERANGAN);
-            
         } else {
             // set the flash data error message if there is one
             $this->ion_auth->logout();
@@ -790,5 +785,3 @@ class Data_Korban extends CI_Controller
         }
     }
 }
-
-

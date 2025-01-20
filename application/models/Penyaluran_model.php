@@ -6,20 +6,88 @@ class Penyaluran_model extends CI_Model
 	//SUMBER TABEL: tabel sppb
 	//DIPAKAI: 1. controller SPPB / function index
 	//         2. controller SPPB / function list_sppb_by_all_proyek
+
+	// public function getPenyaluranByUser($user_id) {
+    //     $this->db->select('form_penyaluran_barang_bencana.*');
+    //     $this->db->from('form_penyaluran_barang_bencana');
+    //     $this->db->join('form_inventaris_kebutuhan_korban_bencana', 'form_penyaluran_barang_bencana.id_penyaluran = form_inventaris_kebutuhan_korban_bencana.id_penyaluran');
+    //     $this->db->where('form_inventaris_kebutuhan_korban_bencana.create_by_user', $user_id);
+    //     $query = $this->db->get();
+    //     return $query->result_array();
+    // }
+
 	function list_penyaluran_by_all_bencana()
 	{
 		$hasil = $this->db->query("SELECT * FROM form_penyaluran_barang_bencana");
-		return $query->result_array();
+		return $hasil->result();
 	}
 
-	function list_penyaluran_by_all_bencana_by_NIK($NIK_Penerima)
+	public function list_penyaluran_by_filter($ID_JENIS_BENCANA_LIST, $user_id)
 	{
-		$this->db->where('NIK_Penerima', $NIK_Penerima);
-		$query = $this->db->get('form_penyaluran_barang_bencana');
-		
-		log_message('debug', 'Query Result: ' . json_encode($query->result()));
-		return $query->result();
+		$this->db->select('*');
+		$this->db->from('form_penyaluran_barang_bencana');
+	
+		if ($ID_JENIS_BENCANA_LIST !== "Semua") {
+			$this->db->where('Jenis_Bencana', $ID_JENIS_BENCANA_LIST);
+		}
+	
+		$this->db->where('CREATE_BY_USER', $user_id);
+	
+		$query = $this->db->get();
+	
+		return $query->result_array();
 	}
+	
+
+	// function list_penyaluran_by_all_bencana_by_NIK($NIK_Penerima) {
+	// 	$this->db->where('NIK_Penerima', $NIK_Penerima);
+	// 	$query = $this->db->get('form_penyaluran_barang_bencana');
+		
+	// 	log_message('debug', 'Query Result: ' . json_encode($query->result()));  // Log query result for debugging
+	// 	return $query->result_array();  // Ensure the result is returned as an array
+	// }
+
+	// public function list_penyaluran_by_filter($ID_JENIS_BENCANA_LIST, $user_id)
+	// {
+	// 	// Pilih kolom yang diperlukan dari kedua tabel
+	// 	$this->db->select('
+	// 		form_penyaluran_barang_bencana.*,
+	// 		form_inventaris_kebutuhan_korban_bencana.Jenis_Bencana,
+	// 		form_inventaris_kebutuhan_korban_bencana.CREATE_BY_USER
+	// 	');
+	
+	// 	// Tentukan tabel utama
+	// 	$this->db->from('form_penyaluran_barang_bencana');
+	
+	// 	// Lakukan join ke tabel form_inventaris_kebutuhan_korban_bencana
+	// 	$this->db->join(
+	// 		'form_inventaris_kebutuhan_korban_bencana',
+	// 		'form_penyaluran_barang_bencana.id_form_penyaluran_barang_bencana = form_inventaris_kebutuhan_korban_bencana.id_form_inventaris_kebutuhan_korban_bencana'
+	// 	);
+	
+	// 	// Tambahkan filter untuk jenis bencana (jika bukan "Semua")
+	// 	if ($ID_JENIS_BENCANA_LIST !== "Semua") {
+	// 		$this->db->where('form_inventaris_kebutuhan_korban_bencana.Jenis_Bencana', $ID_JENIS_BENCANA_LIST);
+	// 	}
+	
+	// 	// Tambahkan filter berdasarkan user yang membuat data
+	// 	if (!empty($user_id)) {
+	// 		$this->db->where('form_inventaris_kebutuhan_korban_bencana.CREATE_BY_USER', $user_id);
+	// 	}
+	
+	// 	// Eksekusi query
+	// 	$query = $this->db->get();
+	
+	// 	// Log untuk debugging
+	// 	log_message('debug', 'SQL Query: ' . $this->db->last_query());
+	
+	// 	// Kembalikan hasil sebagai array
+	// 	return $query->result_array();
+	// }
+	
+
+
+	
 	
 	
 
@@ -30,6 +98,23 @@ class Penyaluran_model extends CI_Model
 		return $hasil;
 		//return $hasil->result();
 	}
+
+	public function count_penyaluran_by_filter($ID_JENIS_BENCANA_LIST, $user_id)
+	{
+		$this->db->select('COUNT(*) as total');
+		$this->db->from('form_penyaluran_barang_bencana'); // Pastikan nama tabel sesuai
+
+		if ($ID_JENIS_BENCANA_LIST !== "Semua") {
+			$this->db->where('Jenis_Bencana', $ID_JENIS_BENCANA_LIST); // Pastikan nama kolom sesuai
+		}
+
+		$this->db->where('CREATE_BY_USER', $user_id); // Pastikan nama kolom sesuai
+		$query = $this->db->get();
+		$result = $query->row();
+
+		return $result->total;
+	}
+
 	//FUNGSI: Fungsi ini untuk menampilkan data sppb berdasarkan ID_SPPB
 	//SUMBER TABEL: tabel sppb
 	//DIPAKAI: 1. controller SPPB_form / function index
