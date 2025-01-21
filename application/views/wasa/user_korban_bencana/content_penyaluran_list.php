@@ -593,12 +593,12 @@ $(document).ready(function() {
                                 data[i].CODE_MD5 +
                                 '" class="btn btn-default btn-xs btn-outline">' +
                                 '<i class="fa fa-eye"></i></a></td>' +
-                                '<td>' + data[i].JENIS_BENCANA + '</td>' +
-                                '<td>' + data[i].NAMA_PENERIMA + '</td>' +
-                                '<td>' + data[i].NIK_PENERIMA + '</td>' +
-                                '<td>' + data[i].INSTANSI_PENERIMA + '</td>' +
-                                '<td>' + data[i].DESA_KELURAHAN_BENCANA + '</td>' +
-                                '<td>' + data[i].KECAMATAN_BENCANA + '</td>' +
+                                '<td>' + data[i].Jenis_Bencana + '</td>' +
+                                '<td>' + data[i].Nama_Penerima + '</td>' +
+                                '<td>' + data[i].NIK_Penerima + '</td>' +
+                                '<td>' + data[i].Instansi_Penerima + '</td>' +
+                                '<td>' + data[i].Desa_Kelurahan_Bencana + '</td>' +
+                                '<td>' + data[i].Kecamatan_Bencana + '</td>' +
                                 '<td>' + data[i].TANGGAL_KEJADIAN_BENCANA + '</td>' +
                                 '</tr>';
                         }

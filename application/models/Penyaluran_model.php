@@ -108,10 +108,8 @@ class Penyaluran_model extends CI_Model
 			$this->db->where('Jenis_Bencana', $ID_JENIS_BENCANA_LIST); // Pastikan nama kolom sesuai
 		}
 
-		$this->db->where('CREATE_BY_USER', $user_id); // Pastikan nama kolom sesuai
 		$query = $this->db->get();
 		$result = $query->row();
-
 		return $result->total;
 	}
 

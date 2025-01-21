@@ -31,6 +31,7 @@ class Dashboard_korban_bencana extends CI_Controller
 
         // Ambil data user yang login
         $user = $this->ion_auth->user()->row();
+        // var_dump($user->id);die;
         $this->data['user_id'] = $user->id;
         $data_role_user = $this->Manajemen_user_model->get_data_role_user_by_id($this->data['user_id']);
         $this->data['role_user'] = $data_role_user['description'];
@@ -58,7 +59,10 @@ class Dashboard_korban_bencana extends CI_Controller
         $this->data['jumlah_pengajuan'] = $jumlah_pengajuan;
 
         // Ambil jumlah penyaluran
-        $this->data['jumlah_penyaluran'] = $this->Penyaluran_model->count_penyaluran_by_filter($ID_JENIS_BENCANA_LIST, $this->data['user_id']);
+        $this->data['jumlah_penyaluran'] = $this->Penyaluran_model->count_penyaluran_by_filter($ID_JENIS_BENCANA_LIST, 
+        $this->data['user_id']);
+        
+        // $this->data['jumlah_penyaluran'] = $this->Penyaluran_model->count_penyaluran_by_filter($ID_JENIS_BENCANA_LIST, $this->data['user_id']);
 
         // Ambil jumlah data korban
         $this->data['jumlah_data_korban'] = $this->Data_Korban_model->count_data_korban_by_filter($ID_JENIS_BENCANA_LIST, $this->data['user_id']);
