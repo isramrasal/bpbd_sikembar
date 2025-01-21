@@ -24,7 +24,7 @@
         <div class="ibox float-e-margins">
 
             <div class="ibox-title">
-                <h5>Pelatihan SiPESUT Versi Beta</h5>
+                <h5>Pelatihan SiKembar</h5>
                 <div class="ibox-tools">
                     <a class="collapse-link">
                         <i class="fa fa-chevron-up"></i>

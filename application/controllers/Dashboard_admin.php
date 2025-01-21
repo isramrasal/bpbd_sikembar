@@ -16,7 +16,7 @@ class Dashboard_admin extends CI_Controller
 		$this->load->model('Foto_model');
 		$this->load->model('Manajemen_user_model');
 
-		$this->data['title'] = 'SIPESUT WME | Dashboard Administrator';
+		$this->data['title'] = 'SiKembar | Dashboard Administrator';
 		$this->data['left_menu'] = "dashboard_admin_aktif";
 	}
 

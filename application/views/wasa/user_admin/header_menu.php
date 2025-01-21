@@ -6,7 +6,7 @@
             </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li>
-                    <span class="m-r-sm text-muted welcome-message">Selamat datang di SIPESUT WME</span>
+                    <span class="m-r-sm text-muted welcome-message">Selamat datang di Sikembar</span>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">

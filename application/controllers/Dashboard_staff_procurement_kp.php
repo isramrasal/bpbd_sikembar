@@ -16,7 +16,7 @@ class Dashboard_staff_procurement_kp extends CI_Controller
 		$this->load->model('Foto_model');
 		$this->load->model('Manajemen_user_model');
 
-		$this->data['title'] = 'SIPESUT WME | Dashboard Staff Procurement KP';
+		$this->data['title'] = 'Welcome to SiKembar BPBD Cianjur | Dashboard Staff Procurement KP';
 		$this->data['left_menu'] = "dashboard_staff_procurement_kp_aktif";
 	}
 
