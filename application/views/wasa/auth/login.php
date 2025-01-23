@@ -30,6 +30,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <div class="row">
             <div class="col-md-6">
                 <img src="<?php echo base_url(); ?>assets/logo_bpbd.png" width="120" height="auto" />
+                <img src="<?php echo base_url(); ?>assets/logo_sikembar.png" width="200" height="auto" />
             </div>
         </div>
         <div class="row">
@@ -79,7 +80,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
                     <?php echo form_close(); ?>
                     <p class="m-t">
-                        <small>Theme by Inspina | Engine by CodeIgniter | Webapps</small>
                     </p>
                 </div>
             </div>

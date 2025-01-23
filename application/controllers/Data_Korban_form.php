@@ -86,6 +86,7 @@ class Data_Korban_form extends CI_Controller
 		$data_role_user = $this->Manajemen_user_model->get_data_role_user_by_id($this->data['user_id']);
 		$this->data['role_user'] = $data_role_user['description'];
 		$this->data['NAMA_PROYEK'] = $data_role_user['NAMA_PROYEK'];
+		$this->data['username'] = $user->username;
 		$this->data['ip_address'] = $user->ip_address;
 		$this->data['email'] = $user->email;
 		$this->data['user_id'] = $user->id;
