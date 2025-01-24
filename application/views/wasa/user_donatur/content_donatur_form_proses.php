@@ -657,7 +657,7 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
 <!--END MODAL EDIT-->
 
 <!-- MODAL EDIT Ajukan SPPB-->
-<div class="modal inmodal fade" id="ModalEditKirimSPPB" tabindex="-1" role="dialog" aria-labelledby="largeModal"
+<!-- <div class="modal inmodal fade" id="ModalEditKirimSPPB" tabindex="-1" role="dialog" aria-labelledby="largeModal"
     aria-hidden="true">
     <div class="modal-dialog" style="width: 30vw;">
         <div class="modal-content animated bounceInRight">
@@ -788,7 +788,7 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
             <?php echo form_close(); ?>
         </div>
     </div>
-</div>
+</div> -->
 <!--END MODAL EDIT ajukan SPPB-->
 
 <!--MODAL HAPUS-->
@@ -854,7 +854,7 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
 <!--END MODAL HAPUS-->
 
 <!-- MODAL UPLOAD DOCUMENT BULK -->
-<div class="modal inmodal fade" id="ModalEditExcel" tabindex="-1" role="dialog" aria-labelledby="largeModal"
+<!-- <div class="modal inmodal fade" id="ModalEditExcel" tabindex="-1" role="dialog" aria-labelledby="largeModal"
     aria-hidden="true">
     <div class="modal-dialog" style="width: 80vw;">
         <div class="modal-content animated bounceInRight">
@@ -1001,11 +1001,11 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!--END MODAL UPLOAD DOCUMENT BULK-->
 
 <!-- MODAL GAGAL UPLOAD DOCUMENT BULK-->
-<div class="modal inmodal fade" id="ModalGagalExcel" tabindex="-1" role="dialog" aria-labelledby="largeModal"
+<!-- <div class="modal inmodal fade" id="ModalGagalExcel" tabindex="-1" role="dialog" aria-labelledby="largeModal"
     aria-hidden="true">
     <div class="modal-dialog" style="width: 80vw;">
         <div class="modal-content animated bounceInRight">
@@ -1028,7 +1028,7 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!--END MODAL UPLOAD DOCUMENT BULK-->
 
 <!-- Mainly scripts -->

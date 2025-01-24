@@ -188,121 +188,121 @@ class Donatur_form extends CI_Controller
 		}
 
 		//jika mereka sudah login dan sebagai admin
-		if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin()) {
+	// 	if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin()) {
 
-			$hasil_2 = $this->SPPB_model->get_data_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
-			$PROGRESS_SPPB = $hasil_2['PROGRESS_SPPB'];
+	// 		$hasil_2 = $this->SPPB_model->get_data_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
+	// 		$PROGRESS_SPPB = $hasil_2['PROGRESS_SPPB'];
 
-			$sess_data['HASH_MD5_SPPB'] = $HASH_MD5_SPPB;
-			$this->session->set_userdata($sess_data);
+	// 		$sess_data['HASH_MD5_SPPB'] = $HASH_MD5_SPPB;
+	// 		$this->session->set_userdata($sess_data);
 
-			$HASH_MD5_SPPB = $this->uri->segment(3);
-			$hasil = $this->SPPB_model->get_id_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
-			$ID_SPPB = $hasil['ID_SPPB'];
-			$this->data['ID_PROYEK'] = $hasil['ID_PROYEK'];
-			$this->data['ID_PROYEK_SUB_PEKERJAAN'] = $hasil['ID_PROYEK_SUB_PEKERJAAN'];
-			$this->data['NO_URUT_SPPB'] = $hasil['NO_URUT_SPPB'];
-			$this->data['ID_SPPB'] = $ID_SPPB;
-			$this->data['SPPB'] = $this->SPPB_model->sppb_list_by_id_sppb($ID_SPPB);
-			$this->data['CATATAN_SPPB'] = $this->SPPB_form_model->get_data_catatan_sppb_by_id_sppb($ID_SPPB);
-			$this->data['HASH_MD5_SPPB'] = $HASH_MD5_SPPB;
-			$this->data['klasifikasi_barang_list'] = $this->Klasifikasi_barang_model->klasifikasi_barang_list();
-			$this->data['RAB_list'] = $this->RAB_form_model->rab_list_by_id_proyek_sub_pekerjaan($this->data['ID_PROYEK_SUB_PEKERJAAN']);
+	// 		$HASH_MD5_SPPB = $this->uri->segment(3);
+	// 		$hasil = $this->SPPB_model->get_id_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
+	// 		$ID_SPPB = $hasil['ID_SPPB'];
+	// 		$this->data['ID_PROYEK'] = $hasil['ID_PROYEK'];
+	// 		$this->data['ID_PROYEK_SUB_PEKERJAAN'] = $hasil['ID_PROYEK_SUB_PEKERJAAN'];
+	// 		$this->data['NO_URUT_SPPB'] = $hasil['NO_URUT_SPPB'];
+	// 		$this->data['ID_SPPB'] = $ID_SPPB;
+	// 		$this->data['SPPB'] = $this->SPPB_model->sppb_list_by_id_sppb($ID_SPPB);
+	// 		$this->data['CATATAN_SPPB'] = $this->SPPB_form_model->get_data_catatan_sppb_by_id_sppb($ID_SPPB);
+	// 		$this->data['HASH_MD5_SPPB'] = $HASH_MD5_SPPB;
+	// 		$this->data['klasifikasi_barang_list'] = $this->Klasifikasi_barang_model->klasifikasi_barang_list();
+	// 		$this->data['RAB_list'] = $this->RAB_form_model->rab_list_by_id_proyek_sub_pekerjaan($this->data['ID_PROYEK_SUB_PEKERJAAN']);
 
-			$this->load->view('wasa/user_admin/head_normal', $this->data);
-			$this->load->view('wasa/user_admin/user_menu');
-			$this->load->view('wasa/user_admin/left_menu');
-			$this->load->view('wasa/user_admin/header_menu');
-			$this->load->view('wasa/user_admin/content_sppb_form_telusur');
-			$this->load->view('wasa/user_admin/footer');
+	// 		$this->load->view('wasa/user_admin/head_normal', $this->data);
+	// 		$this->load->view('wasa/user_admin/user_menu');
+	// 		$this->load->view('wasa/user_admin/left_menu');
+	// 		$this->load->view('wasa/user_admin/header_menu');
+	// 		$this->load->view('wasa/user_admin/content_sppb_form_telusur');
+	// 		$this->load->view('wasa/user_admin/footer');
 
 
-		} else if ($this->ion_auth->logged_in() && $this->ion_auth->in_group(5)) { //STAFF PROC KP
-			$hasil_2 = $this->SPPB_model->get_data_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
-			$PROGRESS_SPPB = $hasil_2['PROGRESS_SPPB'];
+	// 	} else if ($this->ion_auth->logged_in() && $this->ion_auth->in_group(5)) { //STAFF PROC KP
+	// 		$hasil_2 = $this->SPPB_model->get_data_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
+	// 		$PROGRESS_SPPB = $hasil_2['PROGRESS_SPPB'];
 
-			$sess_data['HASH_MD5_SPPB'] = $HASH_MD5_SPPB;
-			$this->session->set_userdata($sess_data);
+	// 		$sess_data['HASH_MD5_SPPB'] = $HASH_MD5_SPPB;
+	// 		$this->session->set_userdata($sess_data);
 
-			$HASH_MD5_SPPB = $this->uri->segment(3);
-			$hasil = $this->SPPB_model->get_id_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
-			$ID_SPPB = $hasil['ID_SPPB'];
-			$this->data['ID_PROYEK'] = $hasil['ID_PROYEK'];
-			$this->data['ID_PROYEK_SUB_PEKERJAAN'] = $hasil['ID_PROYEK_SUB_PEKERJAAN'];
-			$this->data['NO_URUT_SPPB'] = $hasil['NO_URUT_SPPB'];
-			$this->data['ID_SPPB'] = $ID_SPPB;
-			$this->data['SPPB'] = $this->SPPB_model->sppb_list_by_id_sppb($ID_SPPB);
-			$this->data['CATATAN_SPPB'] = $this->SPPB_form_model->get_data_catatan_sppb_by_id_sppb($ID_SPPB);
-			$this->data['HASH_MD5_SPPB'] = $HASH_MD5_SPPB;
-			$this->data['klasifikasi_barang_list'] = $this->Klasifikasi_barang_model->klasifikasi_barang_list();
-			$this->data['RAB_list'] = $this->RAB_form_model->rab_list_by_id_proyek_sub_pekerjaan($this->data['ID_PROYEK_SUB_PEKERJAAN']);
+	// 		$HASH_MD5_SPPB = $this->uri->segment(3);
+	// 		$hasil = $this->SPPB_model->get_id_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
+	// 		$ID_SPPB = $hasil['ID_SPPB'];
+	// 		$this->data['ID_PROYEK'] = $hasil['ID_PROYEK'];
+	// 		$this->data['ID_PROYEK_SUB_PEKERJAAN'] = $hasil['ID_PROYEK_SUB_PEKERJAAN'];
+	// 		$this->data['NO_URUT_SPPB'] = $hasil['NO_URUT_SPPB'];
+	// 		$this->data['ID_SPPB'] = $ID_SPPB;
+	// 		$this->data['SPPB'] = $this->SPPB_model->sppb_list_by_id_sppb($ID_SPPB);
+	// 		$this->data['CATATAN_SPPB'] = $this->SPPB_form_model->get_data_catatan_sppb_by_id_sppb($ID_SPPB);
+	// 		$this->data['HASH_MD5_SPPB'] = $HASH_MD5_SPPB;
+	// 		$this->data['klasifikasi_barang_list'] = $this->Klasifikasi_barang_model->klasifikasi_barang_list();
+	// 		$this->data['RAB_list'] = $this->RAB_form_model->rab_list_by_id_proyek_sub_pekerjaan($this->data['ID_PROYEK_SUB_PEKERJAAN']);
 
-			$this->load->view('wasa/user_staff_procurement_kp/head_normal', $this->data);
-			$this->load->view('wasa/user_staff_procurement_kp/user_menu');
-			$this->load->view('wasa/user_staff_procurement_kp/left_menu');
-			$this->load->view('wasa/user_staff_procurement_kp/header_menu');
-			$this->load->view('wasa/user_staff_procurement_kp/content_sppb_form_telusur');
-			$this->load->view('wasa/user_staff_procurement_kp/footer');
+	// 		$this->load->view('wasa/user_staff_procurement_kp/head_normal', $this->data);
+	// 		$this->load->view('wasa/user_staff_procurement_kp/user_menu');
+	// 		$this->load->view('wasa/user_staff_procurement_kp/left_menu');
+	// 		$this->load->view('wasa/user_staff_procurement_kp/header_menu');
+	// 		$this->load->view('wasa/user_staff_procurement_kp/content_sppb_form_telusur');
+	// 		$this->load->view('wasa/user_staff_procurement_kp/footer');
 
-		} else if ($this->ion_auth->logged_in() && $this->ion_auth->in_group(8)) { //STAFF PROC SP
-			$hasil_2 = $this->SPPB_model->get_data_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
-			$PROGRESS_SPPB = $hasil_2['PROGRESS_SPPB'];
+	// 	} else if ($this->ion_auth->logged_in() && $this->ion_auth->in_group(8)) { //STAFF PROC SP
+	// 		$hasil_2 = $this->SPPB_model->get_data_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
+	// 		$PROGRESS_SPPB = $hasil_2['PROGRESS_SPPB'];
 
-			$sess_data['HASH_MD5_SPPB'] = $HASH_MD5_SPPB;
-			$this->session->set_userdata($sess_data);
+	// 		$sess_data['HASH_MD5_SPPB'] = $HASH_MD5_SPPB;
+	// 		$this->session->set_userdata($sess_data);
 
-			$HASH_MD5_SPPB = $this->uri->segment(3);
-			$hasil = $this->SPPB_model->get_id_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
-			$ID_SPPB = $hasil['ID_SPPB'];
-			$this->data['ID_PROYEK'] = $hasil['ID_PROYEK'];
-			$this->data['ID_PROYEK_SUB_PEKERJAAN'] = $hasil['ID_PROYEK_SUB_PEKERJAAN'];
-			$this->data['NO_URUT_SPPB'] = $hasil['NO_URUT_SPPB'];
-			$this->data['ID_SPPB'] = $ID_SPPB;
-			$this->data['SPPB'] = $this->SPPB_model->sppb_list_by_id_sppb($ID_SPPB);
-			$this->data['CATATAN_SPPB'] = $this->SPPB_form_model->get_data_catatan_sppb_by_id_sppb($ID_SPPB);
-			$this->data['HASH_MD5_SPPB'] = $HASH_MD5_SPPB;
-			$this->data['klasifikasi_barang_list'] = $this->Klasifikasi_barang_model->klasifikasi_barang_list();
-			$this->data['RAB_list'] = $this->RAB_form_model->rab_list_by_id_proyek_sub_pekerjaan($this->data['ID_PROYEK_SUB_PEKERJAAN']);
+	// 		$HASH_MD5_SPPB = $this->uri->segment(3);
+	// 		$hasil = $this->SPPB_model->get_id_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
+	// 		$ID_SPPB = $hasil['ID_SPPB'];
+	// 		$this->data['ID_PROYEK'] = $hasil['ID_PROYEK'];
+	// 		$this->data['ID_PROYEK_SUB_PEKERJAAN'] = $hasil['ID_PROYEK_SUB_PEKERJAAN'];
+	// 		$this->data['NO_URUT_SPPB'] = $hasil['NO_URUT_SPPB'];
+	// 		$this->data['ID_SPPB'] = $ID_SPPB;
+	// 		$this->data['SPPB'] = $this->SPPB_model->sppb_list_by_id_sppb($ID_SPPB);
+	// 		$this->data['CATATAN_SPPB'] = $this->SPPB_form_model->get_data_catatan_sppb_by_id_sppb($ID_SPPB);
+	// 		$this->data['HASH_MD5_SPPB'] = $HASH_MD5_SPPB;
+	// 		$this->data['klasifikasi_barang_list'] = $this->Klasifikasi_barang_model->klasifikasi_barang_list();
+	// 		$this->data['RAB_list'] = $this->RAB_form_model->rab_list_by_id_proyek_sub_pekerjaan($this->data['ID_PROYEK_SUB_PEKERJAAN']);
 
-			$this->load->view('wasa/user_staff_procurement_sp/head_normal', $this->data);
-			$this->load->view('wasa/user_staff_procurement_sp/user_menu');
-			$this->load->view('wasa/user_staff_procurement_sp/left_menu');
-			$this->load->view('wasa/user_staff_procurement_sp/header_menu');
-			$this->load->view('wasa/user_staff_procurement_sp/content_sppb_form_telusur');
-			$this->load->view('wasa/user_staff_procurement_sp/footer');
+	// 		$this->load->view('wasa/user_staff_procurement_sp/head_normal', $this->data);
+	// 		$this->load->view('wasa/user_staff_procurement_sp/user_menu');
+	// 		$this->load->view('wasa/user_staff_procurement_sp/left_menu');
+	// 		$this->load->view('wasa/user_staff_procurement_sp/header_menu');
+	// 		$this->load->view('wasa/user_staff_procurement_sp/content_sppb_form_telusur');
+	// 		$this->load->view('wasa/user_staff_procurement_sp/footer');
 
-		} else if ($this->ion_auth->logged_in() && $this->ion_auth->in_group(9)) { //SUPERVISI PROC SP
-			$hasil_2 = $this->SPPB_model->get_data_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
-			$PROGRESS_SPPB = $hasil_2['PROGRESS_SPPB'];
+	// 	} else if ($this->ion_auth->logged_in() && $this->ion_auth->in_group(9)) { //SUPERVISI PROC SP
+	// 		$hasil_2 = $this->SPPB_model->get_data_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
+	// 		$PROGRESS_SPPB = $hasil_2['PROGRESS_SPPB'];
 
-			$sess_data['HASH_MD5_SPPB'] = $HASH_MD5_SPPB;
-			$this->session->set_userdata($sess_data);
+	// 		$sess_data['HASH_MD5_SPPB'] = $HASH_MD5_SPPB;
+	// 		$this->session->set_userdata($sess_data);
 
-			$HASH_MD5_SPPB = $this->uri->segment(3);
-			$hasil = $this->SPPB_model->get_id_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
-			$ID_SPPB = $hasil['ID_SPPB'];
-			$this->data['ID_PROYEK'] = $hasil['ID_PROYEK'];
-			$this->data['ID_PROYEK_SUB_PEKERJAAN'] = $hasil['ID_PROYEK_SUB_PEKERJAAN'];
-			$this->data['NO_URUT_SPPB'] = $hasil['NO_URUT_SPPB'];
-			$this->data['ID_SPPB'] = $ID_SPPB;
-			$this->data['SPPB'] = $this->SPPB_model->sppb_list_by_id_sppb($ID_SPPB);
-			$this->data['CATATAN_SPPB'] = $this->SPPB_form_model->get_data_catatan_sppb_by_id_sppb($ID_SPPB);
-			$this->data['HASH_MD5_SPPB'] = $HASH_MD5_SPPB;
-			$this->data['klasifikasi_barang_list'] = $this->Klasifikasi_barang_model->klasifikasi_barang_list();
-			$this->data['RAB_list'] = $this->RAB_form_model->rab_list_by_id_proyek_sub_pekerjaan($this->data['ID_PROYEK_SUB_PEKERJAAN']);
+	// 		$HASH_MD5_SPPB = $this->uri->segment(3);
+	// 		$hasil = $this->SPPB_model->get_id_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
+	// 		$ID_SPPB = $hasil['ID_SPPB'];
+	// 		$this->data['ID_PROYEK'] = $hasil['ID_PROYEK'];
+	// 		$this->data['ID_PROYEK_SUB_PEKERJAAN'] = $hasil['ID_PROYEK_SUB_PEKERJAAN'];
+	// 		$this->data['NO_URUT_SPPB'] = $hasil['NO_URUT_SPPB'];
+	// 		$this->data['ID_SPPB'] = $ID_SPPB;
+	// 		$this->data['SPPB'] = $this->SPPB_model->sppb_list_by_id_sppb($ID_SPPB);
+	// 		$this->data['CATATAN_SPPB'] = $this->SPPB_form_model->get_data_catatan_sppb_by_id_sppb($ID_SPPB);
+	// 		$this->data['HASH_MD5_SPPB'] = $HASH_MD5_SPPB;
+	// 		$this->data['klasifikasi_barang_list'] = $this->Klasifikasi_barang_model->klasifikasi_barang_list();
+	// 		$this->data['RAB_list'] = $this->RAB_form_model->rab_list_by_id_proyek_sub_pekerjaan($this->data['ID_PROYEK_SUB_PEKERJAAN']);
 
-			$this->load->view('wasa/user_supervisi_procurement_sp/head_normal', $this->data);
-			$this->load->view('wasa/user_supervisi_procurement_sp/user_menu');
-			$this->load->view('wasa/user_supervisi_procurement_sp/left_menu');
-			$this->load->view('wasa/user_supervisi_procurement_sp/header_menu');
-			$this->load->view('wasa/user_supervisi_procurement_sp/content_sppb_form_telusur');
-			$this->load->view('wasa/user_supervisi_procurement_sp/footer');
+	// 		$this->load->view('wasa/user_supervisi_procurement_sp/head_normal', $this->data);
+	// 		$this->load->view('wasa/user_supervisi_procurement_sp/user_menu');
+	// 		$this->load->view('wasa/user_supervisi_procurement_sp/left_menu');
+	// 		$this->load->view('wasa/user_supervisi_procurement_sp/header_menu');
+	// 		$this->load->view('wasa/user_supervisi_procurement_sp/content_sppb_form_telusur');
+	// 		$this->load->view('wasa/user_supervisi_procurement_sp/footer');
 
-		} else {
-			$this->logout();
-			$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
-		}
-	}
+	// 	} else {
+	// 		$this->logout();
+	// 		$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
+	// 	}
+	// }
 
 	// public function approval()
 	// {
@@ -709,19 +709,19 @@ class Donatur_form extends CI_Controller
 	// 	// }
 	// }
 
-	function data_grup_rab_sppb_form() //102023
-	{
-		if ($this->ion_auth->logged_in()) {
-			$id = $this->input->get('id');
-			$data = $this->SPPB_form_model->data_grup_rab_sppb_form($id);
-			echo json_encode($data);
+	// function data_grup_rab_sppb_form() //102023
+	// {
+	// 	if ($this->ion_auth->logged_in()) {
+	// 		$id = $this->input->get('id');
+	// 		$data = $this->SPPB_form_model->data_grup_rab_sppb_form($id);
+	// 		echo json_encode($data);
 
-			$ID_SPPB_FORM = 0;
-			$KETERANGAN = "Melihat Data SPPB Form: " . json_encode($data);
-			$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
-		} else {
-			$this->logout();
-		}
+	// 		$ID_SPPB_FORM = 0;
+	// 		$KETERANGAN = "Melihat Data SPPB Form: " . json_encode($data);
+	// 		$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
+	// 	} else {
+	// 		$this->logout();
+	// 	}
 	}
 
 	function data_barang_bantuan_form() //102023
@@ -736,169 +736,169 @@ class Donatur_form extends CI_Controller
 		}
 	}
 
-	function data_spp_form_by_id_sppb_form() //TELUSUR //102023
-	{
-		if ($this->ion_auth->logged_in()) {
-			$ID_SPPB_FORM = $this->input->post('ID_SPPB_FORM');
-			$data = $this->SPPB_form_model->data_spp_form_by_id_sppb_form($ID_SPPB_FORM);
-			echo json_encode($data);
+	// function data_spp_form_by_id_sppb_form() //TELUSUR //102023
+	// {
+	// 	if ($this->ion_auth->logged_in()) {
+	// 		$ID_SPPB_FORM = $this->input->post('ID_SPPB_FORM');
+	// 		$data = $this->SPPB_form_model->data_spp_form_by_id_sppb_form($ID_SPPB_FORM);
+	// 		echo json_encode($data);
 
-			$ID_SPPB_FORM = 0;
-			$KETERANGAN = "TELUSUR Melihat Data SPP Form: " . json_encode($data);
-			$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
-		} else {
-			$this->logout();
-			$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
-		}
-	}
+	// 		$ID_SPPB_FORM = 0;
+	// 		$KETERANGAN = "TELUSUR Melihat Data SPP Form: " . json_encode($data);
+	// 		$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
+	// 	} else {
+	// 		$this->logout();
+	// 		$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
+	// 	}
+	// }
 
-	function data_spp_by_id_spp() //TELUSUR //102023
-	{
-		if ($this->ion_auth->logged_in()) {
-			$ID_SPP = $this->input->post('ID_SPP');
-			$data = $this->SPPB_form_model->data_spp_by_id_spp($ID_SPP);
-			echo json_encode($data);
+	// function data_spp_by_id_spp() //TELUSUR //102023
+	// {
+	// 	if ($this->ion_auth->logged_in()) {
+	// 		$ID_SPP = $this->input->post('ID_SPP');
+	// 		$data = $this->SPPB_form_model->data_spp_by_id_spp($ID_SPP);
+	// 		echo json_encode($data);
 
-			$ID_SPPB_FORM = 0;
-			$KETERANGAN = "TELUSUR Melihat Data SPP: " . json_encode($data);
-			$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
-		} else {
-			$this->logout();
-			$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
-		}
-	}
+	// 		$ID_SPPB_FORM = 0;
+	// 		$KETERANGAN = "TELUSUR Melihat Data SPP: " . json_encode($data);
+	// 		$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
+	// 	} else {
+	// 		$this->logout();
+	// 		$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
+	// 	}
+	// }
 
-	function data_po_form_by_id_sppb_form() //TELUSUR //102023
-	{
-		if ($this->ion_auth->logged_in()) {
-			$ID_SPPB_FORM = $this->input->post('ID_SPPB_FORM');
-			$data = $this->SPPB_form_model->data_po_form_by_id_sppb_form($ID_SPPB_FORM);
-			echo json_encode($data);
+	// function data_po_form_by_id_sppb_form() //TELUSUR //102023
+	// {
+	// 	if ($this->ion_auth->logged_in()) {
+	// 		$ID_SPPB_FORM = $this->input->post('ID_SPPB_FORM');
+	// 		$data = $this->SPPB_form_model->data_po_form_by_id_sppb_form($ID_SPPB_FORM);
+	// 		echo json_encode($data);
 
-			$ID_SPPB_FORM = 0;
-			$KETERANGAN = "TELUSUR Melihat Data PO Form: " . json_encode($data);
-			$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
-		} else {
-			$this->logout();
-			$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
-		}
-	}
+	// 		$ID_SPPB_FORM = 0;
+	// 		$KETERANGAN = "TELUSUR Melihat Data PO Form: " . json_encode($data);
+	// 		$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
+	// 	} else {
+	// 		$this->logout();
+	// 		$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
+	// 	}
+	// }
 
-	function data_po_by_id_po() //TELUSUR //102023
-	{
-		if ($this->ion_auth->logged_in()) {
-			$ID_PO = $this->input->post('ID_PO');
-			$data = $this->SPPB_form_model->data_po_by_id_po($ID_PO);
-			echo json_encode($data);
+	// function data_po_by_id_po() //TELUSUR //102023
+	// {
+	// 	if ($this->ion_auth->logged_in()) {
+	// 		$ID_PO = $this->input->post('ID_PO');
+	// 		$data = $this->SPPB_form_model->data_po_by_id_po($ID_PO);
+	// 		echo json_encode($data);
 
-			$ID_SPPB_FORM = 0;
-			$KETERANGAN = "TELUSUR Melihat Data PO: " . json_encode($data);
-			$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
-		} else {
-			$this->logout();
-			$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
-		}
-	}
+	// 		$ID_SPPB_FORM = 0;
+	// 		$KETERANGAN = "TELUSUR Melihat Data PO: " . json_encode($data);
+	// 		$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
+	// 	} else {
+	// 		$this->logout();
+	// 		$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
+	// 	}
+	// }
 
-	function data_fstb_form_by_id_sppb_form() //TELUSUR //102023
-	{
-		if ($this->ion_auth->logged_in()) {
-			$ID_SPPB_FORM = $this->input->post('ID_SPPB_FORM');
-			$data = $this->SPPB_form_model->data_fstb_form_by_id_sppb_form($ID_SPPB_FORM);
-			echo json_encode($data);
+	// function data_fstb_form_by_id_sppb_form() //TELUSUR //102023
+	// {
+	// 	if ($this->ion_auth->logged_in()) {
+	// 		$ID_SPPB_FORM = $this->input->post('ID_SPPB_FORM');
+	// 		$data = $this->SPPB_form_model->data_fstb_form_by_id_sppb_form($ID_SPPB_FORM);
+	// 		echo json_encode($data);
 
-			$ID_SPPB_FORM = 0;
-			$KETERANGAN = "TELUSUR Melihat Data FSTB Form: " . json_encode($data);
-			$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
-		} else {
-			$this->logout();
-			$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
-		}
-	}
+	// 		$ID_SPPB_FORM = 0;
+	// 		$KETERANGAN = "TELUSUR Melihat Data FSTB Form: " . json_encode($data);
+	// 		$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
+	// 	} else {
+	// 		$this->logout();
+	// 		$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
+	// 	}
+	// }
 
-	function data_fstb_by_id_fstb() //TELUSUR //102023
-	{
-		if ($this->ion_auth->logged_in()) {
-			$ID_FSTB = $this->input->post('ID_FSTB');
-			$data = $this->SPPB_form_model->data_fstb_by_id_fstb($ID_FSTB);
-			echo json_encode($data);
+	// function data_fstb_by_id_fstb() //TELUSUR //102023
+	// {
+	// 	if ($this->ion_auth->logged_in()) {
+	// 		$ID_FSTB = $this->input->post('ID_FSTB');
+	// 		$data = $this->SPPB_form_model->data_fstb_by_id_fstb($ID_FSTB);
+	// 		echo json_encode($data);
 
-			$ID_SPPB_FORM = 0;
-			$KETERANGAN = "TELUSUR Melihat Data FSTB: " . json_encode($data);
-			$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
-		} else {
-			$this->logout();
-			$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
-		}
-	}
+	// 		$ID_SPPB_FORM = 0;
+	// 		$KETERANGAN = "TELUSUR Melihat Data FSTB: " . json_encode($data);
+	// 		$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
+	// 	} else {
+	// 		$this->logout();
+	// 		$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
+	// 	}
+	// }
 
-	function data_sppb_form_kirim_sppb() //102023
-	{
-		if ($this->ion_auth->logged_in()) {
+	// function data_sppb_form_kirim_sppb() //102023
+	// {
+	// 	if ($this->ion_auth->logged_in()) {
 
-			$ID_SPPB = $this->input->get('ID_SPPB');
-			$data = $this->SPPB_form_model->sppb_form_list_by_id_sppb_kirim_SPPB($ID_SPPB);
-			echo json_encode($data);
+	// 		$ID_SPPB = $this->input->get('ID_SPPB');
+	// 		$data = $this->SPPB_form_model->sppb_form_list_by_id_sppb_kirim_SPPB($ID_SPPB);
+	// 		echo json_encode($data);
 
-			$ID_SPPB = $ID_SPPB;
-			$KETERANGAN = "Melihat Data SPPB Form: " . json_encode($data);
-			$this->user_log_sppb($ID_SPPB, $KETERANGAN);
+	// 		$ID_SPPB = $ID_SPPB;
+	// 		$KETERANGAN = "Melihat Data SPPB Form: " . json_encode($data);
+	// 		$this->user_log_sppb($ID_SPPB, $KETERANGAN);
 
-		} else {
-			$this->logout();
-			$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
-		}
-	}
+	// 	} else {
+	// 		$this->logout();
+	// 		$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
+	// 	}
+	// }
 
-	function data_sppb_form_file() //102023
-	{
-		if ($this->ion_auth->logged_in()) {
+	// function data_sppb_form_file() //102023
+	// {
+	// 	if ($this->ion_auth->logged_in()) {
 
-			$ID_SPPB = $this->input->get('ID_SPPB');
-			$data = $this->SPPB_form_model->sppb_form_file_list_by_id_sppb($ID_SPPB);
-			echo json_encode($data);
+	// 		$ID_SPPB = $this->input->get('ID_SPPB');
+	// 		$data = $this->SPPB_form_model->sppb_form_file_list_by_id_sppb($ID_SPPB);
+	// 		echo json_encode($data);
 
-			$ID_SPPB = $ID_SPPB;
-			$KETERANGAN = "Melihat Data SPPB Form: " . json_encode($data);
-			$this->user_log_sppb($ID_SPPB, $KETERANGAN);
+	// 		$ID_SPPB = $ID_SPPB;
+	// 		$KETERANGAN = "Melihat Data SPPB Form: " . json_encode($data);
+	// 		$this->user_log_sppb($ID_SPPB, $KETERANGAN);
 
-		}else {
-			$this->logout();
-			$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
-		}
-	}
+	// 	}else {
+	// 		$this->logout();
+	// 		$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
+	// 	}
+	// }
 
-	function data_qty_rasd() //102023
-	{
-		if ($this->ion_auth->logged_in()) {
-			$ID_RASD_FORM = $this->input->post('ID_RASD_FORM');
-			$data = $this->SPPB_form_model->data_quantity_rasd_by_ID_RASD_FORM($ID_RASD_FORM);
-			echo json_encode($data);
+	// function data_qty_rasd() //102023
+	// {
+	// 	if ($this->ion_auth->logged_in()) {
+	// 		$ID_RASD_FORM = $this->input->post('ID_RASD_FORM');
+	// 		$data = $this->SPPB_form_model->data_quantity_rasd_by_ID_RASD_FORM($ID_RASD_FORM);
+	// 		echo json_encode($data);
 
-			$ID_SPPB_FORM = 0;
-			$KETERANGAN = "Melihat Data Quantity RASD: " . json_encode($data);
-			$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
-		} else {
-			$this->logout();
-			$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
-		}
-	}
+	// 		$ID_SPPB_FORM = 0;
+	// 		$KETERANGAN = "Melihat Data Quantity RASD: " . json_encode($data);
+	// 		$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
+	// 	} else {
+	// 		$this->logout();
+	// 		$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
+	// 	}
+	// }
 
-	function data_qty_rasd_realisasi() //102023
-	{
-		if ($this->ion_auth->logged_in()) {
-			$ID_RASD_FORM = $this->input->post('ID_RASD_FORM');
-			$data = $this->SPPB_form_model->data_quantity_rasd_realisasi_by_ID_RASD_FORM($ID_RASD_FORM);
-			echo json_encode($data);
+	// function data_qty_rasd_realisasi() //102023
+	// {
+	// 	if ($this->ion_auth->logged_in()) {
+	// 		$ID_RASD_FORM = $this->input->post('ID_RASD_FORM');
+	// 		$data = $this->SPPB_form_model->data_quantity_rasd_realisasi_by_ID_RASD_FORM($ID_RASD_FORM);
+	// 		echo json_encode($data);
 
-			$ID_SPPB_FORM = 0;
-			$KETERANGAN = "Melihat Data Quantity Realisasi RASD: " . json_encode($data);
-			$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
-		} else {
-			$this->logout();
-			$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
-		}
-	}
+	// 		$ID_SPPB_FORM = 0;
+	// 		$KETERANGAN = "Melihat Data Quantity Realisasi RASD: " . json_encode($data);
+	// 		$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
+	// 	} else {
+	// 		$this->logout();
+	// 		$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
+	// 	}
+	// }
 
 	// function data_qty_entitas() //102023
 	// {
@@ -950,74 +950,74 @@ class Donatur_form extends CI_Controller
 		}
 	}
 
-	function get_data_id_rab_form_by_id_rab() //102023
-	{
-		if ($this->ion_auth->logged_in()) {
-			$ID_RAB = $this->input->post('ID_RAB');
-			$data = $this->SPPB_model->get_data_id_rab_form_by_id_rab($ID_RAB);
-			echo json_encode($data);
+	// function get_data_id_rab_form_by_id_rab() //102023
+	// {
+	// 	if ($this->ion_auth->logged_in()) {
+	// 		$ID_RAB = $this->input->post('ID_RAB');
+	// 		$data = $this->SPPB_model->get_data_id_rab_form_by_id_rab($ID_RAB);
+	// 		echo json_encode($data);
 
-			$ID_SPPB_FORM = 0;
-			$KETERANGAN = "Get Data ID RAB FORM: " . json_encode($data);
-			$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
-		} else {
-			// set the flash data error message if there is one
-			$this->ion_auth->logout();
-			$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
-		}
-	}
+	// 		$ID_SPPB_FORM = 0;
+	// 		$KETERANGAN = "Get Data ID RAB FORM: " . json_encode($data);
+	// 		$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
+	// 	} else {
+	// 		// set the flash data error message if there is one
+	// 		$this->ion_auth->logout();
+	// 		$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
+	// 	}
+	// }
 
-	function get_data_id_rab_by_id_proyek() //102023
-	{
-		if ($this->ion_auth->logged_in()) {
-			$ID_PROYEK = $this->input->post('ID_PROYEK');
-			$ID_PROYEK_SUB_PEKERJAAN = $this->input->post('ID_PROYEK_SUB_PEKERJAAN');
-			$data = $this->SPPB_model->get_data_id_rab_by_id_proyek($ID_PROYEK, $ID_PROYEK_SUB_PEKERJAAN);
-			echo json_encode($data);
+	// function get_data_id_rab_by_id_proyek() //102023
+	// {
+	// 	if ($this->ion_auth->logged_in()) {
+	// 		$ID_PROYEK = $this->input->post('ID_PROYEK');
+	// 		$ID_PROYEK_SUB_PEKERJAAN = $this->input->post('ID_PROYEK_SUB_PEKERJAAN');
+	// 		$data = $this->SPPB_model->get_data_id_rab_by_id_proyek($ID_PROYEK, $ID_PROYEK_SUB_PEKERJAAN);
+	// 		echo json_encode($data);
 
-			$ID_SPPB_FORM = 0;
-			$KETERANGAN = "Get Data ID RAB: " . json_encode($data);
-			$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
-		} else {
-			// set the flash data error message if there is one
-			$this->ion_auth->logout();
-			$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
-		}
-	}
+	// 		$ID_SPPB_FORM = 0;
+	// 		$KETERANGAN = "Get Data ID RAB: " . json_encode($data);
+	// 		$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
+	// 	} else {
+	// 		// set the flash data error message if there is one
+	// 		$this->ion_auth->logout();
+	// 		$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
+	// 	}
+	// }
 
-	function get_data_id_rasd_by_id_rab_form()
-	{
-		if ($this->ion_auth->logged_in()) {
-			$ID_RAB_FORM = $this->input->post('ID_RAB_FORM');
-			$data = $this->SPPB_model->get_data_id_rasd_by_id_rab_form($ID_RAB_FORM);
-			echo json_encode($data);
+	// function get_data_id_rasd_by_id_rab_form()
+	// {
+	// 	if ($this->ion_auth->logged_in()) {
+	// 		$ID_RAB_FORM = $this->input->post('ID_RAB_FORM');
+	// 		$data = $this->SPPB_model->get_data_id_rasd_by_id_rab_form($ID_RAB_FORM);
+	// 		echo json_encode($data);
 
-			$ID_SPPB_FORM = 0;
-			$KETERANGAN = "Get Data ID RASD: " . json_encode($data);
-			$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
-		} else {
-			// set the flash data error message if there is one
-			$this->ion_auth->logout();
-			$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
-		}
-	}
+	// 		$ID_SPPB_FORM = 0;
+	// 		$KETERANGAN = "Get Data ID RASD: " . json_encode($data);
+	// 		$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
+	// 	} else {
+	// 		// set the flash data error message if there is one
+	// 		$this->ion_auth->logout();
+	// 		$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
+	// 	}
+	// }
 
-	function get_data_id_rasd_form_by_id_rasd()
-	{
-		if ($this->ion_auth->logged_in()) {
-			$ID_RASD = $this->input->post('ID_RASD');
-			$data = $this->SPPB_form_model->get_data_id_rasd_form_by_id_rasd($ID_RASD);
-			echo json_encode($data);
+	// function get_data_id_rasd_form_by_id_rasd()
+	// {
+	// 	if ($this->ion_auth->logged_in()) {
+	// 		$ID_RASD = $this->input->post('ID_RASD');
+	// 		$data = $this->SPPB_form_model->get_data_id_rasd_form_by_id_rasd($ID_RASD);
+	// 		echo json_encode($data);
 
-			$ID_SPPB_FORM = 0;
-			$KETERANGAN = "Get Data ID RASD: " . json_encode($data);
-			$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
-		} else {
-			// set the flash data error message if there is one
-			$this->ion_auth->logout();
-			$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
-		}
-	}
+	// 		$ID_SPPB_FORM = 0;
+	// 		$KETERANGAN = "Get Data ID RASD: " . json_encode($data);
+	// 		$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
+	// 	} else {
+	// 		// set the flash data error message if there is one
+	// 		$this->ion_auth->logout();
+	// 		$this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
+	// 	}
+	// }
 
 	function hapus_data()
 	{
@@ -1210,38 +1210,38 @@ class Donatur_form extends CI_Controller
 		}
 	}
 
-	function update_status_id_sppb_form()
-	{
-		if ($this->ion_auth->logged_in()) {
+	// function update_status_id_sppb_form()
+	// {
+	// 	if ($this->ion_auth->logged_in()) {
 			
-			$ID_SPPB_FORM = $this->input->post('ID_SPPB_FORM');
+	// 		$ID_SPPB_FORM = $this->input->post('ID_SPPB_FORM');
 
-			$data = $this->SPPB_form_model->update_status_id_sppb_form(
-				$ID_SPPB_FORM
-			);
-			echo json_encode($data);
+	// 		$data = $this->SPPB_form_model->update_status_id_sppb_form(
+	// 			$ID_SPPB_FORM
+	// 		);
+	// 		echo json_encode($data);
 			
-		} else {
-			$this->logout();
-		}
-	}
+	// 	} else {
+	// 		$this->logout();
+	// 	}
+	// }
 
-	function update_progress()
-	{
-		if ($this->ion_auth->logged_in()) {
+	// function update_progress()
+	// {
+	// 	if ($this->ion_auth->logged_in()) {
 			
-			$ID_SPPB = $this->input->post('ID_SPPB');
-			$PROGRESS_SPPB = $this->input->post('PROGRESS_SPPB');
+	// 		$ID_SPPB = $this->input->post('ID_SPPB');
+	// 		$PROGRESS_SPPB = $this->input->post('PROGRESS_SPPB');
 
-			$data = $this->SPPB_form_model->update_progress_id_sppb(
-				$ID_SPPB, $PROGRESS_SPPB
-			);
-			echo json_encode($data);
+	// 		$data = $this->SPPB_form_model->update_progress_id_sppb(
+	// 			$ID_SPPB, $PROGRESS_SPPB
+	// 		);
+	// 		echo json_encode($data);
 			
-		} else {
-			$this->logout();
-		}
-	}
+	// 	} else {
+	// 		$this->logout();
+	// 	}
+	// }
 
 	// function update_status_sppb_complete()
 	// {
@@ -1259,100 +1259,100 @@ class Donatur_form extends CI_Controller
 	// 	}
 	// }
 
-	function update_data_kirim_sppb_pembelian()//BEDA KP DAN SP
-	{
-		if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin()) {
+	// function update_data_kirim_sppb_pembelian()//BEDA KP DAN SP
+	// {
+	// 	if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin()) {
 
-			//set validation rules
-			$this->form_validation->set_rules('ID_SPPB', 'ID_SPPB', 'trim|required');
+	// 		//set validation rules
+	// 		$this->form_validation->set_rules('ID_SPPB', 'ID_SPPB', 'trim|required');
 
-			//run validation check
-			if ($this->form_validation->run() == FALSE) { //validation fails
-				echo json_encode(validation_errors());
-			} else {
-				//get the form data
-				$ID_SPPB = $this->input->post('ID_SPPB');
+	// 		//run validation check
+	// 		if ($this->form_validation->run() == FALSE) { //validation fails
+	// 			echo json_encode(validation_errors());
+	// 		} else {
+	// 			//get the form data
+	// 			$ID_SPPB = $this->input->post('ID_SPPB');
 
-				$KETERANGAN = "SPPB Pembelian SELESAI" . " ---- " . $ID_SPPB;
-				$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
+	// 			$KETERANGAN = "SPPB Pembelian SELESAI" . " ---- " . $ID_SPPB;
+	// 			$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
 
-				$PROGRESS_SPPB = "SPPB Pembelian Disetujui";
-				$STATUS_SPPB = "SELESAI";
+	// 			$PROGRESS_SPPB = "SPPB Pembelian Disetujui";
+	// 			$STATUS_SPPB = "SELESAI";
 
-				$data = $this->SPPB_form_model->update_data_kirim_sppb($ID_SPPB, $PROGRESS_SPPB, $STATUS_SPPB);
-				echo json_encode($data);
-			}
+	// 			$data = $this->SPPB_form_model->update_data_kirim_sppb($ID_SPPB, $PROGRESS_SPPB, $STATUS_SPPB);
+	// 			echo json_encode($data);
+	// 		}
 
-		} else if ($this->ion_auth->logged_in() && $this->ion_auth->in_group(5)) {
+	// 	} else if ($this->ion_auth->logged_in() && $this->ion_auth->in_group(5)) {
 
-			//set validation rules
-			$this->form_validation->set_rules('ID_SPPB', 'ID_SPPB', 'trim|required');
+	// 		//set validation rules
+	// 		$this->form_validation->set_rules('ID_SPPB', 'ID_SPPB', 'trim|required');
 
-			//run validation check
-			if ($this->form_validation->run() == FALSE) { //validation fails
-				echo json_encode(validation_errors());
-			} else {
-				//get the form data
-				$ID_SPPB = $this->input->post('ID_SPPB');
+	// 		//run validation check
+	// 		if ($this->form_validation->run() == FALSE) { //validation fails
+	// 			echo json_encode(validation_errors());
+	// 		} else {
+	// 			//get the form data
+	// 			$ID_SPPB = $this->input->post('ID_SPPB');
 
-				$KETERANGAN = "SPPB Pembelian SELESAI" . " ---- " . $ID_SPPB;
-				$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
+	// 			$KETERANGAN = "SPPB Pembelian SELESAI" . " ---- " . $ID_SPPB;
+	// 			$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
 
-				$PROGRESS_SPPB = "SPPB Pembelian Disetujui";
-				$STATUS_SPPB = "SELESAI";
+	// 			$PROGRESS_SPPB = "SPPB Pembelian Disetujui";
+	// 			$STATUS_SPPB = "SELESAI";
 
-				$data = $this->SPPB_form_model->update_data_kirim_sppb($ID_SPPB, $PROGRESS_SPPB, $STATUS_SPPB);
-				echo json_encode($data);
-			}
+	// 			$data = $this->SPPB_form_model->update_data_kirim_sppb($ID_SPPB, $PROGRESS_SPPB, $STATUS_SPPB);
+	// 			echo json_encode($data);
+	// 		}
 
-		} else if ($this->ion_auth->logged_in() && $this->ion_auth->in_group(8)) {
+	// 	} else if ($this->ion_auth->logged_in() && $this->ion_auth->in_group(8)) {
 
-			//set validation rules
-			$this->form_validation->set_rules('ID_SPPB', 'ID_SPPB', 'trim|required');
+	// 		//set validation rules
+	// 		$this->form_validation->set_rules('ID_SPPB', 'ID_SPPB', 'trim|required');
 
-			//run validation check
-			if ($this->form_validation->run() == FALSE) { //validation fails
-				echo json_encode(validation_errors());
-			} else {
-				//get the form data
-				$ID_SPPB = $this->input->post('ID_SPPB');
+	// 		//run validation check
+	// 		if ($this->form_validation->run() == FALSE) { //validation fails
+	// 			echo json_encode(validation_errors());
+	// 		} else {
+	// 			//get the form data
+	// 			$ID_SPPB = $this->input->post('ID_SPPB');
 
-				$KETERANGAN = "SPPB Pembelian SELESAI" . " ---- " . $ID_SPPB;
-				$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
+	// 			$KETERANGAN = "SPPB Pembelian SELESAI" . " ---- " . $ID_SPPB;
+	// 			$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
 
-				$PROGRESS_SPPB = "SPPB Pembelian Disetujui";
-				$STATUS_SPPB = "SELESAI";
+	// 			$PROGRESS_SPPB = "SPPB Pembelian Disetujui";
+	// 			$STATUS_SPPB = "SELESAI";
 
-				$data = $this->SPPB_form_model->update_data_kirim_sppb($ID_SPPB, $PROGRESS_SPPB, $STATUS_SPPB);
-				echo json_encode($data);
-			}
+	// 			$data = $this->SPPB_form_model->update_data_kirim_sppb($ID_SPPB, $PROGRESS_SPPB, $STATUS_SPPB);
+	// 			echo json_encode($data);
+	// 		}
 
-		} else if ($this->ion_auth->logged_in() && $this->ion_auth->in_group(9)) {
+	// 	} else if ($this->ion_auth->logged_in() && $this->ion_auth->in_group(9)) {
 
-			//set validation rules
-			$this->form_validation->set_rules('ID_SPPB', 'ID_SPPB', 'trim|required');
+	// 		//set validation rules
+	// 		$this->form_validation->set_rules('ID_SPPB', 'ID_SPPB', 'trim|required');
 
-			//run validation check
-			if ($this->form_validation->run() == FALSE) { //validation fails
-				echo json_encode(validation_errors());
-			} else {
-				//get the form data
-				$ID_SPPB = $this->input->post('ID_SPPB');
+	// 		//run validation check
+	// 		if ($this->form_validation->run() == FALSE) { //validation fails
+	// 			echo json_encode(validation_errors());
+	// 		} else {
+	// 			//get the form data
+	// 			$ID_SPPB = $this->input->post('ID_SPPB');
 
-				$KETERANGAN = "SPPB Pembelian SELESAI" . " ---- " . $ID_SPPB;
-				$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
+	// 			$KETERANGAN = "SPPB Pembelian SELESAI" . " ---- " . $ID_SPPB;
+	// 			$this->user_log_sppb_form($ID_SPPB_FORM, $KETERANGAN);
 
-				$PROGRESS_SPPB = "SPPB Pembelian Disetujui";
-				$STATUS_SPPB = "SELESAI";
+	// 			$PROGRESS_SPPB = "SPPB Pembelian Disetujui";
+	// 			$STATUS_SPPB = "SELESAI";
 
-				$data = $this->SPPB_form_model->update_data_kirim_sppb($ID_SPPB, $PROGRESS_SPPB, $STATUS_SPPB);
-				echo json_encode($data);
-			}
+	// 			$data = $this->SPPB_form_model->update_data_kirim_sppb($ID_SPPB, $PROGRESS_SPPB, $STATUS_SPPB);
+	// 			echo json_encode($data);
+	// 		}
 
-		} else {
-			$this->logout();
-		}
-	}
+	// 	} else {
+	// 		$this->logout();
+	// 	}
+	// }
 
 	// function update_data_coret()
 	// {
@@ -2366,640 +2366,640 @@ class Donatur_form extends CI_Controller
 	// }
 
 	// TAMPILAN VIEW ONLY
-	public function view()
-	{
-		//jika mereka belum login
-		if (!$this->ion_auth->logged_in()) {
-			// alihkan mereka ke halaman login
-			redirect('auth/login', 'refresh');
-		}
+	// public function view()
+	// {
+	// 	//jika mereka belum login
+	// 	if (!$this->ion_auth->logged_in()) {
+	// 		// alihkan mereka ke halaman login
+	// 		redirect('auth/login', 'refresh');
+	// 	}
 
-		//get data tabel users untuk ditampilkan
-		$user = $this->ion_auth->user()->row();
-		$this->data['user_id'] = $user->id;
-		$data_role_user = $this->Manajemen_user_model->get_data_role_user_by_id($this->data['user_id']);
-		$this->data['role_user'] = $data_role_user['description'];
-		$this->data['NAMA_PROYEK'] = $data_role_user['NAMA_PROYEK'];
-		$this->data['ip_address'] = $user->ip_address;
-		$this->data['email'] = $user->email;
-		$this->data['user_id'] = $user->id;
-		date_default_timezone_set('Asia/Jakarta');
-		$this->data['last_login'] = date('d-m-Y H:i:s', $user->last_login);
-		$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-		$this->data['message_deaktivasi'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message_deaktivasi');
+	// 	//get data tabel users untuk ditampilkan
+	// 	$user = $this->ion_auth->user()->row();
+	// 	$this->data['user_id'] = $user->id;
+	// 	$data_role_user = $this->Manajemen_user_model->get_data_role_user_by_id($this->data['user_id']);
+	// 	$this->data['role_user'] = $data_role_user['description'];
+	// 	$this->data['NAMA_PROYEK'] = $data_role_user['NAMA_PROYEK'];
+	// 	$this->data['ip_address'] = $user->ip_address;
+	// 	$this->data['email'] = $user->email;
+	// 	$this->data['user_id'] = $user->id;
+	// 	date_default_timezone_set('Asia/Jakarta');
+	// 	$this->data['last_login'] = date('d-m-Y H:i:s', $user->last_login);
+	// 	$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+	// 	$this->data['message_deaktivasi'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message_deaktivasi');
 
 
-		$query_foto_user = $this->Foto_model->get_data_by_id_pegawai($user->ID_PEGAWAI);
-		if ($query_foto_user == "BELUM ADA FOTO") {
-			$this->data['foto_user'] = "assets/wasa/img/profile_small.jpg";
-		} else {
-			$this->data['foto_user'] = $query_foto_user['KETERANGAN_2'];
-		}
+	// 	$query_foto_user = $this->Foto_model->get_data_by_id_pegawai($user->ID_PEGAWAI);
+	// 	if ($query_foto_user == "BELUM ADA FOTO") {
+	// 		$this->data['foto_user'] = "assets/wasa/img/profile_small.jpg";
+	// 	} else {
+	// 		$this->data['foto_user'] = $query_foto_user['KETERANGAN_2'];
+	// 	}
 
-		$HASH_MD5_SPPB = $this->uri->segment(3);
-		if ($this->SPPB_model->get_data_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB) == 'TIDAK ADA DATA') {
-			redirect('SPPB', 'refresh');
-		}
+	// 	$HASH_MD5_SPPB = $this->uri->segment(3);
+	// 	if ($this->SPPB_model->get_data_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB) == 'TIDAK ADA DATA') {
+	// 		redirect('SPPB', 'refresh');
+	// 	}
 
-		if ($this->ion_auth->logged_in()) {
+	// 	if ($this->ion_auth->logged_in()) {
 
-			//fungsi ini untuk mengirim data ke dropdown
-			$HASH_MD5_SPPB = $this->uri->segment(3);
+	// 		//fungsi ini untuk mengirim data ke dropdown
+	// 		$HASH_MD5_SPPB = $this->uri->segment(3);
 
-			if ($this->ion_auth->is_admin()) //staff_proc_kp
-			{ 
-				$this->data['HASH_MD5_SPPB'] = $HASH_MD5_SPPB;
-				$sess_data['HASH_MD5_SPPB'] = $this->data['HASH_MD5_SPPB'];
-				$this->session->set_userdata($sess_data);
-				$this->cetak_pdf($HASH_MD5_SPPB);
+	// 		if ($this->ion_auth->is_admin()) //staff_proc_kp
+	// 		{ 
+	// 			$this->data['HASH_MD5_SPPB'] = $HASH_MD5_SPPB;
+	// 			$sess_data['HASH_MD5_SPPB'] = $this->data['HASH_MD5_SPPB'];
+	// 			$this->session->set_userdata($sess_data);
+	// 			$this->cetak_pdf($HASH_MD5_SPPB);
 
-				$hasil = $this->SPPB_model->get_data_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
-				$ID_SPPB = $hasil['ID_SPPB'];
-				$this->data['ID_SPPB'] = $ID_SPPB;
-				$this->data['SPPB'] = $this->SPPB_model->sppb_list_by_id_sppb($ID_SPPB);
+	// 			$hasil = $this->SPPB_model->get_data_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
+	// 			$ID_SPPB = $hasil['ID_SPPB'];
+	// 			$this->data['ID_SPPB'] = $ID_SPPB;
+	// 			$this->data['SPPB'] = $this->SPPB_model->sppb_list_by_id_sppb($ID_SPPB);
 
-				foreach ($this->data['SPPB']->result() as $SPPB):
-					$this->data['FILE_NAME_TEMP'] = 'sppb_' . $HASH_MD5_SPPB . '.pdf';
-					$this->data['NO_URUT_SPPB'] = $SPPB->NO_URUT_SPPB;
-					$this->data['HASH_MD5_SPPB'] = $SPPB->HASH_MD5_SPPB;
-					$this->data['PROGRESS_SPPB'] = $SPPB->PROGRESS_SPPB;
-					$this->data['STATUS_SPPB'] = $SPPB->STATUS_SPPB;
-				endforeach;
+	// 			foreach ($this->data['SPPB']->result() as $SPPB):
+	// 				$this->data['FILE_NAME_TEMP'] = 'sppb_' . $HASH_MD5_SPPB . '.pdf';
+	// 				$this->data['NO_URUT_SPPB'] = $SPPB->NO_URUT_SPPB;
+	// 				$this->data['HASH_MD5_SPPB'] = $SPPB->HASH_MD5_SPPB;
+	// 				$this->data['PROGRESS_SPPB'] = $SPPB->PROGRESS_SPPB;
+	// 				$this->data['STATUS_SPPB'] = $SPPB->STATUS_SPPB;
+	// 			endforeach;
 
-				$query_file_HASH_MD5_SPPB = $this->SPPB_Form_File_Model->file_list_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
+	// 			$query_file_HASH_MD5_SPPB = $this->SPPB_Form_File_Model->file_list_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
 
-				if ($query_file_HASH_MD5_SPPB->num_rows() > 0) {
+	// 			if ($query_file_HASH_MD5_SPPB->num_rows() > 0) {
 
-					$this->data['dokumen'] = $this->SPPB_Form_File_Model->file_list_by_HASH_MD5_SPPB_result($HASH_MD5_SPPB);
+	// 				$this->data['dokumen'] = $this->SPPB_Form_File_Model->file_list_by_HASH_MD5_SPPB_result($HASH_MD5_SPPB);
 
-					$hasil = $query_file_HASH_MD5_SPPB->row();
-					$DOK_FILE = $hasil->DOK_FILE;
-					$TANGGAL_UPLOAD = $hasil->TANGGAL_UPLOAD;
-					$JENIS_FILE = $hasil->JENIS_FILE;
+	// 				$hasil = $query_file_HASH_MD5_SPPB->row();
+	// 				$DOK_FILE = $hasil->DOK_FILE;
+	// 				$TANGGAL_UPLOAD = $hasil->TANGGAL_UPLOAD;
+	// 				$JENIS_FILE = $hasil->JENIS_FILE;
 
-					if (file_exists($file = './assets/upload_sppb_form_file/' . $DOK_FILE)) {
-						$this->data['DOK_FILE'] = $DOK_FILE;
-						$this->data['TANGGAL_UPLOAD'] = $TANGGAL_UPLOAD;
-						$this->data['JENIS_FILE'] = $JENIS_FILE;
-						$this->data['FILE'] = "ADA";
-					} else {
-						$this->data['FILE'] = "TIDAK ADA";
-					}
-				} else {
-					$this->data['FILE'] = "TIDAK ADA";
-				}
+	// 				if (file_exists($file = './assets/upload_sppb_form_file/' . $DOK_FILE)) {
+	// 					$this->data['DOK_FILE'] = $DOK_FILE;
+	// 					$this->data['TANGGAL_UPLOAD'] = $TANGGAL_UPLOAD;
+	// 					$this->data['JENIS_FILE'] = $JENIS_FILE;
+	// 					$this->data['FILE'] = "ADA";
+	// 				} else {
+	// 					$this->data['FILE'] = "TIDAK ADA";
+	// 				}
+	// 			} else {
+	// 				$this->data['FILE'] = "TIDAK ADA";
+	// 			}
 
-				$this->load->view('wasa/user_admin/head_normal', $this->data);
-				$this->load->view('wasa/user_admin/user_menu');
-				$this->load->view('wasa/user_admin/left_menu');
-				$this->load->view('wasa/user_admin/header_menu');
-				$this->load->view('wasa/user_admin/content_sppb_form');
-				$this->load->view('wasa/user_admin/footer');
+	// 			$this->load->view('wasa/user_admin/head_normal', $this->data);
+	// 			$this->load->view('wasa/user_admin/user_menu');
+	// 			$this->load->view('wasa/user_admin/left_menu');
+	// 			$this->load->view('wasa/user_admin/header_menu');
+	// 			$this->load->view('wasa/user_admin/content_sppb_form');
+	// 			$this->load->view('wasa/user_admin/footer');
 
-			} 
-			else if ($this->ion_auth->in_group(5)) //staff_proc_kp
-			{ 
-				$this->data['HASH_MD5_SPPB'] = $HASH_MD5_SPPB;
-				$sess_data['HASH_MD5_SPPB'] = $this->data['HASH_MD5_SPPB'];
-				$this->session->set_userdata($sess_data);
-				$this->cetak_pdf($HASH_MD5_SPPB);
+	// 		} 
+	// 		else if ($this->ion_auth->in_group(5)) //staff_proc_kp
+	// 		{ 
+	// 			$this->data['HASH_MD5_SPPB'] = $HASH_MD5_SPPB;
+	// 			$sess_data['HASH_MD5_SPPB'] = $this->data['HASH_MD5_SPPB'];
+	// 			$this->session->set_userdata($sess_data);
+	// 			$this->cetak_pdf($HASH_MD5_SPPB);
 
-				$hasil = $this->SPPB_model->get_data_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
-				$ID_SPPB = $hasil['ID_SPPB'];
-				$this->data['ID_SPPB'] = $ID_SPPB;
-				$this->data['SPPB'] = $this->SPPB_model->sppb_list_by_id_sppb($ID_SPPB);
+	// 			$hasil = $this->SPPB_model->get_data_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
+	// 			$ID_SPPB = $hasil['ID_SPPB'];
+	// 			$this->data['ID_SPPB'] = $ID_SPPB;
+	// 			$this->data['SPPB'] = $this->SPPB_model->sppb_list_by_id_sppb($ID_SPPB);
 
-				foreach ($this->data['SPPB']->result() as $SPPB):
-					$this->data['FILE_NAME_TEMP'] = 'sppb_' . $HASH_MD5_SPPB . '.pdf';
-					$this->data['NO_URUT_SPPB'] = $SPPB->NO_URUT_SPPB;
-					$this->data['HASH_MD5_SPPB'] = $SPPB->HASH_MD5_SPPB;
-					$this->data['PROGRESS_SPPB'] = $SPPB->PROGRESS_SPPB;
-					$this->data['STATUS_SPPB'] = $SPPB->STATUS_SPPB;
-				endforeach;
+	// 			foreach ($this->data['SPPB']->result() as $SPPB):
+	// 				$this->data['FILE_NAME_TEMP'] = 'sppb_' . $HASH_MD5_SPPB . '.pdf';
+	// 				$this->data['NO_URUT_SPPB'] = $SPPB->NO_URUT_SPPB;
+	// 				$this->data['HASH_MD5_SPPB'] = $SPPB->HASH_MD5_SPPB;
+	// 				$this->data['PROGRESS_SPPB'] = $SPPB->PROGRESS_SPPB;
+	// 				$this->data['STATUS_SPPB'] = $SPPB->STATUS_SPPB;
+	// 			endforeach;
 
-				$query_file_HASH_MD5_SPPB = $this->SPPB_Form_File_Model->file_list_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
+	// 			$query_file_HASH_MD5_SPPB = $this->SPPB_Form_File_Model->file_list_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
 
-				if ($query_file_HASH_MD5_SPPB->num_rows() > 0) {
+	// 			if ($query_file_HASH_MD5_SPPB->num_rows() > 0) {
 
-					$this->data['dokumen'] = $this->SPPB_Form_File_Model->file_list_by_HASH_MD5_SPPB_result($HASH_MD5_SPPB);
+	// 				$this->data['dokumen'] = $this->SPPB_Form_File_Model->file_list_by_HASH_MD5_SPPB_result($HASH_MD5_SPPB);
 
-					$hasil = $query_file_HASH_MD5_SPPB->row();
-					$DOK_FILE = $hasil->DOK_FILE;
-					$TANGGAL_UPLOAD = $hasil->TANGGAL_UPLOAD;
-					$JENIS_FILE = $hasil->JENIS_FILE;
+	// 				$hasil = $query_file_HASH_MD5_SPPB->row();
+	// 				$DOK_FILE = $hasil->DOK_FILE;
+	// 				$TANGGAL_UPLOAD = $hasil->TANGGAL_UPLOAD;
+	// 				$JENIS_FILE = $hasil->JENIS_FILE;
 
-					if (file_exists($file = './assets/upload_sppb_form_file/' . $DOK_FILE)) {
-						$this->data['DOK_FILE'] = $DOK_FILE;
-						$this->data['TANGGAL_UPLOAD'] = $TANGGAL_UPLOAD;
-						$this->data['JENIS_FILE'] = $JENIS_FILE;
-						$this->data['FILE'] = "ADA";
-					} else {
-						$this->data['FILE'] = "TIDAK ADA";
-					}
-				} else {
-					$this->data['FILE'] = "TIDAK ADA";
-				}
+	// 				if (file_exists($file = './assets/upload_sppb_form_file/' . $DOK_FILE)) {
+	// 					$this->data['DOK_FILE'] = $DOK_FILE;
+	// 					$this->data['TANGGAL_UPLOAD'] = $TANGGAL_UPLOAD;
+	// 					$this->data['JENIS_FILE'] = $JENIS_FILE;
+	// 					$this->data['FILE'] = "ADA";
+	// 				} else {
+	// 					$this->data['FILE'] = "TIDAK ADA";
+	// 				}
+	// 			} else {
+	// 				$this->data['FILE'] = "TIDAK ADA";
+	// 			}
 
-				$this->load->view('wasa/user_staff_procurement_kp/head_normal', $this->data);
-				$this->load->view('wasa/user_staff_procurement_kp/user_menu');
-				$this->load->view('wasa/user_staff_procurement_kp/left_menu');
-				$this->load->view('wasa/user_staff_procurement_kp/header_menu');
-				$this->load->view('wasa/user_staff_procurement_kp/content_sppb_form');
-				$this->load->view('wasa/user_staff_procurement_kp/footer');
+	// 			$this->load->view('wasa/user_staff_procurement_kp/head_normal', $this->data);
+	// 			$this->load->view('wasa/user_staff_procurement_kp/user_menu');
+	// 			$this->load->view('wasa/user_staff_procurement_kp/left_menu');
+	// 			$this->load->view('wasa/user_staff_procurement_kp/header_menu');
+	// 			$this->load->view('wasa/user_staff_procurement_kp/content_sppb_form');
+	// 			$this->load->view('wasa/user_staff_procurement_kp/footer');
 
-			} 
-			else if ($this->ion_auth->in_group(8)) //staff_proc_sp
-			{ 
-				$this->data['HASH_MD5_SPPB'] = $HASH_MD5_SPPB;
-				$sess_data['HASH_MD5_SPPB'] = $this->data['HASH_MD5_SPPB'];
-				$this->session->set_userdata($sess_data);
-				$this->cetak_pdf($HASH_MD5_SPPB);
+	// 		} 
+	// 		else if ($this->ion_auth->in_group(8)) //staff_proc_sp
+	// 		{ 
+	// 			$this->data['HASH_MD5_SPPB'] = $HASH_MD5_SPPB;
+	// 			$sess_data['HASH_MD5_SPPB'] = $this->data['HASH_MD5_SPPB'];
+	// 			$this->session->set_userdata($sess_data);
+	// 			$this->cetak_pdf($HASH_MD5_SPPB);
 
-				$hasil = $this->SPPB_model->get_data_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
-				$ID_SPPB = $hasil['ID_SPPB'];
-				$this->data['ID_SPPB'] = $ID_SPPB;
-				$this->data['SPPB'] = $this->SPPB_model->sppb_list_by_id_sppb($ID_SPPB);
+	// 			$hasil = $this->SPPB_model->get_data_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
+	// 			$ID_SPPB = $hasil['ID_SPPB'];
+	// 			$this->data['ID_SPPB'] = $ID_SPPB;
+	// 			$this->data['SPPB'] = $this->SPPB_model->sppb_list_by_id_sppb($ID_SPPB);
 
-				foreach ($this->data['SPPB']->result() as $SPPB):
-					$this->data['FILE_NAME_TEMP'] = 'sppb_' . $HASH_MD5_SPPB . '.pdf';
-					$this->data['NO_URUT_SPPB'] = $SPPB->NO_URUT_SPPB;
-					$this->data['HASH_MD5_SPPB'] = $SPPB->HASH_MD5_SPPB;
-					$this->data['PROGRESS_SPPB'] = $SPPB->PROGRESS_SPPB;
-					$this->data['STATUS_SPPB'] = $SPPB->STATUS_SPPB;
-				endforeach;
+	// 			foreach ($this->data['SPPB']->result() as $SPPB):
+	// 				$this->data['FILE_NAME_TEMP'] = 'sppb_' . $HASH_MD5_SPPB . '.pdf';
+	// 				$this->data['NO_URUT_SPPB'] = $SPPB->NO_URUT_SPPB;
+	// 				$this->data['HASH_MD5_SPPB'] = $SPPB->HASH_MD5_SPPB;
+	// 				$this->data['PROGRESS_SPPB'] = $SPPB->PROGRESS_SPPB;
+	// 				$this->data['STATUS_SPPB'] = $SPPB->STATUS_SPPB;
+	// 			endforeach;
 
-				$query_file_HASH_MD5_SPPB = $this->SPPB_Form_File_Model->file_list_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
+	// 			$query_file_HASH_MD5_SPPB = $this->SPPB_Form_File_Model->file_list_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
 
-				if ($query_file_HASH_MD5_SPPB->num_rows() > 0) {
+	// 			if ($query_file_HASH_MD5_SPPB->num_rows() > 0) {
 
-					$this->data['dokumen'] = $this->SPPB_Form_File_Model->file_list_by_HASH_MD5_SPPB_result($HASH_MD5_SPPB);
+	// 				$this->data['dokumen'] = $this->SPPB_Form_File_Model->file_list_by_HASH_MD5_SPPB_result($HASH_MD5_SPPB);
 
-					$hasil = $query_file_HASH_MD5_SPPB->row();
-					$DOK_FILE = $hasil->DOK_FILE;
-					$TANGGAL_UPLOAD = $hasil->TANGGAL_UPLOAD;
-					$JENIS_FILE = $hasil->JENIS_FILE;
+	// 				$hasil = $query_file_HASH_MD5_SPPB->row();
+	// 				$DOK_FILE = $hasil->DOK_FILE;
+	// 				$TANGGAL_UPLOAD = $hasil->TANGGAL_UPLOAD;
+	// 				$JENIS_FILE = $hasil->JENIS_FILE;
 
-					if (file_exists($file = './assets/upload_sppb_form_file/' . $DOK_FILE)) {
-						$this->data['DOK_FILE'] = $DOK_FILE;
-						$this->data['TANGGAL_UPLOAD'] = $TANGGAL_UPLOAD;
-						$this->data['JENIS_FILE'] = $JENIS_FILE;
-						$this->data['FILE'] = "ADA";
-					} else {
-						$this->data['FILE'] = "TIDAK ADA";
-					}
-				} else {
-					$this->data['FILE'] = "TIDAK ADA";
-				}
+	// 				if (file_exists($file = './assets/upload_sppb_form_file/' . $DOK_FILE)) {
+	// 					$this->data['DOK_FILE'] = $DOK_FILE;
+	// 					$this->data['TANGGAL_UPLOAD'] = $TANGGAL_UPLOAD;
+	// 					$this->data['JENIS_FILE'] = $JENIS_FILE;
+	// 					$this->data['FILE'] = "ADA";
+	// 				} else {
+	// 					$this->data['FILE'] = "TIDAK ADA";
+	// 				}
+	// 			} else {
+	// 				$this->data['FILE'] = "TIDAK ADA";
+	// 			}
 
-				$this->load->view('wasa/user_staff_procurement_sp/head_normal', $this->data);
-				$this->load->view('wasa/user_staff_procurement_sp/user_menu');
-				$this->load->view('wasa/user_staff_procurement_sp/left_menu');
-				$this->load->view('wasa/user_staff_procurement_sp/header_menu');
-				$this->load->view('wasa/user_staff_procurement_sp/content_sppb_form');
-				$this->load->view('wasa/user_staff_procurement_sp/footer');
-			} else if ($this->ion_auth->in_group(9)) //supervisi_proc_sp
-			{ 
-				$this->data['HASH_MD5_SPPB'] = $HASH_MD5_SPPB;
-				$sess_data['HASH_MD5_SPPB'] = $this->data['HASH_MD5_SPPB'];
-				$this->session->set_userdata($sess_data);
-				$this->cetak_pdf($HASH_MD5_SPPB);
+	// 			$this->load->view('wasa/user_staff_procurement_sp/head_normal', $this->data);
+	// 			$this->load->view('wasa/user_staff_procurement_sp/user_menu');
+	// 			$this->load->view('wasa/user_staff_procurement_sp/left_menu');
+	// 			$this->load->view('wasa/user_staff_procurement_sp/header_menu');
+	// 			$this->load->view('wasa/user_staff_procurement_sp/content_sppb_form');
+	// 			$this->load->view('wasa/user_staff_procurement_sp/footer');
+	// 		} else if ($this->ion_auth->in_group(9)) //supervisi_proc_sp
+	// 		{ 
+	// 			$this->data['HASH_MD5_SPPB'] = $HASH_MD5_SPPB;
+	// 			$sess_data['HASH_MD5_SPPB'] = $this->data['HASH_MD5_SPPB'];
+	// 			$this->session->set_userdata($sess_data);
+	// 			$this->cetak_pdf($HASH_MD5_SPPB);
 
-				$hasil = $this->SPPB_model->get_data_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
-				$ID_SPPB = $hasil['ID_SPPB'];
-				$this->data['ID_SPPB'] = $ID_SPPB;
-				$this->data['SPPB'] = $this->SPPB_model->sppb_list_by_id_sppb($ID_SPPB);
+	// 			$hasil = $this->SPPB_model->get_data_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
+	// 			$ID_SPPB = $hasil['ID_SPPB'];
+	// 			$this->data['ID_SPPB'] = $ID_SPPB;
+	// 			$this->data['SPPB'] = $this->SPPB_model->sppb_list_by_id_sppb($ID_SPPB);
 
-				foreach ($this->data['SPPB']->result() as $SPPB):
-					$this->data['FILE_NAME_TEMP'] = 'sppb_' . $HASH_MD5_SPPB . '.pdf';
-					$this->data['NO_URUT_SPPB'] = $SPPB->NO_URUT_SPPB;
-					$this->data['HASH_MD5_SPPB'] = $SPPB->HASH_MD5_SPPB;
-					$this->data['PROGRESS_SPPB'] = $SPPB->PROGRESS_SPPB;
-					$this->data['STATUS_SPPB'] = $SPPB->STATUS_SPPB;
-				endforeach;
+	// 			foreach ($this->data['SPPB']->result() as $SPPB):
+	// 				$this->data['FILE_NAME_TEMP'] = 'sppb_' . $HASH_MD5_SPPB . '.pdf';
+	// 				$this->data['NO_URUT_SPPB'] = $SPPB->NO_URUT_SPPB;
+	// 				$this->data['HASH_MD5_SPPB'] = $SPPB->HASH_MD5_SPPB;
+	// 				$this->data['PROGRESS_SPPB'] = $SPPB->PROGRESS_SPPB;
+	// 				$this->data['STATUS_SPPB'] = $SPPB->STATUS_SPPB;
+	// 			endforeach;
 
-				$query_file_HASH_MD5_SPPB = $this->SPPB_Form_File_Model->file_list_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
+	// 			$query_file_HASH_MD5_SPPB = $this->SPPB_Form_File_Model->file_list_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
 
-				if ($query_file_HASH_MD5_SPPB->num_rows() > 0) {
+	// 			if ($query_file_HASH_MD5_SPPB->num_rows() > 0) {
 
-					$this->data['dokumen'] = $this->SPPB_Form_File_Model->file_list_by_HASH_MD5_SPPB_result($HASH_MD5_SPPB);
+	// 				$this->data['dokumen'] = $this->SPPB_Form_File_Model->file_list_by_HASH_MD5_SPPB_result($HASH_MD5_SPPB);
 
-					$hasil = $query_file_HASH_MD5_SPPB->row();
-					$DOK_FILE = $hasil->DOK_FILE;
-					$TANGGAL_UPLOAD = $hasil->TANGGAL_UPLOAD;
-					$JENIS_FILE = $hasil->JENIS_FILE;
+	// 				$hasil = $query_file_HASH_MD5_SPPB->row();
+	// 				$DOK_FILE = $hasil->DOK_FILE;
+	// 				$TANGGAL_UPLOAD = $hasil->TANGGAL_UPLOAD;
+	// 				$JENIS_FILE = $hasil->JENIS_FILE;
 
-					if (file_exists($file = './assets/upload_sppb_form_file/' . $DOK_FILE)) {
-						$this->data['DOK_FILE'] = $DOK_FILE;
-						$this->data['TANGGAL_UPLOAD'] = $TANGGAL_UPLOAD;
-						$this->data['JENIS_FILE'] = $JENIS_FILE;
-						$this->data['FILE'] = "ADA";
-					} else {
-						$this->data['FILE'] = "TIDAK ADA";
-					}
-				} else {
-					$this->data['FILE'] = "TIDAK ADA";
-				}
+	// 				if (file_exists($file = './assets/upload_sppb_form_file/' . $DOK_FILE)) {
+	// 					$this->data['DOK_FILE'] = $DOK_FILE;
+	// 					$this->data['TANGGAL_UPLOAD'] = $TANGGAL_UPLOAD;
+	// 					$this->data['JENIS_FILE'] = $JENIS_FILE;
+	// 					$this->data['FILE'] = "ADA";
+	// 				} else {
+	// 					$this->data['FILE'] = "TIDAK ADA";
+	// 				}
+	// 			} else {
+	// 				$this->data['FILE'] = "TIDAK ADA";
+	// 			}
 
-				$this->load->view('wasa/user_supervisi_procurement_sp/head_normal', $this->data);
-				$this->load->view('wasa/user_supervisi_procurement_sp/user_menu');
-				$this->load->view('wasa/user_supervisi_procurement_sp/left_menu');
-				$this->load->view('wasa/user_supervisi_procurement_sp/header_menu');
-				$this->load->view('wasa/user_supervisi_procurement_sp/content_sppb_form');
-				$this->load->view('wasa/user_supervisi_procurement_sp/footer');
-			} else {
-				redirect('SPPB', 'refresh');
-			}
-		} else {
-			$this->logout();
-		}
-	}
+	// 			$this->load->view('wasa/user_supervisi_procurement_sp/head_normal', $this->data);
+	// 			$this->load->view('wasa/user_supervisi_procurement_sp/user_menu');
+	// 			$this->load->view('wasa/user_supervisi_procurement_sp/left_menu');
+	// 			$this->load->view('wasa/user_supervisi_procurement_sp/header_menu');
+	// 			$this->load->view('wasa/user_supervisi_procurement_sp/content_sppb_form');
+	// 			$this->load->view('wasa/user_supervisi_procurement_sp/footer');
+	// 		} else {
+	// 			redirect('SPPB', 'refresh');
+	// 		}
+	// 	} else {
+	// 		$this->logout();
+	// 	}
+	// }
 	
-	function proses_upload_file()
-	{
+	// function proses_upload_file()
+	// {
 
-		if (!$this->ion_auth->logged_in()) {
-			// alihkan mereka ke halaman login
-			redirect('auth/login', 'refresh');
-		}
+	// 	if (!$this->ion_auth->logged_in()) {
+	// 		// alihkan mereka ke halaman login
+	// 		redirect('auth/login', 'refresh');
+	// 	}
 
-		$HASH_MD5_SPPB = $this->session->userdata('HASH_MD5_SPPB');
+	// 	$HASH_MD5_SPPB = $this->session->userdata('HASH_MD5_SPPB');
 
-		//jika mereka sudah login
-		if ($this->ion_auth->logged_in()) {
-			$WAKTU = date('Y-m-d H:i:s');
+	// 	//jika mereka sudah login
+	// 	if ($this->ion_auth->logged_in()) {
+	// 		$WAKTU = date('Y-m-d H:i:s');
 
-			$nama_file = "file_" . $HASH_MD5_SPPB . '_';
-			$config['upload_path'] = './assets/upload_sppb_form_file/';
-			$config['allowed_types'] = 'jpg|png|jpeg|bmp|pdf';
-			$config['file_name'] = $nama_file;
+	// 		$nama_file = "file_" . $HASH_MD5_SPPB . '_';
+	// 		$config['upload_path'] = './assets/upload_sppb_form_file/';
+	// 		$config['allowed_types'] = 'jpg|png|jpeg|bmp|pdf';
+	// 		$config['file_name'] = $nama_file;
 
-			$this->load->library('upload', $config);
+	// 		$this->load->library('upload', $config);
 
-			$query_id_sppb = $this->SPPB_model->get_data_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
-			$ID_SPPB = $query_id_sppb['ID_SPPB'];
+	// 		$query_id_sppb = $this->SPPB_model->get_data_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
+	// 		$ID_SPPB = $query_id_sppb['ID_SPPB'];
 
-			if ($this->upload->do_upload('userfile')) {
-				$token = $this->input->post('token_npwp');
-				$nama = $this->upload->data('file_name');
+	// 		if ($this->upload->do_upload('userfile')) {
+	// 			$token = $this->input->post('token_npwp');
+	// 			$nama = $this->upload->data('file_name');
 
-				$file_upload = $this->upload->data();
+	// 			$file_upload = $this->upload->data();
 
-				$JENIS_FILE = $this->input->post('JENIS_FILE');
+	// 			$JENIS_FILE = $this->input->post('JENIS_FILE');
 
-				$KETERANGAN = './assets/upload_sppb_form_file/' . $nama;
-				$this->db->insert('sppb_form_file', array('ID_SPPB' => $ID_SPPB, 'JENIS_FILE' => $JENIS_FILE, 'HASH_MD5_SPPB' => $HASH_MD5_SPPB, 'DOK_FILE' => $nama, 'TOKEN' => $token, 'TANGGAL_UPLOAD' => $WAKTU, 'KETERANGAN' => $KETERANGAN));
-				echo ($JENIS_FILE);
-			}
-		} else {
-			// alihkan mereka ke halaman sppb list
-			redirect('SPPB', 'refresh');
-		}
-	}
+	// 			$KETERANGAN = './assets/upload_sppb_form_file/' . $nama;
+	// 			$this->db->insert('sppb_form_file', array('ID_SPPB' => $ID_SPPB, 'JENIS_FILE' => $JENIS_FILE, 'HASH_MD5_SPPB' => $HASH_MD5_SPPB, 'DOK_FILE' => $nama, 'TOKEN' => $token, 'TANGGAL_UPLOAD' => $WAKTU, 'KETERANGAN' => $KETERANGAN));
+	// 			echo ($JENIS_FILE);
+	// 		}
+	// 	} else {
+	// 		// alihkan mereka ke halaman sppb list
+	// 		redirect('SPPB', 'refresh');
+	// 	}
+	// }
 
-	function proses_upload_file_excel()
-	{
-		if (!$this->ion_auth->logged_in()) {
-			// alihkan mereka ke halaman login
-			redirect('auth/login', 'refresh');
-		}
+	// function proses_upload_file_excel()
+	// {
+	// 	if (!$this->ion_auth->logged_in()) {
+	// 		// alihkan mereka ke halaman login
+	// 		redirect('auth/login', 'refresh');
+	// 	}
 
-		$HASH_MD5_SPPB = $this->session->userdata('HASH_MD5_SPPB');
+	// 	$HASH_MD5_SPPB = $this->session->userdata('HASH_MD5_SPPB');
 
-		//jika mereka sudah login dan sebagai admin
-		if ($this->ion_auth->logged_in()) {
+	// 	//jika mereka sudah login dan sebagai admin
+	// 	if ($this->ion_auth->logged_in()) {
 
 				
-			$WAKTU = date('Y-m-d H:i:s');
-			$nama_file = "excel_" . $HASH_MD5_SPPB;
-			$config['upload_path'] = './assets/upload_sppb_form_excel/';
-			$config['allowed_types'] = 'xlsx';
-			$config['file_name'] = $nama_file;
+	// 		$WAKTU = date('Y-m-d H:i:s');
+	// 		$nama_file = "excel_" . $HASH_MD5_SPPB;
+	// 		$config['upload_path'] = './assets/upload_sppb_form_excel/';
+	// 		$config['allowed_types'] = 'xlsx';
+	// 		$config['file_name'] = $nama_file;
 
-			$this->load->library('upload', $config);
+	// 		$this->load->library('upload', $config);
 
-			$query_id_sppb = $this->SPPB_model->get_data_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
-			$ID_SPPB = $query_id_sppb['ID_SPPB'];
-			$ID_PROYEK_SUB_PEKERJAAN = $query_id_sppb['ID_PROYEK_SUB_PEKERJAAN'];
+	// 		$query_id_sppb = $this->SPPB_model->get_data_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
+	// 		$ID_SPPB = $query_id_sppb['ID_SPPB'];
+	// 		$ID_PROYEK_SUB_PEKERJAAN = $query_id_sppb['ID_PROYEK_SUB_PEKERJAAN'];
 
-			if (file_exists($file = './assets/upload_sppb_form_excel/' .$nama_file.".xlsx")) {
-				unlink($file);
-			}
+	// 		if (file_exists($file = './assets/upload_sppb_form_excel/' .$nama_file.".xlsx")) {
+	// 			unlink($file);
+	// 		}
 
-			if ($this->upload->do_upload('userfile')) {
-				$JENIS_FILE = $this->input->post('JENIS_FILE');	
+	// 		if ($this->upload->do_upload('userfile')) {
+	// 			$JENIS_FILE = $this->input->post('JENIS_FILE');	
 
-				$token = $this->input->post('token_npwp');
-				$nama = $this->upload->data('file_name');
+	// 			$token = $this->input->post('token_npwp');
+	// 			$nama = $this->upload->data('file_name');
 
-				$path = $config['upload_path'].$nama_file.".xlsx";
-				$object = PHPExcel_IOFactory::load($path);
+	// 			$path = $config['upload_path'].$nama_file.".xlsx";
+	// 			$object = PHPExcel_IOFactory::load($path);
 
-				$ada_error = "tidak";
-				foreach($object->getWorksheetIterator() as $worksheet)
-				{
-					$highestRow = $worksheet->getHighestRow();
-					$highestColumn = $worksheet->getHighestColumn();	
-					for($row=2; $row<=$highestRow; $row++)
-					{
-						$inserdata['NAMA_BARANG']= $worksheet->getCellByColumnAndRow(0, $row)->getValue();
-						if(strstr($inserdata['NAMA_BARANG'], '"')){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
-						else if(strstr($inserdata['NAMA_BARANG'], "'")){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
-						else if(strstr($inserdata['NAMA_BARANG'], ";")){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
+	// 			$ada_error = "tidak";
+	// 			foreach($object->getWorksheetIterator() as $worksheet)
+	// 			{
+	// 				$highestRow = $worksheet->getHighestRow();
+	// 				$highestColumn = $worksheet->getHighestColumn();	
+	// 				for($row=2; $row<=$highestRow; $row++)
+	// 				{
+	// 					$inserdata['NAMA_BARANG']= $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+	// 					if(strstr($inserdata['NAMA_BARANG'], '"')){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
+	// 					else if(strstr($inserdata['NAMA_BARANG'], "'")){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
+	// 					else if(strstr($inserdata['NAMA_BARANG'], ";")){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
 
-						$inserdata['MEREK'] = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
-						if(strstr($inserdata['MEREK'], '"')){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
-						else if(strstr($inserdata['MEREK'], "'")){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
-						else if(strstr($inserdata['MEREK'], ";")){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
+	// 					$inserdata['MEREK'] = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+	// 					if(strstr($inserdata['MEREK'], '"')){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
+	// 					else if(strstr($inserdata['MEREK'], "'")){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
+	// 					else if(strstr($inserdata['MEREK'], ";")){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
 
-						$inserdata['SPESIFIKASI_SINGKAT'] = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
-						if(strstr($inserdata['SPESIFIKASI_SINGKAT'], '"')){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
-						else if(strstr($inserdata['SPESIFIKASI_SINGKAT'], "'")){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
-						else if(strstr($inserdata['SPESIFIKASI_SINGKAT'], ";")){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
+	// 					$inserdata['SPESIFIKASI_SINGKAT'] = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+	// 					if(strstr($inserdata['SPESIFIKASI_SINGKAT'], '"')){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
+	// 					else if(strstr($inserdata['SPESIFIKASI_SINGKAT'], "'")){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
+	// 					else if(strstr($inserdata['SPESIFIKASI_SINGKAT'], ";")){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
 
-						$inserdata['JUMLAH_QTY_SPP'] = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
-						if(strstr($inserdata['JUMLAH_QTY_SPP'], '"')){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
-						else if(strstr($inserdata['JUMLAH_QTY_SPP'], "'")){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
-						else if(strstr($inserdata['JUMLAH_QTY_SPP'], ";")){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
+	// 					$inserdata['JUMLAH_QTY_SPP'] = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+	// 					if(strstr($inserdata['JUMLAH_QTY_SPP'], '"')){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
+	// 					else if(strstr($inserdata['JUMLAH_QTY_SPP'], "'")){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
+	// 					else if(strstr($inserdata['JUMLAH_QTY_SPP'], ";")){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
 
-						$inserdata['SATUAN_BARANG'] = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
-						if(strstr($inserdata['SATUAN_BARANG'], '"')){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
-						else if(strstr($inserdata['SATUAN_BARANG'], "'")){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
-						else if(strstr($inserdata['SATUAN_BARANG'], ";")){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
+	// 					$inserdata['SATUAN_BARANG'] = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
+	// 					if(strstr($inserdata['SATUAN_BARANG'], '"')){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
+	// 					else if(strstr($inserdata['SATUAN_BARANG'], "'")){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
+	// 					else if(strstr($inserdata['SATUAN_BARANG'], ";")){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
 
-						$inserdata['TANGGAL_MULAI_PAKAI_HARI'] = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
-						if(strstr($inserdata['TANGGAL_MULAI_PAKAI_HARI'], '"')){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
-						else if(strstr($inserdata['TANGGAL_MULAI_PAKAI_HARI'], "'")){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
-						else if(strstr($inserdata['TANGGAL_MULAI_PAKAI_HARI'], ";")){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
+	// 					$inserdata['TANGGAL_MULAI_PAKAI_HARI'] = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
+	// 					if(strstr($inserdata['TANGGAL_MULAI_PAKAI_HARI'], '"')){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
+	// 					else if(strstr($inserdata['TANGGAL_MULAI_PAKAI_HARI'], "'")){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
+	// 					else if(strstr($inserdata['TANGGAL_MULAI_PAKAI_HARI'], ";")){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
 
-						$inserdata['TANGGAL_SELESAI_PAKAI_HARI'] = $worksheet->getCellByColumnAndRow(6, $row)->getValue();
-						if(strstr($inserdata['TANGGAL_SELESAI_PAKAI_HARI'], '"')){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
-						else if(strstr($inserdata['TANGGAL_SELESAI_PAKAI_HARI'], "'")){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
-						else if(strstr($inserdata['TANGGAL_SELESAI_PAKAI_HARI'], ";")){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
+	// 					$inserdata['TANGGAL_SELESAI_PAKAI_HARI'] = $worksheet->getCellByColumnAndRow(6, $row)->getValue();
+	// 					if(strstr($inserdata['TANGGAL_SELESAI_PAKAI_HARI'], '"')){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
+	// 					else if(strstr($inserdata['TANGGAL_SELESAI_PAKAI_HARI'], "'")){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
+	// 					else if(strstr($inserdata['TANGGAL_SELESAI_PAKAI_HARI'], ";")){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
 
-						$inserdata['KETERANGAN_UMUM'] = $worksheet->getCellByColumnAndRow(7, $row)->getValue();
-						if(strstr($inserdata['KETERANGAN_UMUM'], '"')){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
-						else if(strstr($inserdata['KETERANGAN_UMUM'], "'")){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
-						else if(strstr($inserdata['KETERANGAN_UMUM'], ";")){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
+	// 					$inserdata['KETERANGAN_UMUM'] = $worksheet->getCellByColumnAndRow(7, $row)->getValue();
+	// 					if(strstr($inserdata['KETERANGAN_UMUM'], '"')){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
+	// 					else if(strstr($inserdata['KETERANGAN_UMUM'], "'")){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
+	// 					else if(strstr($inserdata['KETERANGAN_UMUM'], ";")){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
 
-						$inserdata['ID_RAB_FORM'] = $worksheet->getCellByColumnAndRow(8, $row)->getValue();
-						if(strstr($inserdata['ID_RAB_FORM'], '"')){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
-						else if(strstr($inserdata['ID_RAB_FORM'], "'")){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
-						else if(strstr($inserdata['ID_RAB_FORM'], ";")){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
+	// 					$inserdata['ID_RAB_FORM'] = $worksheet->getCellByColumnAndRow(8, $row)->getValue();
+	// 					if(strstr($inserdata['ID_RAB_FORM'], '"')){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
+	// 					else if(strstr($inserdata['ID_RAB_FORM'], "'")){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
+	// 					else if(strstr($inserdata['ID_RAB_FORM'], ";")){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
 
-						$inserdata['ID_KLASIFIKASI_BARANG'] = $worksheet->getCellByColumnAndRow(9, $row)->getValue();
-						if(strstr($inserdata['ID_KLASIFIKASI_BARANG'], '"')){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
-						else if(strstr($inserdata['ID_KLASIFIKASI_BARANG'], "'")){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
-						else if(strstr($inserdata['ID_KLASIFIKASI_BARANG'], ";")){
-							echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
-							$ada_error = "ya";
-							break;
-						}
+	// 					$inserdata['ID_KLASIFIKASI_BARANG'] = $worksheet->getCellByColumnAndRow(9, $row)->getValue();
+	// 					if(strstr($inserdata['ID_KLASIFIKASI_BARANG'], '"')){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
+	// 					else if(strstr($inserdata['ID_KLASIFIKASI_BARANG'], "'")){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
+	// 					else if(strstr($inserdata['ID_KLASIFIKASI_BARANG'], ";")){
+	// 						echo 'Terdapat simbol yang tidak bisa diproses: mengandung tanda petik, koma dan semicolon';
+	// 						$ada_error = "ya";
+	// 						break;
+	// 					}
 
-					}
+	// 				}
 
-					if($ada_error == "tidak")
-					{
-						for($row=2; $row<=$highestRow; $row++)
-						{
-							$inserdata['NAMA_BARANG']= $worksheet->getCellByColumnAndRow(0, $row)->getValue();
-							$inserdata['MEREK'] = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
-							$inserdata['SPESIFIKASI_SINGKAT'] = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
-							$inserdata['JUMLAH_QTY_SPP'] = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
-							$inserdata['SATUAN_BARANG'] = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
-							$inserdata['TANGGAL_MULAI_PAKAI_HARI'] = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
-							$inserdata['TANGGAL_SELESAI_PAKAI_HARI'] = $worksheet->getCellByColumnAndRow(6, $row)->getValue();
-							$inserdata['KETERANGAN_UMUM'] = $worksheet->getCellByColumnAndRow(7, $row)->getValue();
-							$inserdata['ID_RAB_FORM'] = $worksheet->getCellByColumnAndRow(8, $row)->getValue();
-							$inserdata['ID_KLASIFIKASI_BARANG'] = $worksheet->getCellByColumnAndRow(9, $row)->getValue();
+	// 				if($ada_error == "tidak")
+	// 				{
+	// 					for($row=2; $row<=$highestRow; $row++)
+	// 					{
+	// 						$inserdata['NAMA_BARANG']= $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+	// 						$inserdata['MEREK'] = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+	// 						$inserdata['SPESIFIKASI_SINGKAT'] = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+	// 						$inserdata['JUMLAH_QTY_SPP'] = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+	// 						$inserdata['SATUAN_BARANG'] = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
+	// 						$inserdata['TANGGAL_MULAI_PAKAI_HARI'] = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
+	// 						$inserdata['TANGGAL_SELESAI_PAKAI_HARI'] = $worksheet->getCellByColumnAndRow(6, $row)->getValue();
+	// 						$inserdata['KETERANGAN_UMUM'] = $worksheet->getCellByColumnAndRow(7, $row)->getValue();
+	// 						$inserdata['ID_RAB_FORM'] = $worksheet->getCellByColumnAndRow(8, $row)->getValue();
+	// 						$inserdata['ID_KLASIFIKASI_BARANG'] = $worksheet->getCellByColumnAndRow(9, $row)->getValue();
 
-							$ID_RASD = $this->RASD_model->get_id_rasd_by_id_rab_form($inserdata['ID_RAB_FORM']);
+	// 						$ID_RASD = $this->RASD_model->get_id_rasd_by_id_rab_form($inserdata['ID_RAB_FORM']);
 
-							$hasil = $this->RASD_form_model->get_data_by_id_RASD_nama_spesifikasi($ID_RASD, $inserdata['NAMA_BARANG'], $inserdata['SPESIFIKASI_SINGKAT'] );
+	// 						$hasil = $this->RASD_form_model->get_data_by_id_RASD_nama_spesifikasi($ID_RASD, $inserdata['NAMA_BARANG'], $inserdata['SPESIFIKASI_SINGKAT'] );
 							
-							//apakah barang ada di RAB/RASD ??
-							if($hasil == "BELUM ADA RASD FORM")
-							{
+	// 						//apakah barang ada di RAB/RASD ??
+	// 						if($hasil == "BELUM ADA RASD FORM")
+	// 						{
 
-								$data = $this->RASD_form_model->simpan_data_dari_sppb_form_deviasi(
-									$ID_RASD,
-									$inserdata['SATUAN_BARANG'],
-									$inserdata['NAMA_BARANG'],
-									$inserdata['MEREK'],
-									$inserdata['SPESIFIKASI_SINGKAT']
-								);
+	// 							$data = $this->RASD_form_model->simpan_data_dari_sppb_form_deviasi(
+	// 								$ID_RASD,
+	// 								$inserdata['SATUAN_BARANG'],
+	// 								$inserdata['NAMA_BARANG'],
+	// 								$inserdata['MEREK'],
+	// 								$inserdata['SPESIFIKASI_SINGKAT']
+	// 							);
 		
-								$ID_RASD_FORM = $this->RASD_form_model->get_data_id_rasd_form($ID_RASD, $inserdata['NAMA_BARANG'], $inserdata['SPESIFIKASI_SINGKAT']);
+	// 							$ID_RASD_FORM = $this->RASD_form_model->get_data_id_rasd_form($ID_RASD, $inserdata['NAMA_BARANG'], $inserdata['SPESIFIKASI_SINGKAT']);
 
-								$data = $this->SPPB_form_model->simpan_data_dari_excel_ada_rasd_form(
-									$ID_SPPB,
-									$inserdata['ID_RAB_FORM'],
-									$ID_PROYEK_SUB_PEKERJAAN,
-									$ID_RASD_FORM,
-									$inserdata['ID_KLASIFIKASI_BARANG'],
-									$inserdata['NAMA_BARANG'],
-									$inserdata['MEREK'],
-									$inserdata['SPESIFIKASI_SINGKAT'],
-									$inserdata['JUMLAH_QTY_SPP'] ,
-									$inserdata['SATUAN_BARANG'],
-									$inserdata['TANGGAL_MULAI_PAKAI_HARI'],
-									$inserdata['TANGGAL_SELESAI_PAKAI_HARI'],
-									$inserdata['KETERANGAN_UMUM']
-								);
+	// 							$data = $this->SPPB_form_model->simpan_data_dari_excel_ada_rasd_form(
+	// 								$ID_SPPB,
+	// 								$inserdata['ID_RAB_FORM'],
+	// 								$ID_PROYEK_SUB_PEKERJAAN,
+	// 								$ID_RASD_FORM,
+	// 								$inserdata['ID_KLASIFIKASI_BARANG'],
+	// 								$inserdata['NAMA_BARANG'],
+	// 								$inserdata['MEREK'],
+	// 								$inserdata['SPESIFIKASI_SINGKAT'],
+	// 								$inserdata['JUMLAH_QTY_SPP'] ,
+	// 								$inserdata['SATUAN_BARANG'],
+	// 								$inserdata['TANGGAL_MULAI_PAKAI_HARI'],
+	// 								$inserdata['TANGGAL_SELESAI_PAKAI_HARI'],
+	// 								$inserdata['KETERANGAN_UMUM']
+	// 							);
 		
 
-							}
-							else
-							{
-								$ID_RASD_FORM = $hasil['ID_RASD_FORM'];
+	// 						}
+	// 						else
+	// 						{
+	// 							$ID_RASD_FORM = $hasil['ID_RASD_FORM'];
 
-								$data = $this->SPPB_form_model->simpan_data_dari_excel_ada_rasd_form(
-									$ID_SPPB,
-									$inserdata['ID_RAB_FORM'],
-									$ID_PROYEK_SUB_PEKERJAAN,
-									$ID_RASD_FORM,
-									$inserdata['ID_KLASIFIKASI_BARANG'],
-									$inserdata['NAMA_BARANG'],
-									$inserdata['MEREK'],
-									$inserdata['SPESIFIKASI_SINGKAT'],
-									$inserdata['JUMLAH_QTY_SPP'] ,
-									$inserdata['SATUAN_BARANG'],
-									$inserdata['TANGGAL_MULAI_PAKAI_HARI'],
-									$inserdata['TANGGAL_SELESAI_PAKAI_HARI'],
-									$inserdata['KETERANGAN_UMUM']
-								);
-							}							
-						}
-					}
+	// 							$data = $this->SPPB_form_model->simpan_data_dari_excel_ada_rasd_form(
+	// 								$ID_SPPB,
+	// 								$inserdata['ID_RAB_FORM'],
+	// 								$ID_PROYEK_SUB_PEKERJAAN,
+	// 								$ID_RASD_FORM,
+	// 								$inserdata['ID_KLASIFIKASI_BARANG'],
+	// 								$inserdata['NAMA_BARANG'],
+	// 								$inserdata['MEREK'],
+	// 								$inserdata['SPESIFIKASI_SINGKAT'],
+	// 								$inserdata['JUMLAH_QTY_SPP'] ,
+	// 								$inserdata['SATUAN_BARANG'],
+	// 								$inserdata['TANGGAL_MULAI_PAKAI_HARI'],
+	// 								$inserdata['TANGGAL_SELESAI_PAKAI_HARI'],
+	// 								$inserdata['KETERANGAN_UMUM']
+	// 							);
+	// 						}							
+	// 					}
+	// 				}
 
-				}
+	// 			}
 
-				// $KETERANGAN = './assets/upload_sppb_form_file/' . $nama;
-				// $this->db->insert('sppb_form_file', array('ID_SPPB' => $ID_SPPB, 'JENIS_FILE' => $JENIS_FILE, 'HASH_MD5_SPPB' => $HASH_MD5_SPPB, 'DOK_FILE' => $nama, 'TOKEN' => $token, 'TANGGAL_UPLOAD' => $WAKTU, 'KETERANGAN' => $KETERANGAN));
-			}
+	// 			// $KETERANGAN = './assets/upload_sppb_form_file/' . $nama;
+	// 			// $this->db->insert('sppb_form_file', array('ID_SPPB' => $ID_SPPB, 'JENIS_FILE' => $JENIS_FILE, 'HASH_MD5_SPPB' => $HASH_MD5_SPPB, 'DOK_FILE' => $nama, 'TOKEN' => $token, 'TANGGAL_UPLOAD' => $WAKTU, 'KETERANGAN' => $KETERANGAN));
+	// 		}
 
-			if (file_exists($file = './assets/upload_sppb_form_excel/' .$nama_file.".xlsx")) {
-				unlink($file);
-			}
+	// 		if (file_exists($file = './assets/upload_sppb_form_excel/' .$nama_file.".xlsx")) {
+	// 			unlink($file);
+	// 		}
 
-		} else {
-			// alihkan mereka ke halaman sppb list
-			redirect('SPPB', 'refresh');
-		}
-	}
+	// 	} else {
+	// 		// alihkan mereka ke halaman sppb list
+	// 		redirect('SPPB', 'refresh');
+	// 	}
+	// }
 
 	//Hapus file by button
-	function hapus_file()
-	{
-		//jika mereka belum login
-		if (!$this->ion_auth->logged_in()) {
-			// alihkan mereka ke halaman login
-			redirect('auth/login', 'refresh');
-		}
+// 	function hapus_file()
+// 	{
+// 		//jika mereka belum login
+// 		if (!$this->ion_auth->logged_in()) {
+// 			// alihkan mereka ke halaman login
+// 			redirect('auth/login', 'refresh');
+// 		}
 
-		//get data dari parameter URL
-		$this->data['DOK_FILE'] = $this->uri->segment(3);
+// 		//get data dari parameter URL
+// 		$this->data['DOK_FILE'] = $this->uri->segment(3);
 
-		//jika mereka sudah login dan sebagai admin
-		if ($this->ion_auth->logged_in()) {
-			//Query file BY DOK_FILE
-			$query_DOK_FILE = $this->SPPB_Form_File_Model->file_list_by_DOK_FILE($this->data['DOK_FILE']);
+// 		//jika mereka sudah login dan sebagai admin
+// 		if ($this->ion_auth->logged_in()) {
+// 			//Query file BY DOK_FILE
+// 			$query_DOK_FILE = $this->SPPB_Form_File_Model->file_list_by_DOK_FILE($this->data['DOK_FILE']);
 
-			if ($query_DOK_FILE->num_rows() > 0) {
-				$hasil = $query_DOK_FILE->row();
-				$DOK_FILE = $hasil->DOK_FILE;
-				if (file_exists($file = './assets/upload_sppb_form_file/' . $DOK_FILE)) {
-					unlink($file);
-				}
+// 			if ($query_DOK_FILE->num_rows() > 0) {
+// 				$hasil = $query_DOK_FILE->row();
+// 				$DOK_FILE = $hasil->DOK_FILE;
+// 				if (file_exists($file = './assets/upload_sppb_form_file/' . $DOK_FILE)) {
+// 					unlink($file);
+// 				}
 
-				$this->SPPB_Form_File_Model->hapus_data_by_DOK_FILE($DOK_FILE);
+// 				$this->SPPB_Form_File_Model->hapus_data_by_DOK_FILE($DOK_FILE);
 
-				$HASH_MD5_SPPB = $this->session->userdata('HASH_MD5_SPPB');
-				redirect('/sppb_form/view/' . $HASH_MD5_SPPB, 'refresh');
-			} else {
-				$HASH_MD5_SPPB = $this->session->userdata('HASH_MD5_SPPB');
-				redirect('/sppb_form/view/' . $HASH_MD5_SPPB, 'refresh');
-			}
-		} else {
-			// alihkan mereka ke halaman login
-			redirect('SPPB', 'refresh');
-		}
-	}
+// 				$HASH_MD5_SPPB = $this->session->userdata('HASH_MD5_SPPB');
+// 				redirect('/sppb_form/view/' . $HASH_MD5_SPPB, 'refresh');
+// 			} else {
+// 				$HASH_MD5_SPPB = $this->session->userdata('HASH_MD5_SPPB');
+// 				redirect('/sppb_form/view/' . $HASH_MD5_SPPB, 'refresh');
+// 			}
+// 		} else {
+// 			// alihkan mereka ke halaman login
+// 			redirect('SPPB', 'refresh');
+// 		}
+// 	}
 
 	public function tanggal_indo_full($tanggal, $cetak_hari = false)
 	{
@@ -3088,150 +3088,151 @@ class Donatur_form extends CI_Controller
 		}
 		
 	}
-
-	public function cetak_pdf($HASH_MD5_SPPB)
-	{
-		$hasil = $this->SPPB_model->get_data_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
-		$ID_SPPB = $hasil['ID_SPPB'];
-		$this->data['SPPB'] = $this->SPPB_model->sppb_list_sppb_by_hashmd5($HASH_MD5_SPPB);
-		setlocale(LC_ALL, 'id_ID.UTF8', 'id_ID.UTF-8', 'id_ID.8859-1', 'id_ID', 'IND.UTF8', 'IND.UTF-8', 'IND.8859-1', 'IND', 'Indonesian.UTF8', 'Indonesian.UTF-8', 'Indonesian.8859-1', 'Indonesian', 'Indonesia', 'id', 'ID', 'en_US.UTF8', 'en_US.UTF-8', 'en_US.8859-1', 'en_US', 'American', 'ENG', 'English');
-		date_default_timezone_set('Asia/Jakarta');
-		foreach ($this->data['SPPB']->result() as $SPPB):
-			$this->data['ID_SPPB'] = $SPPB->ID_SPPB;
-			$this->data['ID_PROYEK'] = $SPPB->ID_PROYEK;
-			$this->data['NO_URUT_SPPB'] = $SPPB->NO_URUT_SPPB;
-			$this->data['TANGGAL_DOKUMEN_SPPB'] = $SPPB->TANGGAL_DOKUMEN_SPPB;
-			$this->data['TANGGAL_DOKUMEN_SPPB_INDO'] = $this->tanggal_indo_full($SPPB->TANGGAL_DOKUMEN_SPPB_INDO, false);
-			$this->data['TANGGAL_PEMBUATAN_SPPB_HARI'] = $SPPB->TANGGAL_PEMBUATAN_SPPB_HARI;
-			$this->data['TANGGAL_PEMBUATAN_SPPB_BULAN'] = $SPPB->TANGGAL_PEMBUATAN_SPPB_BULAN;
-			$this->data['TANGGAL_PEMBUATAN_SPPB_TAHUN'] = $SPPB->TANGGAL_PEMBUATAN_SPPB_TAHUN;
-			$this->data['SUB_PROYEK'] = $SPPB->SUB_PROYEK;
-			$this->data['CTT_DEPT_PROC'] = $SPPB->CTT_DEPT_PROC;
-		endforeach;
-
-		$this->data['data_grup_rab_sppb_form'] = $this->SPPB_form_model->data_grup_rab_sppb_form($ID_SPPB);
-		if (!empty($this->data['data_grup_rab_sppb_form']))
-		{
-			$data_grup_rab_sppb_form = $this->SPPB_form_model->data_grup_rab_sppb_form($ID_SPPB);
-			$urutan = 0;
-			foreach ($data_grup_rab_sppb_form as $item) {
-				$ID_RAB_FORM = $item->ID_RAB_FORM;
-				$NAMA_KATEGORI = $item->NAMA_KATEGORI;
-				$konten_SPPB_form = $this->SPPB_form_model->sppb_form_list_by_id_sppb($ID_SPPB, $ID_RAB_FORM);
-				
-				$konten_rab_sppb_form[$urutan++] = array(
-					"ID_RAB_FORM" => $item->ID_RAB_FORM,
-					"NAMA_KATEGORI" => $item->NAMA_KATEGORI,
-					"konten_SPPB_form" => $konten_SPPB_form
-				);
-			}
-			$this->data['konten_rab_sppb_form'] = $konten_rab_sppb_form;
-		}
-
-		if (empty($this->data['data_grup_rab_sppb_form']))
-		{
-			$this->data['konten_rab_sppb_form'] = "";
-		}
-
-		$this->data['konten_keterangan_barang_SPPB_form'] = $this->SPPB_form_model->get_data_keterangan_barang_by_id_sppb($ID_SPPB);
-		$this->data['sign_SPPB_form'] = $this->SPPB_form_model->sign_sppb_by_id_sppb_non_result($ID_SPPB); foreach ($this->data['sign_SPPB_form']->result() as $SPPB):
-			$this->data['SIGN_USER_D_EP_KONS_KP'] = $SPPB->SIGN_USER_D_EP_KONS_KP;
-			$this->data['SIGN_USER_D_PSDS_KP'] = $SPPB->SIGN_USER_D_PSDS_KP;
-			$this->data['SIGN_USER_M_EP_KP'] = $SPPB->SIGN_USER_M_EP_KP;
-			$this->data['SIGN_USER_M_KONS_KP'] = $SPPB->SIGN_USER_M_KONS_KP;
-			$this->data['SIGN_USER_M_LOG_KP'] = $SPPB->SIGN_USER_M_LOG_KP;
-			$this->data['SIGN_USER_PM_SP'] = $SPPB->SIGN_USER_PM_SP;
-			$this->data['SIGN_USER_SM_SP'] = $SPPB->SIGN_USER_SM_SP;
-			$this->data['SIGN_USER_CHIEF_SP'] = $SPPB->SIGN_USER_CHIEF_SP;
-			$this->data['SIGN_USER_STAFF_UMUM_LOG_SP'] = $SPPB->SIGN_USER_STAFF_UMUM_LOG_SP;
-		endforeach;
-
-		$this->data['ctt_SPPB_form'] = $this->SPPB_form_model->get_data_catatan_sppb_by_id_sppb_non_result($ID_SPPB); foreach ($this->data['ctt_SPPB_form']->result() as $SPPB):
-			$this->data['CTT_STAFF_UMUM_LOG_SP'] = $SPPB->CTT_STAFF_UMUM_LOG_SP;
-			$this->data['CTT_SPV_LOG_SP'] = $SPPB->CTT_SPV_LOG_SP;
-			$this->data['CTT_CHIEF'] = $SPPB->CTT_CHIEF;
-			$this->data['CTT_SM'] = $SPPB->CTT_SM;
-			$this->data['CTT_PM'] = $SPPB->CTT_PM;
-			$this->data['CTT_STAFF_LOG_KP'] = $SPPB->CTT_STAFF_LOG_KP;
-			$this->data['CTT_STAFF_GUDANG_LOG_KP'] = $SPPB->CTT_STAFF_GUDANG_LOG_KP;
-			$this->data['CTT_KASIE_LOG_KP'] = $SPPB->CTT_KASIE_LOG_KP;
-			$this->data['CTT_M_HRD'] = $SPPB->CTT_M_HRD;
-			$this->data['CTT_M_KEU'] = $SPPB->CTT_M_KEU;
-			$this->data['CTT_M_KONS'] = $SPPB->CTT_M_KONS;
-			$this->data['CTT_M_SDM'] = $SPPB->CTT_M_SDM;
-			$this->data['CTT_M_QAQC'] = $SPPB->CTT_M_QAQC;
-			$this->data['CTT_M_EP'] = $SPPB->CTT_M_EP;
-			$this->data['CTT_M_HSSE'] = $SPPB->CTT_M_HSSE;
-			$this->data['CTT_M_MARKETING'] = $SPPB->CTT_M_MARKETING;
-			$this->data['CTT_M_KOMERSIAL'] = $SPPB->CTT_M_KOMERSIAL;
-			$this->data['CTT_M_LOG'] = $SPPB->CTT_M_LOG;
-			$this->data['CTT_D_KEU'] = $SPPB->CTT_D_KEU;
-			$this->data['CTT_D_EP_KONS'] = $SPPB->CTT_D_EP_KONS;
-			$this->data['CTT_D_PSDS'] = $SPPB->CTT_D_PSDS;
-		endforeach;
-
-		$this->data['PROYEK'] = $this->Proyek_model->detil_proyek_by_ID_PROYEK($this->data['ID_PROYEK']); foreach ($this->data['PROYEK']->result() as $PROYEK):
-			$this->data['NAMA_PROYEK_PDF'] = $PROYEK->NAMA_PROYEK;
-		endforeach;
-
-		//$this->data['rasd_barang_list'] = $this->FPB_form_model->rasd_form_list_where_not_in_fpb($ID_FPB);
-		//$this->data['barang_master_list'] = $this->FPB_form_model->barang_master_where_not_in_fpb_and_rasd($ID_FPB);
-		$this->data['satuan_barang_list'] = $this->Satuan_barang_model->satuan_barang_list();
-		$this->data['jenis_barang_list'] = $this->Jenis_barang_model->jenis_barang_list();
-		// $this->data['USER_PENGAJU'] = $this->FPB_form_model->ID_JABATAN_BY_ID_FPB($ID_FPB);
-
-		// foreach ($this->data['FPB']->result() as $FPB) :
-		// 	$FILE_NAME_TEMP = $FPB->FILE_NAME_TEMP;
-		// 	$this->data['STATUS_FPB'] = $FPB->STATUS_FPB;
-		// endforeach;
-
-		$this->load->library('ciqrcode'); //pemanggilan library QR CODE
-
-		$config['cacheable'] = true; //boolean, the default is true
-		$config['cachedir'] = './assets/QR_SPPB/cachedir/'; //string, the default is application/cache/
-		$config['errorlog'] = './assets/QR_SPPB/errorlog/'; //string, the default is application/logs/
-		$config['imagedir'] = './assets/QR_SPPB/'; //direktori penyimpanan qr code
-		$config['quality'] = true; //boolean, the default is true
-		$config['level'] = 'L'; //boolean, the default is true
-		$config['size'] = '1024'; //interger, the default is 1024
-		$config['black'] = array(224, 255, 255); // array, default is array(255,255,255)
-		$config['white'] = array(70, 130, 180); // array, default is array(0,0,0)
-		$this->ciqrcode->initialize($config);
-
-		$image_name = $HASH_MD5_SPPB . '.jpg'; //buat name dari qr code sesuai dengan nim
-		$this->data['image_name'] = $image_name;
-
-		$params['data'] = base_url('index.php/Otentikasi_dokumen/SPPB/') . $HASH_MD5_SPPB; //data yang akan di jadikan QR CODE
-		$params['level'] = 'H'; //H=High
-		$params['size'] = 10;
-		$params['savename'] = FCPATH . $config['imagedir'] . $image_name; //simpan image QR CODE ke folder assets/images/
-		$this->ciqrcode->generate($params); // fungsi untuk generate QR CODE
-
-		$this->data['GAMBAR_QR'] = 'C:/xampp/htdocs/project_eam/assets/QR_SPPB/' . $HASH_MD5_SPPB . ".jpg";
-		$this->data['GAMBAR_QR_2'] = 'C:/xampp/htdocs/project_eam/assets/QR_SPPB/' . $HASH_MD5_SPPB . ".jpg";
-
-		// panggil library yang kita buat sebelumnya yang bernama pdfgenerator
-		$this->load->library('pdfgenerator');
-
-		// title dari pdf
-		$this->data['title_pdf'] = 'SPPB';
-
-		// filename dari pdf ketika didownload
-		$file_pdf = 'sppb_' . $HASH_MD5_SPPB;
-		// setting paper
-		$paper = 'A4';
-		//orientasi paper potrait / landscape
-		$orientation = "landscape";
-
-		$html = $this->load->view('wasa/pdf/sppb_pdf', $this->data, true);
-
-		// run dompdf
-		$x = 735;
-		$y = 560;
-		$text = "Halaman {PAGE_NUM} dari {PAGE_COUNT}";
-		$size = 7;
-
-		$file_path = "assets/SPPB/";
-		$this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation, $x, $y, $text, $size, $file_path);
-	}
 }
+
+// 	public function cetak_pdf($HASH_MD5_SPPB)
+// 	{
+// 		$hasil = $this->SPPB_model->get_data_sppb_by_HASH_MD5_SPPB($HASH_MD5_SPPB);
+// 		$ID_SPPB = $hasil['ID_SPPB'];
+// 		$this->data['SPPB'] = $this->SPPB_model->sppb_list_sppb_by_hashmd5($HASH_MD5_SPPB);
+// 		setlocale(LC_ALL, 'id_ID.UTF8', 'id_ID.UTF-8', 'id_ID.8859-1', 'id_ID', 'IND.UTF8', 'IND.UTF-8', 'IND.8859-1', 'IND', 'Indonesian.UTF8', 'Indonesian.UTF-8', 'Indonesian.8859-1', 'Indonesian', 'Indonesia', 'id', 'ID', 'en_US.UTF8', 'en_US.UTF-8', 'en_US.8859-1', 'en_US', 'American', 'ENG', 'English');
+// 		date_default_timezone_set('Asia/Jakarta');
+// 		foreach ($this->data['SPPB']->result() as $SPPB):
+// 			$this->data['ID_SPPB'] = $SPPB->ID_SPPB;
+// 			$this->data['ID_PROYEK'] = $SPPB->ID_PROYEK;
+// 			$this->data['NO_URUT_SPPB'] = $SPPB->NO_URUT_SPPB;
+// 			$this->data['TANGGAL_DOKUMEN_SPPB'] = $SPPB->TANGGAL_DOKUMEN_SPPB;
+// 			$this->data['TANGGAL_DOKUMEN_SPPB_INDO'] = $this->tanggal_indo_full($SPPB->TANGGAL_DOKUMEN_SPPB_INDO, false);
+// 			$this->data['TANGGAL_PEMBUATAN_SPPB_HARI'] = $SPPB->TANGGAL_PEMBUATAN_SPPB_HARI;
+// 			$this->data['TANGGAL_PEMBUATAN_SPPB_BULAN'] = $SPPB->TANGGAL_PEMBUATAN_SPPB_BULAN;
+// 			$this->data['TANGGAL_PEMBUATAN_SPPB_TAHUN'] = $SPPB->TANGGAL_PEMBUATAN_SPPB_TAHUN;
+// 			$this->data['SUB_PROYEK'] = $SPPB->SUB_PROYEK;
+// 			$this->data['CTT_DEPT_PROC'] = $SPPB->CTT_DEPT_PROC;
+// 		endforeach;
+
+// 		$this->data['data_grup_rab_sppb_form'] = $this->SPPB_form_model->data_grup_rab_sppb_form($ID_SPPB);
+// 		if (!empty($this->data['data_grup_rab_sppb_form']))
+// 		{
+// 			$data_grup_rab_sppb_form = $this->SPPB_form_model->data_grup_rab_sppb_form($ID_SPPB);
+// 			$urutan = 0;
+// 			foreach ($data_grup_rab_sppb_form as $item) {
+// 				$ID_RAB_FORM = $item->ID_RAB_FORM;
+// 				$NAMA_KATEGORI = $item->NAMA_KATEGORI;
+// 				$konten_SPPB_form = $this->SPPB_form_model->sppb_form_list_by_id_sppb($ID_SPPB, $ID_RAB_FORM);
+				
+// 				$konten_rab_sppb_form[$urutan++] = array(
+// 					"ID_RAB_FORM" => $item->ID_RAB_FORM,
+// 					"NAMA_KATEGORI" => $item->NAMA_KATEGORI,
+// 					"konten_SPPB_form" => $konten_SPPB_form
+// 				);
+// 			}
+// 			$this->data['konten_rab_sppb_form'] = $konten_rab_sppb_form;
+// 		}
+
+// 		if (empty($this->data['data_grup_rab_sppb_form']))
+// 		{
+// 			$this->data['konten_rab_sppb_form'] = "";
+// 		}
+
+// 		$this->data['konten_keterangan_barang_SPPB_form'] = $this->SPPB_form_model->get_data_keterangan_barang_by_id_sppb($ID_SPPB);
+// 		$this->data['sign_SPPB_form'] = $this->SPPB_form_model->sign_sppb_by_id_sppb_non_result($ID_SPPB); foreach ($this->data['sign_SPPB_form']->result() as $SPPB):
+// 			$this->data['SIGN_USER_D_EP_KONS_KP'] = $SPPB->SIGN_USER_D_EP_KONS_KP;
+// 			$this->data['SIGN_USER_D_PSDS_KP'] = $SPPB->SIGN_USER_D_PSDS_KP;
+// 			$this->data['SIGN_USER_M_EP_KP'] = $SPPB->SIGN_USER_M_EP_KP;
+// 			$this->data['SIGN_USER_M_KONS_KP'] = $SPPB->SIGN_USER_M_KONS_KP;
+// 			$this->data['SIGN_USER_M_LOG_KP'] = $SPPB->SIGN_USER_M_LOG_KP;
+// 			$this->data['SIGN_USER_PM_SP'] = $SPPB->SIGN_USER_PM_SP;
+// 			$this->data['SIGN_USER_SM_SP'] = $SPPB->SIGN_USER_SM_SP;
+// 			$this->data['SIGN_USER_CHIEF_SP'] = $SPPB->SIGN_USER_CHIEF_SP;
+// 			$this->data['SIGN_USER_STAFF_UMUM_LOG_SP'] = $SPPB->SIGN_USER_STAFF_UMUM_LOG_SP;
+// 		endforeach;
+
+// 		$this->data['ctt_SPPB_form'] = $this->SPPB_form_model->get_data_catatan_sppb_by_id_sppb_non_result($ID_SPPB); foreach ($this->data['ctt_SPPB_form']->result() as $SPPB):
+// 			$this->data['CTT_STAFF_UMUM_LOG_SP'] = $SPPB->CTT_STAFF_UMUM_LOG_SP;
+// 			$this->data['CTT_SPV_LOG_SP'] = $SPPB->CTT_SPV_LOG_SP;
+// 			$this->data['CTT_CHIEF'] = $SPPB->CTT_CHIEF;
+// 			$this->data['CTT_SM'] = $SPPB->CTT_SM;
+// 			$this->data['CTT_PM'] = $SPPB->CTT_PM;
+// 			$this->data['CTT_STAFF_LOG_KP'] = $SPPB->CTT_STAFF_LOG_KP;
+// 			$this->data['CTT_STAFF_GUDANG_LOG_KP'] = $SPPB->CTT_STAFF_GUDANG_LOG_KP;
+// 			$this->data['CTT_KASIE_LOG_KP'] = $SPPB->CTT_KASIE_LOG_KP;
+// 			$this->data['CTT_M_HRD'] = $SPPB->CTT_M_HRD;
+// 			$this->data['CTT_M_KEU'] = $SPPB->CTT_M_KEU;
+// 			$this->data['CTT_M_KONS'] = $SPPB->CTT_M_KONS;
+// 			$this->data['CTT_M_SDM'] = $SPPB->CTT_M_SDM;
+// 			$this->data['CTT_M_QAQC'] = $SPPB->CTT_M_QAQC;
+// 			$this->data['CTT_M_EP'] = $SPPB->CTT_M_EP;
+// 			$this->data['CTT_M_HSSE'] = $SPPB->CTT_M_HSSE;
+// 			$this->data['CTT_M_MARKETING'] = $SPPB->CTT_M_MARKETING;
+// 			$this->data['CTT_M_KOMERSIAL'] = $SPPB->CTT_M_KOMERSIAL;
+// 			$this->data['CTT_M_LOG'] = $SPPB->CTT_M_LOG;
+// 			$this->data['CTT_D_KEU'] = $SPPB->CTT_D_KEU;
+// 			$this->data['CTT_D_EP_KONS'] = $SPPB->CTT_D_EP_KONS;
+// 			$this->data['CTT_D_PSDS'] = $SPPB->CTT_D_PSDS;
+// 		endforeach;
+
+// 		$this->data['PROYEK'] = $this->Proyek_model->detil_proyek_by_ID_PROYEK($this->data['ID_PROYEK']); foreach ($this->data['PROYEK']->result() as $PROYEK):
+// 			$this->data['NAMA_PROYEK_PDF'] = $PROYEK->NAMA_PROYEK;
+// 		endforeach;
+
+// 		//$this->data['rasd_barang_list'] = $this->FPB_form_model->rasd_form_list_where_not_in_fpb($ID_FPB);
+// 		//$this->data['barang_master_list'] = $this->FPB_form_model->barang_master_where_not_in_fpb_and_rasd($ID_FPB);
+// 		$this->data['satuan_barang_list'] = $this->Satuan_barang_model->satuan_barang_list();
+// 		$this->data['jenis_barang_list'] = $this->Jenis_barang_model->jenis_barang_list();
+// 		// $this->data['USER_PENGAJU'] = $this->FPB_form_model->ID_JABATAN_BY_ID_FPB($ID_FPB);
+
+// 		// foreach ($this->data['FPB']->result() as $FPB) :
+// 		// 	$FILE_NAME_TEMP = $FPB->FILE_NAME_TEMP;
+// 		// 	$this->data['STATUS_FPB'] = $FPB->STATUS_FPB;
+// 		// endforeach;
+
+// 		$this->load->library('ciqrcode'); //pemanggilan library QR CODE
+
+// 		$config['cacheable'] = true; //boolean, the default is true
+// 		$config['cachedir'] = './assets/QR_SPPB/cachedir/'; //string, the default is application/cache/
+// 		$config['errorlog'] = './assets/QR_SPPB/errorlog/'; //string, the default is application/logs/
+// 		$config['imagedir'] = './assets/QR_SPPB/'; //direktori penyimpanan qr code
+// 		$config['quality'] = true; //boolean, the default is true
+// 		$config['level'] = 'L'; //boolean, the default is true
+// 		$config['size'] = '1024'; //interger, the default is 1024
+// 		$config['black'] = array(224, 255, 255); // array, default is array(255,255,255)
+// 		$config['white'] = array(70, 130, 180); // array, default is array(0,0,0)
+// 		$this->ciqrcode->initialize($config);
+
+// 		$image_name = $HASH_MD5_SPPB . '.jpg'; //buat name dari qr code sesuai dengan nim
+// 		$this->data['image_name'] = $image_name;
+
+// 		$params['data'] = base_url('index.php/Otentikasi_dokumen/SPPB/') . $HASH_MD5_SPPB; //data yang akan di jadikan QR CODE
+// 		$params['level'] = 'H'; //H=High
+// 		$params['size'] = 10;
+// 		$params['savename'] = FCPATH . $config['imagedir'] . $image_name; //simpan image QR CODE ke folder assets/images/
+// 		$this->ciqrcode->generate($params); // fungsi untuk generate QR CODE
+
+// 		$this->data['GAMBAR_QR'] = 'C:/xampp/htdocs/project_eam/assets/QR_SPPB/' . $HASH_MD5_SPPB . ".jpg";
+// 		$this->data['GAMBAR_QR_2'] = 'C:/xampp/htdocs/project_eam/assets/QR_SPPB/' . $HASH_MD5_SPPB . ".jpg";
+
+// 		// panggil library yang kita buat sebelumnya yang bernama pdfgenerator
+// 		$this->load->library('pdfgenerator');
+
+// 		// title dari pdf
+// 		$this->data['title_pdf'] = 'SPPB';
+
+// 		// filename dari pdf ketika didownload
+// 		$file_pdf = 'sppb_' . $HASH_MD5_SPPB;
+// 		// setting paper
+// 		$paper = 'A4';
+// 		//orientasi paper potrait / landscape
+// 		$orientation = "landscape";
+
+// 		$html = $this->load->view('wasa/pdf/sppb_pdf', $this->data, true);
+
+// 		// run dompdf
+// 		$x = 735;
+// 		$y = 560;
+// 		$text = "Halaman {PAGE_NUM} dari {PAGE_COUNT}";
+// 		$size = 7;
+
+// 		$file_path = "assets/SPPB/";
+// 		$this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation, $x, $y, $text, $size, $file_path);
+// 	}
+// }

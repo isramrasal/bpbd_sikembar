@@ -1,5 +1,5 @@
 					<div class="logo-element">
-					    WME
+					    SIKEMBAR
 					</div>
 					</li>
 					<?php if ($left_menu == "dashboard_korban_bencana_aktif") { ?>

@@ -141,42 +141,42 @@ class Donatur extends CI_Controller
         }
     }
 
-    function list_sppb_by_all_proyek() //102023
-    {
+    // function list_sppb_by_all_proyek() //102023
+    // {
 
-        if ($this->ion_auth->logged_in()) {
+    //     if ($this->ion_auth->logged_in()) {
 
-            $data = $this->SPPB_model->list_sppb_by_all_proyek();
-            echo ($data);
+    //         $data = $this->SPPB_model->list_sppb_by_all_proyek();
+    //         echo ($data);
 
-            $ID_SPPB = 0;
-            $KETERANGAN = "Melihat Data SPPB: " . json_encode($data);
-            $this->user_log_sppb($ID_SPPB, $KETERANGAN);
+    //         $ID_SPPB = 0;
+    //         $KETERANGAN = "Melihat Data SPPB: " . json_encode($data);
+    //         $this->user_log_sppb($ID_SPPB, $KETERANGAN);
             
-        } else {
-            // set the flash data error message if there is one
-            $this->ion_auth->logout();
-            $this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
-        }
-    }
+    //     } else {
+    //         // set the flash data error message if there is one
+    //         $this->ion_auth->logout();
+    //         $this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
+    //     }
+    // }
 
-    function data_qty_sppb_form() //102023
-	{
-        if ($this->ion_auth->logged_in())
-        {
-            $ID_SPPB = $this->input->post('ID_SPPB');
-            $data = $this->SPPB_model->qty_sppb_form_by_id_sppb($ID_SPPB);
-            echo json_encode($data);
+    // function data_qty_sppb_form() //102023
+	// {
+    //     if ($this->ion_auth->logged_in())
+    //     {
+    //         $ID_SPPB = $this->input->post('ID_SPPB');
+    //         $data = $this->SPPB_model->qty_sppb_form_by_id_sppb($ID_SPPB);
+    //         echo json_encode($data);
 
-            $ID_SPPB = $ID_SPPB;
-            $KETERANGAN = "Melihat Data SPPB Form: " . json_encode($data);
-            $this->user_log_sppb($ID_SPPB, $KETERANGAN);
-        }
-		else {
-			$this->logout();
-            $this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
-		}
-	}
+    //         $ID_SPPB = $ID_SPPB;
+    //         $KETERANGAN = "Melihat Data SPPB Form: " . json_encode($data);
+    //         $this->user_log_sppb($ID_SPPB, $KETERANGAN);
+    //     }
+	// 	else {
+	// 		$this->logout();
+    //         $this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
+	// 	}
+	// }
 
     function generate_md5() //102023
 	{
@@ -192,46 +192,46 @@ class Donatur extends CI_Controller
 		}
 	}
 
-    function data_sppb_by_id_proyek()//BEDA KP DAN SP
-    {
+    // function data_sppb_by_id_proyek()//BEDA KP DAN SP
+    // {
 
-        if ($this->ion_auth->logged_in()) {
-            if ($this->ion_auth->is_admin()) {
-                $data = $this->SPPB_model->sppb_list();
-                echo json_encode($data);
+    //     if ($this->ion_auth->logged_in()) {
+    //         if ($this->ion_auth->is_admin()) {
+    //             $data = $this->SPPB_model->sppb_list();
+    //             echo json_encode($data);
 
-                $KETERANGAN = "Melihat Data SPPB: " . json_encode($data);
-                $this->user_log_sppb($ID_SPPB, $KETERANGAN);
-            } else if ($this->ion_auth->in_group(5)) {
+    //             $KETERANGAN = "Melihat Data SPPB: " . json_encode($data);
+    //             $this->user_log_sppb($ID_SPPB, $KETERANGAN);
+    //         } else if ($this->ion_auth->in_group(5)) {
 
-                $data = $this->SPPB_model->sppb_list();
-                echo json_encode($data);
+    //             $data = $this->SPPB_model->sppb_list();
+    //             echo json_encode($data);
 
-                $KETERANGAN = "Melihat Data SPPB: " . json_encode($data);
-                $this->user_log_sppb($ID_SPPB, $KETERANGAN);
-            } else if ($this->ion_auth->in_group(8)) {
+    //             $KETERANGAN = "Melihat Data SPPB: " . json_encode($data);
+    //             $this->user_log_sppb($ID_SPPB, $KETERANGAN);
+    //         } else if ($this->ion_auth->in_group(8)) {
 
-                $ID_PROYEK = $this->session->userdata('ID_PROYEK');
-                $data = $this->SPPB_model->sppb_list_by_id_proyek($ID_PROYEK);
-                echo json_encode($data);
+    //             $ID_PROYEK = $this->session->userdata('ID_PROYEK');
+    //             $data = $this->SPPB_model->sppb_list_by_id_proyek($ID_PROYEK);
+    //             echo json_encode($data);
 
-                $KETERANGAN = "Melihat Data SPPB: " . json_encode($data);
-                $this->user_log_sppb($ID_SPPB, $KETERANGAN);
-            } else if ($this->ion_auth->in_group(9)) {
+    //             $KETERANGAN = "Melihat Data SPPB: " . json_encode($data);
+    //             $this->user_log_sppb($ID_SPPB, $KETERANGAN);
+    //         } else if ($this->ion_auth->in_group(9)) {
 
-                $ID_PROYEK = $this->session->userdata('ID_PROYEK');
-                $data = $this->SPPB_model->sppb_list_by_id_proyek($ID_PROYEK);
-                echo json_encode($data);
+    //             $ID_PROYEK = $this->session->userdata('ID_PROYEK');
+    //             $data = $this->SPPB_model->sppb_list_by_id_proyek($ID_PROYEK);
+    //             echo json_encode($data);
 
-                $KETERANGAN = "Melihat Data SPPB: " . json_encode($data);
-                $this->user_log_sppb($ID_SPPB, $KETERANGAN);
-            } 
-        } else {
-            // set the flash data error message if there is one
-            $this->ion_auth->logout();
-            $this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
-        }
-    }
+    //             $KETERANGAN = "Melihat Data SPPB: " . json_encode($data);
+    //             $this->user_log_sppb($ID_SPPB, $KETERANGAN);
+    //         } 
+    //     } else {
+    //         // set the flash data error message if there is one
+    //         $this->ion_auth->logout();
+    //         $this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
+    //     }
+    // }
 
     function list_donatur_by_nik() //102023
     {
@@ -260,43 +260,43 @@ class Donatur extends CI_Controller
         }
     }
 
-    function data_sppb_by_id_sppb() //102023
-    {
-        if ($this->ion_auth->logged_in()) 
-        {
-            $ID_SPPB = $this->input->post('ID_SPPB');
-            $data = $this->SPPB_model->sppb_list_by_id_sppb_result($ID_SPPB);
-            echo json_encode($data);
+    // function data_sppb_by_id_sppb() //102023
+    // {
+    //     if ($this->ion_auth->logged_in()) 
+    //     {
+    //         $ID_SPPB = $this->input->post('ID_SPPB');
+    //         $data = $this->SPPB_model->sppb_list_by_id_sppb_result($ID_SPPB);
+    //         echo json_encode($data);
 
-            $ID_SPPB = $ID_SPPB;
-            $KETERANGAN = "Melihat Data SPPB: " . json_encode($data);
-            $this->user_log_sppb($ID_SPPB, $KETERANGAN);
+    //         $ID_SPPB = $ID_SPPB;
+    //         $KETERANGAN = "Melihat Data SPPB: " . json_encode($data);
+    //         $this->user_log_sppb($ID_SPPB, $KETERANGAN);
             
-        } else {
-            // set the flash data error message if there is one
-            $this->ion_auth->logout();
-            $this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
-        }
-    }
+    //     } else {
+    //         // set the flash data error message if there is one
+    //         $this->ion_auth->logout();
+    //         $this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
+    //     }
+    // }
 
-    function data_sub_pekerjaan_by_id_proyek() //102023
-    {
-        if($this->ion_auth->logged_in() )
-        {
-            $ID_PROYEK = $this->input->post('ID_PROYEK');
-            $data = $this->SPPB_model->data_sub_pekerjaan_by_id_proyek($ID_PROYEK);
-            echo json_encode($data);
+    // function data_sub_pekerjaan_by_id_proyek() //102023
+    // {
+    //     if($this->ion_auth->logged_in() )
+    //     {
+    //         $ID_PROYEK = $this->input->post('ID_PROYEK');
+    //         $data = $this->SPPB_model->data_sub_pekerjaan_by_id_proyek($ID_PROYEK);
+    //         echo json_encode($data);
 
-            $ID_SPPB = 0;
-            $KETERANGAN = "Get Data Sub Pekerjaan: " . json_encode($data);
-            $this->user_log_sppb($ID_SPPB, $KETERANGAN);
-        }
-        else {
-            // set the flash data error message if there is one
-            $this->ion_auth->logout();
-            $this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
-        }
-    }
+    //         $ID_SPPB = 0;
+    //         $KETERANGAN = "Get Data Sub Pekerjaan: " . json_encode($data);
+    //         $this->user_log_sppb($ID_SPPB, $KETERANGAN);
+    //     }
+    //     else {
+    //         // set the flash data error message if there is one
+    //         $this->ion_auth->logout();
+    //         $this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
+    //     }
+    // }
 
     function get_data_donatur_baru() //102023
     {
@@ -311,69 +311,69 @@ class Donatur extends CI_Controller
         }
     }
 
-    function get_nomor_urut_by_id_proyek()
-    {
-        if ($this->ion_auth->logged_in()) {
-            $ID_PROYEK = $this->input->get('ID_PROYEK');
-            $data = $this->SPPB_model->get_nomor_urut_by_id_proyek($ID_PROYEK);
-            echo json_encode($data);
+    // function get_nomor_urut_by_id_proyek()
+    // {
+    //     if ($this->ion_auth->logged_in()) {
+    //         $ID_PROYEK = $this->input->get('ID_PROYEK');
+    //         $data = $this->SPPB_model->get_nomor_urut_by_id_proyek($ID_PROYEK);
+    //         echo json_encode($data);
 
-            $KETERANGAN = "Get Nomor Urut SPPB: " . json_encode($data);
-            $this->user_log_sppb($ID_SPPB, $KETERANGAN);
-        } else {
-            // set the flash data error message if there is one
-            $this->ion_auth->logout();
-            $this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
-        }
-    }
+    //         $KETERANGAN = "Get Nomor Urut SPPB: " . json_encode($data);
+    //         $this->user_log_sppb($ID_SPPB, $KETERANGAN);
+    //     } else {
+    //         // set the flash data error message if there is one
+    //         $this->ion_auth->logout();
+    //         $this->session->set_flashdata('message', 'Anda tidak memiliki otorisasi untuk mengakses sistem, silahkan hubungi admin');
+    //     }
+    // }
 
-    function get_list_spp_by_id_sppb() //102023
-    {
-        if ($this->ion_auth->logged_in()) {
-            $ID_SPPB = $this->input->post('ID_SPPB');
-            $data = $this->SPP_model->get_list_spp_by_id_sppb($ID_SPPB);
-            echo json_encode($data);
+    // function get_list_spp_by_id_sppb() //102023
+    // {
+    //     if ($this->ion_auth->logged_in()) {
+    //         $ID_SPPB = $this->input->post('ID_SPPB');
+    //         $data = $this->SPP_model->get_list_spp_by_id_sppb($ID_SPPB);
+    //         echo json_encode($data);
 
-            $ID_SPPB = $ID_SPPB;
-            $KETERANGAN = "Get Data Proyek: " . json_encode($data);
-            $this->user_log_sppb($ID_SPPB, $KETERANGAN);
-        } else {
-            // set the flash data error message if there is one
-            $this->ion_auth->logout();
-        }
-    }
+    //         $ID_SPPB = $ID_SPPB;
+    //         $KETERANGAN = "Get Data Proyek: " . json_encode($data);
+    //         $this->user_log_sppb($ID_SPPB, $KETERANGAN);
+    //     } else {
+    //         // set the flash data error message if there is one
+    //         $this->ion_auth->logout();
+    //     }
+    // }
 
-    function get_list_po_by_id_spp() //102023
-    {
-        if ($this->ion_auth->logged_in()) {
-            $ID_SPP = $this->input->post('ID_SPP');
-            $data = $this->PO_model->get_list_po_by_id_spp($ID_SPP);
-            echo json_encode($data);
+    // function get_list_po_by_id_spp() //102023
+    // {
+    //     if ($this->ion_auth->logged_in()) {
+    //         $ID_SPP = $this->input->post('ID_SPP');
+    //         $data = $this->PO_model->get_list_po_by_id_spp($ID_SPP);
+    //         echo json_encode($data);
 
-            $ID_SPPB = 0;
-            $KETERANGAN = "Get Data PO: " . json_encode($data);
-            $this->user_log_sppb($ID_SPPB, $KETERANGAN);
-        } else {
-            // set the flash data error message if there is one
-            $this->ion_auth->logout();
-        }
-    }
+    //         $ID_SPPB = 0;
+    //         $KETERANGAN = "Get Data PO: " . json_encode($data);
+    //         $this->user_log_sppb($ID_SPPB, $KETERANGAN);
+    //     } else {
+    //         // set the flash data error message if there is one
+    //         $this->ion_auth->logout();
+    //     }
+    // }
 
-    function get_list_fstb_by_id_po() //102023
-    {
-        if ($this->ion_auth->logged_in()) {
-            $ID_PO = $this->input->post('ID_PO');
-            $data = $this->PO_model->get_list_fstb_by_id_po($ID_PO);
-            echo json_encode($data);
+    // function get_list_fstb_by_id_po() //102023
+    // {
+    //     if ($this->ion_auth->logged_in()) {
+    //         $ID_PO = $this->input->post('ID_PO');
+    //         $data = $this->PO_model->get_list_fstb_by_id_po($ID_PO);
+    //         echo json_encode($data);
 
-            $ID_SPPB = 0;
-            $KETERANGAN = "Get Data FSTB: " . json_encode($data);
-            $this->user_log_sppb($ID_SPPB, $KETERANGAN);
-        } else {
-            // set the flash data error message if there is one
-            $this->ion_auth->logout();
-        }
-    }
+    //         $ID_SPPB = 0;
+    //         $KETERANGAN = "Get Data FSTB: " . json_encode($data);
+    //         $this->user_log_sppb($ID_SPPB, $KETERANGAN);
+    //     } else {
+    //         // set the flash data error message if there is one
+    //         $this->ion_auth->logout();
+    //     }
+    // }
 
     
     function simpan_data_donatur() //BEDA KP DAN SP //102023
