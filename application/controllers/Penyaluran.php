@@ -185,6 +185,26 @@ class Penyaluran extends CI_Controller
         }
     }
 
+    public function get_data_penyaluran_bantuan_baru()
+    {
+        $CODE_MD5 = $this->input->post('CODE_MD5'); 
+
+        // Debugging: cek apakah CODE_MD5 diterima
+        if (empty($CODE_MD5)) {
+            log_message('error', 'CODE_MD5 tidak dikirim atau kosong');
+            echo json_encode(['result' => 'Kode MD5 kosong']);
+            return;
+        }
+
+        $data_penyaluran = $this->Penyaluran_model->get_data_penyaluran_by_CODE_MD5($CODE_MD5);
+
+        if ($data_penyaluran === 'TIDAK ADA DATA') {
+            echo json_encode(['result' => 'BELUM ADA PENYALURAN']);
+        } else {
+            echo json_encode($data_penyaluran);
+        }
+    }
+
 
 
     function simpan_data_penyaluran_bantuan() //BEDA KP DAN SP //102023

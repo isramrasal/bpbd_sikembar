@@ -93,7 +93,7 @@ class Penyaluran_model extends CI_Model
 
 	function penyaluran_list_by_id_penyaluran($ID_FORM_PENYALURAN_BARANG_BENCANA)
 	{
-		$hasil = $this->db->query("SELECT FPBB.ID_FORM_PENYALURAN_BARANG_BENCANA AS ID_FORM_PENYALURAN_BARANG_BENCANA, FPBB.CODE_MD5 AS CODE_MD5, FPBB.Nomor_Surat AS Nomor_Surat, DATE_FORMAT(FPBB.Tanggal_Pembuatan, '%d/%m/%Y') AS Tanggal_Pembuatan, DATE_FORMAT(FPBB.Tanggal_Surat, '%d/%m/%Y') AS Tanggal_Surat, FPBB.Nama_Penerima AS Nama_Penerima, FPBB.Nomor_KK_Penerima AS Nomor_KK_Penerima, FPBB.NIK_Penerima AS NIK_Penerima, DATE_FORMAT(FPBB.Tanggal_Lahir_Penerima, '%d/%m/%Y') AS Tanggal_Lahir_Penerima, FPBB.Tempat_Lahir_Penerima AS Tempat_Lahir_Penerima, FPBB.NIP_Penerima AS NIP_Penerima, FPBB.Jabatan_Penerima AS Jabatan_Penerima, FPBB.Instansi_Penerima AS Instansi_Penerima, FPBB.Kampung_Bencana AS Kampung_Bencana, FPBB.RT_Bencana AS RT_Bencana, FPBB.RW_Bencana AS RW_Bencana, FPBB.Desa_Kelurahan_Bencana AS Desa_Kelurahan_Bencana, FPBB.Kecamatan_Bencana AS Kecamatan_Bencana, FPBB.Kabupaten_Kota_Bencana AS Kabupaten_Kota_Bencana, FPBB.Kode_Pos_Bencana AS Kode_Pos_Bencana, FPBB.Jenis_Bencana AS Jenis_Bencana, FPBB.Nama_Pejabat_BPBD AS Nama_Pejabat_BPBD, FPBB.NIK_Pejabat_BPBD AS NIK_Pejabat_BPBD, FPBB.NIP_Pejabat_BPBD AS NIP_Pejabat_BPBD, FPBB.Jabatan_Pejabat_BPBD AS Jabatan_Pejabat_BPBD, DATE_FORMAT(FPBB.TANGGAL_KEJADIAN_BENCANA, '%d/%m/%Y') AS TANGGAL_KEJADIAN_BENCANA FROM form_penyaluran_barang_bencana AS FPBB
+		$hasil = $this->db->query("SELECT FPBB.ID_FORM_PENYALURAN_BARANG_BENCANA AS ID_FORM_PENYALURAN_BARANG_BENCANA, FPBB.CODE_MD5 AS CODE_MD5, DATE_FORMAT(FPBB.Tanggal_Pembuatan, '%d/%m/%Y') AS Tanggal_Pembuatan, DATE_FORMAT(FPBB.Tanggal_Surat, '%d/%m/%Y') AS Tanggal_Surat, FPBB.Nama_Penerima AS Nama_Penerima, FPBB.Nomor_KK_Penerima AS Nomor_KK_Penerima, FPBB.NIK_Penerima AS NIK_Penerima, DATE_FORMAT(FPBB.Tanggal_Lahir_Penerima, '%d/%m/%Y') AS Tanggal_Lahir_Penerima, FPBB.Tempat_Lahir_Penerima AS Tempat_Lahir_Penerima, FPBB.NIP_Penerima AS NIP_Penerima, FPBB.Jabatan_Penerima AS Jabatan_Penerima, FPBB.Instansi_Penerima AS Instansi_Penerima, FPBB.Kampung_Bencana AS Kampung_Bencana, FPBB.RT_Bencana AS RT_Bencana, FPBB.RW_Bencana AS RW_Bencana, FPBB.Desa_Kelurahan_Bencana AS Desa_Kelurahan_Bencana, FPBB.Kecamatan_Bencana AS Kecamatan_Bencana, FPBB.Kabupaten_Kota_Bencana AS Kabupaten_Kota_Bencana, FPBB.Kode_Pos_Bencana AS Kode_Pos_Bencana, FPBB.Jenis_Bencana AS Jenis_Bencana, FPBB.Nama_Pejabat_BPBD AS Nama_Pejabat_BPBD, FPBB.NIK_Pejabat_BPBD AS NIK_Pejabat_BPBD, FPBB.NIP_Pejabat_BPBD AS NIP_Pejabat_BPBD, FPBB.Jabatan_Pejabat_BPBD AS Jabatan_Pejabat_BPBD, DATE_FORMAT(FPBB.TANGGAL_KEJADIAN_BENCANA, '%d/%m/%Y') AS TANGGAL_KEJADIAN_BENCANA FROM form_penyaluran_barang_bencana AS FPBB
         WHERE FPBB.ID_FORM_PENYALURAN_BARANG_BENCANA =  '$ID_FORM_PENYALURAN_BARANG_BENCANA'");
 		return $hasil;
 		//return $hasil->result();
@@ -121,7 +121,6 @@ class Penyaluran_model extends CI_Model
 				$hasil = array(
 					'ID_FORM_PENYALURAN_BARANG_BENCANA' => $data->ID_FORM_PENYALURAN_BARANG_BENCANA,
 					'CODE_MD5' => $data->CODE_MD5,
-					'Nomor_Surat' => $data->Nomor_Surat,
 					'PROGRESS_PENGAJUAN' => $data->PROGRESS_PENGAJUAN,
 					'STATUS_PENGAJUAN' => $data->STATUS_PENGAJUAN
 				);

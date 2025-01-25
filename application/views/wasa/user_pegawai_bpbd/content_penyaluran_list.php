@@ -1284,7 +1284,7 @@ $(document).ready(function() {
                                 } else {
                                     window.location.href =
                                         '<?php echo base_url(); ?>Penyaluran_form/index/' +
-                                        data.HASH_MD5_PENYALURAN;
+                                        data.CODE_MD5;
                                 }
                             });
                         }
