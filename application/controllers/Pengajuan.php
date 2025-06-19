@@ -230,18 +230,18 @@ class Pengajuan extends CI_Controller
 
             //set validation rules
             $this->form_validation->set_rules('ID_JENIS_BENCANA', 'Jenis Bencana', 'trim|required');
-            $this->form_validation->set_rules('NAMA_PEMOHON', 'Nama Pemohon', 'trim|required|max_length[255]');
-            $this->form_validation->set_rules('NIK', 'NIK', 'trim|required|max_length[255]');
+            $this->form_validation->set_rules('NAMA_PEMOHON', 'Nama Pemohon', 'trim|required|max_length[100]');
+            $this->form_validation->set_rules('NIK', 'NIK', 'trim|required|max_length[50]');
             // $this->form_validation->set_rules('NIP', 'NIP', 'trim|max_length[255]');
             // $this->form_validation->set_rules('JABATAN', 'Jabatan', 'trim|max_length[255]');
             // $this->form_validation->set_rules('INSTANSI', 'Instansi', 'trim|max_length[255]');
-            $this->form_validation->set_rules('ID_KABUPATEN_KOTA', 'Kabupaten/Kota', 'trim|required|max_length[255]');
-            $this->form_validation->set_rules('ID_KECAMATAN', 'Kecamatan', 'trim|required|max_length[255]');
-            $this->form_validation->set_rules('ID_DESA_KELURAHAN', 'Desa/Kelurahan', 'trim|required|max_length[255]');
-            $this->form_validation->set_rules('RW', 'RW', 'trim|required|max_length[255]');
-            $this->form_validation->set_rules('RT', 'RT', 'trim|required|max_length[255]');
-            $this->form_validation->set_rules('KAMPUNG', 'Kampung', 'trim|required|max_length[255]');
-            $this->form_validation->set_rules('KODE_POS', 'Kode Pos', 'trim|required|max_length[255]');
+            $this->form_validation->set_rules('ID_KABUPATEN_KOTA', 'Kabupaten/Kota', 'trim|required|max_length[100]');
+            $this->form_validation->set_rules('ID_KECAMATAN', 'Kecamatan', 'trim|required|max_length[100]');
+            $this->form_validation->set_rules('ID_DESA_KELURAHAN', 'Desa/Kelurahan', 'trim|required|max_length[100]');
+            $this->form_validation->set_rules('RW', 'RW', 'trim|required|max_length[5]');
+            $this->form_validation->set_rules('RT', 'RT', 'trim|required|max_length[5]');
+            $this->form_validation->set_rules('KAMPUNG', 'Kampung', 'trim|required|max_length[100]');
+            $this->form_validation->set_rules('KODE_POS', 'Kode Pos', 'trim|required|max_length[10]');
             $this->form_validation->set_rules('TANGGAL_DOKUMEN_PENGAJUAN', 'Tanggal Pengajuan', 'trim|required|max_length[255]');
             $this->form_validation->set_rules('TANGGAL_KEJADIAN_BENCANA', 'Tanggal Kejadian Bencana', 'trim|required|max_length[255]');           
             

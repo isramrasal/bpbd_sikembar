@@ -350,13 +350,13 @@ class Pengajuan_form extends CI_Controller
 		
 			//set validation rules
 			$this->form_validation->set_rules('JENIS_BANTUAN', 'Jenis Bantuan', 'trim|required');
-			$this->form_validation->set_rules('NAMA', 'Nama Barang', 'trim|required|max_length[100]');
-			$this->form_validation->set_rules('MEREK', 'Merek Barang', 'trim|max_length[100]');
-			$this->form_validation->set_rules('SPESIFIKASI_SINGKAT', 'Spesifikasi Singkat', 'trim|max_length[100]');
+			$this->form_validation->set_rules('NAMA', 'Nama Barang', 'trim|required|max_length[50]');
+			$this->form_validation->set_rules('MEREK', 'Merek Barang', 'trim|max_length[50]');
+			$this->form_validation->set_rules('SPESIFIKASI_SINGKAT', 'Spesifikasi Singkat', 'trim|max_length[50]');
 			$this->form_validation->set_rules('JUMLAH_BARANG', 'Jumlah Barang', 'trim|numeric|required|greater_than[0]|less_than[99999999999]');
-			$this->form_validation->set_rules('SATUAN_BARANG', 'Satuan Barang', 'trim|required|max_length[100]');
+			$this->form_validation->set_rules('SATUAN_BARANG', 'Satuan Barang', 'trim|required|max_length[20]');
 			$this->form_validation->set_rules('JENIS_BANTUAN', 'Jenis Bantuan', 'trim|required|max_length[100]');
-			$this->form_validation->set_rules('KETERANGAN', 'Keterangan', 'trim|max_length[300]');
+			$this->form_validation->set_rules('KETERANGAN', 'Keterangan', 'trim|max_length[100]');
 			
 			// run validation check
 			if ($this->form_validation->run() == FALSE) { //validation fails

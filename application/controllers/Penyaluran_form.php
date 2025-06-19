@@ -122,12 +122,12 @@ class Penyaluran_form extends CI_Controller
 			if ($PROGRESS_PENGAJUAN == "Diproses oleh Staff BPBD") {
 				$hasil = $this->Penyaluran_model->get_data_penyaluran_by_CODE_MD5($CODE_MD5);
 				// var_dump($hasil);
-				$ID_FORM_PENYALURAN_BARANG_BENCANA = $hasil['ID_FORM_PENYALURAN_BARANG_BENCANA'];
+				$ID_FORM_INVENTARIS_PENYALURAN_BARANG_BENCANA  = $hasil['ID_FORM_INVENTARIS_PENYALURAN_BARANG_BENCANA '];
 				$this->data['CODE_MD5'] = $CODE_MD5;
-				$this->data['ID_FORM_PENYALURAN_BARANG_BENCANA'] = $ID_FORM_PENYALURAN_BARANG_BENCANA;
+				$this->data['ID_FORM_INVENTARIS_PENYALURAN_BARANG_BENCANA '] = $ID_FORM_INVENTARIS_PENYALURAN_BARANG_BENCANA ;
 
 				// $this->data['ID_SPPB'] = $ID_SPPB;
-				$this->data['Penyaluran'] = $this->Penyaluran_model->penyaluran_list_by_id_penyaluran($ID_FORM_PENYALURAN_BARANG_BENCANA);
+				$this->data['Penyaluran'] = $this->Penyaluran_model->penyaluran_list_by_id_penyaluran($ID_FORM_INVENTARIS_PENYALURAN_BARANG_BENCANA );
 				// $this->data['CATATAN_SPPB'] = $this->SPPB_form_model->get_data_catatan_sppb_by_id_sppb($ID_SPPB);
 				
 				// $this->data['klasifikasi_barang_list'] = $this->Klasifikasi_barang_model->klasifikasi_barang_list();

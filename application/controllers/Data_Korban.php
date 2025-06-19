@@ -177,20 +177,20 @@ class Data_Korban extends CI_Controller
 
             //set validation rules
             $this->form_validation->set_rules('JENIS_BENCANA', 'Jenis Bencana', 'trim|required');
-            $this->form_validation->set_rules('NAMA_KORBAN', 'Nama Korban', 'trim|required|max_length[255]');
-            $this->form_validation->set_rules('NO_KK', 'NO KK', 'trim|max_length[255]');
-            $this->form_validation->set_rules('NIK', 'NIK', 'trim|required|max_length[255]');
-            $this->form_validation->set_rules('TEMPAT_LAHIR', 'Tempat Lahir', 'trim|required|max_length[255]');
+            $this->form_validation->set_rules('NAMA_KORBAN', 'Nama Korban', 'trim|required|max_length[100]');
+            $this->form_validation->set_rules('NO_KK', 'NO KK', 'trim|max_length[50]');
+            $this->form_validation->set_rules('NIK', 'NIK', 'trim|required|max_length[50]');
+            $this->form_validation->set_rules('TEMPAT_LAHIR', 'Tempat Lahir', 'trim|required|max_length[50]');
             $this->form_validation->set_rules('TANGGAL_LAHIR', 'Tanggal Lahir', 'trim|required|max_length[255]');
             $this->form_validation->set_rules('ALAMAT', 'Alamat', 'trim|required|max_length[255]');
-            $this->form_validation->set_rules('ID_KABUPATEN_KOTA', 'Kabupaten/Kota', 'trim|required|max_length[255]');
-            $this->form_validation->set_rules('ID_KECAMATAN', 'Kecamatan', 'trim|required|max_length[255]');
-            $this->form_validation->set_rules('ID_DESA_KELURAHAN', 'Desa/Kelurahan', 'trim|required|max_length[255]');
-            $this->form_validation->set_rules('RW', 'RW', 'trim|required|max_length[255]');
-            $this->form_validation->set_rules('RT', 'RT', 'trim|required|max_length[255]');
-            $this->form_validation->set_rules('KAMPUNG', 'Kampung', 'trim|max_length[255]');
-            $this->form_validation->set_rules('KODE_POS', 'Kode Pos', 'trim|max_length[255]');
-            $this->form_validation->set_rules('TANGGAL_KEJADIAN_BENCANA', 'Tanggal Kejadian Bencana', 'trim|required|max_length[255]');           
+            $this->form_validation->set_rules('ID_KABUPATEN_KOTA', 'Kabupaten/Kota', 'trim|required|max_length[100]');
+            $this->form_validation->set_rules('ID_KECAMATAN', 'Kecamatan', 'trim|required|max_length[100]');
+            $this->form_validation->set_rules('ID_DESA_KELURAHAN', 'Desa/Kelurahan', 'trim|required|max_length[100]');
+            $this->form_validation->set_rules('RW', 'RW', 'trim|required|max_length[5]');
+            $this->form_validation->set_rules('RT', 'RT', 'trim|required|max_length[5]');
+            $this->form_validation->set_rules('KAMPUNG', 'Kampung', 'trim|max_length[100]');
+            $this->form_validation->set_rules('KODE_POS', 'Kode Pos', 'trim|max_length[50]');
+            $this->form_validation->set_rules('TANGGAL_KEJADIAN_BENCANA', 'Tanggal Kejadian Bencana', 'trim|required|max_length[50]');           
             
             //run validation check
             if ($this->form_validation->run() == FALSE) { 

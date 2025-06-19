@@ -358,7 +358,8 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
                                 Penyaluran Bantuan</a>
                             </br>
                             <a href="javascript:;" id="item_edit_kirim_pengajuan" name="item_edit_kirim_pengajuan"
-                                class="btn btn-success" data="<?php echo $ID_FORM_PENYALURAN_BARANG_BENCANA; ?>"><span
+                                class="btn btn-success"
+                                data="<?php echo $ID_FORM_INVENTARIS_PENYALURAN_BARANG_BENCANA; ?>"><span
                                     class="fa fa-send"></span>
                                 Ajukan Penyaluran Bantuan Untuk Diproses </a><br>
                         </div>
@@ -1069,7 +1070,8 @@ function tanggal_indo_full($tanggal, $cetak_hari = false)
 <script>
 $(document).ready(function() {
 
-    let ID_FORM_PENYALURAN_BARANG_BENCANA = <?php echo $ID_FORM_PENYALURAN_BARANG_BENCANA ?>;
+    let ID_FORM_INVENTARIS_PENYALURAN_BARANG_BENCANA =
+        <?php echo $ID_FORM_INVENTARIS_PENYALURAN_BARANG_BENCANA ?>;
     let CODE_MD5 = "<?php echo $CODE_MD5 ?>";
     tampil_data_penyaluran_form(); //pemanggilan fungsi tampil data.
 
@@ -1169,7 +1171,7 @@ $(document).ready(function() {
             async: false,
             dataType: 'json',
             data: {
-                ID_FORM_PENYALURAN_BARANG_BENCANA: ID_FORM_PENYALURAN_BARANG_BENCANA
+                ID_FORM_INVENTARIS_PENYALURAN_BARANG_BENCANA: ID_FORM_INVENTARIS_PENYALURAN_BARANG_BENCANA
             },
             success: function(data) {
 
@@ -1278,7 +1280,7 @@ $(document).ready(function() {
     //SIMPAN DATA
     $('#btn_simpan_data_1_item').click(function() {
         var form_data = {
-            ID_FORM_PENYALURAN_BARANG_BENCANA: ID_FORM_PENYALURAN_BARANG_BENCANA,
+            ID_FORM_INVENTARIS_PENYALURAN_BARANG_BENCANA: ID_FORM_INVENTARIS_PENYALURAN_BARANG_BENCANA,
             NAMA: $('#NAMA_4').val(),
             MEREK: $('#MEREK_4').val(),
             SPESIFIKASI_SINGKAT: $('#SPESIFIKASI_SINGKAT_4').val(),

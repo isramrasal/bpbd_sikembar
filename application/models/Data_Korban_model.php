@@ -49,6 +49,19 @@ class Data_Korban_model extends CI_Model
 		}
 		return $hasil;
 	}
+public function get_last_update($user_id)
+{
+    $this->db->select('MAX(TANGGAL_KEJADIAN_BENCANA) as last_update');
+    $this->db->from('data_korban');
+    $this->db->where('CREATE_BY_USER', $user_id);
+    $query = $this->db->get();
+    
+    if ($query->num_rows() > 0) {
+        $result = $query->row();
+        return $result->last_update ? date('d-m-Y', strtotime($result->last_update)) : 'Belum ada data';
+    }
+    return 'Belum ada data';
+}
 
 
 	function simpan_data_korban(
